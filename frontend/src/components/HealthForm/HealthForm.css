@@ -21,6 +21,8 @@
 }
 
 .health-form {
+    width: 300px;
+
     padding: 20px;
     position: absolute;
     background-color: white;
@@ -32,13 +34,45 @@
     z-index: 12;
 }
 
+.health-form-header {
+    font-size: 28px;
+}
+
+.health-form{
+    font-size: 18px;
+}
+
 /* !WEIGHT INPUT */
 .weight-input,
 .height-input,
 .age-input {
     display: flex;
+    /* background-color: aqua; */
+    margin: 10px;
+}
+
+.gender-input,
+.activity-input {
+    display: flex;
+    flex-direction: column;
+    /* background-color: orange; */
+    margin: 10px;
 }
 
 .health-form input{
     width: 22.5px;
+}
+
+.health-form div {
+    width: 100%;
+}
+
+.hf-block {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(220,220,220);
+}
+
+.hfh {
+    font-size: 20px;
+    font-weight: 500;
 }
