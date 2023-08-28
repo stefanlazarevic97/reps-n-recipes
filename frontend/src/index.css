@@ -1,0 +1,47 @@
+/* TODO Add site wide styles */
+
+/* @import url('https://fonts.cdnfonts.com/css/c-cereal'); */
+
+/* :root {
+    --brand-color: #fe385c;
+    --grid_columns: 1;
+    --margin: 22.5px;
+    --light_light_light_grey: #f7f7f7; 
+    --light_light_grey: #EBEBEB; 
+    --light_grey: #dddddd;
+    --dark_grey: #222222;
+    --grid_spacing: 20px;
+    --button_hit: cubic-bezier(0.2,0,0,1);
+    --show_margin: 0px;
+    --show_width: calc(100vw - 2*(var(--show_margin)));
+    --shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
+} */
+
+/* MEDIA QUERIES: */
+/* @media (min-width: 550px) {
+    :root {
+      --grid_columns: 2;
+    }
+}
+
+@media (min-width: 745px) {
+    :root {
+        --margin: 40px;
+        --show_margin: 40px;
+    }
+} */
+
+/* IMPORT A FONT: */
+/* @font-face {    
+    font-family: 'airbnb1';
+    src: url('./assets/airbnb-cereal-font/AirbnbCereal_W_Bd.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'airbnb2';
+    src: url('./assets/airbnb-cereal-font/AirbnbCereal_W_Bk.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+} */
