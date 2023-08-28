@@ -6,7 +6,7 @@ const cors = require('cors');
 const csurf = require('csurf');
 
 require('./models/User');
-
+require('./models/Food')
 require('./config/passport'); 
 const passport = require('passport');
 
@@ -37,8 +37,11 @@ app.use(
 
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
+const foodsRouter = require('./routes/api/foods');
+
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
+app.use('/api/foods', foodsRouter)
 
 // if (isProduction) {
 //     const path = require('path');
