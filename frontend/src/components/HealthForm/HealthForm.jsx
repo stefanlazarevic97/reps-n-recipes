@@ -168,79 +168,83 @@ const HealthForm = () => {
                 </div>
 
 
-                <div className='gender-input hf-block'>
+                <div className='gender-input hf-block' id="gender-input">
                     <div className='hfh'>Gender / Sex</div>
-                    <label>Male
-                        <input 
-                            type="radio" 
-                            value = "M"
-                            checked = {sex === "M"}
-                            onChange={e => setSex(e.target.value)}
-                        />
-                    </label>
-                    <label >Female
-                        <input 
-                            type="radio" 
-                            value = "F"
-                            checked = {sex === "F"}
-                            onChange={e => setSex(e.target.value)}
-                        />
-                    </label>
-                    {/* <label>Prefer not to say
-                        <input 
-                            type="radio" 
-                            value = "?"
-                            checked = {sex === "?"}
-                            onChange={e => setSex(e.target.value)}
-                        />
-                    </label> */}
+                    <div className='radio-button-block'>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value = "M"
+                                checked = {sex === "M"}
+                                onChange={e => setSex(e.target.value)}
+                            />Male
+                        </label>
+                        <label >
+                            <input 
+                                type="radio" 
+                                value = "F"
+                                checked = {sex === "F"}
+                                onChange={e => setSex(e.target.value)}
+                            />Female
+                        </label>
+                        {/* <label>Prefer not to say
+                            <input 
+                                type="radio" 
+                                value = "?"
+                                checked = {sex === "?"}
+                                onChange={e => setSex(e.target.value)}
+                            />
+                        </label> */}
+                    </div>
                 </div>
 
-                <div className='activity-input hf-block'>
+                <div className='activity-input hf-block' id="activity-input">
                     <div className='hfh'>Activity Level</div>
-                    <label>Sedentary
-                        <input 
-                            type="radio" 
-                            value = "S"
-                            checked = {activity === "S"}
-                            onChange={e => setActivity(e.target.value)}
-                        />
-                    </label>
-                    <label>Lightly Active
-                        <input 
-                            type="radio" 
-                            value = "LA"
-                            checked = {activity === "LA"}
-                            onChange={e => setActivity(e.target.value)}
-                        />
-                    </label>
-                    <label>Moderately Active
-                        <input 
-                            type="radio" 
-                            value = "MA"
-                            checked = {activity === "MA"}
-                            onChange={e => setActivity(e.target.value)}
-                        />
-                    </label>
-                    <label>Very Active
-                        <input 
-                            type="radio" 
-                            value = "VA"
-                            checked = {activity === "VA"}
-                            onChange={e => setActivity(e.target.value)}
-                        />
-                    </label>
-                    <label>Extremely Active
-                        <input 
-                            type="radio" 
-                            value = "EA"
-                            checked = {activity === "EA"}
-                            onChange={e => setActivity(e.target.value)}
-                        />
-                    </label>
+                    <div className='radio-button-block'>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value = "S"
+                                checked = {activity === "S"}
+                                onChange={e => setActivity(e.target.value)}
+                                />Sedentary
+                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value = "LA"
+                                checked = {activity === "LA"}
+                                onChange={e => setActivity(e.target.value)}
+                                />Lightly Active
+                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value = "MA"
+                                checked = {activity === "MA"}
+                                onChange={e => setActivity(e.target.value)}
+                                />Moderately Active
+                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value = "VA"
+                                checked = {activity === "VA"}
+                                onChange={e => setActivity(e.target.value)}
+                                />Very Active
+                        </label>
+                        <label>
+                            <input 
+                                type="radio" 
+                                value = "EA"
+                                checked = {activity === "EA"}
+                                onChange={e => setActivity(e.target.value)}
+                                />Extremely Active
+                        </label>
+                    </div>
                 </div>
 
-                <button
+                <button className='submit-health-from'
                 disabled={!weight || !((foot && inch) || cm) || 
                 !age || !sex || !activity}>Submit</button>
 

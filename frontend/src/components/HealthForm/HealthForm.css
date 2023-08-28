@@ -21,7 +21,7 @@
 }
 
 .health-form {
-    width: 300px;
+    width: 350px;
 
     padding: 20px;
     position: absolute;
@@ -63,16 +63,60 @@
     width: 22.5px;
 }
 
+/* ! this should be replaced */
 .health-form div {
     width: 100%;
 }
 
+/*! every input block */
 .hf-block {
     padding-bottom: 20px;
     border-bottom: 1px solid rgb(220,220,220);
+}
+
+.weight-input {
+    padding-top: 20px;
+    border-top: 1px solid rgb(220,220,220);
 }
 
 .hfh {
     font-size: 20px;
     font-weight: 500;
 }
+
+/*! submit button */
+.submit-health-from{
+    width: 200px;
+    height: 47.5px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-health-from:hover{
+    cursor: pointer;
+    background-color: rgb(220,220,220);
+}
+
+/*! radio buttons left margin  */
+.radio-button-block {
+    margin-left: 140px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 100px;
+}
+
+/* #activity-input,
+#gender-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */
