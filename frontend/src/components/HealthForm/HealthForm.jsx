@@ -7,15 +7,9 @@ import { updateUser } from '../../store/session';
 
 const HealthForm = () => {
 
-    const currentUser = useSelector(state => state.session.user);
-
-
-    // console.log(currentUser)
-
     const dispatch = useDispatch()
     const active = useSelector(getHealthFormState)
-
-    // console.log('active')
+    const currentUser = useSelector(state => state.session.user);
 
     const [distanceUnit, setDistanceUnit] = useState('feet-inches'); 
     const [massUnit, setMassUnit] = useState('pounds'); 
@@ -95,48 +89,20 @@ const HealthForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
-
         const mass = (massUnit === "kilos") ? weight : lbToKg(weight);
         const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch)
         const coeff = activityCoefficient()
         const tdee = TDEE(mass, height, coeff)
-        // ! hard coded the activity level for now because i put in databsase as a number
-        const healthData = {mass,height,age,sex,activityLevel: 4,TDEE: tdee}
-        // console.log(healthData)
-
-        // console.log(currentUser)
-
+        const activityMap = {"S":1, "LA":2, "MA":3,"VA":4, "EA":5}
+        const healthData = {mass,height,age,sex,activityLevel: activityMap[activity],TDEE: tdee}
         if (currentUser){
-
-            
-            const updatedUser = {
-                ...currentUser,
-                healthData
-            }
-    
-            console.log(updatedUser, "LGMA")
+            const updatedUser = {...currentUser,healthData}
             await dispatch(updateUser(updatedUser)); 
+        }else{
+            console.error("No user available to update");
         }
-
-
-        // if (currentUser && currentUser._id) {
-        //     const userId = currentUser._id;
-        //     try {
-        //       const response = await axios.patch(`http://localhost:5000/api/users/${userId}`, {
-        //         healthData
-        //       });
-        //       console.log("User data updated: ", response.data);
-        //     } catch (error) {
-        //       console.error("Error updating user: ", error);
-        //     }
-        // } else {
-        //     console.error("No user ID available");
-        // }
-
     }
 
-
-       
 
     return (
         <div className="health-form-container">
@@ -218,14 +184,6 @@ const HealthForm = () => {
                                 onChange={e => setSex(e.target.value)}
                             />Female
                         </label>
-                        {/* <label>Prefer not to say
-                            <input 
-                                type="radio" 
-                                value = "?"
-                                checked = {sex === "?"}
-                                onChange={e => setSex(e.target.value)}
-                            />
-                        </label> */}
                     </div>
                 </div>
 

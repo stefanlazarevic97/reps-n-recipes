@@ -29,7 +29,6 @@ export const clearSessionErrors = () => ({
 
 export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
-// export const updateUser = user => startSession(user, `api/users/${user.id}`);
 
 
 // THUNK ACTION CREATORS
@@ -57,19 +56,17 @@ const startSession = (userInfo, route) => async dispatch => {
 
 // ! PATCH A USER
 export const updateUser = updatedUser => async dispatch => {
+    console.log(updatedUser)
     try {  
-        const res = await jwtFetch(`api/users/${user.id}`, {
+        const res = await jwtFetch(`api/users/${updatedUser._id}`, {
             method: "PATCH",
             body: JSON.stringify(updatedUser)
         });
-        const { user } = await res.json();
-        // localStorage.setItem('jwtToken', token);
+        const user = await res.json();
         return dispatch(receiveCurrentUser(user));
     } catch(err) {
         const res = await err.json();
-        // if (res.statusCode === 400) {
-            return dispatch(receiveErrors(res.errors));
-        // }
+        return dispatch(receiveErrors(res.errors));
     }
 };
 
