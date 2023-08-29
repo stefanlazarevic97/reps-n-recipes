@@ -5,7 +5,7 @@ function HomePage() {
     return (
         <>
             <FoodInput />
-            <HealthForm/>
+            {/* <HealthForm/> */}
             <footer>
                 Copyright &copy; 2023 appAcademy
             </footer>

@@ -3,11 +3,13 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
 import './HealthForm.css';
+import { updateUser } from '../../store/session';
 
 const HealthForm = () => {
 
     const dispatch = useDispatch()
     const active = useSelector(getHealthFormState)
+    const currentUser = useSelector(state => state.session.user);
 
     const [distanceUnit, setDistanceUnit] = useState('feet-inches'); 
     const [massUnit, setMassUnit] = useState('pounds'); 
@@ -23,8 +25,6 @@ const HealthForm = () => {
     const errors = useSelector(state => state.errors.session);
 
     if (!active) return null
-
-    // const dispatch = useDispatch();
 
     const handleExit = e => {
         e.stopPropagation()
@@ -58,9 +58,7 @@ const HealthForm = () => {
     }
 
     const handleDistanceUnitChange = e => {
-        // console.log(e.currentTarget.value)
         setDistanceUnit(e.currentTarget.value);
-        // console.log(distanceUnit)
     };
 
     const handleMassUnitChange = e => {
@@ -89,28 +87,22 @@ const HealthForm = () => {
         : coeff*(10*mass + 6.25*height - 5*age - 161)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        // e.stopPropagation();
-
         const mass = (massUnit === "kilos") ? weight : lbToKg(weight);
         const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch)
         const coeff = activityCoefficient()
         const tdee = TDEE(mass, height, coeff)
-
-        const userData = {
-            mass,
-            height,
-            age,
-            sex,
-            activity,
-            tdee
+        const activityMap = {"S":1, "LA":2, "MA":3,"VA":4, "EA":5}
+        const healthData = {mass,height,age,sex,activityLevel: activityMap[activity],TDEE: tdee}
+        if (currentUser){
+            const updatedUser = {...currentUser,healthData}
+            await dispatch(updateUser(updatedUser)); 
+        }else{
+            console.error("No user available to update");
         }
-        console.log(userData)
     }
 
-
-       
 
     return (
         <div className="health-form-container">
@@ -192,14 +184,6 @@ const HealthForm = () => {
                                 onChange={e => setSex(e.target.value)}
                             />Female
                         </label>
-                        {/* <label>Prefer not to say
-                            <input 
-                                type="radio" 
-                                value = "?"
-                                checked = {sex === "?"}
-                                onChange={e => setSex(e.target.value)}
-                            />
-                        </label> */}
                     </div>
                 </div>
 
