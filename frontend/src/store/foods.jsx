@@ -33,7 +33,7 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
             menuItems: 'food/menuItems/search',
             recipes: 'recipes/complexSearch'
         };
-        console.log(apiKey);
+        
         const endpoint = endpointMap[category];
         const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?query=${foodSearch}&apiKey=${apiKey}`);
         const foods = await res.json();
@@ -47,14 +47,15 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
 export const fetchFood = (category, foodId, amount, unit) => async dispatch => {
     try {
         const endpointMap = {
-            ingredients: `food/ingredients/${foodId}/information?amount=${amount}&unit=${unit}`,
+            ingredients: `food/ingredients/${foodId}/information?amount=100&unit=g`,
             products: `food/products/${foodId}`,
             menuItems: `food/menuItems/${foodId}`,
             recipes: `recipes/${foodId}/information?includeNutrition=true`
         };
 
         const endpoint = endpointMap[category];
-        const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?apiKey=${apiKey}`);
+        console.log("endpoint: ", endpoint);
+        const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}&apiKey=${apiKey}`);
         const food = await res.json();
         dispatch(receiveFood(food));
     } catch(err) {
@@ -100,6 +101,21 @@ export const deleteFood = foodId => async dispatch => {
 // https://api.spoonacular.com/food/products/search
 // https://api.spoonacular.com/food/menuItems/search
 // https://api.spoonacular.com/recipes/complexSearch
+
+const nullErrors = null;
+
+export const foodErrorsReducer = (state=nullErrors, action) => {
+    switch(action.type) {
+        case RECEIVE_FOOD_ERRORS:
+            return action.errors;
+        case RECEIVE_FOOD:
+            return nullErrors;
+        case CLEAR_FOOD_ERRORS:
+            return nullErrors;
+        default:
+            return state;
+    }
+}
 
 const foodsReducer = (state = {}, action) => {
     const nextState = { ...state };

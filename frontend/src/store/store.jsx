@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import foods from './foods'
+import exercises from './exercises'
 import ui from './ui.jsx'
 
 const rootReducer = combineReducers({
     session,
     errors,
     foods,
+    exercises,
     ui
 });
 

@@ -1,14 +1,14 @@
-# Health 360
+# Reps 'N Recipes
 
 # [LIVE](Placeholder)
 
 ## Background and Overview
 
-Health 360 if a fitness app designed to help users achieve their health and wellness goals. There's a variety of fitness apps out there, but they either allow users to track their workouts or nutrition. Rather than requiring two apps, Health 360 combines both those features into one simple app. 
+Reps 'N Recipes if a fitness app designed to help users achieve their health and wellness goals. There's a variety of fitness apps out there, but they either allow users to track their workouts or nutrition. Rather than requiring two apps, Reps 'N Recipes combines both those features into one simple app. 
 
 The app features a database of built-in exercises with GIFs for users to see how to perform the movement, and they can input exercises manually if they are not in the database. For beginners, the app also generates workouts for the user to follow to make their fitness journey easier. 
 
-Additionally, Health 360 features Spoonacular API for easy meal tracking by searching for the ingredient and inputting the number of servings in their preferred unit of measurement, as well as the ability to generate a meal plan for the day based on the user's parameters.
+Additionally, Reps 'N Recipes features Spoonacular API for easy meal tracking by searching for the ingredient and inputting the number of servings in their preferred unit of measurement, as well as the ability to generate a meal plan for the day based on the user's parameters.
 
 ## Functionality and MVP
 
@@ -38,9 +38,9 @@ Technologies:
 
 - **Redux** is a state management library often used with React. It provides a centralized store for state that is needed across the entire application. Redux makes it easier to manage global state, especially in larger applications.
 
-- **Spoonacular** is an API that provides a broad range of food and nutrition data. From recipes to meal planning and nutrient information, this API could be crucial in adding the dietary planning and tracking component to Health 360.
+- **Spoonacular** is an API that provides a broad range of food and nutrition data. From recipes to meal planning and nutrient information, this API could be crucial in adding the dietary planning and tracking component to Reps 'N Recipes.
 
-- **Amazon Web Services (AWS) S3** is a storage service that allows for scalable and secure storage of files. You can store anything from documents to images and videos. For Health 360, S3 could be used to store exercise GIFs, user profile pictures, or any other media.
+- **Amazon Web Services (AWS) S3** is a storage service that allows for scalable and secure storage of files. You can store anything from documents to images and videos. For Reps 'N Recipes, S3 could be used to store exercise GIFs, user profile pictures, or any other media.
 
 ## Technical Challenges
 

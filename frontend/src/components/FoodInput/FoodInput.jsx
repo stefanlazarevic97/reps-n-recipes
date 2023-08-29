@@ -1,15 +1,17 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { fetchFoods } from "../../store/foods";
 import './FoodInput.css';
+import { changeSelectedOption } from "../../store/ui";
 
 const FoodInput = () => {
     const dispatch = useDispatch();
-    const [selectedOption, setSelectedOption] = useState("ingredients");
     const [searchQuery, setSearchQuery] = useState("");
+    const selectedOption = useSelector(state => state.ui.selectedOption);
 
     const handleDropdownChange = (e) => {
-        setSelectedOption(e.target.value);
+        const newSelectedOption = e.target.value;
+        dispatch(changeSelectedOption(newSelectedOption));
     }
 
     const handleSearchChange = (e) => {
