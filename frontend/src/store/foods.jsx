@@ -102,6 +102,21 @@ export const deleteFood = foodId => async dispatch => {
 // https://api.spoonacular.com/food/menuItems/search
 // https://api.spoonacular.com/recipes/complexSearch
 
+const nullErrors = null;
+
+export const foodErrorsReducer = (state=nullErrors, action) => {
+    switch(action.type) {
+        case RECEIVE_FOOD_ERRORS:
+            return action.errors;
+        case RECEIVE_FOOD:
+            return nullErrors;
+        case CLEAR_FOOD_ERRORS:
+            return nullErrors;
+        default:
+            return state;
+    }
+}
+
 const foodsReducer = (state = {}, action) => {
     const nextState = { ...state };
     
