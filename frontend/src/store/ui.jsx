@@ -23,12 +23,8 @@ export const getHealthFormState = state => state.ui.healthForm
 
 // REDUCER
 const initialState = {
-<<<<<<< HEAD
-    healthForm: false
-=======
-    healthForm: null,
+    healthForm: false,
     selectedOption: 'ingredients'
->>>>>>> main
 }
 
 const uiReducer = (state = initialState, action) => {
