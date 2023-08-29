@@ -2,10 +2,12 @@ import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
+import ui from './ui.jsx'
 
 const rootReducer = combineReducers({
     session,
-    errors
+    errors,
+    ui
 });
 
 let enhancer;
