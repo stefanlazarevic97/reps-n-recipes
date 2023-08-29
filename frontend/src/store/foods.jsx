@@ -2,7 +2,7 @@ import jwtFetch from './jwt'
 
 // CONSTANTS
 
-const apiKey = "b22ace1dfc894987bffcfce3de9808b1";
+const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
 const RECEIVE_FOODS = 'foods/RECEIVE_FOODS';
 const RECEIVE_FOOD = 'foods/RECEIVE_FOOD';
 const REMOVE_FOOD = 'foods/REMOVE_FOOD';
@@ -33,7 +33,7 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
             menuItems: 'food/menuItems/search',
             recipes: 'recipes/complexSearch'
         };
-
+        console.log(apiKey);
         const endpoint = endpointMap[category];
         const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?query=${foodSearch}&apiKey=${apiKey}`);
         const foods = await res.json();

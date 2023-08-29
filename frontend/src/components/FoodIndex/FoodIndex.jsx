@@ -6,9 +6,9 @@ const FoodIndex = () => {
     const dispatch = useDispatch()
     const foods = useSelector(getFoods)
 
-    // const handleClick = () => {
-    //     dispatch(fetchFood())
-    // }
+    const handleClick = () => {
+        dispatch(fetchFood())
+    }
 
     return (
         <div className="food-index">
