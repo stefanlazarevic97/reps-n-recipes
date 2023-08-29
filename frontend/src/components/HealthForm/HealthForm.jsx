@@ -3,13 +3,19 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
 import './HealthForm.css';
+import { updateUser } from '../../store/session';
 
 const HealthForm = () => {
 
     const currentUser = useSelector(state => state.session.user);
 
+
+    // console.log(currentUser)
+
     const dispatch = useDispatch()
     const active = useSelector(getHealthFormState)
+
+    // console.log('active')
 
     const [distanceUnit, setDistanceUnit] = useState('feet-inches'); 
     const [massUnit, setMassUnit] = useState('pounds'); 
@@ -96,21 +102,36 @@ const HealthForm = () => {
         const tdee = TDEE(mass, height, coeff)
         // ! hard coded the activity level for now because i put in databsase as a number
         const healthData = {mass,height,age,sex,activityLevel: 4,TDEE: tdee}
-        console.log(healthData)
+        // console.log(healthData)
 
-        if (currentUser && currentUser._id) {
-            const userId = currentUser._id;
-            try {
-              const response = await axios.patch(`http://localhost:5000/api/users/${userId}`, {
+        // console.log(currentUser)
+
+        if (currentUser){
+
+            
+            const updatedUser = {
+                ...currentUser,
                 healthData
-              });
-              console.log("User data updated: ", response.data);
-            } catch (error) {
-              console.error("Error updating user: ", error);
             }
-        } else {
-            console.error("No user ID available");
+    
+            console.log(updatedUser, "LGMA")
+            await dispatch(updateUser(updatedUser)); 
         }
+
+
+        // if (currentUser && currentUser._id) {
+        //     const userId = currentUser._id;
+        //     try {
+        //       const response = await axios.patch(`http://localhost:5000/api/users/${userId}`, {
+        //         healthData
+        //       });
+        //       console.log("User data updated: ", response.data);
+        //     } catch (error) {
+        //       console.error("Error updating user: ", error);
+        //     }
+        // } else {
+        //     console.error("No user ID available");
+        // }
 
     }
 

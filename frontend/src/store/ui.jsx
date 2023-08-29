@@ -17,7 +17,7 @@ export const getHealthFormState = state => state.ui.healthForm
 
 // REDUCER
 const initialState = {
-    healthForm: null
+    healthForm: false
 }
 
 const uiReducer = (state = initialState, action) => {
