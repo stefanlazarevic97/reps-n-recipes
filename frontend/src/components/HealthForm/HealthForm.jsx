@@ -3,7 +3,9 @@ import { useSelector, useDispatch } from 'react-redux';
 import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
 import './HealthForm.css';
-import { updateUser } from '../../store/session';
+// import { updateUser } from '../../store/session';
+import { receiveUserHealth } from '../../store/users'
+import { updateUser } from '../../store/users';
 
 const HealthForm = () => {
 
@@ -97,7 +99,8 @@ const HealthForm = () => {
         const healthData = {mass,height,age,sex,activityLevel: activityMap[activity],TDEE: tdee}
         if (currentUser){
             const updatedUser = {...currentUser,healthData}
-            await dispatch(updateUser(updatedUser)); 
+            await dispatch(updateUser(updatedUser));
+            dispatch(receiveUserHealth(healthData));
         }else{
             console.error("No user available to update");
         }

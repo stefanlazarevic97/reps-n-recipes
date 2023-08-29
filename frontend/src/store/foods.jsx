@@ -1,4 +1,5 @@
 import jwtFetch from './jwt'
+import { RECEIVE_USER_LOGOUT } from './session';
 
 // CONSTANTS
 
@@ -8,12 +9,19 @@ const RECEIVE_FOOD = 'foods/RECEIVE_FOOD';
 const REMOVE_FOOD = 'foods/REMOVE_FOOD';
 const RECEIVE_FOOD_ERRORS = 'foods/RECEIVE_FOOD_ERRORS';
 const CLEAR_FOOD_ERRORS  = 'foods/CLEAR_FOOD_ERRORS';
+export const RECEIVE_USER_NUTRITION = 'foods/RECEIVE_USER_NUTRITION';
 
 // ACTION CREATORS
 
 const receiveFoods = foods => ({ type: RECEIVE_FOODS, foods });
 const receiveFood = food => ({ type: RECEIVE_FOOD, food });
 const removeFood = foodId => ({ type: REMOVE_FOOD, foodId });
+
+const receiveUserNutrition = userNutrition => ({ 
+    type: RECEIVE_USER_NUTRITION, 
+    userNutrition 
+});
+
 const receiveFoodErrors = errors => ({ type: RECEIVE_FOOD_ERRORS, errors });
 const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
 
@@ -21,6 +29,7 @@ const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
 
 export const getFoods = state => Object.values(state.foods);
 export const getFood = foodId => state => state.foods.results[foodId]
+export const getFullFoodItem = selectedFood => state => state.foods[selectedFood.id]
 
 // THUNK ACTION CREATORS
 
@@ -58,6 +67,24 @@ export const fetchFood = (category, foodId, amount, unit) => async dispatch => {
         const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}&apiKey=${apiKey}`);
         const food = await res.json();
         dispatch(receiveFood(food));
+        return food;
+    } catch(err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const addUserNutrition = (foodItem) => async dispatch => {
+    try {
+        console.log(foodItem)
+        const res = await jwtFetch('/api/nutrition', {
+            method: 'POST',
+            body: JSON.stringify(foodItem)
+        });
+
+        const newUserNutrition = await res.json();
+        dispatch(receiveUserNutrition(newUserNutrition));
+        
     } catch(err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
@@ -128,6 +155,8 @@ const foodsReducer = (state = {}, action) => {
         case REMOVE_FOOD:
             delete nextState[action.foodId];
             return nextState;
+        case RECEIVE_USER_LOGOUT:
+            return {};
         default:
             return state;
     }
