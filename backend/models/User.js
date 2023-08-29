@@ -15,6 +15,15 @@ const userSchema = new Schema({
         required: true
     },
     nutrition: [nutritionSchema]
+    },
+    healthData: {
+        mass: Number,
+        height: Number,
+        age: Number,
+        sex: String,
+        activityLevel: Number,
+        TDEE: Number
+    }
 }, {
     timestamps: true
 });

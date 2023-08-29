@@ -30,6 +30,7 @@ export const clearSessionErrors = () => ({
 export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 
+
 // THUNK ACTION CREATORS
 
 const startSession = (userInfo, route) => async dispatch => {
@@ -38,7 +39,6 @@ const startSession = (userInfo, route) => async dispatch => {
             method: "POST",
             body: JSON.stringify(userInfo)
         });
-        
         const { user, token } = await res.json();
         localStorage.setItem('jwtToken', token);
         return dispatch(receiveCurrentUser(user));
@@ -50,6 +50,26 @@ const startSession = (userInfo, route) => async dispatch => {
         }
     }
 };
+
+
+
+
+// ! PATCH A USER
+export const updateUser = updatedUser => async dispatch => {
+    console.log(updatedUser)
+    try {  
+        const res = await jwtFetch(`api/users/${updatedUser._id}`, {
+            method: "PATCH",
+            body: JSON.stringify(updatedUser)
+        });
+        const user = await res.json();
+        return dispatch(receiveCurrentUser(user));
+    } catch(err) {
+        const res = await err.json();
+        return dispatch(receiveErrors(res.errors));
+    }
+};
+
 
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');

@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
+import HealthForm from '../HealthForm/HealthForm';
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -20,6 +21,7 @@ function NavBar () {
         <div className="links-nav">
           <Link to={'/profile'}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
+          <button onClick={()=>dispatch(activateHealthForm())}>Health Form</button>
         </div>
       );
     } else {
@@ -34,9 +36,9 @@ function NavBar () {
 
   return (
     <>
+    <HealthForm/>
       <h1>Reps 'N' Recipes</h1>
       { getLinks() }
-      <button onClick={()=>dispatch(activateHealthForm())}>Health Form</button>
     </>
   );
 }
