@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-
+const nutritionSchema = require('./Nutrition');
 const userSchema = new Schema({
     username: {
         type: String,
@@ -13,7 +13,8 @@ const userSchema = new Schema({
     hashedPassword: {
         type: String,
         required: true
-    }
+    },
+    nutrition: [nutritionSchema]
 }, {
     timestamps: true
 });

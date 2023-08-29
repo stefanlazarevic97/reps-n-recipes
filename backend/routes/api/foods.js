@@ -3,7 +3,7 @@ const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const Food = mongoose.model('Food')
+const Food = mongoose.model('Food');
 
 const { requireUser } = require('../../config/passport')
 const validateFoodInput = require('../../validation/food')
@@ -19,19 +19,15 @@ router.get('/', requireUser, async (req, res) => {
 })
 
 router.post('/', requireUser, validateFoodInput, async (req, res, next) => {
-    console.log("inside post route")
     try {
-        console.log("inside try block")
-        const newFood = new Food({
+            const newFood = new Food({
             food: req.body.food,
             foodQuantity: req.body.foodQuantity,
             foodQuantityUnit: req.body.foodQuantityUnit,
             calories: req.body.calories,
             gramsCarbs: req.body.gramsCarbs,
             gramsFat: req.body.gramsFat,
-            gramsProtein: req.body.gramsProtein,
-            dateConsumed: req.body.dateConsumed,
-            consumer: req.user._id
+            gramsProtein: req.body.gramsProtein
         })
 
         let food = await newFood.save();
