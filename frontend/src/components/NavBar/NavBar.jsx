@@ -2,10 +2,12 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
+import { activateHealthForm } from '../../store/ui';
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
   const dispatch = useDispatch();
+
   
   const logoutUser = e => {
       e.preventDefault();
@@ -34,6 +36,7 @@ function NavBar () {
     <>
       <h1>Reps 'N' Recipes</h1>
       { getLinks() }
+      <button onClick={()=>dispatch(activateHealthForm())}>Health Form</button>
     </>
   );
 }

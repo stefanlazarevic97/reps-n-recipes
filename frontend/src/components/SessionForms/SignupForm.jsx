@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForm.css';
 import { signup, clearSessionErrors } from '../../store/session';
+import { activateHealthForm } from '../../store/ui';
 
 function SignupForm () {
   const [email, setEmail] = useState('');
@@ -40,15 +41,13 @@ function SignupForm () {
     return e => setState(e.currentTarget.value);
   }
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
-    const user = {
-      email,
-      username,
-      password
-    };
+    const user = {email,username,password};
 
-    dispatch(signup(user)); 
+    await dispatch(signup(user)); 
+    
+    dispatch(activateHealthForm());
   }
 
   return (

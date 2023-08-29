@@ -1,8 +1,13 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { deactivateHealthForm } from '../../store/ui';
+import { getHealthFormState } from '../../store/ui';
 import './HealthForm.css';
 
 const HealthForm = () => {
+
+    const dispatch = useDispatch()
+    const active = useSelector(getHealthFormState)
 
     const [distanceUnit, setDistanceUnit] = useState('feet-inches'); 
     const [massUnit, setMassUnit] = useState('pounds'); 
@@ -17,12 +22,14 @@ const HealthForm = () => {
 
     const errors = useSelector(state => state.errors.session);
 
+    if (!active) return null
+
     // const dispatch = useDispatch();
 
-    // const handleExit = e => {
-    //     e.stopPropagation()
-    //     dispatch(deactivateHealthForm())
-    // }
+    const handleExit = e => {
+        e.stopPropagation()
+        dispatch(deactivateHealthForm())
+    }
        
     const update = (field) => {
         return e => {
@@ -107,9 +114,7 @@ const HealthForm = () => {
 
     return (
         <div className="health-form-container">
-        <div className="health-form-background" 
-        // onClick={handleExit}
-        >
+        <div className="health-form-background" onClick={handleExit}>
         </div>
 
             <form className="health-form" onSubmit={handleSubmit}>
