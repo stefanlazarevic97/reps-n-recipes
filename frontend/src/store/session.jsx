@@ -14,7 +14,7 @@ const receiveCurrentUser = currentUser => ({
     currentUser
 });
   
-const receiveErrors = errors => ({
+export const receiveErrors = errors => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
 });
@@ -51,24 +51,21 @@ const startSession = (userInfo, route) => async dispatch => {
     }
 };
 
-
-
-
-// ! PATCH A USER
-export const updateUser = updatedUser => async dispatch => {
-    console.log(updatedUser)
-    try {  
-        const res = await jwtFetch(`api/users/${updatedUser._id}`, {
-            method: "PATCH",
-            body: JSON.stringify(updatedUser)
-        });
-        const user = await res.json();
-        return dispatch(receiveCurrentUser(user));
-    } catch(err) {
-        const res = await err.json();
-        return dispatch(receiveErrors(res.errors));
-    }
-};
+// export const updateUser = updatedUser => async dispatch => {
+//     // console.log(updatedUser)
+//     try {  
+//         const res = await jwtFetch(`api/users/${updatedUser._id}`, {
+//             method: "PATCH",
+//             body: JSON.stringify(updatedUser)
+//         });
+//         const user = await res.json();
+//         dispatch(receiveUserHealth(healthData));
+//         // return dispatch(receiveCurrentUser(user));
+//     } catch(err) {
+//         const res = await err.json();
+//         return dispatch(receiveErrors(res.errors));
+//     }
+// };
 
 
 export const logout = () => dispatch => {

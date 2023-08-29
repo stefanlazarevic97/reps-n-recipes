@@ -1,0 +1,12 @@
+.food-item {
+    width: 200px;
+    height: 40px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+}
+
+.food-item:hover {
+    cursor: pointer;
+    background-color: rgb(220,220,220);
+}

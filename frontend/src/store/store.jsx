@@ -4,6 +4,7 @@ import session from './session';
 import errors from './errors';
 import foods from './foods'
 import exercises from './exercises'
+import users from './users'
 import ui from './ui.jsx'
 
 const rootReducer = combineReducers({
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
     errors,
     foods,
     exercises,
+    users,
     ui
 });
 
