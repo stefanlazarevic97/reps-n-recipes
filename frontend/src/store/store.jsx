@@ -8,7 +8,7 @@ import ui from './ui.jsx'
 const rootReducer = combineReducers({
     session,
     errors,
-    foods
+    foods,
     ui
 });
 

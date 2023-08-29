@@ -6,6 +6,8 @@ import './HealthForm.css';
 
 const HealthForm = () => {
 
+    const currentUser = useSelector(state => state.session.user);
+
     const dispatch = useDispatch()
     const active = useSelector(getHealthFormState)
 
@@ -23,8 +25,6 @@ const HealthForm = () => {
     const errors = useSelector(state => state.errors.session);
 
     if (!active) return null
-
-    // const dispatch = useDispatch();
 
     const handleExit = e => {
         e.stopPropagation()
@@ -58,9 +58,7 @@ const HealthForm = () => {
     }
 
     const handleDistanceUnitChange = e => {
-        // console.log(e.currentTarget.value)
         setDistanceUnit(e.currentTarget.value);
-        // console.log(distanceUnit)
     };
 
     const handleMassUnitChange = e => {
@@ -89,24 +87,31 @@ const HealthForm = () => {
         : coeff*(10*mass + 6.25*height - 5*age - 161)
     }
 
-    const handleSubmit = e => {
+    const handleSubmit = async e => {
         e.preventDefault();
-        // e.stopPropagation();
 
         const mass = (massUnit === "kilos") ? weight : lbToKg(weight);
         const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch)
         const coeff = activityCoefficient()
         const tdee = TDEE(mass, height, coeff)
+        // ! hard coded the activity level for now because i put in databsase as a number
+        const healthData = {mass,height,age,sex,activityLevel: 4,TDEE: tdee}
+        console.log(healthData)
 
-        const userData = {
-            mass,
-            height,
-            age,
-            sex,
-            activity,
-            tdee
+        if (currentUser && currentUser._id) {
+            const userId = currentUser._id;
+            try {
+              const response = await axios.patch(`http://localhost:5000/api/users/${userId}`, {
+                healthData
+              });
+              console.log("User data updated: ", response.data);
+            } catch (error) {
+              console.error("Error updating user: ", error);
+            }
+        } else {
+            console.error("No user ID available");
         }
-        console.log(userData)
+
     }
 
 

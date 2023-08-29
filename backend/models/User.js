@@ -13,6 +13,14 @@ const userSchema = new Schema({
     hashedPassword: {
         type: String,
         required: true
+    },
+    healthData: {
+        mass: Number,
+        height: Number,
+        age: Number,
+        sex: String,
+        activityLevel: Number,
+        TDEE: Number
     }
 }, {
     timestamps: true

@@ -6,6 +6,8 @@ const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const { loginUser, restoreUser } = require('../../config/passport');
 
+const { requireUser } = require('../../config/passport')
+
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
 
@@ -84,4 +86,28 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     })(req, res, next);
 });
 
+router.patch('/:id', requireUser, async (req, res, next) => {
+    try {
+        const { id } = req.params;
+        const updatedUser = await User.findOneAndUpdate(
+            { _id: id }, 
+            { $set: req.body },
+            { new: true }
+        );
+        
+        if (!updatedUser) {
+            return res.status(404).json({ error: 'Adding user data failed' });
+        }
+
+        return res.json(updatedUser);
+    }
+    catch(err) {
+        next(err);
+    }
+});
+
 module.exports = router;
+
+// 45WbvfoQ-ZZKp9j2NNbNmFrk-jUmJY8yW1Zs
+
+// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVkMzY4ZDIzMTMwYTljYmViMTc4NjAiLCJ1c2VybmFtZSI6Im5pY282NjYiLCJlbWFpbCI6ImNhcmxpZXIubmljaG9sYXNAZ21haWwuY29tIiwiaWF0IjoxNjkzMjcxMDcwLCJleHAiOjE2OTMyNzQ2NzB9.6XWdeCfzz3UAJZU1qD5l8usb0jsnLx_z_ehED1UoFJk
