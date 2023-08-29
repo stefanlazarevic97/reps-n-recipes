@@ -10,12 +10,12 @@ const validateExerciseInput = [
     check('workoutType')
         .exists({ checkFalsy: true })
         .withMessage('Workout type cannot be empty')
-        .isIn(['Compound', 'Accessory'])
+        .isIn(['compound', 'accessory'])
         .withMessage('Must be a valid type'),
     check('workoutMuscleGroup')
         .exists({ checkFalsy: true })
         .withMessage('Workout muscle group cannot be empty')
-        .isIn(['Chest', 'Back', 'Shoulders', 'Legs', 'Arms', 'Core'])
+        .isIn(['chest', 'back', 'shoulders', 'legs', 'arms', 'core'])
         .withMessage('Must be a valid muscle group'),
     check('datePerformed')
         .exists({ checkFalsy: true })

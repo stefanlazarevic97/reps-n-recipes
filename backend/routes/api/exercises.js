@@ -67,7 +67,7 @@ router.delete('/:id', requireUser, async (req, res, next) => {
             return res.status(404).json({ error: 'Exercise not found or unauthorized' });
         }
 
-        return res.json(deletedExercise);
+        return res.json({ message: 'Exercise successfully deleted', deletedExerciseId: deletedExercise._id });
     } catch (err) {
         next(err)
     }
