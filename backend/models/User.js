@@ -1,6 +1,43 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
-const nutritionSchema = require('./Nutrition');
+
+const nutritionSchema = new Schema({
+    foodName: {
+        type: String,
+        required: true
+    },
+    foodQuantity: {
+        type: Number,
+        required: true
+    },
+    foodQuantityUnit: {
+        type: String,
+        required: true
+    },
+    calories: {
+        type: Number,
+        required: true
+    },
+    gramsCarbs: {
+        type: Number,
+        required: true
+    },
+    gramsFat: {
+        type: Number,
+        required: true
+    },
+    gramsProtein: {
+        type: Number,
+        required: true
+    },
+    dateConsumed: {
+        type: Date,
+        required: true
+    }
+}, {
+    timestamps: true
+})
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -14,8 +51,7 @@ const userSchema = new Schema({
         type: String,
         required: true
     },
-    nutrition: [nutritionSchema]
-    },
+    nutrition: [nutritionSchema],
     healthData: {
         mass: Number,
         height: Number,
@@ -24,7 +60,7 @@ const userSchema = new Schema({
         activityLevel: Number,
         TDEE: Number
     }
-}, {
+    }, {
     timestamps: true
 });
 
