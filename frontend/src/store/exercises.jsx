@@ -70,6 +70,21 @@ export const deleteExercise = exerciseId => async dispatch => {
     }
 }
 
+const nullErrors = null;
+
+export const exerciseErrorsReducer = (state = nullErrors, action) => {
+    switch(action.type) {
+        case RECEIVE_EXERCISE_ERRORS:
+            return action.errors;
+        case RECEIVE_EXERCISE:
+            return nullErrors;
+        case CLEAR_EXERCISE_ERRORS:
+            return nullErrors;
+        default:
+            return state;
+    }
+}
+
 const exercisesReducer = (state = {}, action) => {
     const nextState = { ...state }
 
