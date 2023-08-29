@@ -33,7 +33,7 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
             menuItems: 'food/menuItems/search',
             recipes: 'recipes/complexSearch'
         };
-        console.log(apiKey);
+        
         const endpoint = endpointMap[category];
         const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?query=${foodSearch}&apiKey=${apiKey}`);
         const foods = await res.json();
@@ -47,14 +47,15 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
 export const fetchFood = (category, foodId, amount, unit) => async dispatch => {
     try {
         const endpointMap = {
-            ingredients: `food/ingredients/${foodId}/information?amount=${amount}&unit=${unit}`,
+            ingredients: `food/ingredients/${foodId}/information?amount=100&unit=g`,
             products: `food/products/${foodId}`,
             menuItems: `food/menuItems/${foodId}`,
             recipes: `recipes/${foodId}/information?includeNutrition=true`
         };
 
         const endpoint = endpointMap[category];
-        const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?apiKey=${apiKey}`);
+        console.log("endpoint: ", endpoint);
+        const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}&apiKey=${apiKey}`);
         const food = await res.json();
         dispatch(receiveFood(food));
     } catch(err) {

@@ -5,9 +5,13 @@ import { useDispatch, useSelector } from 'react-redux';
 const FoodIndex = () => {
     const dispatch = useDispatch()
     const foods = useSelector(getFoods)
+    const selectedOption = useSelector(state => state.ui.selectedOption)
 
-    const handleClick = () => {
-        dispatch(fetchFood())
+    const handleClick = (foodId) => {
+        console.log("foodId: ", foodId);
+        console.log("selectedOption: ", selectedOption);
+
+        dispatch(fetchFood(selectedOption, foodId))
     }
 
     return (
@@ -16,10 +20,13 @@ const FoodIndex = () => {
             <ul>
                 {foods && foods.map(food => (
                     <>
-                        <li key={food.fdcId}>
+                        <li 
+                            onClick={() => handleClick(food.id)}
+                            key={food.id}
+                            className="food-item"
+                        >
                             {food.name}
                         </li>
-                        <button onClick={handleClick}>Add Food</button>
                     </>
                 ))}
             </ul>
