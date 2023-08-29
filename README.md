@@ -51,9 +51,9 @@ Technologies:
 
 ## Group Members and Work Breakdown
 
-1. Stefan Lazarevic - Project Lead
-2. Elliot Chang - Not project Lead
-3. Nico Carlier - Also definitely not project lead
+- Stefan Lazarevic - Project Lead
+- Elliot Chang
+- Nico Carlier
 
 ### 08/28/23
 - Build out backend for user auth

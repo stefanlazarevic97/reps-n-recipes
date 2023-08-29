@@ -1,0 +1,122 @@
+.health-form-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10;
+}
+
+.health-form-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgb(0 0 0 / 25%);
+    z-index: 11;
+}
+
+.health-form {
+    width: 350px;
+
+    padding: 20px;
+    position: absolute;
+    background-color: white;
+    border-radius: 20px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 12;
+}
+
+.health-form-header {
+    font-size: 28px;
+}
+
+.health-form{
+    font-size: 18px;
+}
+
+/* !WEIGHT INPUT */
+.weight-input,
+.height-input,
+.age-input {
+    display: flex;
+    /* background-color: aqua; */
+    margin: 10px;
+}
+
+.gender-input,
+.activity-input {
+    display: flex;
+    flex-direction: column;
+    /* background-color: orange; */
+    margin: 10px;
+}
+
+.health-form input{
+    width: 22.5px;
+}
+
+/* ! this should be replaced */
+.health-form div {
+    width: 100%;
+}
+
+/*! every input block */
+.hf-block {
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgb(220,220,220);
+}
+
+.weight-input {
+    padding-top: 20px;
+    border-top: 1px solid rgb(220,220,220);
+}
+
+.hfh {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+/*! submit button */
+.submit-health-from{
+    width: 200px;
+    height: 47.5px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+    background-color: white;
+    border: black 1px solid;
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+}
+
+.submit-health-from:hover{
+    cursor: pointer;
+    background-color: rgb(220,220,220);
+}
+
+/*! radio buttons left margin  */
+.radio-button-block {
+    margin-left: 140px;
+    display: flex;
+    flex-direction: column;
+    /* border: 1px solid black; */
+    width: 100px;
+}
+
+/* #activity-input,
+#gender-input {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+} */

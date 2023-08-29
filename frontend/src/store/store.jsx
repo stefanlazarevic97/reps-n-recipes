@@ -3,11 +3,13 @@ import thunk from 'redux-thunk';
 import session from './session';
 import errors from './errors';
 import foods from './foods'
+import ui from './ui.jsx'
 
 const rootReducer = combineReducers({
     session,
     errors,
     foods
+    ui
 });
 
 let enhancer;
