@@ -1,4 +1,5 @@
 import './NutritionIndex.css'
+import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getUserNutritionByDay } from '../../store/users'
