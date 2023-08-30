@@ -2,12 +2,13 @@ import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import moment from 'moment';
 
 const FoodIndex = () => {
     const dispatch = useDispatch();
     const foods = useSelector(getFoods);
     const selectedOption = useSelector(state => state.ui.selectedOption);
-    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-CA'));
+    const [selectedDate, setSelectedDate] = useState(new moment());
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
 
@@ -16,7 +17,6 @@ const FoodIndex = () => {
     }
 
     const handleQuantityChange = (e) => {
-        console.log(foodQuantity);
         setFoodQuantity(e.target.value);
     }
     
