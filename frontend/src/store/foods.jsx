@@ -27,9 +27,7 @@ const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
 
 // SELECTORS
 
-export const getFoods = state => {
-    console.log(Object.values(state.foods), 'state.foods')
-    return Object.values(state.foods)};
+export const getFoods = state => Object.values(state.foods);
 export const getFood = foodId => state => state.foods.results[foodId]
 export const getFullFoodItem = selectedFood => state => state.foods[selectedFood.id]
 
@@ -39,12 +37,11 @@ export const fetchIngredients = (ingredientSearch) => async dispatch => {
     try {
         const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&apiKey=${apiKey}`);
         const ingredients = await res.json();
-        // console.log(ingredients, "ingredients")
-        // console.log({ ...ingredients.results }, 'ingredients 2')
+
         const data = ingredients.results.reduce((acc, ingredient) => 
             Object.assign(acc, { [ingredient.id]: ingredient }), {}
         )
-        console.log(data, "data")
+        
         dispatch(receiveFoods(data));
         return data;
     } catch(err) {
@@ -69,8 +66,11 @@ export const fetchProducts = (productSearch) => async dispatch => {
     try {
         const res = await jwtFetch(`https://api.spoonacular.com/food/products/search?query=${productSearch}&apiKey=${apiKey}`)
         const products = await res.json();
-        dispatch(receiveFoods(products));
-        return products;
+        const data = products.products.reduce((acc, product) => 
+            Object.assign(acc, { [product.id]: product }), {}
+        )
+        dispatch(receiveFoods(data));
+        return data;
     } catch(err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
@@ -93,8 +93,11 @@ export const fetchMenuItems = (menuItemSearch) => async dispatch => {
     try { 
         const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/search?query=${menuItemSearch}&apiKey=${apiKey}`)
         const menuItems = await res.json();
-        dispatch(receiveFoods(menuItems));
-        return menuItems;
+        const data = menuItems.menuItems.reduce((acc, menuItem) => 
+            Object.assign(acc, { [menuItem.id]: menuItem }), {}
+        )
+        dispatch(receiveFoods(data));
+        return data;
     } catch (err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
@@ -117,8 +120,13 @@ export const fetchRecipes = (recipeSearch) => async dispatch => {
     try {
         const res = await jwtFetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipeSearch}&apiKey=${apiKey}`)
         const recipes = await res.json();
-        dispatch(receiveFoods(recipes))
-        return recipes
+        
+        const data = recipes.results.reduce((acc, recipe) =>
+            Object.assign(acc, { [recipe.id]: recipe }), {}
+        );
+
+        dispatch(receiveFoods(data))
+        return data
     } catch (err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
@@ -200,16 +208,7 @@ const foodsReducer = (state = {}, action) => {
     
     switch(action.type) {
         case RECEIVE_FOODS:
-            if (action.foods) {
-                return { ...action.foods };
-            } else if (action.foods.products) {
-                return action.foods.products
-            } else if (action.foods.menuItems) {
-                return action.foods.menuItems
-            } else if (action.foods.recipes) {
-                return action.foods.recipes
-            }
-            return state;
+            return { ...action.foods };
         case RECEIVE_FOOD:
             return { ...state, [action.food.id]: action.food };
         case REMOVE_FOOD:
