@@ -7,6 +7,21 @@ const User = mongoose.model('User');
 const { requireUser, restoreUser } = require('../../config/passport')
 const validateNutritionInput = require('../../validation/nutrition')
 
+router.get('/day', restoreUser, async (req, res, next) => {
+    try {
+        const date = req.query.date;
+
+        const dailyNutrition = req.user.nutrition.filter(nutritionItem => {
+            const itemDate = new Date(nutritionItem.dateConsumed).toISOString().split('T')[0];
+            return itemDate === date;
+        });
+        
+        res.json(dailyNutrition);
+    } catch(err) {
+        next(err)
+    }
+});
+
 router.post('/', restoreUser, validateNutritionInput, async (req, res, next) => {
     try {
         const newNutrition = {

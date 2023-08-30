@@ -1,8 +1,8 @@
 import './NutritionIndex.css'
 import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux'
-import { useState } from 'react'
-import { getUserNutritionByDay } from '../../store/users'
+import { useState, useEffect } from 'react'
+import { fetchUserNutritionByDay, getUserNutritionByDay } from '../../store/users'
 import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
 import { updateUserNutrition, deleteUserNutrition } from '../../store/foods';
 
@@ -11,6 +11,8 @@ Chart.register(PieController, ArcElement, Tooltip);
 const NutritionIndex = () => {
     const dispatch = useDispatch();
     const dailyNutrition = useSelector(getUserNutritionByDay);
+    const selectedDate = useSelector(state => state.ui.selectedDate)
+    const [showUpdate, setShowUpdate] = useState(false)
     let dailyCalories = 0;
     let dailyCarbs = 0;
     let dailyFat = 0;
@@ -27,6 +29,10 @@ const NutritionIndex = () => {
     let carbsPercentage = Math.round((dailyCarbs / totalMacros) * 100);
     let fatPercentage = Math.round((dailyFat / totalMacros) * 100);
     let proteinPercentage = Math.round((dailyProtein / totalMacros) * 100);
+
+    useEffect(() => {
+        dispatch(fetchUserNutritionByDay(selectedDate))
+    }, [dispatch])
 
     const data = {
         labels: ['Carbs', 'Fat', 'Protein'],

@@ -1,17 +1,22 @@
 import jwtFetch from './jwt';
-import { RECEIVE_USER_NUTRITION, REMOVE_USER_NUTRITION } from './foods';
+import { RECEIVE_USER_NUTRITION, REMOVE_USER_NUTRITION, receiveUserNutrition } from './foods';
 import { receiveErrors } from './session';
 import { RECEIVE_USER_LOGOUT } from './session';
 import { RECEIVE_CURRENT_USER } from './session';
-// import moment from 'moment';
-import moment from 'moment-timezone'
+import moment from 'moment-timezone';
+
+// CONSTANTS 
 
 const RECEIVE_USER_HEALTH = 'users/RECEIVE_USER_HEALTH'
+
+// ACTION CREATORS
 
 export const receiveUserHealth = healthData => ({
     type: RECEIVE_USER_HEALTH,
     healthData
 });
+
+// SELECTORS
 
 export const getUserNutritionByDay = state => {
     const nutritionItems = Object.values(state.users.nutritionItems);
@@ -23,6 +28,8 @@ export const getUserNutritionByDay = state => {
 
     return dailyNutrition;
 }
+
+// THUNK ACTION CREATORS
 
 export const updateUser = updatedUser => async dispatch => {
     try {  
@@ -38,6 +45,18 @@ export const updateUser = updatedUser => async dispatch => {
     }
 };
 
+export const fetchUserNutritionByDay = selectedDate => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/nutrition/day?date=${selectedDate}`);
+        const dailyNutrition = await res.json();
+        dispatch(receiveUserNutrition({nutrition: dailyNutrition}));
+    } catch(err) {
+        const res = await err.json();
+        return dispatch(receiveErrors(res.errors));
+    }
+}
+
+// REDUCER
 
 const initialState = {
     nutritionItems: {},
@@ -57,8 +76,10 @@ const usersReducer = (state = initialState, action) => {
             nextState.nutritionItems = action.userNutrition.nutrition
             return nextState;
         case REMOVE_USER_NUTRITION:
-            delete nextState.nutritionItems[action.userNutritionId];
-            return nextState;
+            return {
+                ...state,
+                nutritionItems: state.nutritionItems.filter(item => item._id !== action.userNutritionId)
+            };
         case RECEIVE_USER_HEALTH:
             return { ...state, healthData: action.healthData };
         case RECEIVE_USER_LOGOUT:
