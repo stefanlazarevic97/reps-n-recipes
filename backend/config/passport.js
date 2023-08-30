@@ -36,7 +36,7 @@ exports.loginUser = async function(user) {
         { expiresIn: 3600 }
     );
     return {
-        user: userInfo,
+        user: {user: userInfo},
         token
     };
 };

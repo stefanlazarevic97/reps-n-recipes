@@ -1,11 +1,13 @@
+import { useSelector } from "react-redux";
 import FoodInput from "../FoodInput/FoodInput";
 import HealthForm from "../HealthForm/HealthForm";
 
-function HomePage() {
+const HomePage = () => {
+    const currentUser = useSelector(state => state.session.user);
+
     return (
         <>
-            <FoodInput />
-            {/* <HealthForm/> */}
+            {currentUser && <FoodInput />}
             <footer>
                 Copyright &copy; 2023 appAcademy
             </footer>
