@@ -21,6 +21,11 @@ export const changeSelectedOption = selectedOption => ({
     selectedOption
 })
 
+export const changeSelectedODate = selectedDate => ({
+    type: CHANGE_SELECTED_DATE,
+    selectedDate
+})
+
 export const activateWorkoutForm = () => ({
     type: ACTIVATE_WORKOUT_FORM
 })
