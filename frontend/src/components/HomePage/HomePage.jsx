@@ -4,11 +4,15 @@ import FoodIndex from "../FoodIndex/FoodIndex";
 import NutritionIndex from '../NutritionIndex/NutritionIndex'
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../../store/session";
+import CreateFood from '../CreateFood/CreateFood'
+import './HomePage.css'
 
 const HomePage = () => {
     const currentUser = useSelector(state => state.session.user);
     const [selectedOption, setSelectedOption] = useState('ingredients');
+    const [isToggled, setIsToggled] = useState(false);
     const dispatch = useDispatch();
+    const selectedDate = useSelector(state => state.ui.selectedDate)
 
     useEffect(() => {
         if (currentUser) {
@@ -18,7 +22,15 @@ const HomePage = () => {
 
     return (
         <>
-            {currentUser && <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />}
+            <label className='switch'>
+                <input 
+                    type='checkbox' 
+                    checked={isToggled}
+                    onChange={() => setIsToggled(!isToggled)}
+                />
+                <span className="slider"></span>
+            </label>
+            {currentUser && (isToggled ? <CreateFood selectedDate={selectedDate}/> : <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />)}
             {currentUser && <FoodIndex selectedOption={selectedOption} />}
             {currentUser && <NutritionIndex />}
             
