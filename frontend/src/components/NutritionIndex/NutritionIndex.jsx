@@ -3,9 +3,9 @@ import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getUserNutritionByDay } from '../../store/users'
-import { Chart, PieController, ArcElement } from 'chart.js';
+import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
 
-Chart.register(PieController, ArcElement);
+Chart.register(PieController, ArcElement, Tooltip);
 
 const NutritionIndex = () => {
     const dailyNutrition = useSelector(getUserNutritionByDay);
@@ -30,8 +30,8 @@ const NutritionIndex = () => {
         labels: ['Carbs', 'Fat', 'Protein'],
         datasets: [{
             data: [dailyCarbs, dailyFat, dailyProtein],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            backgroundColor: ['#0000FF', '#FFFF00', '#FF0000'],
+            hoverBackgroundColor: ['#0000FF', '#FFFF00', '#FF0000']
         }]
     }
     
