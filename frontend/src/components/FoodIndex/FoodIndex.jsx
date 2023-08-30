@@ -1,12 +1,12 @@
-import { getFoods, fetchFood, addUserNutrition, getFullFoodItem } from '../../store/foods';
+import { getFoods, fetchFood, addUserNutrition } from '../../store/foods';
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
 
 const FoodIndex = () => {
-    const dispatch = useDispatch()
-    const foods = useSelector(getFoods)
-    const selectedOption = useSelector(state => state.ui.selectedOption)
+    const dispatch = useDispatch();
+    const foods = useSelector(getFoods);
+    const selectedOption = useSelector(state => state.ui.selectedOption);
     const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-CA'));
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
@@ -57,7 +57,7 @@ const FoodIndex = () => {
                             key={food.id}
                             className="food-item"
                         >
-                            {food.name}
+                            {food.name ? food.name : food.title }
                         </li>
                     </>
                 ))}
