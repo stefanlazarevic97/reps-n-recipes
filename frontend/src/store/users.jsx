@@ -3,7 +3,8 @@ import { RECEIVE_USER_NUTRITION } from './foods';
 import { receiveErrors } from './session';
 import { RECEIVE_USER_LOGOUT } from './session';
 import { RECEIVE_CURRENT_USER } from './session';
-import moment from 'moment';
+// import moment from 'moment';
+import moment from 'moment-timezone'
 
 const RECEIVE_USER_HEALTH = 'users/RECEIVE_USER_HEALTH'
 
@@ -14,12 +15,15 @@ export const receiveUserHealth = healthData => ({
 
 export const getUserNutritionByDay = state => {
     const nutritionItems = Object.values(state.users.nutritionItems);
-
+    console.log(nutritionItems, 'nutriton items')
     const dailyNutrition = nutritionItems.filter(nutritionItem => {
-        const dateConsumed = moment(nutritionItem.dateConsumed).format('YYYY-MM-DD');
+        // console.log(nutritionItem.dateConsumed, 'dateConsumed')
+        const dateConsumed = new moment.utc(nutritionItem.dateConsumed).format("YYYY-MM-DD")
+        console.log(dateConsumed, 'dateConsumed')
         return dateConsumed === state.ui.selectedDate;
+        console.log(state.ui.selectedDate, 'state.ui.selectedDate')
     });
-
+    console.log(dailyNutrition)
     return dailyNutrition;
 }
 

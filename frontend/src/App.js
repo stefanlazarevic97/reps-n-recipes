@@ -21,13 +21,12 @@ function App() {
     return loaded && (
         <>
             <NavBar />
-                <AuthRoute exact path="/" component={HomePage} />
+            <ProtectedRoute exact path="/" component={HomePage} />
             <Switch>
-                <AuthRoute exact path="/" component={HomePage} /> 
                 {/* why is this not rendering??? */}
                 <AuthRoute exact path="/login" component={LoginForm} />
                 <AuthRoute exact path="/signup" component={SignupForm} />
-                <AuthRoute exact path="/workout" component={WorkoutPage} />
+                <ProtectedRoute exact path="/workout" component={WorkoutPage} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
             </Switch>
         </>

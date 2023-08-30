@@ -4,11 +4,12 @@ import NutritionIndex from '../NutritionIndex/NutritionIndex'
 
 const HomePage = () => {
     const currentUser = useSelector(state => state.session.user);
+    console.log(currentUser, 'currentUser')
 
     return (
         <>
             {currentUser && <FoodInput />}
-            <NutritionIndex />
+            {currentUser && <NutritionIndex />}
             <footer>
                 Copyright &copy; 2023 appAcademy
             </footer>

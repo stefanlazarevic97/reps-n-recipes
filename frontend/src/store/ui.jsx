@@ -21,7 +21,7 @@ export const changeSelectedOption = selectedOption => ({
     selectedOption
 })
 
-export const changeSelectedODate = selectedDate => ({
+export const changeSelectedDate = selectedDate => ({
     type: CHANGE_SELECTED_DATE,
     selectedDate
 })
@@ -54,6 +54,8 @@ const uiReducer = (state = initialState, action) => {
             return {...state, healthForm: false}
         case CHANGE_SELECTED_OPTION:
             return {...state, selectedOption: action.selectedOption}
+        case CHANGE_SELECTED_DATE:
+            return {...state, selectedDate: action.selectedDate}
         case ACTIVATE_WORKOUT_FORM:
             return {...state, workoutForm: true}
         case DEACTIVATE_WORKOUT_FORM:
