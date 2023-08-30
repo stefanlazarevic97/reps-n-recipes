@@ -101,6 +101,7 @@ const HealthForm = () => {
             const updatedUser = {...currentUser,healthData}
             await dispatch(updateUser(updatedUser));
             dispatch(receiveUserHealth(healthData));
+            dispatch(deactivateHealthForm())
         }else{
             console.error("No user available to update");
         }
