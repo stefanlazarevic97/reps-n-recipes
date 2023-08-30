@@ -1,74 +1,123 @@
-// const mongoose = require("mongoose");
-// const { mongoURI: db } = require('../config/keys.js');
-// const User = require('../models/User');
-// const Tweet = require('../models/Tweet');
-// const bcrypt = require('bcryptjs');
-// const { faker } = require('@faker-js/faker');
+const mongoose = require("mongoose");
+const { mongoURI: dbUri } = require('../config/keys');
+const Exercise = require('../models/Exercise')
 
-// const NUM_SEED_USERS = 10;
-// const NUM_SEED_TWEETS = 30;
+const seedDatabase = async () => {
 
-// // Create users
-// const users = [];
-
-// users.push(
-//   new User ({
-//     username: 'demo-user',
-//     email: 'demo-user@appacademy.io',
-//     hashedPassword: bcrypt.hashSync('starwars', 10)
-//   })
-// )
-
-// for (let i = 1; i < NUM_SEED_USERS; i++) {
-//   const firstName = faker.name.firstName();
-//   const lastName = faker.name.lastName();
-//   users.push(
-//     new User ({
-//       username: faker.internet.userName(firstName, lastName),
-//       email: faker.internet.email(firstName, lastName),
-//       hashedPassword: bcrypt.hashSync(faker.internet.password(), 10)
-//     })
-//   )
-// }
+  // Connect to MongoDB
+  await mongoose.connect(dbUri); 
   
-// // Create tweets
-// const tweets = [];
+  // Seed data
+    await Exercise.create({
+        name: 'Bench Press',
+        type: 'compound',
+        muscleGroup: 'chest',
+        workoutType: 'strength'
+    })
+    await Exercise.create({
+        name: 'Triceps Dip (Dumbbell)',
+        type: 'isolation',
+        muscleGroup: 'arms',
+        workoutType: 'strength'
+    })
+    await Exercise.create({
+        name: 'Bulgarian Split Squat',
+        type: 'compound',
+        muscleGroup: 'legs',
+        workoutType: 'strength'
+    })
 
-// for (let i = 0; i < NUM_SEED_TWEETS; i++) {
-//   tweets.push(
-//     new Tweet ({
-//       text: faker.hacker.phrase(),
-//       author: users[Math.floor(Math.random() * NUM_SEED_USERS)]._id
-//     })
-//   )
-// }
+    await Exercise.create({
+        name: 'Squat',
+        type: 'compound',
+        muscleGroup: 'legs',
+        workoutType: 'strength'
+    });
+      
+    await Exercise.create({
+        name: 'Deadlift',
+        type: 'compound', 
+        muscleGroup: 'back',
+        workoutType: 'strength'
+    });
     
-// // Connect to database
-// mongoose
-//   .connect(db, { useNewUrlParser: true })
-//   .then(() => {
-//     console.log('Connected to MongoDB successfully');
-//     insertSeeds();
-//   })
-//   .catch(err => {
-//     console.error(err.stack);
-//     process.exit(1);
-//   });
+    await Exercise.create({
+        name: 'Bicep Curl',
+        type: 'isolation',
+        muscleGroup: 'arms',
+        workoutType: 'strength' 
+    });
+    
+    await Exercise.create({
+        name: 'Lateral Raise',
+        type: 'isolation',
+        muscleGroup: 'shoulders',
+        workoutType: 'strength'
+    });
+    
+    await Exercise.create({
+        name: 'Crunches',
+        type: 'isolation',
+        muscleGroup: 'core',
+        workoutType: 'strength'
+    });
+    
+    await Exercise.create({
+        name: 'Push-ups',
+        type: 'compound',
+        muscleGroup: 'chest',
+        workoutType: 'strength' 
+    });
+    
+    await Exercise.create({
+        name: 'Pull-ups',
+        type: 'compound',
+        muscleGroup: 'back',
+        workoutType: 'strength'
+    });
+      
+    // Cardio
+    
+    await Exercise.create({
+        name: 'Running',
+        type: 'cardio',
+        muscleGroup: 'legs',
+        workoutType: 'cardio'  
+    });
+    
+    await Exercise.create({
+        name: 'Cycling',
+        type: 'cardio',
+        muscleGroup: 'legs',
+        workoutType: 'cardio' 
+    });
+    
+    await Exercise.create({
+        name: 'Swimming',
+        type: 'cardio',
+        muscleGroup: 'full body',
+        workoutType: 'cardio'
+    });
+    
+    await Exercise.create({
+        name: 'Rowing',
+        type: 'cardio',
+        muscleGroup: 'back',
+        workoutType: 'cardio'
+    });
+      
+    await Exercise.create({
+        name: 'Jump Rope',
+        type: 'cardio',
+        muscleGroup: 'legs',
+        workoutType: 'cardio'
+    });
 
-// // Reset and seed db
-// const insertSeeds = () => {
-//   console.log("Resetting db and seeding users and tweets...");
 
-//   User.collection.drop()
-//                  .then(() => Tweet.collection.drop())
-//                  .then(() => User.insertMany(users))
-//                  .then(() => Tweet.insertMany(tweets))
-//                  .then(() => {
-//                    console.log("Done!");
-//                    mongoose.disconnect();
-//                  })
-//                  .catch(err => {
-//                    console.error(err.stack);
-//                    process.exit(1);
-//                  });
-// }
+
+  // Disconnect
+  await mongoose.disconnect();
+
+}
+
+seedDatabase();

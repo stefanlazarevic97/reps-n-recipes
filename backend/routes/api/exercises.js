@@ -5,19 +5,18 @@ const mongoose = require('mongoose');
 const Exercise = mongoose.model('Exercise')
 
 const { requireUser } = require('../../config/passport')
-const validateExerciseInput = require('../../validation/exercise')
+// const validateExerciseInput = require('../../validation/exercise')
 
-router.get('/', requireUser, async (req, res) => {
+router.get('/', requireUser, async (res) => {
     try {
-        const exercises = await Exercise.find({ performer: req.user._id })
-            .populate('performer', '_id username')
+        const exercises = await Exercise.all
         return res.json(exercises)
     } catch(err) {
         return res.json([])
     } 
 })
 
-router.post('/', requireUser, validateExerciseInput, async (req, res, next) => {
+router.post('/', requireUser, async (req, res, next) => {
     try {
         const newExercise  = new Exercise({
             workout: req.body.workout,
@@ -37,7 +36,7 @@ router.post('/', requireUser, validateExerciseInput, async (req, res, next) => {
     }
 })
 
-router.patch('/:id', requireUser, validateExerciseInput, async (req, res, next) => {
+router.patch('/:id', requireUser, async (req, res, next) => {
     try {
         const { id } = req.params;
         const updatedExercise = await Exercise.findOneAndUpdate(
