@@ -30,8 +30,8 @@ const NutritionIndex = () => {
         labels: ['Carbs', 'Fat', 'Protein'],
         datasets: [{
             data: [dailyCarbs, dailyFat, dailyProtein],
-            backgroundColor: ['#0000FF', '#FFFF00', '#FF0000'],
-            hoverBackgroundColor: ['#0000FF', '#FFFF00', '#FF0000']
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
         }]
     }
     
