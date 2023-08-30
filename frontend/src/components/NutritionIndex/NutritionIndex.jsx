@@ -51,6 +51,13 @@ const NutritionIndex = () => {
             }
         }
     }
+    const handleUpdate = () => {
+
+    }
+
+    const handleDelete = () => {
+
+    }
 
     return (
         <div className="nutrition-index">
@@ -75,8 +82,8 @@ const NutritionIndex = () => {
                             <div>Fat: {food.gramsFat}g</div>
                         </div>
                         <div>
-                            <button>Update Food</button>
-                            <button>Delete Food</button>
+                            <button onClick={handleUpdate}>Update Food</button>
+                            <button onClick={handleDelete}>Delete Food</button>
                         </div>
                     </div>
                 ))}

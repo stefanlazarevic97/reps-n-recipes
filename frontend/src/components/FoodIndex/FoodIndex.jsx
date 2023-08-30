@@ -50,7 +50,7 @@ const FoodIndex = () => {
             gramsProtein: destructureFood("Protein") * foodQuantity,
             dateConsumed: selectedDate
         };
-        
+
         dispatch(addUserNutrition(foodItem));
         setSelectedFood(null);
     }
@@ -103,10 +103,12 @@ const FoodIndex = () => {
     return (
         <div className="food-index">
             <h2>Search Results</h2>
+
             <div className="date-input">
                 <label>Select Date: </label>
                 <input type="date" value={selectedDate} onChange={handleDateChange} />
             </div>
+            
             <ul>
                 {foods && foods.map(food => (
                         <li
