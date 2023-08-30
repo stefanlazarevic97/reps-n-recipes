@@ -42,8 +42,8 @@ const usersReducer = (state = initialState, action) => {
     
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            nextState.nutritionItems = action.currentUser.nutritionData
-            nextState.healthData = action.currentUser.healthData
+            nextState.nutritionItems = action.currentUser?.nutritionData ? action.currentUser.nutritionData : {}
+            nextState.healthData = action.currentUser?.healthData ? action.currentUser.healthData : {}
             return nextState
         case RECEIVE_USER_NUTRITION:
             nextState.nutritionItems = action.userNutrition.nutrition

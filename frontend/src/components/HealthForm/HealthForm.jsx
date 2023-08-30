@@ -4,8 +4,7 @@ import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
 import './HealthForm.css';
 // import { updateUser } from '../../store/session';
-import { receiveUserHealth } from '../../store/users'
-import { updateUser } from '../../store/users';
+import { receiveUserHealth, updateUser } from '../../store/users'
 
 const HealthForm = () => {
 

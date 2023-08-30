@@ -39,6 +39,7 @@ const startSession = (userInfo, route) => async dispatch => {
             method: "POST",
             body: JSON.stringify(userInfo)
         });
+
         const { user, token } = await res.json();
         localStorage.setItem('jwtToken', token);
         return dispatch(receiveCurrentUser(user));
@@ -50,23 +51,6 @@ const startSession = (userInfo, route) => async dispatch => {
         }
     }
 };
-
-// export const updateUser = updatedUser => async dispatch => {
-//     // console.log(updatedUser)
-//     try {  
-//         const res = await jwtFetch(`api/users/${updatedUser._id}`, {
-//             method: "PATCH",
-//             body: JSON.stringify(updatedUser)
-//         });
-//         const user = await res.json();
-//         dispatch(receiveUserHealth(healthData));
-//         // return dispatch(receiveCurrentUser(user));
-//     } catch(err) {
-//         const res = await err.json();
-//         return dispatch(receiveErrors(res.errors));
-//     }
-// };
-
 
 export const logout = () => dispatch => {
     localStorage.removeItem('jwtToken');
@@ -96,13 +80,13 @@ export const sessionErrorsReducer = (state = nullErrors, action) => {
 };
 
 const initialState = {
-    user: undefined
+    user: null
 };
 
 const sessionReducer = (state = initialState, action) => {
     switch (action.type) {
         case RECEIVE_CURRENT_USER:
-            return { user: action.currentUser.user };
+            return { user: action.currentUser?.user ? action.currentUser.user : action.currentUser };
         case RECEIVE_USER_LOGOUT:
             return initialState;
         default:
