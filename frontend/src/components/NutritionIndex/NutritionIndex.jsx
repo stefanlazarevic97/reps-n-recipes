@@ -1,4 +1,5 @@
 import './NutritionIndex.css'
+import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getUserNutritionByDay } from '../../store/users'
@@ -21,11 +22,21 @@ const NutritionIndex = () => {
     console.log("dailyCarbs", dailyCarbs);
     console.log("dailyFat", dailyFat);
     console.log("dailyProtein", dailyProtein);
+
+    const data = {
+        labels: ['Carbs', 'Fat', 'Protein'],
+        datasets: [{
+            data: [dailyCarbs, dailyFat, dailyProtein],
+            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
+            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+        }]
+    }
     
     return (
         <div className="nutrition-index">
             <h2 className="nutrition-index-title">Nutrition Index</h2>
             <div>
+                <Pie data={data} />
                 {dailyNutrition.map(food => (
                     <div>
                         <h3>{food.foodName}</h3>
