@@ -59,6 +59,7 @@ const NutritionIndex = () => {
             }
         }
     }
+    
     const handleUpdate = (foodItem) => e => {
         dispatch(updateUserNutrition(foodItem))
     }
