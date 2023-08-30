@@ -5,7 +5,6 @@ import { RECEIVE_USER_LOGOUT } from './session';
 import { RECEIVE_CURRENT_USER } from './session';
 
 const RECEIVE_USER_HEALTH = 'users/RECEIVE_USER_HEALTH'
-// const RECEIVE_USER_NUTRITION = 'RECEIVE_USER_NUTRITION'
 
 export const receiveUserHealth = healthData => ({
     type: RECEIVE_USER_HEALTH,
@@ -15,15 +14,13 @@ export const receiveUserHealth = healthData => ({
 
 
 export const updateUser = updatedUser => async dispatch => {
-    // console.log(updatedUser)
     try {  
         const res = await jwtFetch(`api/users/${updatedUser._id}`, {
             method: "PATCH",
             body: JSON.stringify(updatedUser)
         });
         const user = await res.json();
-        // dispatch(receiveUserHealth(user));
-        // return dispatch(receiveCurrentUser(user));
+
     } catch(err) {
         const res = await err.json();
         return dispatch(receiveErrors(res.errors));

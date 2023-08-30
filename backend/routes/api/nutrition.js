@@ -32,7 +32,6 @@ router.post('/', restoreUser, validateNutritionInput, async (req, res, next) => 
         
         let currentUser = await User.findById(req.user._id);
         currentUser.nutrition.push(newNutrition);
-        console.log(currentUser);
         await currentUser.save();
         return res.json(currentUser);
     } catch(err) {
