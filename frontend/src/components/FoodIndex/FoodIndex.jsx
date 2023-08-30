@@ -8,7 +8,6 @@ import { changeSelectedDate } from '../../store/ui';
 const FoodIndex = () => {
     const dispatch = useDispatch();
     const foods = useSelector(getFoods);
-    console.log('foods', foods)
     const selectedOption = useSelector(state => state.ui.selectedOption);
     const date = useSelector(state => state.ui.selectedDate);
     const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
@@ -51,8 +50,9 @@ const FoodIndex = () => {
             gramsProtein: destructureFood("Protein") * foodQuantity,
             dateConsumed: selectedDate
         };
-        dispatch(addUserNutrition(foodItem));
         
+        dispatch(addUserNutrition(foodItem));
+        setSelectedFood(null);
     }
 
     const destructureFood = (component) => {

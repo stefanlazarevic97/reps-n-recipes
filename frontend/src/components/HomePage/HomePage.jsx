@@ -4,7 +4,6 @@ import NutritionIndex from '../NutritionIndex/NutritionIndex'
 
 const HomePage = () => {
     const currentUser = useSelector(state => state.session.user);
-    console.log(currentUser, 'currentUser')
 
     return (
         <>

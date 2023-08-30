@@ -15,15 +15,12 @@ export const receiveUserHealth = healthData => ({
 
 export const getUserNutritionByDay = state => {
     const nutritionItems = Object.values(state.users.nutritionItems);
-    console.log(nutritionItems, 'nutriton items')
+
     const dailyNutrition = nutritionItems.filter(nutritionItem => {
-        // console.log(nutritionItem.dateConsumed, 'dateConsumed')
         const dateConsumed = new moment.utc(nutritionItem.dateConsumed).format("YYYY-MM-DD")
-        console.log(dateConsumed, 'dateConsumed')
         return dateConsumed === state.ui.selectedDate;
-        console.log(state.ui.selectedDate, 'state.ui.selectedDate')
     });
-    console.log(dailyNutrition)
+
     return dailyNutrition;
 }
 

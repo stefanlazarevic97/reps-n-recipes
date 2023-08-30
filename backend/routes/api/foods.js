@@ -33,7 +33,6 @@ router.post('/', requireUser, validateFoodInput, async (req, res, next) => {
         let food = await newFood.save();
         food = await food.populate('consumer', '_id username')
         return res.json(food);
-        // console.log("end of try block") 
     }
     catch(err) {
         next(err)

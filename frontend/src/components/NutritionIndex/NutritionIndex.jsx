@@ -26,11 +26,6 @@ const NutritionIndex = () => {
     let fatPercentage = Math.round((dailyFat / totalMacros) * 100);
     let proteinPercentage = Math.round((dailyProtein / totalMacros) * 100);
 
-    console.log("dailyCalories", dailyCalories);
-    console.log("dailyCarbs", dailyCarbs);
-    console.log("dailyFat", dailyFat);
-    console.log("dailyProtein", dailyProtein);
-
     const data = {
         labels: ['Carbs', 'Fat', 'Protein'],
         datasets: [{
