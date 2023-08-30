@@ -1,14 +1,14 @@
 import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient, fetchProduct } from '../../store/foods';
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import moment from 'moment';
 
 const FoodIndex = () => {
     const dispatch = useDispatch();
     const foods = useSelector(getFoods);
     const selectedOption = useSelector(state => state.ui.selectedOption);
-    const [selectedDate, setSelectedDate] = useState(new moment());
+    const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
 
@@ -120,7 +120,7 @@ const FoodIndex = () => {
                 <div className="selected-food">
                     <h3>Selected Food: {selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
                     <p>Calories: {destructureFood('Calories')}</p>
-                    <p>Carbs: {destructureFood('Carbs')}</p>
+                    <p>Carbs: {destructureFood('Carbohydrates')}</p>
                     <p>Fat: {destructureFood('Fat')}</p>
                     <p>Protein: {destructureFood('Protein')}</p>
                     {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
