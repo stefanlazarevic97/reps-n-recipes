@@ -63,6 +63,12 @@ const NutritionIndex = () => {
             <div>
                 <div className='chart-container'>
                     <Pie data={data} options={options}/>
+                    <div className="daily-wrapper">
+                        <div>{dailyCalories} Calories</div>
+                        <div>{dailyCarbs}g Carbs</div>
+                        <div>{dailyFat}g Fat</div>
+                        <div>{dailyProtein}g Protein</div>
+                    </div>
                 </div>
                 {dailyNutrition.map(food => (
                     <div>
