@@ -3,6 +3,9 @@ import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getUserNutritionByDay } from '../../store/users'
+import { Chart, PieController, ArcElement } from 'chart.js';
+
+Chart.register(PieController, ArcElement);
 
 const NutritionIndex = () => {
     const dailyNutrition = useSelector(getUserNutritionByDay);
@@ -36,7 +39,9 @@ const NutritionIndex = () => {
         <div className="nutrition-index">
             <h2 className="nutrition-index-title">Nutrition Index</h2>
             <div>
-                <Pie data={data} />
+                <div className='chart-container'>
+                    <Pie data={data} />
+                </div>
                 {dailyNutrition.map(food => (
                     <div>
                         <h3>{food.foodName}</h3>
