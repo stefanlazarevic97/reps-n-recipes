@@ -4,7 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { fetchUserNutritionByDay, getUserNutritionByDay } from '../../store/users'
 import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
-import { updateUserNutrition, deleteUserNutrition } from '../../store/foods';
+import { deleteUserNutrition } from '../../store/foods';
+import FoodUpdateForm from '../FoodUpdateForm/FoodUpdateForm';
 
 Chart.register(PieController, ArcElement, Tooltip);
 
@@ -13,6 +14,8 @@ const NutritionIndex = () => {
     const dailyNutrition = useSelector(getUserNutritionByDay);
     const selectedDate = useSelector(state => state.ui.selectedDate)
     const [showUpdate, setShowUpdate] = useState(false)
+    const [foodToUpdate, setFoodToUpdate] = useState(null);
+
     let dailyCalories = 0;
     let dailyCarbs = 0;
     let dailyFat = 0;
@@ -59,8 +62,10 @@ const NutritionIndex = () => {
             }
         }
     }
+
     const handleUpdate = (foodItem) => e => {
-        dispatch(updateUserNutrition(foodItem))
+        setFoodToUpdate(foodItem);
+        setShowUpdate(true);
     }
 
     const handleDelete = (foodItem) => e => {
@@ -80,6 +85,14 @@ const NutritionIndex = () => {
                         <div>{dailyProtein}g Protein</div>
                     </div>
                 </div>
+
+                {foodToUpdate && 
+                    <FoodUpdateForm 
+                        food={foodToUpdate} 
+                        onCancel={() => setFoodToUpdate(null)} 
+                    />
+                }
+                
                 {dailyNutrition.map(food => (
                     <div>
                         <h3>{food.foodName}</h3>

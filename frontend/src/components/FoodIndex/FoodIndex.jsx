@@ -49,7 +49,8 @@ const FoodIndex = () => {
             gramsCarbs: destructureFood("Carbohydrates") * foodQuantity,
             gramsFat: destructureFood("Fat") * foodQuantity,
             gramsProtein: destructureFood("Protein") * foodQuantity,
-            dateConsumed: selectedDate
+            dateConsumed: selectedDate,
+            servings: foodQuantity
         };
 
         dispatch(addUserNutrition(foodItem));

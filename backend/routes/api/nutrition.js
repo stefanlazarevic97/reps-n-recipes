@@ -32,7 +32,8 @@ router.post('/', restoreUser, validateNutritionInput, async (req, res, next) => 
             gramsCarbs: req.body.gramsCarbs,
             gramsFat: req.body.gramsFat,
             gramsProtein: req.body.gramsProtein,
-            dateConsumed: req.body.dateConsumed
+            dateConsumed: req.body.dateConsumed,
+            servings: req.body.servings
         }
         
         let currentUser = await User.findById(req.user._id);

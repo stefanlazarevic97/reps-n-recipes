@@ -33,6 +33,10 @@ const nutritionSchema = new Schema({
     dateConsumed: {
         type: Date,
         required: true
+    },
+    servings: {
+        type: Number,
+        required: true
     }
 }, {
     timestamps: true

@@ -37,6 +37,11 @@ const validateFoodInput = [
         .withMessage('Protein cannot be empty')
         .isNumeric()
         .withMessage('Protein must be a number'),
+    check('servings')
+        .exists()
+        .withMessage('Servings cannot be empty')
+        .isNumeric()
+        .withMessage('Servings must be a number'),
     handleValidationErrors
 ]
     
