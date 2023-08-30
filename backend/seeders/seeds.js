@@ -6,113 +6,67 @@ const seedDatabase = async () => {
 
   // Connect to MongoDB
   await mongoose.connect(dbUri); 
+
+  const assets = ["Barbell Bench Press", "Dumbbell Incline Bench Press", "Barbell Bent Over Row",
+"Dumbbell Bench Press", "Dumbbell Bent over Row", "Barbell Incline Bench Press", "Barbell Curl", "Barbell Deadlift"]
   
   // Seed data
     await Exercise.create({
-        name: 'Bench Press',
+        name: assets[0],
         type: 'compound',
         muscleGroup: 'chest',
-        workoutType: 'strength'
+        workoutType: 'strength',
+        gif: `../assets/${assets[0]}`
     })
     await Exercise.create({
-        name: 'Triceps Dip (Dumbbell)',
-        type: 'isolation',
-        muscleGroup: 'arms',
-        workoutType: 'strength'
-    })
-    await Exercise.create({
-        name: 'Bulgarian Split Squat',
-        type: 'compound',
-        muscleGroup: 'legs',
-        workoutType: 'strength'
-    })
-
-    await Exercise.create({
-        name: 'Squat',
-        type: 'compound',
-        muscleGroup: 'legs',
-        workoutType: 'strength'
-    });
-      
-    await Exercise.create({
-        name: 'Deadlift',
-        type: 'compound', 
-        muscleGroup: 'back',
-        workoutType: 'strength'
-    });
-    
-    await Exercise.create({
-        name: 'Bicep Curl',
-        type: 'isolation',
-        muscleGroup: 'arms',
-        workoutType: 'strength' 
-    });
-    
-    await Exercise.create({
-        name: 'Lateral Raise',
-        type: 'isolation',
-        muscleGroup: 'shoulders',
-        workoutType: 'strength'
-    });
-    
-    await Exercise.create({
-        name: 'Crunches',
-        type: 'isolation',
-        muscleGroup: 'core',
-        workoutType: 'strength'
-    });
-    
-    await Exercise.create({
-        name: 'Push-ups',
+        name: assets[1],
         type: 'compound',
         muscleGroup: 'chest',
-        workoutType: 'strength' 
-    });
-    
+        workoutType: 'strength',
+        gif: `../assets/${assets[1]}`
+    })
     await Exercise.create({
-        name: 'Pull-ups',
+        name: assets[2],
         type: 'compound',
         muscleGroup: 'back',
-        workoutType: 'strength'
-    });
-      
-    // Cardio
-    
+        workoutType: 'strength',
+        gif: `../assets/${assets[2]}`
+    })
     await Exercise.create({
-        name: 'Running',
-        type: 'cardio',
-        muscleGroup: 'legs',
-        workoutType: 'cardio'  
-    });
-    
+        name: assets[3],
+        type: 'compound',
+        muscleGroup: 'chest',
+        workoutType: 'strength',
+        gif: `../assets/${assets[3]}`
+    })
     await Exercise.create({
-        name: 'Cycling',
-        type: 'cardio',
-        muscleGroup: 'legs',
-        workoutType: 'cardio' 
-    });
-    
-    await Exercise.create({
-        name: 'Swimming',
-        type: 'cardio',
-        muscleGroup: 'full body',
-        workoutType: 'cardio'
-    });
-    
-    await Exercise.create({
-        name: 'Rowing',
-        type: 'cardio',
+        name: assets[4],
+        type: 'compound',
         muscleGroup: 'back',
-        workoutType: 'cardio'
-    });
-      
+        workoutType: 'strength',
+        gif: `../assets/${assets[4]}`
+    })
     await Exercise.create({
-        name: 'Jump Rope',
-        type: 'cardio',
-        muscleGroup: 'legs',
-        workoutType: 'cardio'
-    });
-
+        name: assets[5],
+        type: 'compound',
+        muscleGroup: 'chest',
+        workoutType: 'strength',
+        gif: `../assets/${assets[5]}`
+    })
+    await Exercise.create({
+        name: assets[6],
+        type: 'isolation',
+        muscleGroup: 'arms',
+        workoutType: 'strength',
+        gif: `../assets/${assets[6]}`
+    })
+    await Exercise.create({
+        name: assets[7],
+        type: 'compound',
+        muscleGroup: 'back',
+        workoutType: 'strength',
+        gif: `../assets/${assets[7]}`
+    })
 
 
   // Disconnect

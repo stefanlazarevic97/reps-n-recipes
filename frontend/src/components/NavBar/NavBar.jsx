@@ -38,7 +38,7 @@ function NavBar () {
   return (
     <>
     <HealthForm/>
-    <WorkoutForm/>
+    {/* <WorkoutForm/> */}
       <h1>Reps 'N' Recipes</h1>
       { getLinks() }
     </>

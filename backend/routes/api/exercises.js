@@ -7,12 +7,12 @@ const Exercise = mongoose.model('Exercise')
 const { requireUser } = require('../../config/passport')
 // const validateExerciseInput = require('../../validation/exercise')
 
-router.get('/', requireUser, async (res) => {
+router.get('/', requireUser, async (req, res) => {
     try {
-        const exercises = await Exercise.all
+        const exercises = await Exercise.find()
         return res.json(exercises)
     } catch(err) {
-        return res.json([])
+        res.status(500).json({error: 'Failed to fetch exercises'})
     } 
 })
 

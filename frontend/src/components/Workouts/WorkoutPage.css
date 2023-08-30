@@ -1,0 +1,82 @@
+.workout-page-container{
+    left: 0;
+    right: 0;
+    position: fixed;
+    /* width: 600px; */
+    /* margin: () */
+    display: flex;
+    /* align-items: center; */
+    justify-content: center;
+}
+
+.workout-page-inner {
+    /* background-color: rgb(178, 250, 226); */
+    width: 600px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    /* align-items: center; */
+    padding: 0 80px;
+    border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc;
+}
+
+.create-workout-h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+
+.add-exercise, 
+.complete-workout {
+    /* width: 200px; */
+    height: 47.5px;
+    display: flex;
+    align-items: center;
+    margin: 20px 0px;
+    background-color: white;
+    border: none;
+    border-radius: 10px;
+    color: black;
+    font-size: 14px;
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+/* ! exercise recording */
+
+.exercise-ele {
+    width: 100%;
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(173, 216, 230, 0.5);
+    border: 1px solid black;
+    border-radius: 0.4em;
+    margin: 10px;
+    padding: 5px;
+    /* margin: 0;
+    padding: 0; */
+}
+
+.add-exercise {
+    background-color: rgba(0, 0, 255, 0.1);
+    color: blue;
+}
+
+.add-exercise:hover {
+    background-color: rgba(0, 0, 255, 0.2);
+}
+
+.complete-workout{
+    background-color: rgba(255, 0, 0,0.1);
+    color: red;
+}
+
+.complete-workout:hover {
+    background-color: rgba(255, 0, 0,0.2);
+}

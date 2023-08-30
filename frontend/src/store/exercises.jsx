@@ -20,9 +20,8 @@ const clearExerciseErrors = () => ({ type: CLEAR_EXERCISE_ERRORS });
 export const getFoods = state => Object.values(state.exercises);
 export const getFood = exerciseId => state => state.exercises.results[exerciseId]
 
-// THUNK ACTION CREATORS
 
-export const fetchExercises = () => async dispatch => {
+export const fetchExercises = async dispatch => {
     try {
         const res = await jwtFetch('/api/exercises');
         const exercises = await res.json();
@@ -32,6 +31,10 @@ export const fetchExercises = () => async dispatch => {
         dispatch(receiveExerciseErrors(errors));
     }
 }
+
+
+// THUNK ACTION CREATORS
+
 
 export const fetchExercise = exerciseId => async dispatch => {
     try {
