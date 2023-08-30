@@ -51,38 +51,15 @@ router.patch( "/:nutritionId", restoreUser, validateNutritionInput, async (req, 
     }
 );
 
-// router.delete("/:nutritionId", restoreUser, async (req, res, next) => {
-//     try {
-//         const nutritionId = req.params.nutritionId;
-//         let currentUser = await User.findById(req.user._id);
-
-//         let nutritionItem = currentUser.nutrition.id(nutritionId);
-//         console.log(nutritionItem)
-//         if (nutritionItem) {
-//             nutritionItem.pull();
-//             await currentUser.save();
-//             return res.json(currentUser);
-//         } else {
-//             return res
-//                 .status(404)
-//                 .json({ message: "Nutrition item not found" });
-//         }
-//     } catch (err) {
-//         next(err);
-//     }
-// });
-
 router.delete("/:nutritionId", restoreUser, async (req, res, next) => {
     try {
         const nutritionId = req.params.nutritionId;
         let currentUser = await User.findById(req.user._id);
 
-        let newNutritionList = currentUser.nutrition.filter(
-            (item) => String(item._id) !== String(nutritionId)
-        );
-
-        if (newNutritionList.length !== currentUser.nutrition.length) {
-            currentUser.nutrition = newNutritionList;
+        let nutritionItem = currentUser.nutrition.id(nutritionId);
+        console.log(nutritionItem)
+        if (nutritionItem) {
+            nutritionItem.deleteOne();
             await currentUser.save();
             return res.json(currentUser);
         } else {
