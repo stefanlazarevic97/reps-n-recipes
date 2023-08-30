@@ -4,6 +4,7 @@ import './NavBar.css';
 import { logout } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import HealthForm from '../HealthForm/HealthForm';
+import WorkoutForm from '../WorkoutForm/WorkoutForm';
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -37,6 +38,7 @@ function NavBar () {
   return (
     <>
     <HealthForm/>
+    <WorkoutForm/>
       <h1>Reps 'N' Recipes</h1>
       { getLinks() }
     </>
