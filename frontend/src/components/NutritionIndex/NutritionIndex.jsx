@@ -3,9 +3,9 @@ import { Pie } from 'react-chartjs-2';
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getUserNutritionByDay } from '../../store/users'
-import { Chart, PieController, ArcElement } from 'chart.js';
+import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
 
-Chart.register(PieController, ArcElement);
+Chart.register(PieController, ArcElement, Tooltip);
 
 const NutritionIndex = () => {
     const dailyNutrition = useSelector(getUserNutritionByDay);
@@ -21,6 +21,11 @@ const NutritionIndex = () => {
         dailyProtein += food.gramsProtein;
     })
     
+    let totalMacros = dailyCarbs + dailyFat + dailyProtein;
+    let carbsPercentage = Math.round((dailyCarbs / totalMacros) * 100);
+    let fatPercentage = Math.round((dailyFat / totalMacros) * 100);
+    let proteinPercentage = Math.round((dailyProtein / totalMacros) * 100);
+
     console.log("dailyCalories", dailyCalories);
     console.log("dailyCarbs", dailyCarbs);
     console.log("dailyFat", dailyFat);
@@ -30,17 +35,40 @@ const NutritionIndex = () => {
         labels: ['Carbs', 'Fat', 'Protein'],
         datasets: [{
             data: [dailyCarbs, dailyFat, dailyProtein],
+            percentages: [carbsPercentage, fatPercentage, proteinPercentage],
             backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
             hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
         }]
     }
     
+    const options = {
+        plugins: {
+            tooltip: {
+                callbacks: {
+                    label: function(context) {
+                        const label = context.label || ''
+                        const value = context.parsed || ''
+                        const dataset = context.chart.data.datasets[context.datasetIndex];
+                        const percentage = dataset.percentages[context.dataIndex]
+                        return `${label}: ${value} (${percentage}%)`
+                    }
+                }
+            }
+        }
+    }
+
     return (
         <div className="nutrition-index">
             <h2 className="nutrition-index-title">Nutrition Index</h2>
             <div>
                 <div className='chart-container'>
-                    <Pie data={data} />
+                    <Pie data={data} options={options}/>
+                    <div className="daily-wrapper">
+                        <div>{dailyCalories} Calories</div>
+                        <div>{dailyCarbs}g Carbs</div>
+                        <div>{dailyFat}g Fat</div>
+                        <div>{dailyProtein}g Protein</div>
+                    </div>
                 </div>
                 {dailyNutrition.map(food => (
                     <div>
