@@ -2,6 +2,7 @@
 const ACTIVATE_HEALTH_FORM = 'ACTIVATE_HEALTH_FORM';
 const DEACTIVATE_HEALTH_FORM = 'DEACTIVATE_HEALTH_FORM';
 const CHANGE_SELECTED_OPTION = 'CHANGE_SELECTED_OPTION';
+const CHANGE_SELECTED_DATE = 'CHANGE_SELECTED_DATE';
 
 const ACTIVATE_WORKOUT_FORM = 'ACTIVATE_WORKOUT_FORM'
 const DEACTIVATE_WORKOUT_FORM = 'DEACTIVATE_WORKOUT_FORM'
@@ -37,7 +38,8 @@ export const getWorkoutFormState = state => state.ui.workoutForm
 const initialState = {
     healthForm: false,
     selectedOption: 'ingredients',
-    workoutForm: false
+    workoutForm: false,
+    selectedDate: new Date().toLocaleDateString('en-CA')
 }
 
 const uiReducer = (state = initialState, action) => {

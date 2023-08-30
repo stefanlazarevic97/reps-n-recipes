@@ -33,42 +33,96 @@ export const getFullFoodItem = selectedFood => state => state.foods[selectedFood
 
 // THUNK ACTION CREATORS
 
-export const fetchFoods = (category, foodSearch) => async dispatch => {
-    console.log(category, foodSearch)
+export const fetchIngredients = (ingredientSearch) => async dispatch => {
     try {
-        const endpointMap = {
-            ingredients: 'food/ingredients/search',
-            products: 'food/products/search',
-            menuItems: 'food/menuItems/search',
-            recipes: 'recipes/complexSearch'
-        };
-        
-        const endpoint = endpointMap[category];
-        const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?query=${foodSearch}&apiKey=${apiKey}`);
-        const foods = await res.json();
-        console.log(foods)
-        dispatch(receiveFoods(foods));
+        const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&apiKey=${apiKey}`);
+        const ingredients = await res.json();
+        dispatch(receiveFoods(ingredients));
+        return ingredients;
     } catch(err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
     }
 }
 
-export const fetchFood = (category, foodId) => async dispatch => {
+export const fetchIngredient = (ingredientId) => async dispatch => {
     try {
-        const endpointMap = {
-            ingredients: `food/ingredients/${foodId}/information?amount=100&unit=g`,
-            products: `food/products/${foodId}?`,
-            menuItems: `food/menuItems/${foodId}?`,
-            recipes: `recipes/${foodId}/information?includeNutrition=true`
-        };
+        const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/${ingredientId}/information?amount=100&unit=g&apiKey=${apiKey}`);
+        const ingredient = await res.json();
+        dispatch(receiveFood(ingredient));
+        return ingredient;
+    } catch(err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
 
-        const endpoint = endpointMap[category];
-        console.log("endpoint: ", endpoint);
-        const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}&apiKey=${apiKey}`);
-        const food = await res.json();
-        dispatch(receiveFood(food));
-        return food;
+export const fetchProducts = (productSearch) => async dispatch => {
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/food/products/search?query=${productSearch}&apiKey=${apiKey}`)
+        const products = await res.json();
+        dispatch(receiveFoods(products));
+        return products;
+    } catch(err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const fetchProduct = (productId) => async dispatch => {
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/food/products/${productId}?apiKey=${apiKey}`);
+        const product = await res.json();
+        dispatch(receiveFood(product));
+        return product;
+    } catch(err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const fetchMenuItems = (menuItemSearch) => async dispatch => {
+    try { 
+        const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/search?query=${menuItemSearch}&apiKey=${apiKey}`)
+        const menuItems = await res.json();
+        dispatch(receiveFoods(menuItems));
+        return menuItems;
+    } catch (err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const fetchMenuItem = (menuItemId) => async dispatch => {
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/${menuItemId}?apiKey=${apiKey}`);
+        const menuItem = await res.json();
+        dispatch(receiveFood(menuItem));
+        return menuItem;
+    } catch(err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const fetchRecipes = (recipeSearch) => async dispatch => {
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipeSearch}&apiKey=${apiKey}`)
+        const recipes = await res.json();
+        dispatch(receiveFoods(recipes))
+        return recipes
+    } catch (err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const fetchRecipe = (recipeId) => async dispatch => {
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/recipes/${recipeId}/information?includeNutrition=true&apiKey=${apiKey}`);
+        const recipe = await res.json();
+        dispatch(receiveFood(recipe));
+        return recipe;
     } catch(err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
@@ -77,7 +131,6 @@ export const fetchFood = (category, foodId) => async dispatch => {
 
 export const addUserNutrition = (foodItem) => async dispatch => {
     try {
-        console.log(foodItem)
         const res = await jwtFetch('/api/nutrition', {
             method: 'POST',
             body: JSON.stringify(foodItem)
@@ -91,11 +144,6 @@ export const addUserNutrition = (foodItem) => async dispatch => {
         dispatch(receiveFoodErrors(errors));
     }
 }
-
-// 'https://api.spoonacular.com/food/ingredients/9266/information?amount=1?unit=grams'
-// 'https://api.spoonacular.com/food/products/22347'
-// 'https://api.spoonacular.com/food/menuItems/424571'
-// 'https://api.spoonacular.com/recipes/716429/information?includeNutrition=false'
 
 export const createFood = food => async dispatch => {
     try {
@@ -123,12 +171,6 @@ export const deleteFood = foodId => async dispatch => {
         dispatch(receiveFoodErrors(errors))
     }
 }
-// category would be food/category/search
-
-// https://api.spoonacular.com/food/ingredients/search
-// https://api.spoonacular.com/food/products/search
-// https://api.spoonacular.com/food/menuItems/search
-// https://api.spoonacular.com/recipes/complexSearch
 
 const nullErrors = null;
 

@@ -1,13 +1,14 @@
-import { getFoods, fetchFood, addUserNutrition } from '../../store/foods';
+import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient, fetchProduct } from '../../store/foods';
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useState } from 'react';
+import moment from 'moment';
 
 const FoodIndex = () => {
     const dispatch = useDispatch();
     const foods = useSelector(getFoods);
     const selectedOption = useSelector(state => state.ui.selectedOption);
-    const [selectedDate, setSelectedDate] = useState(new Date().toLocaleDateString('en-CA'));
+    const [selectedDate, setSelectedDate] = useState(new moment());
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
 
@@ -19,29 +20,82 @@ const FoodIndex = () => {
         setFoodQuantity(e.target.value);
     }
     
-    const handleClick = async (food) => {
-        const foodDetail = await dispatch(fetchFood(selectedOption, food.id));
+    const handleClick = async (food) => {      
+        let foodDetail; 
+        
+        if (selectedOption === 'ingredients') {
+            foodDetail = await dispatch(fetchIngredient(food.id));
+        } else if (selectedOption === 'products') {
+            foodDetail = await dispatch(fetchProduct(food.id));
+        } else if (selectedOption === 'menuItems') {
+            foodDetail = await dispatch(fetchMenuItem(food.id));
+        } else {
+            foodDetail = await dispatch(fetchRecipe(food.id))
+        }
+        
         setSelectedFood(foodDetail);
     }
 
     const handleAddFood = () => {
         const foodItem = {
-            foodName: selectedFood.name,
-            foodQuantity: selectedFood.amount,
-            foodQuantityUnit: selectedFood.unit,
-            calories: destructureFood('Calories'),
-            gramsCarbs: destructureFood("Carbohydrates"),
-            gramsFat: destructureFood("Fat"),
-            gramsProtein: destructureFood("Protein"),
+            foodName: selectedFood.name ? selectedFood.name : selectedFood.title,
+            foodQuantity: servingAmount() * foodQuantity,
+            foodQuantityUnit: servingUnit(),
+            calories: destructureFood('Calories') * foodQuantity,
+            gramsCarbs: destructureFood("Carbohydrates") * foodQuantity,
+            gramsFat: destructureFood("Fat") * foodQuantity,
+            gramsProtein: destructureFood("Protein") * foodQuantity,
             dateConsumed: selectedDate
         };
         dispatch(addUserNutrition(foodItem));
+        
     }
 
     const destructureFood = (component) => {
-        return selectedFood.nutrition.nutrients.filter((nutrient)=> nutrient.name === component)[0].amount
+        return selectedFood.nutrition.nutrients.filter((nutrient) => nutrient.name === component)[0]?.amount || 0;
     }
 
+    const servingAmount = () => {
+        let servingAmount; 
+
+        if (selectedOption === 'ingredients') {
+            if (selectedFood.amount) {
+                servingAmount = selectedFood.amount;
+            }
+        } else if (selectedOption === 'products' || selectedOption === 'menuItems') {
+            if (selectedFood.servings.size) {
+                servingAmount = selectedFood.servings.size;
+            }
+        } else {
+            if (selectedFood.nutrition.weightPerServing.amount) {
+                servingAmount = selectedFood.nutrition.weightPerServing.amount;
+            }
+        }
+
+        return servingAmount ? servingAmount : null;
+    }
+
+    const servingUnit = () => {
+        let servingUnit; 
+
+        if (selectedOption === 'ingredients') {
+            if (selectedFood.unit) {
+                servingUnit = selectedFood.unit;
+            }
+        } else if (selectedOption === 'products' || selectedOption === 'menuItems') {
+            if (selectedFood.servings.unit) {
+                servingUnit = selectedFood.servings.unit;
+            }
+        } else {
+            if (selectedFood.nutrition.weightPerServing.unit) {
+                servingUnit = selectedFood.nutrition.weightPerServing.unit;
+            }
+        }
+
+        return servingUnit ? servingUnit : null;
+    }
+
+    
     return (
         <div className="food-index">
             <h2>Search Results</h2>
@@ -51,7 +105,6 @@ const FoodIndex = () => {
             </div>
             <ul>
                 {foods && foods.map(food => (
-                    <>
                         <li
                             onClick={() => handleClick(food)}
                             key={food.id}
@@ -59,19 +112,19 @@ const FoodIndex = () => {
                         >
                             {food.name ? food.name : food.title }
                         </li>
-                    </>
                 ))}
             </ul>
 
             <div>
                 {selectedFood && (
                 <div className="selected-food">
-                    <h3>Selected Food: {selectedFood.name}</h3>
+                    <h3>Selected Food: {selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
                     <p>Calories: {destructureFood('Calories')}</p>
-                    <p>Carbs: {destructureFood("Carbohydrates")}</p>
-                    <p>Fat: {destructureFood("Fat")}</p>
-                    <p>Protein: {destructureFood("Protein")}</p>
-                    <p>Serving Size: {selectedFood.amount} {selectedFood.unit}</p>
+                    <p>Carbs: {destructureFood('Carbs')}</p>
+                    <p>Fat: {destructureFood('Fat')}</p>
+                    <p>Protein: {destructureFood('Protein')}</p>
+                    {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
+
                     <label>Quantity:               
                         <input 
                             type="number" 

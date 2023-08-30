@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchFoods } from "../../store/foods";
+import { fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes } from "../../store/foods";
 import './FoodInput.css';
 import { changeSelectedOption } from "../../store/ui";
 
@@ -20,7 +20,16 @@ const FoodInput = () => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(fetchFoods(selectedOption, searchQuery));
+        
+        if (selectedOption === 'ingredients') {
+            dispatch(fetchIngredients(searchQuery));
+        } else if (selectedOption === 'products') {
+            dispatch(fetchProducts(searchQuery));
+        } else if (selectedOption === 'menuItems') {
+            dispatch(fetchMenuItems(searchQuery));
+        } else {
+            dispatch(fetchRecipes(searchQuery))
+        }
     } 
     
     return (

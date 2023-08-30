@@ -1,6 +1,6 @@
 import { useSelector } from "react-redux";
 import FoodInput from "../FoodInput/FoodInput";
-import HealthForm from "../HealthForm/HealthForm";
+import NutritionIndex from '../NutritionIndex/NutritionIndex'
 
 const HomePage = () => {
     const currentUser = useSelector(state => state.session.user);
@@ -8,6 +8,7 @@ const HomePage = () => {
     return (
         <>
             {currentUser && <FoodInput />}
+            <NutritionIndex />
             <footer>
                 Copyright &copy; 2023 appAcademy
             </footer>
