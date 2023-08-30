@@ -22,13 +22,12 @@ function App() {
         <>
             <NavBar />
                 <AuthRoute exact path="/" component={HomePage} />
-                {/* <AuthRoute exact path="/" component={HealthForm} /> */}
             <Switch>
                 <AuthRoute exact path="/" component={HomePage} /> 
                 {/* why is this not rendering??? */}
                 <AuthRoute exact path="/login" component={LoginForm} />
                 <AuthRoute exact path="/signup" component={SignupForm} />
-                {/* <AuthRoute exact path="/health-form" component={HealthForm} /> */}
+                <AuthRoute exact path="/workout" component={SignupForm} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
             </Switch>
         </>
