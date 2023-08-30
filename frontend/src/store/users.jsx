@@ -2,6 +2,7 @@ import jwtFetch from './jwt';
 import { RECEIVE_USER_NUTRITION } from './foods';
 import { receiveErrors } from './session';
 import { RECEIVE_USER_LOGOUT } from './session';
+import { RECEIVE_CURRENT_USER } from './session';
 
 const RECEIVE_USER_HEALTH = 'users/RECEIVE_USER_HEALTH'
 // const RECEIVE_USER_NUTRITION = 'RECEIVE_USER_NUTRITION'
@@ -40,6 +41,10 @@ const usersReducer = (state = initialState, action) => {
     const nextState = { ...state };
     
     switch (action.type) {
+        case RECEIVE_CURRENT_USER:
+            nextState.nutritionItems = action.currentUser.nutritionData
+            nextState.healthData = action.currentUser.healthData
+            return nextState
         case RECEIVE_USER_NUTRITION:
             nextState.nutritionItems = action.userNutrition.nutrition
             return nextState;

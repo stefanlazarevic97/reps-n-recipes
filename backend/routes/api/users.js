@@ -22,10 +22,11 @@ router.get('/current', restoreUser, (req, res) => {
     if (!req.user) return res.json(null);
 
     res.json({
-        _id: req.user._id,
-        username: req.user.username,
-        email: req.user.email
-    });
+        user: {_id: req.user._id, username: req.user.username, email: req.user.email},
+        healthData: req.user.healthData,
+        nutritionData: req.user.nutrition
+    }
+    );
 })
 
 router.post('/register', validateRegisterInput, async (req, res, next) => {

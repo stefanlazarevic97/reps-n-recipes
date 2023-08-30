@@ -46,6 +46,7 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
         const endpoint = endpointMap[category];
         const res = await jwtFetch(`https://api.spoonacular.com/${endpoint}?query=${foodSearch}&apiKey=${apiKey}`);
         const foods = await res.json();
+        console.log(foods)
         dispatch(receiveFoods(foods));
     } catch(err) {
         const errors = await err.json();
@@ -53,12 +54,12 @@ export const fetchFoods = (category, foodSearch) => async dispatch => {
     }
 }
 
-export const fetchFood = (category, foodId, amount, unit) => async dispatch => {
+export const fetchFood = (category, foodId) => async dispatch => {
     try {
         const endpointMap = {
             ingredients: `food/ingredients/${foodId}/information?amount=100&unit=g`,
-            products: `food/products/${foodId}`,
-            menuItems: `food/menuItems/${foodId}`,
+            products: `food/products/${foodId}?`,
+            menuItems: `food/menuItems/${foodId}?`,
             recipes: `recipes/${foodId}/information?includeNutrition=true`
         };
 
@@ -149,7 +150,16 @@ const foodsReducer = (state = {}, action) => {
     
     switch(action.type) {
         case RECEIVE_FOODS:
-            return { ...action.foods.results }
+            if (action.foods.results) {
+                return  action.foods.results;
+            } else if (action.foods.products) {
+                return action.foods.products
+            } else if (action.foods.menuItems) {
+                return action.foods.menuItems
+            } else if (action.foods.recipes) {
+                return action.foods.recipes
+            }
+            return state;
         case RECEIVE_FOOD:
             return { ...state, [action.food.id]: action.food };
         case REMOVE_FOOD:
