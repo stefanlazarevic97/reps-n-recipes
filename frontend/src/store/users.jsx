@@ -1,5 +1,5 @@
 import jwtFetch from './jwt';
-import { RECEIVE_USER_NUTRITION } from './foods';
+import { RECEIVE_USER_NUTRITION, REMOVE_USER_NUTRITION } from './foods';
 import { receiveErrors } from './session';
 import { RECEIVE_USER_LOGOUT } from './session';
 import { RECEIVE_CURRENT_USER } from './session';
@@ -15,15 +15,12 @@ export const receiveUserHealth = healthData => ({
 
 export const getUserNutritionByDay = state => {
     const nutritionItems = Object.values(state.users.nutritionItems);
-    console.log(nutritionItems, 'nutriton items')
+
     const dailyNutrition = nutritionItems.filter(nutritionItem => {
-        // console.log(nutritionItem.dateConsumed, 'dateConsumed')
         const dateConsumed = new moment.utc(nutritionItem.dateConsumed).format("YYYY-MM-DD")
-        console.log(dateConsumed, 'dateConsumed')
         return dateConsumed === state.ui.selectedDate;
-        console.log(state.ui.selectedDate, 'state.ui.selectedDate')
     });
-    console.log(dailyNutrition)
+
     return dailyNutrition;
 }
 
@@ -58,6 +55,9 @@ const usersReducer = (state = initialState, action) => {
             return nextState
         case RECEIVE_USER_NUTRITION:
             nextState.nutritionItems = action.userNutrition.nutrition
+            return nextState;
+        case REMOVE_USER_NUTRITION:
+            delete nextState.nutritionItems[action.userNutritionId];
             return nextState;
         case RECEIVE_USER_HEALTH:
             return { ...state, healthData: action.healthData };
