@@ -7,6 +7,7 @@ const apiKey = process.env.REACT_APP_SPOONACULAR_API_KEY;
 const RECEIVE_FOODS = 'foods/RECEIVE_FOODS';
 const RECEIVE_FOOD = 'foods/RECEIVE_FOOD';
 const REMOVE_FOOD = 'foods/REMOVE_FOOD';
+const CLEAR_FOODS = 'foods/CLEAR_FOODS'
 const RECEIVE_FOOD_ERRORS = 'foods/RECEIVE_FOOD_ERRORS';
 const CLEAR_FOOD_ERRORS  = 'foods/CLEAR_FOOD_ERRORS';
 export const RECEIVE_USER_NUTRITION = 'foods/RECEIVE_USER_NUTRITION';
@@ -18,15 +19,17 @@ const receiveFoods = foods => ({ type: RECEIVE_FOODS, foods });
 const receiveFood = food => ({ type: RECEIVE_FOOD, food });
 const removeFood = foodId => ({ type: REMOVE_FOOD, foodId });
 
-const receiveUserNutrition = userNutrition => ({ 
+export const receiveUserNutrition = userNutrition => ({ 
     type: RECEIVE_USER_NUTRITION, 
     userNutrition 
 });
 
-const removeUserNutrition = userNutritionId => ({
+export const removeUserNutrition = userNutritionId => ({
     type: REMOVE_USER_NUTRITION,
     userNutritionId
 });
+
+export const clearFoods = () => ({ type: CLEAR_FOODS });
 
 const receiveFoodErrors = errors => ({ type: RECEIVE_FOOD_ERRORS, errors });
 const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
@@ -243,6 +246,8 @@ const foodsReducer = (state = {}, action) => {
             return { ...action.foods };
         case RECEIVE_FOOD:
             return { ...state, [action.food.id]: action.food };
+        case CLEAR_FOODS:
+            return {};
         case REMOVE_FOOD:
             delete nextState[action.foodId];
             return nextState;

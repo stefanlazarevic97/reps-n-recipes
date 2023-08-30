@@ -30,6 +30,8 @@ const FoodInput = () => {
         } else {
             dispatch(fetchRecipes(searchQuery))
         }
+        
+        setSearchQuery('')
     } 
     
     return (
