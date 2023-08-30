@@ -10,6 +10,7 @@ const REMOVE_FOOD = 'foods/REMOVE_FOOD';
 const RECEIVE_FOOD_ERRORS = 'foods/RECEIVE_FOOD_ERRORS';
 const CLEAR_FOOD_ERRORS  = 'foods/CLEAR_FOOD_ERRORS';
 export const RECEIVE_USER_NUTRITION = 'foods/RECEIVE_USER_NUTRITION';
+export const REMOVE_USER_NUTRITION = 'foods/REMOVE_USER_NUTRITION';
 
 // ACTION CREATORS
 
@@ -20,6 +21,11 @@ const removeFood = foodId => ({ type: REMOVE_FOOD, foodId });
 const receiveUserNutrition = userNutrition => ({ 
     type: RECEIVE_USER_NUTRITION, 
     userNutrition 
+});
+
+const removeUserNutrition = userNutritionId => ({
+    type: REMOVE_USER_NUTRITION,
+    userNutritionId
 });
 
 const receiveFoodErrors = errors => ({ type: RECEIVE_FOOD_ERRORS, errors });
@@ -156,6 +162,32 @@ export const addUserNutrition = (foodItem) => async dispatch => {
         dispatch(receiveUserNutrition(newUserNutrition));
         
     } catch(err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const updateUserNutrition = (foodItem) => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/nutrition/${foodItem._id}`, {
+            method: 'PATCH',
+            body: JSON.stringify(foodItem)
+        });
+        const updatedUserNutrition = await res.json();
+        dispatch(receiveUserNutrition(updatedUserNutrition));
+    } catch (err) {
+        const errors = await err.json();
+        dispatch(receiveFoodErrors(errors));
+    }
+}
+
+export const deleteUserNutrition = (foodItemId) => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/nutrition/${foodItemId}`, {
+            method: 'DELETE'
+        });
+        dispatch(removeUserNutrition(foodItemId));
+    } catch (err) {
         const errors = await err.json();
         dispatch(receiveFoodErrors(errors));
     }

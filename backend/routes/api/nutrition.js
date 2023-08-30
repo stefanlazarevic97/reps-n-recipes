@@ -7,16 +7,6 @@ const User = mongoose.model('User');
 const { requireUser, restoreUser } = require('../../config/passport')
 const validateNutritionInput = require('../../validation/nutrition')
 
-// router.get('/', requireUser, async (req, res) => {
-//     try {
-//         const nutrition = await Nutrition.find({ consumer: req.user._id })
-//             .populate('consumer', '_id username')
-//         return res.json(nutrition)
-//     } catch(err) {
-//         return res.json([])
-//     }
-// })
-
 router.post('/', restoreUser, validateNutritionInput, async (req, res, next) => {
     try {
         const newNutrition = {
@@ -38,5 +28,48 @@ router.post('/', restoreUser, validateNutritionInput, async (req, res, next) => 
         next(err)
     }
 })
+
+router.patch( "/:nutritionId", restoreUser, validateNutritionInput, async (req, res, next) => {
+        try {
+            const nutritionId = req.params.nutritionId;
+            let currentUser = await User.findById(req.user._id);
+
+            let nutritionItem = currentUser.nutrition.id(nutritionId);
+
+            if (nutritionItem) {
+                nutritionItem.set(req.body);
+                await currentUser.save();
+                return res.json(currentUser);
+            } else {
+                return res
+                    .status(404)
+                    .json({ message: "Nutrition item not found" });
+            }
+        } catch (err) {
+            next(err);
+        }
+    }
+);
+
+router.delete("/:nutritionId", restoreUser, async (req, res, next) => {
+    try {
+        const nutritionId = req.params.nutritionId;
+        let currentUser = await User.findById(req.user._id);
+
+        let nutritionItem = currentUser.nutrition.id(nutritionId);
+
+        if (nutritionItem) {
+            nutritionItem.remove();
+            await currentUser.save();
+            return res.json(currentUser);
+        } else {
+            return res
+                .status(404)
+                .json({ message: "Nutrition item not found" });
+        }
+    } catch (err) {
+        next(err);
+    }
+});
 
 module.exports = router;

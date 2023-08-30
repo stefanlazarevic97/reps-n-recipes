@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 import { getUserNutritionByDay } from '../../store/users'
 import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
+import { updateUserNutrition } from '../../store/foods';
 
 Chart.register(PieController, ArcElement, Tooltip);
 
@@ -51,12 +52,12 @@ const NutritionIndex = () => {
             }
         }
     }
-    const handleUpdate = () => {
-
+    const handleUpdate = (foodItem) => {
+        dispatch(updateUserNutrition(foodItem))
     }
 
-    const handleDelete = () => {
-
+    const handleDelete = (foodItem) => {
+        dispatch(deleteUserNutrition(foodItem._id))
     }
 
     return (
