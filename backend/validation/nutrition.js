@@ -18,25 +18,30 @@ const validateFoodInput = [
         .notEmpty()
         .withMessage('Must be a valid unit'),
     check('calories')
-        .exists({ checkFalsy: true })
+        .exists()
         .withMessage('Calories cannot be empty')
         .isNumeric()
-        .withMessage('Calories cannot be empty'),
+        .withMessage('Calories must be a number'),
     check('gramsCarbs')
-        .exists({ checkFalsy: true })
+        .exists()
         .withMessage('Carbs cannot be empty')
         .isNumeric()
-        .withMessage('Carbs cannot be empty'),
+        .withMessage('Carbs must be a number'),
     check('gramsFat')
-        .exists({ checkFalsy: true })
+        .exists()
         .withMessage('Fat cannot be empty')
         .isNumeric()
-        .withMessage('Fat cannot be empty'),
+        .withMessage('Fat must be a number'),
     check('gramsProtein')
-        .exists({ checkFalsy: true })
+        .exists()
         .withMessage('Protein cannot be empty')
         .isNumeric()
-        .withMessage('Protein cannot be empty'),
+        .withMessage('Protein must be a number'),
+    check('servings')
+        .exists()
+        .withMessage('Servings cannot be empty')
+        .isNumeric()
+        .withMessage('Servings must be a number'),
     handleValidationErrors
 ]
     

@@ -1,4 +1,4 @@
-import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient, fetchProduct } from '../../store/foods';
+import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient, fetchProduct, clearFoods } from '../../store/foods';
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
@@ -13,6 +13,7 @@ const FoodIndex = () => {
     const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
+    const [searchResults, setSearchResults] = useState(foods);
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -48,12 +49,19 @@ const FoodIndex = () => {
             gramsCarbs: destructureFood("Carbohydrates") * foodQuantity,
             gramsFat: destructureFood("Fat") * foodQuantity,
             gramsProtein: destructureFood("Protein") * foodQuantity,
-            dateConsumed: selectedDate
+            dateConsumed: selectedDate,
+            servings: foodQuantity
         };
 
         dispatch(addUserNutrition(foodItem));
         setSelectedFood(null);
+        setSearchResults([]);
+        dispatch(clearFoods());
     }
+
+    useEffect(() => {
+        setSearchResults(foods);
+    }, [foods]);
 
     const destructureFood = (component) => {
         return selectedFood.nutrition.nutrients.filter((nutrient) => nutrient.name === component)[0]?.amount || 0;
@@ -110,7 +118,7 @@ const FoodIndex = () => {
             </div>
             
             <ul>
-                {foods && foods.map(food => (
+                {searchResults && searchResults.map(food => (
                         <li
                             onClick={() => handleClick(food)}
                             key={food.id}
