@@ -23,21 +23,53 @@ const WorkoutPage = () => {
         }
         fetchData();
     }, [])
-    // const listItems = dispatch(fetchExercises())
-    // console.log(listItems)
-    // [
-    //     "Crunch", "Bench Press", "Bulgarian Split Squats", "Squat", "Bicep Curls", "Leg Press"
-    // ]
 
-    console.log(listItems)
+    useEffect(()=> {
+        // if 
+        const currentWorkout =sessionStorage.getItem("currentWorkout") 
+        if (currentWorkout){
+            setExerciseList(JSON.parse(currentWorkout))
+        }
+    }, [])
+
+    // const addSet = (name) => {
+
+    //     sessionStorage.setItem(
+    //         "currentWorkout", JSON.stringify(newList)
+    //     )
+    // }
+
+
+    // console.log(exerciseList)
 
     const makeExerciseList = () => {
         const list = exerciseList.map((exercise)=>{
             return (
                 <li key={exercise} className='exercise-ele'>
-                    <div>{exercise}</div>
-                    <div>kg input...</div>
-                    <div>reps input...</div>
+                    {/* <div className='exercise-image'><img src={exercise.gif ? exercise.gif : ""} alt="" /></div> */}
+                    <div className="exercise-title">{exercise.name}</div>
+                    <div className="exercise-headers">
+                        <div className="set-header">Set</div>
+                        <div className="kg-header">kg</div>
+                        <div className="reps-header">reps</div>
+                    </div>
+                    <div className="input-upper">
+                        <div className="exercise-inputs">
+                            <div className="set-val">
+                                <div>1</div>
+                            </div>
+                            <div className="kg-input">
+                                <input type="text" />
+                            </div>
+                            <div className="reps-input">
+                                <input type="text" />
+                            </div>
+                        </div>
+                        <div>
+                            <div>tick</div>
+                        </div>
+                    </div>
+                    {/* <button className="add-a-set" onClick={addSet(exercise.name)}>+ Add Set</button> */}
                 </li>
             )
         })
@@ -57,12 +89,15 @@ const WorkoutPage = () => {
     return (
         
         <>
+        
             <div className="workout-page-container">
 
                 <div className="workout-page-inner">
 
                     <h1 className="create-workout-h1">Create your workout</h1>
 
+                    {/* <img src="/Users/apple/Documents/AppAcademy/health-360/backend/assets/workoutGifs/Barbell Bent Over Row.gif" alt="" /> */}
+                    {/* <img src="../../../backend/assets/workoutGifs/Barbell Bent Over Row.gif" alt="" /> */}
 
                     {makeExerciseList()}
                     {/* <div className="create-new-workout"> */}
