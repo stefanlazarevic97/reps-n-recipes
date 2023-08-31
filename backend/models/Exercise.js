@@ -4,25 +4,15 @@ const Schema = mongoose.Schema;
 const exerciseSchema = new Schema({
 
     name: {type: String, required: true},
-  
-    type: {
-      type: String,
-      enum: ['compound', 'isolation', 'accessory', 'cardio']
-    },
-  
+
     muscleGroup: {
-      type: String,
-      enum: ['chest', 'back', 'shoulders', 'legs', 'arms', 'core', 'full body']
-    },
-  
-    workoutType: {
-      type: String,
-      enum: ['strength', 'cardio', 'hiit'] 
+        type: String,
+        enum: ['chest', 'back', 'shoulders', 'bicep', 'tricep', 'quad', 'hamstring', 'glute', 'calf', 'core'],
     },
   
     gif: {
-      type: String, 
-      required: false
+        type: String, 
+        required: false
     }
   
 });

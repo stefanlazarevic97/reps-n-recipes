@@ -9,11 +9,6 @@ const workoutSchema = new Schema({
 
     datePerformed: { type: Date, default: Date.now },
 
-    workoutType: { 
-        type: String, 
-        enum: ['strength', 'cardio', 'HIIT'] 
-    },
-
     duration: { type: Number, min: 0 },
 
     performer: { 
@@ -22,14 +17,14 @@ const workoutSchema = new Schema({
     },
 
     sets: [{
-      exercise: {
-        name: String,
-        muscleGroup: String
-      },
-      repetitions: Number,
-      weight: Number
+        exercise: {
+            name: String,
+            muscleGroup: String
+        },
+
+        repetitions: Number,
+        weight: Number
     }]
-    
-  }, { timestamps: true });
+}, { timestamps: true });
 
 module.exports = mongoose.model('Workout', workoutSchema);
