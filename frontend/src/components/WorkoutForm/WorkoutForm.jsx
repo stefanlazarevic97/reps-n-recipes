@@ -31,7 +31,7 @@ const WorkoutForm = ({
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
 
         // Add new exercise to sets with the first empty set object
-        currentWorkout.sets.push({ [selectedExercise]: [{kg: null, reps: null}] });
+        currentWorkout.sets.push({ [selectedExercise]: [{kg: null, reps: null, done: false}] });
 
         // Update sessionStorage
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
@@ -39,7 +39,7 @@ const WorkoutForm = ({
         // currentWorkout.sets.push()
 
         // const added = listItems.find(item => item.name === selectedExercise);
-        const newList = [...exerciseList, {[selectedExercise]: 1} ]
+        const newList = [...exerciseList, {[selectedExercise]: [{kg: null, reps: null}]} ]
         setExerciseList(newList)
         setAddExercise(false)
         dispatch(deactivateWorkoutForm())
