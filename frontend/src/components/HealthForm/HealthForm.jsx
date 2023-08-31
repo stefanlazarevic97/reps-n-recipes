@@ -26,7 +26,7 @@ const HealthForm = () => {
 
     const errors = useSelector(state => state.errors.session);
 
-    console.log(weightGoal)
+    // console.log(weightGoal)
 
     if (!active) return null
 

@@ -13,7 +13,7 @@ const WorkoutForm = ({
     listItems}) => {
     const dispatch = useDispatch()
 
-    console.log(selectedExercise)
+    // console.log(selectedExercise)
 
 
     const handleExit = e => {
@@ -27,14 +27,20 @@ const WorkoutForm = ({
     }
 
     const handleAdd = () => {
-        const added = listItems.find(item => item.name === selectedExercise);
-        const newList = [...exerciseList, added]
+        // Parse currentWorkout from sessionStorage
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+
+        // Add new exercise to sets with the first empty set object
+        currentWorkout.sets.push({ [selectedExercise]: [{kg: null, reps: null, done: false}] });
+
+        // Update sessionStorage
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+
+        // currentWorkout.sets.push()
+
+        // const added = listItems.find(item => item.name === selectedExercise);
+        const newList = [...exerciseList, {[selectedExercise]: [{kg: null, reps: null}]} ]
         setExerciseList(newList)
-
-        sessionStorage.setItem(
-            "currentWorkout", JSON.stringify(newList)
-        )
-
         setAddExercise(false)
         dispatch(deactivateWorkoutForm())
         setSelectedExercise('')
