@@ -243,8 +243,6 @@ export const generateMealPlan = (targetCalories, diet, exclusions) => async disp
     }
 }
 
-// https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=1200&diet=vegetarian&exclude=kale,spinach,blueberry&apiKey=695cae2a29fa4ebbb5bcf30129510f8f
-
 const nullErrors = null;
 
 export const foodErrorsReducer = (state=nullErrors, action) => {
