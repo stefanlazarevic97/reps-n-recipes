@@ -10,73 +10,53 @@ const WorkoutForm = ({
     exerciseList, setExerciseList,
     selectedExercise, setSelectedExercise,
     addExercise, setAddExercise,
-    listItems
-                        }) => {
-
-    // const [addExercise, setAddExercise] = useState(false)
-    // const [selectedExercise, setSelectedExercise] = useState('')
-    // const [exerciseList, setExerciseList] = useState([])
+    listItems}) => {
     const dispatch = useDispatch()
-    // const active = useSelector(getWorkoutFormState)
-
-    // // ! would use a fetch here to get a relevant list from db
-    // const listItems = [
-    //     "Crunch", "Bench Press", "Bulgarian Split Squats", "Squat", "Bicep Curls", "Leg Press"
-    // ]
-
-    // if (!active) return null
 
     console.log(selectedExercise)
+
 
     const handleExit = e => {
         e.stopPropagation()
         dispatch(deactivateWorkoutForm())
+        setSelectedExercise('')
     }
 
     const handleSubmit = async e => {
         e.preventDefault();
     }
 
-    const selectedAnExercise = e => {
-        const exercise = e.currentTarget.value
-        setSelectedExercise(exercise)
-    }
-
     const handleAdd = () => {
-        const newList = [...exerciseList, selectedExercise]
+        const added = listItems.find(item => item.name === selectedExercise);
+        const newList = [...exerciseList, added]
         setExerciseList(newList)
+
+        sessionStorage.setItem(
+            "currentWorkout", JSON.stringify(newList)
+        )
+
         setAddExercise(false)
+        dispatch(deactivateWorkoutForm())
+        setSelectedExercise('')
     }
 
-    // const makeExerciseList = () => {
-
-    //     const list = exerciseList.map((exercise)=>{
-    //         return (
-    //             <li key={exercise} className='exercise-ele'>
-    //                 <div>{exercise}</div>
-    //                 <div>kg input...</div>
-    //                 <div>reps input...</div>
-    //             </li>
-    //         )
-    //     })
-    //     return (
-    //         <>
-    //             <ul>
-    //                 {list}
-    //             </ul>
-    //         </>
-    //     )
-    // }
 
     const mapListItems = () => {
         return listItems.map((item, i)=>{
             return (
                 <div key = {i}
-                className = {`list-item ${selectedExercise === item ? "selected" : ""}`}
+                className = {`list-item ${selectedExercise === item.name ? "selected" : ""}`}
                 value={item}
-                onClick={() => setSelectedExercise(item)}
+                onClick={() => (selectedExercise === item.name) ? setSelectedExercise('') : setSelectedExercise(item.name)}
                 >
-                    {item}
+                    <div
+                    className = {`item-overlay ${selectedExercise === item.name ? "selected" : ""}`}
+                    ></div>
+                    <div className='image-container'><img src={item.gif ? item.gif : ""} alt="" /></div>
+                    <div className='exercise-titles'>
+                        <div>{item.name}</div>
+                        <div>{item.muscleGroup}</div>
+                    </div>
                 </div>
             )
         })
@@ -89,9 +69,8 @@ const WorkoutForm = ({
             <form className="workout-form" onSubmit={handleSubmit}>
 
                 <div className='add-or-new'>
-                    <button onClick={handleAdd}
-                    // className={`${selectedExercise ? "ready-to-press" : ""}`}
-                    >New</button>
+                    <button className='create-exercise' onClick={handleAdd}
+                    >Create Exercise</button>
                     <button onClick={handleAdd}
                     className={`${selectedExercise ? "ready-to-press" : ""}`}
                     >Add</button>

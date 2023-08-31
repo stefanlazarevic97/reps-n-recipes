@@ -22,10 +22,12 @@ export const getFood = exerciseId => state => state.exercises.results[exerciseId
 
 
 export const fetchExercises = async dispatch => {
+    // debugger
     try {
         const res = await jwtFetch('/api/exercises');
         const exercises = await res.json();
         dispatch(receiveExercises(exercises));
+        return exercises
     } catch (err) {
         const errors = await err.json();
         dispatch(receiveExerciseErrors(errors));
