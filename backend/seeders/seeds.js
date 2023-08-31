@@ -97,62 +97,6 @@ const seedDatabase = async () => {
 
     console.log("Done!")
 
-    // await Exercise.create({
-    //     name: assets[0],
-    //     type: 'compound',
-    //     muscleGroup: 'chest',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[0]
-    // })
-    // await Exercise.create({
-    //     name: assets[1],
-    //     type: 'compound',
-    //     muscleGroup: 'chest',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[1]
-    // })
-    // await Exercise.create({
-    //     name: assets[2],
-    //     type: 'compound',
-    //     muscleGroup: 'back',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[2]
-    // })
-    // await Exercise.create({
-    //     name: assets[3],
-    //     type: 'compound',
-    //     muscleGroup: 'chest',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[3]
-    // })
-    // await Exercise.create({
-    //     name: assets[4],
-    //     type: 'compound',
-    //     muscleGroup: 'back',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[4]
-    // })
-    // await Exercise.create({
-    //     name: assets[5],
-    //     type: 'compound',
-    //     muscleGroup: 'chest',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[5]
-    // })
-    // await Exercise.create({
-    //     name: assets[6],
-    //     type: 'isolation',
-    //     muscleGroup: 'arms',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[6]
-    // })
-    // await Exercise.create({
-    //     name: assets[7],
-    //     type: 'compound',
-    //     muscleGroup: 'back',
-    //     workoutType: 'strength',
-    //     gif: imgUrls[7]
-    // })
     await mongoose.disconnect();
 }
 

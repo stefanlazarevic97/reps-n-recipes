@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 import { changeSelectedDate } from '../../store/ui';
+import {fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes} from '../../store/foods'
 
 const FoodIndex = () => {
     const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const FoodIndex = () => {
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
     const [searchResults, setSearchResults] = useState(foods);
+    const [offset, setOffset] = useState(0);
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -57,6 +59,9 @@ const FoodIndex = () => {
         setSelectedFood(null);
         setSearchResults([]);
         dispatch(clearFoods());
+        sessionStorage.removeItem("query");
+        setOffset(0);
+        setFoodQuantity(1);
     }
 
     useEffect(() => {
@@ -106,8 +111,39 @@ const FoodIndex = () => {
 
         return servingUnit ? servingUnit : null;
     }
-
     
+    useEffect(() => {
+        if (selectedOption === 'ingredients') {
+            dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
+        } else if (selectedOption === 'products') {
+            dispatch(fetchProducts(sessionStorage.getItem("query"), offset));
+        } else if (selectedOption === 'menuItems') {
+            dispatch(fetchMenuItems(sessionStorage.getItem("query"), offset));
+        } else {
+            dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
+        }
+
+        // return () => {
+        //     sessionStorage.removeItem("query");
+        // }
+    }, [offset])
+
+    useEffect(() => {
+        return () => {
+            setOffset(0);
+            sessionStorage.removeItem("query");
+        }
+    }, [])
+    const handleNextPage = (e) => {
+        setOffset((prev) => prev + 10);
+        e.preventDefault();
+    } 
+        
+    const handlePreviousPage = (e) => {
+        setOffset((prev) => prev - 10);
+        e.preventDefault();
+    } 
+        
     return (
         <div className="food-index">
             <h2>Search Results</h2>
@@ -119,14 +155,32 @@ const FoodIndex = () => {
             
             <ul>
                 {searchResults && searchResults.map(food => (
-                        <li
-                            onClick={() => handleClick(food)}
-                            key={food.id}
-                            className="food-item"
-                        >
-                            {food.name ? food.name : food.title }
-                        </li>
+                    <li
+                        onClick={() => handleClick(food)}
+                        key={food.id}
+                        className="food-item"
+                    >
+                        {food.name ? food.name : food.title }
+                    </li>
                 ))}
+
+                {offset > 9 && (
+                    <button 
+                    onClick={handlePreviousPage}
+                    className="button"
+                    >
+                        Previous Page
+                    </button>
+                )}
+
+                {Object.values(searchResults).length === 10 && Object.values(searchResults) !== 0 && (
+                    <button 
+                        onClick={handleNextPage}
+                        className="button"
+                    >
+                        Next Page
+                    </button>
+                )}
             </ul>
 
             <div>

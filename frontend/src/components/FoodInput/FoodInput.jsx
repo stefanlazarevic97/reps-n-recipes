@@ -22,15 +22,16 @@ const FoodInput = () => {
         e.preventDefault();
         
         if (selectedOption === 'ingredients') {
-            dispatch(fetchIngredients(searchQuery));
+            dispatch(fetchIngredients(searchQuery, 0));
         } else if (selectedOption === 'products') {
-            dispatch(fetchProducts(searchQuery));
+            dispatch(fetchProducts(searchQuery, 0));
         } else if (selectedOption === 'menuItems') {
-            dispatch(fetchMenuItems(searchQuery));
+            dispatch(fetchMenuItems(searchQuery, 0));
         } else {
-            dispatch(fetchRecipes(searchQuery))
+            dispatch(fetchRecipes(searchQuery, 0))
         }
-        
+
+        sessionStorage.setItem("query", searchQuery)
         setSearchQuery('')
     } 
     
