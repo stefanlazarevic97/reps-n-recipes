@@ -22,8 +22,11 @@ const HealthForm = () => {
     const [age, setAge] = useState('');
     const [sex, setSex] = useState(null);
     const [activity, setActivity] = useState(null);
+    const [weightGoal, setWeightGoal] = useState(null);
 
     const errors = useSelector(state => state.errors.session);
+
+    console.log(weightGoal)
 
     if (!active) return null
 
@@ -95,7 +98,7 @@ const HealthForm = () => {
         const coeff = activityCoefficient()
         const tdee = TDEE(mass, height, coeff)
         const activityMap = {"S":1, "LA":2, "MA":3,"VA":4, "EA":5}
-        const healthData = {mass,height,age,sex,activityLevel: activityMap[activity],TDEE: tdee}
+        const healthData = {mass,height,age,sex,activityLevel: activityMap[activity],TDEE: tdee, weightGoal}
         if (currentUser){
             const updatedUser = {...currentUser,healthData}
             await dispatch(updateUser(updatedUser));
@@ -235,6 +238,86 @@ const HealthForm = () => {
                         </label>
                     </div>
                 </div>
+
+
+                <div className='goals-input hf-block' id="goals-input">
+                    <div className='hfh'>Weight Goals (per week)</div>
+                    <div className='gain-or-lose-columns'>
+
+                        <div className='radio-button-block gain'>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {-0.5}
+                                    checked = {weightGoal === -0.5}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Lose 0.5lb / 230g
+                            </label>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {-1.0}
+                                    checked = {(weightGoal === -1.0)}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Lose 1lb / 450g
+                            </label>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {-1.5}
+                                    checked = {weightGoal === -1.5}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Lose 1.5lb / 700g
+                            </label>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {-2.0}
+                                    checked = {weightGoal === -2.0}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Lose 2lb / 900g
+                            </label>
+                        </div>
+                        <div className='radio-button-block gain'>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {0.5}
+                                    checked = {weightGoal === 0.5}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Gain 0.5lb / 230g
+                            </label>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {1.0}
+                                    checked = {weightGoal === 1.0}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Gain 1lb / 450g
+                            </label>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {1.5}
+                                    checked = {weightGoal === 1.5}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Gain 1.5lb / 700g
+                            </label>
+                            <label>
+                                <input 
+                                    type="radio" 
+                                    value = {2.0}
+                                    checked = {weightGoal === 2.0}
+                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    />Gain 2lb / 900g
+                            </label>
+                        </div>
+
+                    </div>
+                </div>
+
+
+
 
                 <button className='submit-health-from'
                 disabled={!weight || !((foot && inch) || cm) || 
