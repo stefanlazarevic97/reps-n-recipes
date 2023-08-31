@@ -1,5 +1,6 @@
 import { useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import './MealPlanShow.css'
 
 const MealPlanShow = () => {
     const mealPlan = useSelector(state => state.users.mealPlan);
@@ -34,7 +35,7 @@ const MealPlanShow = () => {
     console.log("meals", meals)
 
     return (
-        <div>
+        <div className='meal-plan-container'>
             <h1>Meal Plan</h1>
             
             {meals && 

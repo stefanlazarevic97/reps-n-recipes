@@ -24,21 +24,23 @@ const HomePage = () => {
 
     return (
         <>
-            <label className='switch'>
-                <input 
-                    type='checkbox' 
-                    checked={isToggled}
-                    onChange={() => setIsToggled(!isToggled)}
-                />
-                <span className="slider"></span>
-            </label>
+            <div className='switch-container'>
+                <label className='switch'>
+                    <input 
+                        type='checkbox' 
+                        checked={isToggled}
+                        onChange={() => setIsToggled(!isToggled)}
+                    />
+                    <span className="slider"></span>
+                </label>
+            </div>
             {currentUser && (isToggled ? <CreateFood selectedDate={selectedDate}/> : <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />)}
             {currentUser && <FoodIndex selectedOption={selectedOption} />}
             {currentUser && <NutritionIndex />}
             {currentUser && <GenerateMealPlan />}
             {currentUser && <MealPlanShow />}
-            <footer>
-                Copyright &copy; 2023 appAcademy
+            <footer className='footer'>
+                Copyright &copy; 2023 Reps 'N' Recipes
             </footer>
         </>
     );
