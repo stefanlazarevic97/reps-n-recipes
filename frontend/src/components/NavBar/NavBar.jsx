@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import HealthForm from '../HealthForm/HealthForm';
 import WorkoutForm from '../WorkoutForm/WorkoutForm';
+import { NavLink } from 'react-router-dom'
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -38,8 +39,8 @@ function NavBar () {
 
   return (
     <div className='navBar'>
+      <NavLink to='/' className ='nav-link'>Reps 'N' Recipes</NavLink>
     {/* <WorkoutForm/> */}
-      <h1>Reps 'N' Recipes</h1>
       { getLinks() }
     </div>
   );

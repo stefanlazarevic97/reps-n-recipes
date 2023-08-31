@@ -22,3 +22,12 @@
     display: flex;
     justify-content: space-between;
 } */
+
+.nav-link {
+    text-decoration: none;
+    color: inherit;
+}
+
+.nav-link:hover {
+    text-decoration: underline;
+}
