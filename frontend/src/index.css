@@ -2,8 +2,14 @@
 
 /* @import url('https://fonts.cdnfonts.com/css/c-cereal'); */
 
-/* :root {
-    --brand-color: #fe385c;
+:root {
+    --background: #EEF2F7;
+    --lightblue: #699DD8;
+    --blue: #2D69AF;
+    --darkblue: #154984;
+    --navy: #0D2035;
+    --charcoal: #33302E;
+    /* --brand-color: #fe385c;
     --grid_columns: 1;
     --margin: 22.5px;
     --light_light_light_grey: #f7f7f7; 
@@ -14,8 +20,8 @@
     --button_hit: cubic-bezier(0.2,0,0,1);
     --show_margin: 0px;
     --show_width: calc(100vw - 2*(var(--show_margin)));
-    --shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px;
-} */
+    --shadow: rgba(0, 0, 0, 0.12) 0px 6px 16px; */
+}
 
 /* MEDIA QUERIES: */
 /* @media (min-width: 550px) {
