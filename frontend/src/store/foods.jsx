@@ -12,6 +12,7 @@ const RECEIVE_FOOD_ERRORS = 'foods/RECEIVE_FOOD_ERRORS';
 const CLEAR_FOOD_ERRORS  = 'foods/CLEAR_FOOD_ERRORS';
 export const RECEIVE_USER_NUTRITION = 'foods/RECEIVE_USER_NUTRITION';
 export const REMOVE_USER_NUTRITION = 'foods/REMOVE_USER_NUTRITION';
+export const RECEIVE_MEAL_PLAN = 'foods/RECEIVE_MEAL_PLAN'
 
 // ACTION CREATORS
 
@@ -30,6 +31,11 @@ export const removeUserNutrition = userNutritionId => ({
 });
 
 export const clearFoods = () => ({ type: CLEAR_FOODS });
+
+export const receiveMealPlan = mealPlan => ({ 
+    type: RECEIVE_MEAL_PLAN,
+    mealPlan
+});
 
 const receiveFoodErrors = errors => ({ type: RECEIVE_FOOD_ERRORS, errors });
 const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
@@ -222,6 +228,22 @@ export const deleteFood = foodId => async dispatch => {
         dispatch(receiveFoodErrors(errors))
     }
 }
+
+export const generateMealPlan = (targetCalories, diet, exclusions) => async dispatch => {
+    const encodedExclusions = encodeURIComponent(exclusions)
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=${targetCalories}&diet=${diet}&exclude=${encodedExclusions}&apiKey=${apiKey}`)
+        console.log(res, 'res')
+        const mealPlan = await res.json()
+        dispatch(receiveMealPlan(mealPlan))
+        return mealPlan
+    } catch(err) {
+        const errors = err.json();
+        dispatch(receiveFoodErrors(errors))
+    }
+}
+
+// https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=1200&diet=vegetarian&exclude=kale,spinach,blueberry&apiKey=695cae2a29fa4ebbb5bcf30129510f8f
 
 const nullErrors = null;
 

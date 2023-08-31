@@ -5,6 +5,8 @@ import NutritionIndex from '../NutritionIndex/NutritionIndex'
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../../store/session";
 import CreateFood from '../CreateFood/CreateFood'
+import GenerateMealPlan from '../GenerateMealPlan/GenerateMealPlan'
+import MealPlanShow from "../MealPlanShow/MealPlanShow";
 import './HomePage.css'
 
 const HomePage = () => {
@@ -33,7 +35,8 @@ const HomePage = () => {
             {currentUser && (isToggled ? <CreateFood selectedDate={selectedDate}/> : <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />)}
             {currentUser && <FoodIndex selectedOption={selectedOption} />}
             {currentUser && <NutritionIndex />}
-            
+            {currentUser && <GenerateMealPlan />}
+            {currentUser && <MealPlanShow />}
             <footer>
                 Copyright &copy; 2023 appAcademy
             </footer>
