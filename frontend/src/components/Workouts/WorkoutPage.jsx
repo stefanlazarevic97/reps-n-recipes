@@ -16,7 +16,7 @@ const WorkoutPage = () => {
     // const [exerciseNames, setExerciseNames] = useState([])
 
     const currentUser = useSelector(state => state.session.user);
-
+    console.log("EXERCISE LIST", exerciseList)
     useEffect(()=>{
         async function fetchData() {
             const response = await dispatch(fetchExercises)
@@ -45,12 +45,18 @@ const WorkoutPage = () => {
 
     const addSet = (name) => {
         const updatedExerciseList = exerciseList.map(exercise => {
+            console.log(exercise,"SINGLE EX")
         if (exercise[name]) {
+            console.log(name, "TESTTTT")
             return {
             ...exercise,
             [name]: exercise[name] + 1
             };
-        }})
+        }else {
+            return exercise
+        }
+    })
+        console.log("updatedExerciseList", updatedExerciseList)
         setExerciseList(updatedExerciseList)
         
         // ! update the session storage
@@ -70,7 +76,7 @@ const WorkoutPage = () => {
                 (<div className="input-upper">
                     <div className="exercise-inputs">
                         <div className="set-val">
-                            <div>1</div>
+                            <div>{i + 1}</div>
                         </div>
                         <div className="kg-input">
                             <input type="text" />
@@ -92,6 +98,7 @@ const WorkoutPage = () => {
     const makeExerciseList = () => {
         // debugger
         const list = exerciseList.map(ele => Object.keys(ele)[0]).map((exercise)=>{
+            console.log(exercise, "taylor swift")
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>
