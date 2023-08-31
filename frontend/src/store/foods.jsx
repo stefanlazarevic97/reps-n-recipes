@@ -48,10 +48,12 @@ export const getFullFoodItem = selectedFood => state => state.foods[selectedFood
 
 // THUNK ACTION CREATORS
 
-export const fetchIngredients = (ingredientSearch) => async dispatch => {
+export const fetchIngredients = (ingredientSearch, offset) => async dispatch => {
     try {
-        const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&apiKey=${apiKey}`);
+        const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&offset=${offset}&apiKey=${apiKey}`);
         const ingredients = await res.json();
+
+        // debugger
 
         const data = ingredients.results.reduce((acc, ingredient) => 
             Object.assign(acc, { [ingredient.id]: ingredient }), {}
@@ -77,9 +79,9 @@ export const fetchIngredient = (ingredientId) => async dispatch => {
     }
 }
 
-export const fetchProducts = (productSearch) => async dispatch => {
+export const fetchProducts = (productSearch, offset) => async dispatch => {
     try {
-        const res = await jwtFetch(`https://api.spoonacular.com/food/products/search?query=${productSearch}&apiKey=${apiKey}`)
+        const res = await jwtFetch(`https://api.spoonacular.com/food/products/search?query=${productSearch}&offset=${offset}&apiKey=${apiKey}`)
         const products = await res.json();
         const data = products.products.reduce((acc, product) => 
             Object.assign(acc, { [product.id]: product }), {}
@@ -104,9 +106,9 @@ export const fetchProduct = (productId) => async dispatch => {
     }
 }
 
-export const fetchMenuItems = (menuItemSearch) => async dispatch => {
+export const fetchMenuItems = (menuItemSearch, offset) => async dispatch => {
     try { 
-        const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/search?query=${menuItemSearch}&apiKey=${apiKey}`)
+        const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/search?query=${menuItemSearch}&offset=${offset}&apiKey=${apiKey}`)
         const menuItems = await res.json();
         const data = menuItems.menuItems.reduce((acc, menuItem) => 
             Object.assign(acc, { [menuItem.id]: menuItem }), {}
@@ -131,9 +133,9 @@ export const fetchMenuItem = (menuItemId) => async dispatch => {
     }
 }
 
-export const fetchRecipes = (recipeSearch) => async dispatch => {
+export const fetchRecipes = (recipeSearch, offset) => async dispatch => {
     try {
-        const res = await jwtFetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipeSearch}&apiKey=${apiKey}`)
+        const res = await jwtFetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipeSearch}&offset=${offset}&apiKey=${apiKey}`)
         const recipes = await res.json();
         
         const data = recipes.results.reduce((acc, recipe) =>
