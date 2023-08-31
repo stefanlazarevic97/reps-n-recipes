@@ -21,4 +21,14 @@
     border: 1px solid var(--lightblue);
     border-radius: 10px;
     background-color: var(--darkblue);
+    padding: 10px;
+    box-sizing: border-box;
+}
+
+.macros-item {
+    padding: 10px;
+}
+
+.macros-wrapper {
+    display: flex;
 }
