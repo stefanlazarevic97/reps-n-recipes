@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateMealPlan } from '../../store/foods';
+import './GenerateMealPlan.css';
 
 const GenerateMealPlan = () => {
     const dispatch = useDispatch();
@@ -28,34 +29,36 @@ const GenerateMealPlan = () => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <input 
-                type="number"
-                value={calories}
-                onChange={e => setCalories(e.target.value)} 
-            />
+        <div className='meal-plan-generator-container'>
+            <form onSubmit={handleSubmit}>
+                <input 
+                    type="number"
+                    value={calories}
+                    onChange={e => setCalories(e.target.value)} 
+                    />
 
-            <select
-                value={diet}
-                onChange={e => setDiet(e.target.value)}  
-            >
-                <option value="">Select Diet</option>
+                <select
+                    value={diet}
+                    onChange={e => setDiet(e.target.value)}  
+                    >
+                    <option value="">Select Diet</option>
+                    
+                    {diets.map(diet => (
+                        <option key={diet}>{diet}</option>
+                        ))}
+                </select>
                 
-                {diets.map(diet => (
-                    <option key={diet}>{diet}</option>
-                ))}
-            </select>
-            
-            <label>Excluded ingredients, separated by a comma:
-                <input
-                    value={exclusions}
-                    onChange={e => setExclusions(e.target.value)}
-                    placeholder="nuts, dairy, etc."
-                />
-            </label>
+                <label>Excluded ingredients, separated by a comma:
+                    <input
+                        value={exclusions}
+                        onChange={e => setExclusions(e.target.value)}
+                        placeholder="nuts, dairy, etc."
+                        />
+                </label>
 
-            <button>Generate Meal Plan</button>
-        </form>
+                <button>Generate Meal Plan</button>
+            </form>
+        </div>
     )
 }
 

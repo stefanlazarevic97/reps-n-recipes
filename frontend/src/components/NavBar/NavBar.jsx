@@ -23,6 +23,7 @@ function NavBar () {
           <Link to={'/profile'}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
           <button onClick={()=>dispatch(activateHealthForm())}>Health Form</button>
+          <HealthForm/>
         </div>
       );
     } else {
@@ -36,12 +37,11 @@ function NavBar () {
   }
 
   return (
-    <>
-    <HealthForm/>
+    <div className='navBar'>
     {/* <WorkoutForm/> */}
       <h1>Reps 'N' Recipes</h1>
       { getLinks() }
-    </>
+    </div>
   );
 }
 

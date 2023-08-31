@@ -1,21 +1,24 @@
-.NavBar {
+.navBar {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    border: 1px solid var(--blue);
+    background-color: var(--lightblue);
+    padding: 10px;
 }
 
-.NavBar button {
+.navBar button {
     height: 20px;
 }
 
-.links-nav {
+.links-nav, .links-auth{
     width: 400px;
     display: flex;
     justify-content: space-between;
 }
 
-.links-auth {
+/* .links-auth {
     width: 100px;
     display: flex;
     justify-content: space-between;
-}
+} */

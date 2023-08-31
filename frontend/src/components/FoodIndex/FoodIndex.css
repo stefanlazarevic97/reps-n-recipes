@@ -10,3 +10,9 @@
     cursor: pointer;
     background-color: rgb(220,220,220);
 }
+
+.food-index {
+    background-color: var(--blue);
+    border: 1px solid var(--navy);
+    padding: 10px;
+}
