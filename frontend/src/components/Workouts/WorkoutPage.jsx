@@ -9,12 +9,13 @@ import './WorkoutPage.css'
 const WorkoutPage = () => {
     const dispatch = useDispatch()
     const active = useSelector(getWorkoutFormState)
-    const [exerciseList, setExerciseList] = useState([])
+    const [exerciseList, setExerciseList] = useState([])    // array of exercise objects
     const [selectedExercise, setSelectedExercise] = useState('')
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
+    // const [exerciseNames, setExerciseNames] = useState([])
 
-    // ! would use a fetch here to get a relevant list from db
+    const currentUser = useSelector(state => state.session.user);
 
     useEffect(()=>{
         async function fetchData() {
@@ -24,52 +25,85 @@ const WorkoutPage = () => {
         fetchData();
     }, [])
 
-    useEffect(()=> {
-        // if 
-        const currentWorkout =sessionStorage.getItem("currentWorkout") 
-        if (currentWorkout){
-            setExerciseList(JSON.parse(currentWorkout))
+    // useEffect(()=>{
+    //     const names = exerciseList.map(exerciseObj => Object.keys(exerciseObj)[0])
+    //     setExerciseNames(names)
+    // }, [exerciseList])
+
+    useEffect(()=>{
+        const newWorkout = {
+            title: "Workout title",
+            description: "",
+            sets: [],
+            performer: currentUser._id,
+            workoutType: ""
         }
+        sessionStorage.setItem(
+            "currentWorkout", JSON.stringify(newWorkout)
+        )
     }, [])
 
-    // const addSet = (name) => {
+    const addSet = (name) => {
+        const updatedExerciseList = exerciseList.map(exercise => {
+        if (exercise[name]) {
+            return {
+            ...exercise,
+            [name]: exercise[name] + 1
+            };
+        }})
+        setExerciseList(updatedExerciseList)
+        
+        // ! update the session storage
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"))
+        const exercise = currentWorkout.sets.find(exercise => exercise[name])
+        exercise[name].push({kg: null, reps: null})
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+    }
 
-    //     sessionStorage.setItem(
-    //         "currentWorkout", JSON.stringify(newList)
-    //     )
-    // }
 
+    const displaySets = (name) => {
+        const exercise = exerciseList.find(exercise => exercise[name])
+        const num = Object.values(exercise)[0]
+        let sets = [];
+        for(let i=0; i<num; i++){
+            sets.push(
+                (<div className="input-upper">
+                    <div className="exercise-inputs">
+                        <div className="set-val">
+                            <div>1</div>
+                        </div>
+                        <div className="kg-input">
+                            <input type="text" />
+                        </div>
+                        <div className="reps-input">
+                            <input type="text" />
+                        </div>
+                    </div>
+                    <div>
+                        <div>tick</div>
+                    </div>
+                </div>)
+            )
 
-    // console.log(exerciseList)
+        }
+        return sets
+    }
 
     const makeExerciseList = () => {
-        const list = exerciseList.map((exercise)=>{
+        // debugger
+        const list = exerciseList.map(ele => Object.keys(ele)[0]).map((exercise)=>{
             return (
-                <li key={exercise} className='exercise-ele'>
-                    {/* <div className='exercise-image'><img src={exercise.gif ? exercise.gif : ""} alt="" /></div> */}
-                    <div className="exercise-title">{exercise.name}</div>
+                <li className='exercise-ele'>
+                    <div className="exercise-title">{exercise}</div>
                     <div className="exercise-headers">
                         <div className="set-header">Set</div>
                         <div className="kg-header">kg</div>
                         <div className="reps-header">reps</div>
                     </div>
-                    <div className="input-upper">
-                        <div className="exercise-inputs">
-                            <div className="set-val">
-                                <div>1</div>
-                            </div>
-                            <div className="kg-input">
-                                <input type="text" />
-                            </div>
-                            <div className="reps-input">
-                                <input type="text" />
-                            </div>
-                        </div>
-                        <div>
-                            <div>tick</div>
-                        </div>
-                    </div>
-                    {/* <button className="add-a-set" onClick={addSet(exercise.name)}>+ Add Set</button> */}
+                    {displaySets(exercise)}
+                        
+                    <button className="add-a-set" onClick={() => addSet(exercise)}
+                    >+ Add Set</button>
                 </li>
             )
         })
@@ -80,30 +114,17 @@ const WorkoutPage = () => {
                 </ul>
             </>
         )
+  
     }
 
-    // console.log(active)
-
-    // dispatch(deactivateWorkoutForm())
 
     return (
-        
         <>
-        
             <div className="workout-page-container">
-
                 <div className="workout-page-inner">
-
                     <h1 className="create-workout-h1">Create your workout</h1>
-
-                    {/* <img src="/Users/apple/Documents/AppAcademy/health-360/backend/assets/workoutGifs/Barbell Bent Over Row.gif" alt="" /> */}
-                    {/* <img src="../../../backend/assets/workoutGifs/Barbell Bent Over Row.gif" alt="" /> */}
-
                     {makeExerciseList()}
-                    {/* <div className="create-new-workout"> */}
-                        <button className="add-exercise" onClick={()=>dispatch(activateWorkoutForm())}>Add Exercises</button>
-                    {/* </div> */}
-                
+                    <button className="add-exercise" onClick={()=>dispatch(activateWorkoutForm())}>Add Exercises</button>             
                     {active && 
                     <WorkoutForm 
                     exerciseList={exerciseList} setExerciseList={setExerciseList}
@@ -114,12 +135,8 @@ const WorkoutPage = () => {
                     
                     <button className="complete-workout" onClick={()=>setAddExercise(true)}>Complete Workout</button>
                             
-
-                    {/* <div>or...</div>
-                    <h1>Select from default workouts...</h1> */}
                 </div>
-            </div>
-            
+            </div> 
         </>
     )
 
