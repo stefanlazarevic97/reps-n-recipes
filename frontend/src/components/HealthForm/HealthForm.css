@@ -21,7 +21,7 @@
 }
 
 .health-form {
-    width: 350px;
+    /* width: 350px; */
 
     padding: 20px;
     position: absolute;
@@ -82,6 +82,18 @@
 .hfh {
     font-size: 20px;
     font-weight: 500;
+}
+
+/* !weight goals input section */
+
+.goals-input {
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+
+.gain-or-lose-columns{
+    display: flex;
 }
 
 /*! submit button */
