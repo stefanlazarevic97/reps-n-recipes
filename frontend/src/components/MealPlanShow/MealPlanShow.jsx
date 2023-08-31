@@ -31,7 +31,6 @@ const MealPlanShow = () => {
     if (!mealPlan) {
         return <div>No meal plan generated</div>;
     }
-    console.log("meals", meals)
 
     return (
         <div>
