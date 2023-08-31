@@ -5,6 +5,8 @@ import NutritionIndex from '../NutritionIndex/NutritionIndex'
 import { useEffect, useState } from "react";
 import { getCurrentUser } from "../../store/session";
 import CreateFood from '../CreateFood/CreateFood'
+import GenerateMealPlan from '../GenerateMealPlan/GenerateMealPlan'
+import MealPlanShow from "../MealPlanShow/MealPlanShow";
 import './HomePage.css'
 
 const HomePage = () => {
@@ -22,20 +24,23 @@ const HomePage = () => {
 
     return (
         <>
-            <label className='switch'>
-                <input 
-                    type='checkbox' 
-                    checked={isToggled}
-                    onChange={() => setIsToggled(!isToggled)}
-                />
-                <span className="slider"></span>
-            </label>
+            <div className='switch-container'>
+                <label className='switch'>
+                    <input 
+                        type='checkbox' 
+                        checked={isToggled}
+                        onChange={() => setIsToggled(!isToggled)}
+                    />
+                    <span className="slider"></span>
+                </label>
+            </div>
             {currentUser && (isToggled ? <CreateFood selectedDate={selectedDate}/> : <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />)}
             {currentUser && <FoodIndex selectedOption={selectedOption} />}
             {currentUser && <NutritionIndex />}
-            
-            <footer>
-                Copyright &copy; 2023 appAcademy
+            {currentUser && <GenerateMealPlan />}
+            {currentUser && <MealPlanShow />}
+            <footer className='footer'>
+                Copyright &copy; 2023 Reps 'N' Recipes
             </footer>
         </>
     );

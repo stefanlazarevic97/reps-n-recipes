@@ -5,6 +5,7 @@ import { logout } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import HealthForm from '../HealthForm/HealthForm';
 import WorkoutForm from '../WorkoutForm/WorkoutForm';
+import { NavLink } from 'react-router-dom'
 
 function NavBar () {
   const loggedIn = useSelector(state => !!state.session.user);
@@ -23,6 +24,7 @@ function NavBar () {
           <Link to={'/profile'}>Profile</Link>
           <button onClick={logoutUser}>Logout</button>
           <button onClick={()=>dispatch(activateHealthForm())}>Health Form</button>
+          <HealthForm/>
         </div>
       );
     } else {
@@ -36,12 +38,11 @@ function NavBar () {
   }
 
   return (
-    <>
-    <HealthForm/>
+    <div className='navBar'>
+      <NavLink to='/' className ='nav-link'>Reps 'N' Recipes</NavLink>
     {/* <WorkoutForm/> */}
-      <h1>Reps 'N' Recipes</h1>
       { getLinks() }
-    </>
+    </div>
   );
 }
 

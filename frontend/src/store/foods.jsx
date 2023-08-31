@@ -12,6 +12,7 @@ const RECEIVE_FOOD_ERRORS = 'foods/RECEIVE_FOOD_ERRORS';
 const CLEAR_FOOD_ERRORS  = 'foods/CLEAR_FOOD_ERRORS';
 export const RECEIVE_USER_NUTRITION = 'foods/RECEIVE_USER_NUTRITION';
 export const REMOVE_USER_NUTRITION = 'foods/REMOVE_USER_NUTRITION';
+export const RECEIVE_MEAL_PLAN = 'foods/RECEIVE_MEAL_PLAN'
 
 // ACTION CREATORS
 
@@ -31,6 +32,11 @@ export const removeUserNutrition = userNutritionId => ({
 
 export const clearFoods = () => ({ type: CLEAR_FOODS });
 
+export const receiveMealPlan = mealPlan => ({ 
+    type: RECEIVE_MEAL_PLAN,
+    mealPlan
+});
+
 const receiveFoodErrors = errors => ({ type: RECEIVE_FOOD_ERRORS, errors });
 const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
 
@@ -42,10 +48,12 @@ export const getFullFoodItem = selectedFood => state => state.foods[selectedFood
 
 // THUNK ACTION CREATORS
 
-export const fetchIngredients = (ingredientSearch) => async dispatch => {
+export const fetchIngredients = (ingredientSearch, offset) => async dispatch => {
     try {
-        const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&apiKey=${apiKey}`);
+        const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&offset=${offset}&apiKey=${apiKey}`);
         const ingredients = await res.json();
+
+        // debugger
 
         const data = ingredients.results.reduce((acc, ingredient) => 
             Object.assign(acc, { [ingredient.id]: ingredient }), {}
@@ -71,9 +79,9 @@ export const fetchIngredient = (ingredientId) => async dispatch => {
     }
 }
 
-export const fetchProducts = (productSearch) => async dispatch => {
+export const fetchProducts = (productSearch, offset) => async dispatch => {
     try {
-        const res = await jwtFetch(`https://api.spoonacular.com/food/products/search?query=${productSearch}&apiKey=${apiKey}`)
+        const res = await jwtFetch(`https://api.spoonacular.com/food/products/search?query=${productSearch}&offset=${offset}&apiKey=${apiKey}`)
         const products = await res.json();
         const data = products.products.reduce((acc, product) => 
             Object.assign(acc, { [product.id]: product }), {}
@@ -98,9 +106,9 @@ export const fetchProduct = (productId) => async dispatch => {
     }
 }
 
-export const fetchMenuItems = (menuItemSearch) => async dispatch => {
+export const fetchMenuItems = (menuItemSearch, offset) => async dispatch => {
     try { 
-        const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/search?query=${menuItemSearch}&apiKey=${apiKey}`)
+        const res = await jwtFetch(`https://api.spoonacular.com/food/menuItems/search?query=${menuItemSearch}&offset=${offset}&apiKey=${apiKey}`)
         const menuItems = await res.json();
         const data = menuItems.menuItems.reduce((acc, menuItem) => 
             Object.assign(acc, { [menuItem.id]: menuItem }), {}
@@ -125,9 +133,9 @@ export const fetchMenuItem = (menuItemId) => async dispatch => {
     }
 }
 
-export const fetchRecipes = (recipeSearch) => async dispatch => {
+export const fetchRecipes = (recipeSearch, offset) => async dispatch => {
     try {
-        const res = await jwtFetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipeSearch}&apiKey=${apiKey}`)
+        const res = await jwtFetch(`https://api.spoonacular.com/recipes/complexSearch?query=${recipeSearch}&offset=${offset}&apiKey=${apiKey}`)
         const recipes = await res.json();
         
         const data = recipes.results.reduce((acc, recipe) =>
@@ -222,6 +230,22 @@ export const deleteFood = foodId => async dispatch => {
         dispatch(receiveFoodErrors(errors))
     }
 }
+
+export const generateMealPlan = (targetCalories, diet, exclusions) => async dispatch => {
+    const encodedExclusions = encodeURIComponent(exclusions)
+    try {
+        const res = await jwtFetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=${targetCalories}&diet=${diet}&exclude=${encodedExclusions}&apiKey=${apiKey}`)
+        console.log(res, 'res')
+        const mealPlan = await res.json()
+        dispatch(receiveMealPlan(mealPlan))
+        return mealPlan
+    } catch(err) {
+        const errors = err.json();
+        dispatch(receiveFoodErrors(errors))
+    }
+}
+
+// https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=1200&diet=vegetarian&exclude=kale,spinach,blueberry&apiKey=695cae2a29fa4ebbb5bcf30129510f8f
 
 const nullErrors = null;
 

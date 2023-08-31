@@ -94,7 +94,7 @@ const NutritionIndex = () => {
                 }
                 
                 {dailyNutrition.map(food => (
-                    <div>
+                    <div className='macros-item'>
                         <h3>{food.foodName}</h3>
                         <div className='macros-wrapper'>
                             <div>Calories: {food.calories}</div>

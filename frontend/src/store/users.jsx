@@ -1,5 +1,5 @@
 import jwtFetch from './jwt';
-import { RECEIVE_USER_NUTRITION, REMOVE_USER_NUTRITION, receiveUserNutrition } from './foods';
+import { RECEIVE_MEAL_PLAN, RECEIVE_USER_NUTRITION, REMOVE_USER_NUTRITION, receiveUserNutrition } from './foods';
 import { receiveErrors } from './session';
 import { RECEIVE_USER_LOGOUT } from './session';
 import { RECEIVE_CURRENT_USER } from './session';
@@ -61,7 +61,8 @@ export const fetchUserNutritionByDay = selectedDate => async dispatch => {
 const initialState = {
     nutritionItems: {},
     workouts: {},
-    healthData: {}
+    healthData: {},
+    mealPlan: {}
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -82,6 +83,8 @@ const usersReducer = (state = initialState, action) => {
             };
         case RECEIVE_USER_HEALTH:
             return { ...state, healthData: action.healthData };
+        case RECEIVE_MEAL_PLAN:
+            return { ...state, mealPlan: action.mealPlan };
         case RECEIVE_USER_LOGOUT:
             return initialState;
         default:

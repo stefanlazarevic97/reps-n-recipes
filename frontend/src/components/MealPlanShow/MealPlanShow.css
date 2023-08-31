@@ -1,7 +1,6 @@
-.food-search-container {
+.meal-plan-container {
     border: 1px solid var(--navy);
-    background-color: var(--darkblue);
     border-radius: 10px;
-    gap: 10px;
     padding: 10px;
+    background-color: var(--blue);
 }

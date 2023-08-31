@@ -22,20 +22,21 @@ const FoodInput = () => {
         e.preventDefault();
         
         if (selectedOption === 'ingredients') {
-            dispatch(fetchIngredients(searchQuery));
+            dispatch(fetchIngredients(searchQuery, 0));
         } else if (selectedOption === 'products') {
-            dispatch(fetchProducts(searchQuery));
+            dispatch(fetchProducts(searchQuery, 0));
         } else if (selectedOption === 'menuItems') {
-            dispatch(fetchMenuItems(searchQuery));
+            dispatch(fetchMenuItems(searchQuery, 0));
         } else {
-            dispatch(fetchRecipes(searchQuery))
+            dispatch(fetchRecipes(searchQuery, 0))
         }
-        
+
+        sessionStorage.setItem("query", searchQuery)
         setSearchQuery('')
     } 
     
     return (
-        <>
+        <div className='food-search-container'>
             <h2 className="food-search">Search for a Food</h2>
             <form 
                 className="food-search-form"
@@ -65,7 +66,7 @@ const FoodInput = () => {
                 
                 <button className="button">Search</button>
             </form>
-        </>
+        </div>
     )
 }
 

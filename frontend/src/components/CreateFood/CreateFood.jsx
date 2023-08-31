@@ -32,7 +32,6 @@ const CreateFood = ({ selectedDate }) => {
         };
         
         dispatch(addUserNutrition(foodItem));
-
     }
 
     return (
