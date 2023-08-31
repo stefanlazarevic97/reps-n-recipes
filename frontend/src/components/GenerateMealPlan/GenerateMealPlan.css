@@ -1,0 +1,6 @@
+.meal-plan-generator-container {
+    border: 1px solid var(--navy);
+    border-radius: 10px;
+    background-color: var(--lightblue);
+    padding: 10px;
+}

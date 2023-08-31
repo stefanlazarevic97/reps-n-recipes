@@ -35,7 +35,7 @@ const FoodInput = () => {
     } 
     
     return (
-        <>
+        <div className='food-search-container'>
             <h2 className="food-search">Search for a Food</h2>
             <form 
                 className="food-search-form"
@@ -65,7 +65,7 @@ const FoodInput = () => {
                 
                 <button className="button">Search</button>
             </form>
-        </>
+        </div>
     )
 }
 
