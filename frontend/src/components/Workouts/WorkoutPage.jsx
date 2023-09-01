@@ -6,6 +6,7 @@ import { fetchExercises } from "../../store/exercises.jsx"
 import {TiTickOutline} from "react-icons/ti"
 
 import './WorkoutPage.css'
+import { createWorkout } from "../../store/workouts"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -15,7 +16,7 @@ const WorkoutPage = () => {
     const [addExercise, setAddExercise] = useState(false)
     const currentUser = useSelector(state => state.session.user);
     
-    const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout")).sets)    // array of exercise objects
+    const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
     
     // console.log(exerciseList, "LISTTTT")
     // const [setCounts, ]
@@ -37,10 +38,11 @@ const WorkoutPage = () => {
 
         // updatedWorkout = updatedWorkout.sets.filter(exercise => Object.values(exercise).length !== 0)
 
-        debugger
+        // debugger
 
         // }
         // currentWorkout
+        dispatch(createWorkout(updatedWorkout))
     }
 
     useEffect(()=>{
@@ -185,7 +187,7 @@ const WorkoutPage = () => {
     }
 
     const makeExerciseList = () => {
-        const list = exerciseList.map(ele => Object.keys(ele)[0]).map((exercise)=>{
+        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>

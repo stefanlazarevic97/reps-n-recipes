@@ -1,8 +1,8 @@
 import jwtFetch from "./jwt"
 
-const RECEIVE_WORKOUTS = 'workout/RECEIVE_WORKOUTS'
-const RECEIVE_WORKOUT = 'workout/RECEIVE_WORKOUT'
-const REMOVE_WORKOUT = 'workout/REMOVE_WORKOUT'
+export const RECEIVE_WORKOUTS = 'workout/RECEIVE_WORKOUTS'
+export const RECEIVE_WORKOUT = 'workout/RECEIVE_WORKOUT'
+export const REMOVE_WORKOUT = 'workout/REMOVE_WORKOUT'
 const RECEIVE_WORKOUT_ERRORS = 'workout/RECEIVE_WORKOUT_ERRORS'
 const CLEAR_WORKOUT_ERRORS = 'workout/CLEAR_WORKOUT_ERRORS'
 
@@ -51,13 +51,13 @@ export const createWorkout = workout => async dispatch => {
 const workoutsReducer = (state = {}, action) => {
     const nextState = { ...state }
     switch (action.type) {
-        case RECEIVE_WORKOUTS:
-            return { ...action.workouts }
-        case RECEIVE_WORKOUT:
-            return { ...state, [action.workout.id]: action.workout}
-        case REMOVE_WORKOUT:
-            delete nextState[action.workoutId]
-            return nextState
+        // case RECEIVE_WORKOUTS:
+        //     return { ...action.workouts }
+        // case RECEIVE_WORKOUT:
+        //     return { ...state, [action.workout.id]: action.workout}
+        // case REMOVE_WORKOUT:
+        //     delete nextState[action.workoutId]
+        //     return nextState
         default:
             return state
     }
