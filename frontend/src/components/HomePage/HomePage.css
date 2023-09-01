@@ -4,6 +4,9 @@
     grid-template-rows: 1fr auto;
     gap: 20px;
     height: 100vh;
+    top: 10vh;
+    position:relative;
+    z-index: 1;
 }
 
 .food-input-section {
@@ -77,4 +80,17 @@
 }
 #toggle-page-type-button.workout-button:hover {
     background-color: var(--logo-orange-dark);
+}
+
+.footer {
+    background-color: var(--blue);
+    color: var(--background);
+    text-align: center;
+    align-items: center;
+    padding: 1rem 0;
+    width: 100vw;
+    box-sizing: border-box;
+    height: 50px;
+    position: fixed;
+    bottom: 0;
 }

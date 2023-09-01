@@ -1,5 +1,5 @@
 .health-form-container {
-    position: absolute;
+    position: fixed;
     top: 0;
     left: 0;
     width: 100%;
@@ -95,3 +95,41 @@
     margin-bottom: 1rem;
 }
 
+.activity-level-label {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-icon {
+    position: relative;
+    margin-left: 0.5rem;
+    color: var(--blue);
+    font-size: 1.5rem;
+    cursor: default;
+}
+
+.info-icon:hover {
+    color: var(--lightblue);
+}
+
+.tooltip {
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    visibility: hidden;
+    background-color: var(--background);
+    color: var(--charcoal);
+    text-align: center;
+    padding: 5px;
+    border-radius: 5px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.info-icon:hover .tooltip {
+    visibility: visible;
+    opacity: 1;
+    z-index: 100;
+}

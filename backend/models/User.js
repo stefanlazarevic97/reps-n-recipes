@@ -76,7 +76,8 @@ const userSchema = new Schema({
         age: Number,
         sex: String,
         activityLevel: Number,
-        TDEE: Number
+        TDEE: Number,
+        weightGoal: Number
     }
     }, {
     timestamps: true

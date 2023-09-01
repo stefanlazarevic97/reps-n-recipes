@@ -7,15 +7,19 @@ const GenerateMealPlan = () => {
     const dispatch = useDispatch();
     const TDEE = Math.floor(useSelector(state => state.users.healthData.TDEE));
     const weightGoal = useSelector(state => state.users.healthData.weightGoal);
-    const targetCalories = TDEE + weightGoal * 250;
+    const targetCalories = TDEE + weightGoal * 500;
     const [calories, setCalories] = useState(targetCalories);
     const [diet, setDiet] = useState('');
     const [exclusions, setExclusions] = useState('');
-
+    
     useEffect(() => {
-        setCalories(TDEE)
         setCalories(targetCalories)
     }, [TDEE])
+
+    console.log("targetCalories", targetCalories);
+    console.log("TDEE", TDEE);
+    console.log("calories", calories);
+    console.log("weightGoal", weightGoal);
 
     const diets = [
         'Gluten Free', 
