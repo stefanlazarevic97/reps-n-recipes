@@ -5,6 +5,7 @@ const mongoose = require('mongoose');
 const Exercise = mongoose.model('Exercise')
 const { requireUser } = require('../../config/passport')
 const validateWorkout = require('../../validation/workout')
+const Workout = mongoose.model('Workout')
 
 
 router.get('/', requireUser, async (req, res) => {
@@ -17,9 +18,14 @@ router.get('/', requireUser, async (req, res) => {
     } 
 })
 
-router.post('/', validateWorkout, async (req, res) => {
-    const workout = await Workout.create(req.body);
-    return res.json(workout);
+router.post('/', requireUser, async (req, res) => {
+    try {
+        const workout = await Workout.create(req.body)
+        .populate('performer', '_id username')
+        return res.json(workout);
+    } catch (err) {
+        next(err)
+    }
 })
 
   

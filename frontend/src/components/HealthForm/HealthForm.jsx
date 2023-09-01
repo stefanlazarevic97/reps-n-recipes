@@ -57,7 +57,7 @@ const HealthForm = () => {
                 default: 
                     return;
             }
-            setState(parseInt(e.currentTarget.value, 10));
+            setState(Number(e.currentTarget.value) || null);
         }
     }
 
@@ -266,7 +266,7 @@ const HealthForm = () => {
                                     type="radio" 
                                     value = {-1.5}
                                     checked = {weightGoal === -1.5}
-                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    onChange={e => setWeightGoal(Number(e.target.value) )}
                                     />Lose 1.5lb / 700g
                             </label>
                             <label>
@@ -274,7 +274,7 @@ const HealthForm = () => {
                                     type="radio" 
                                     value = {-2.0}
                                     checked = {weightGoal === -2.0}
-                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    onChange={e => setWeightGoal(Number(e.target.value) )}
                                     />Lose 2lb / 900g
                             </label>
                         </div>
@@ -284,7 +284,7 @@ const HealthForm = () => {
                                     type="radio" 
                                     value = {0.5}
                                     checked = {weightGoal === 0.5}
-                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    onChange={e => setWeightGoal(Number(e.target.value) )}
                                     />Gain 0.5lb / 230g
                             </label>
                             <label>
@@ -292,7 +292,7 @@ const HealthForm = () => {
                                     type="radio" 
                                     value = {1.0}
                                     checked = {weightGoal === 1.0}
-                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    onChange={e => setWeightGoal(Number(e.target.value) )}
                                     />Gain 1lb / 450g
                             </label>
                             <label>
@@ -308,7 +308,7 @@ const HealthForm = () => {
                                     type="radio" 
                                     value = {2.0}
                                     checked = {weightGoal === 2.0}
-                                    onChange={e => setWeightGoal(Number(e.target.value))}
+                                    onChange={e => setWeightGoal(Number(e.target.value) )}
                                     />Gain 2lb / 900g
                             </label>
                         </div>

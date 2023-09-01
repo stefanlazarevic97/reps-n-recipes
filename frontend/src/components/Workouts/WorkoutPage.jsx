@@ -17,8 +17,31 @@ const WorkoutPage = () => {
     
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout")).sets)    // array of exercise objects
     
-    console.log(exerciseList, "LISTTTT")
+    // console.log(exerciseList, "LISTTTT")
     // const [setCounts, ]
+
+    const handleSubmit = () => {
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+
+        // debugger
+
+        let updatedSets = currentWorkout.sets.map(exerciseObj => {
+            const setArray = Object.values(exerciseObj)[0]
+            const name = Object.keys(exerciseObj)[0]
+            return {[name]: setArray.filter(setObj => setObj["done"])}
+        })
+
+        updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
+        
+        const updatedWorkout = {...currentWorkout, sets: updatedSets}
+
+        // updatedWorkout = updatedWorkout.sets.filter(exercise => Object.values(exercise).length !== 0)
+
+        debugger
+
+        // }
+        // currentWorkout
+    }
 
     useEffect(()=>{
         async function fetchData() {
@@ -28,18 +51,14 @@ const WorkoutPage = () => {
         fetchData();
     }, [])
 
-    // useEffect(()=>{
-    //     const names = exerciseList.map(exerciseObj => Object.keys(exerciseObj)[0])
-    //     setExerciseNames(names)
-    // }, [exerciseList])
 
     const resetWorkout = () => {
         const newWorkout = {
             title: "Workout title",
-            description: "",
+            // description: "",
             sets: [],
-            performer: currentUser._id,
-            workoutType: ""
+            // performer: currentUser._id,
+            // workoutType: ""
         }
         sessionStorage.setItem(
             "currentWorkout", JSON.stringify(newWorkout)
@@ -72,7 +91,7 @@ const WorkoutPage = () => {
     }
 
     const updateKgInput = (name, index, e) => {
-        const kgs = Number(e.currentTarget.value)
+        const kgs = Number(e.currentTarget.value) || null
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exercise = currentWorkout.sets.find(exercise => exercise[name])
         exercise[name][index]["kg"] = kgs
@@ -87,7 +106,11 @@ const WorkoutPage = () => {
     }
 
     const updateRepInput = (name, index, e) => {
-        const reps = Number(e.currentTarget.value)
+
+        // if ()
+        const reps = Number(e.currentTarget.value) || null
+
+
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exercise = currentWorkout.sets.find(exercise => exercise[name])
         exercise[name][index]["reps"] = reps
@@ -202,7 +225,7 @@ const WorkoutPage = () => {
                     addExercise={addExercise} setAddExercise={setAddExercise}
                     listItems={listItems}
                     />}
-                    <button className="complete-workout" onClick={()=>setAddExercise(true)}>Complete Workout</button>       
+                    <button className="complete-workout" onClick={handleSubmit}>Complete Workout</button>       
                 </div>
             </div> 
         </>
