@@ -42,6 +42,19 @@ const nutritionSchema = new Schema({
     timestamps: true
 })
 
+const workoutSchema = new Schema({
+    title: { 
+        type: String,
+        required: true 
+    },
+    performer: { 
+        type: Schema.Types.ObjectId, 
+        ref: 'User'
+    },
+    sets: []
+
+}, { timestamps: true });
+
 const userSchema = new Schema({
     username: {
         type: String,
@@ -56,6 +69,7 @@ const userSchema = new Schema({
         required: true
     },
     nutrition: [nutritionSchema],
+    workout: [workoutSchema],
     healthData: {
         mass: Number,
         height: Number,

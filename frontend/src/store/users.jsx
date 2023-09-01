@@ -4,6 +4,7 @@ import { receiveErrors } from './session';
 import { RECEIVE_USER_LOGOUT } from './session';
 import { RECEIVE_CURRENT_USER } from './session';
 import moment from 'moment-timezone';
+import { RECEIVE_WORKOUT, RECEIVE_WORKOUTS } from './workouts';
 
 // CONSTANTS 
 
@@ -72,6 +73,7 @@ const usersReducer = (state = initialState, action) => {
         case RECEIVE_CURRENT_USER:
             nextState.nutritionItems = action.currentUser?.nutritionData ? action.currentUser.nutritionData : {}
             nextState.healthData = action.currentUser?.healthData ? action.currentUser.healthData : {}
+            nextState.workouts = action.currentUser?.workouts ? action.currentUser.workouts : {}
             return nextState
         case RECEIVE_USER_NUTRITION:
             nextState.nutritionItems = action.userNutrition.nutrition
@@ -85,6 +87,9 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, healthData: action.healthData };
         case RECEIVE_MEAL_PLAN:
             return { ...state, mealPlan: action.mealPlan };
+        case RECEIVE_WORKOUT:
+            nextState.workouts = action.workout
+            return nextState;
         case RECEIVE_USER_LOGOUT:
             return initialState;
         default:
