@@ -3,9 +3,11 @@ const router = express.Router();
 const passport = require('passport');
 const mongoose = require('mongoose');
 const Exercise = mongoose.model('Exercise')
-const { requireUser } = require('../../config/passport')
-const validateWorkout = require('../../validation/workout')
+const handleValidationErrors = require("../../validation/handleValidationErrors");
 const Workout = mongoose.model('Workout')
+const User = mongoose.model('User')
+const { requireUser, restoreUser } = require('../../config/passport')
+const validateWorkout = require('../../validation/workout');
 
 
 router.get('/', requireUser, async (req, res) => {
@@ -18,17 +20,31 @@ router.get('/', requireUser, async (req, res) => {
     } 
 })
 
-router.post('/', requireUser, async (req, res) => {
+// router.post('/', requireUser, async (req, res) => {
+//     try {
+//         const workout = await Workout.create(req.body)
+//         .populate('performer', '_id username')
+//         return res.json(workout);
+//     } catch (err) {
+//         next(err)
+//     }
+// })
+
+router.post('/', requireUser, async (req, res, next) => {
     try {
-        const workout = await Workout.create(req.body)
-        .populate('performer', '_id username')
-        return res.json(workout);
-    } catch (err) {
+        const newWorkout = {
+            title: req.body.title,
+            sets: req.body.sets
+        }
+        console.log(newWorkout)
+        let currentUser = await User.findById(req.user._id);
+        currentUser.workout.push(newWorkout);
+        await currentUser.save();
+        return res.json({ workouts: currentUser.workout });
+    } catch(err) {
         next(err)
     }
 })
-
-  
 // router.patch('/:id', requireUser, validateExerciseInput, async (req, res, next) => {
 //     try {
 //         const { id } = req.params;
@@ -64,3 +80,5 @@ router.post('/', requireUser, async (req, res) => {
 //         next(err)
 //     }
 // })
+
+module.exports = router;

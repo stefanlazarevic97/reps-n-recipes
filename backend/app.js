@@ -9,6 +9,7 @@ require('./models/User');
 require('./models/Food')
 require('./config/passport'); 
 require('./models/Exercise');
+require('./models/Workout')
 const passport = require('passport');
 
 const { isProduction } = require('./config/keys');
@@ -41,12 +42,14 @@ const csrfRouter = require('./routes/api/csrf');
 const foodsRouter = require('./routes/api/foods');
 const exercisesRouter = require('./routes/api/exercises');
 const nutritionRouter = require('./routes/api/nutrition');
+const workoutsRouter = require('./routes/api/workout');
 
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
 app.use('/api/foods', foodsRouter);
 app.use('/api/exercises', exercisesRouter);
 app.use('/api/nutrition', nutritionRouter);
+app.use('/api/workout', workoutsRouter);
 
 // if (isProduction) {
 //     const path = require('path');
