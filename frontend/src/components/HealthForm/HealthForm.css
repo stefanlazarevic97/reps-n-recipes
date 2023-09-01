@@ -47,7 +47,7 @@
     margin: 1rem;
     box-sizing: border-box;
     font-size: 1rem;
-    background: var(--background);
+    background: white;
 }
 
 .health-form-errors {

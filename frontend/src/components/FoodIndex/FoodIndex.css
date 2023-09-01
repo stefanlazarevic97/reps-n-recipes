@@ -19,7 +19,7 @@
 
 .date-input {
     padding: 0.5rem;
-    background: var(--background);
+    background: white;
     border: 1px solid var(--lightblue);
     border-radius: 0.25rem;
     font-size: 1rem;
