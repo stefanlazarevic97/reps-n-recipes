@@ -1,0 +1,50 @@
+.session-form {
+    background: white;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
+    width: 30%;
+    margin: 0 auto;
+    margin-top: 2rem;
+}
+
+.session-header {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.session-form-input {
+    display: block;
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--lightblue);
+    border-radius: 0.25rem;
+    background: #fff;
+    font-size: 1rem;
+    box-sizing: border-box;
+    margin-bottom: 1rem;
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-top: 1rem;
+    background: var(--blue);
+    color: white;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.button:hover {
+    background: var(--darkblue);
+}
+
+.session-errors {
+    color: red;
+    text-align: center;
+    margin-bottom: 0.5rem;
+}

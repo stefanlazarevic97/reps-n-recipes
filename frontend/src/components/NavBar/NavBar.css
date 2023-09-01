@@ -1,33 +1,102 @@
 .navBar {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    border: 1px solid var(--blue);
-    background-color: var(--lightblue);
-    padding: 10px;
-}
-
-.navBar button {
-    height: 20px;
-}
-
-.links-nav, .links-auth{
-    width: 400px;
+    background-color: var(--blue);
+    color: var(--background);
     display: flex;
     justify-content: space-between;
+    align-items: center;
+    padding: 0.75rem 0;
+    width: 100vw;
+    box-sizing: border-box;
 }
-
-/* .links-auth {
-    width: 100px;
-    display: flex;
-    justify-content: space-between;
-} */
 
 .nav-link {
+    font-weight: bold;
+    font-size: 2rem;
+    font-style: italic;
+    text-shadow: 1px 1px 2px rgb(0 0 0 / 40%);
+    color: var(--background);
     text-decoration: none;
-    color: inherit;
+    text-align: center;
+    margin: 0 auto;
+    width: calc(100% / 3)
 }
 
-.nav-link:hover {
-    text-decoration: underline;
+.nav-link.active {
+    color: var(--background);
+}
+
+.links-nav a {
+    color: var(--background);
+    text-decoration: none;
+    font-size: 1.25rem;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.links-nav a:hover {
+    color: var(--lightblue);
+}
+
+.links-nav button {
+    appearance: none;
+    background: none;
+    border: none;
+    color: var(--background);
+    font-size: 1.25rem;
+    cursor: pointer;
+    transition: color 0.2s;
+    padding: 0;
+}
+
+.links-nav button:hover {
+    color: var(--lightblue);
+}
+
+.links-nav {
+    width: 70%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.links-auth {
+    width: 35%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.links-nav-container, .links-auth-container {
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: flex-end;
+}
+
+.links-auth a {
+    color: var(--background);
+    text-decoration: none;
+    margin-right: 1rem;
+    font-size: 1.25rem;
+    transition: color 0.2s;
+}
+
+.links-auth a:hover {
+    color: var(--lightblue);
+}
+
+.logo {
+    width: 50px;
+    height: 50px;
+}
+
+.logo-container { 
+    width: calc(100% / 3);
+    display: flex;
+    justify-content: flex-start;
+    padding-left: 1rem;
+    box-sizing: border-box;
+}
+
+.logo-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

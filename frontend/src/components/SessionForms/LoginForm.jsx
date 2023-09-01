@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import './SessionForm.css';
-
+import './SessionForms.css';
 import { login, clearSessionErrors } from '../../store/session';
 
 function LoginForm () {
@@ -28,32 +27,31 @@ function LoginForm () {
 
     return (
         <form className="session-form" onSubmit={handleSubmit}>
-            <h2>Log In Form</h2>
-            <div className="errors">{errors?.email}</div>
+            <h2 className="session-header">Log In</h2>
+            <div className="session-errors">{errors?.email}</div>
             
-            <label>
-                <span>Email</span>
-                <input type="text"
-                    value={email}
-                    onChange={update('email')}
-                    placeholder="Email"
-                />
-            </label>
-            <div className="errors">{errors?.password}</div>
+            <input 
+                className="session-form-input" 
+                type="text"
+                value={email}
+                onChange={update('email')}
+                placeholder="Email"
+            />
 
-            <label>
-                <span>Password</span>
-                <input type="password"
-                    value={password}
-                    onChange={update('password')}
-                    placeholder="Password"
-                />
-            </label>
+            <div className="session-errors">{errors?.password}</div>
 
             <input
+                className="session-form-input" 
+                type="password"
+                value={password}
+                onChange={update('password')}
+                placeholder="Password"
+            />
+
+            <input
+                className="button"
                 type="submit"
                 value="Log In"
-                disabled={!email || !password}
             />
         </form>
     );
