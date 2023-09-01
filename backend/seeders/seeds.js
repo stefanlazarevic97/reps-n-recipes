@@ -67,7 +67,6 @@ const seedDatabase = async () => {
         return `https://reps-n-recipes-seed-exercises.s3.us-west-1.amazonaws.com/core/${i}.gif`
     })
 
-
     console.log("Seeding data...")
 
     const exerciseData = [

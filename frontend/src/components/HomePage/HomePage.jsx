@@ -12,37 +12,58 @@ import './HomePage.css'
 const HomePage = () => {
     const currentUser = useSelector(state => state.session.user);
     const [selectedOption, setSelectedOption] = useState('ingredients');
-    const [isToggled, setIsToggled] = useState(false);
     const dispatch = useDispatch();
-    const selectedDate = useSelector(state => state.ui.selectedDate)
+    const selectedDate = useSelector(state => state.ui.selectedDate);
+    const [showCreateFood, setShowCreateFood] = useState(false);
 
     useEffect(() => {
         if (currentUser) {
             dispatch(getCurrentUser());
         }
-    }, [])
+    }, [currentUser, dispatch])
 
     return (
-        <>
-            <div className='switch-container'>
-                <label className='switch'>
-                    <input 
-                        type='checkbox' 
-                        checked={isToggled}
-                        onChange={() => setIsToggled(!isToggled)}
-                    />
-                    <span className="slider"></span>
-                </label>
-            </div>
-            {currentUser && (isToggled ? <CreateFood selectedDate={selectedDate}/> : <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />)}
-            {currentUser && <FoodIndex selectedOption={selectedOption} />}
-            {currentUser && <NutritionIndex />}
-            {currentUser && <GenerateMealPlan />}
-            {currentUser && <MealPlanShow />}
+        <div className="nutrition-page">
+            <section className="food-input-section">
+                <button 
+                    className="button"
+                    onClick={() => setShowCreateFood(true)}
+                >
+                    Create Food
+                </button>
+
+                {showCreateFood && (
+                    <div className="modal-overlay">
+                        <div className="modal-content">
+                                <div 
+                                    className="modal-close"
+                                    onClick={() => setShowCreateFood(false)}
+                                >
+                                    &times;
+                                </div>
+                            
+                            <CreateFood selectedDate={selectedDate}/>
+                        </div>
+                    </div>
+                )}
+
+                <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
+                <FoodIndex selectedOption={selectedOption} />
+            </section>
+
+            <section className="nutrition-index">
+                <NutritionIndex />
+            </section>
+
+            <section className="meal-plan-section">
+                <GenerateMealPlan />
+                <MealPlanShow />
+            </section>
+
             <footer className='footer'>
                 Copyright &copy; 2023 Reps 'N' Recipes
             </footer>
-        </>
+        </div>
     );
 }
 

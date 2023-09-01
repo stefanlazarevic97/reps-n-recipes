@@ -27,7 +27,7 @@ function LoginForm () {
 
     return (
         <form className="session-form" onSubmit={handleSubmit}>
-            <h2 className="session-header">Log In</h2>
+            <h2 className="header">Log In</h2>
             <div className="session-errors">{errors?.email}</div>
             
             <input 

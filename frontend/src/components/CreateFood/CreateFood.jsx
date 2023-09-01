@@ -35,24 +35,34 @@ const CreateFood = ({ selectedDate }) => {
     }
 
     return (
-        <form onSubmit={handleSubmit}>
-            <label>Name: 
+        <form 
+            className="create-food-form"
+            onSubmit={handleSubmit}
+        >
+            <div className="header-container">
+                <h2 className="header">Create Food</h2>
+            </div>
+
+            <div className="create-food-grid">
+
+                <label className="create-food-label">Name: </label>
                 <input 
+                    className="create-food-input"
                     value={name}
                     onChange={e => setName(e.target.value)}
                 />
-            </label>
 
-            <label>Serving Size: 
+                <label className="create-food-label">Serving Size: </label>
                 <input
+                    className="create-food-input"   
                     type="number"
                     value={quantity}
                     onChange={e => setQuantity(e.target.value)}  
                 />
-            </label>
-            
-            <label>Serving Unit: 
+                
+                <label className="create-food-label">Serving Unit: </label>
                 <select 
+                    className="create-food-input"
                     value={unit}
                     onChange={e => setUnit(e.target.value)}
                 >
@@ -60,51 +70,51 @@ const CreateFood = ({ selectedDate }) => {
                     <option key={unit} value={unit}>{unit}</option>
                     ))}
                 </select>
-            </label>
 
-            <label>Calories: 
+                <label className="create-food-label">Calories: </label>
                 <input
+                    className="create-food-input"
                     type="number"
                     value={calories}
                     onChange={e => setCalories(e.target.value)}
                 />
-            </label>
 
-            <label>Carbohydrates: 
+                <label className="create-food-label">Carbohydrates: </label>
                 <input
+                    className="create-food-input"
                     type="number"
                     value={carbs}
                     onChange={e => setCarbs(e.target.value)}
                 />
-            </label>
 
-            <label>Fat: 
+                <label className="create-food-label">Fat: </label>
                 <input
+                    className="create-food-input"
                     type="number"
                     value={fat}
                     onChange={e => setFat(e.target.value)}
                     placeholder="Grams of Fat"
                 />
-            </label>
 
-            <label>Protein: 
+                <label className="create-food-label">Protein: </label>
                 <input
+                    className="create-food-input"
                     type="number"
                     value={protein}
                     onChange={e => setProtein(e.target.value)}
                 />
-            </label>
 
-            <label>Number of Servings:
+                <label className="create-food-label">Number of Servings:</label>
                 <input
+                    className="create-food-input"
                     type="number"
                     value={servings}
                     onChange={e => setServings(e.target.value)}
                     placeholder="Number of Servings"
                 />
-            </label>
+            </div>
 
-            <button>Add Food</button>
+            <button className="button">Add Food</button>
         </form>
     )
 }

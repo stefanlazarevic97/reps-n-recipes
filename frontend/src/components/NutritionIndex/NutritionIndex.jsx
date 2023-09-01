@@ -22,10 +22,10 @@ const NutritionIndex = () => {
     let dailyProtein = 0;
     
     dailyNutrition.forEach((food) => {
-        dailyCalories += food.calories;
-        dailyCarbs += food.gramsCarbs;
-        dailyFat += food.gramsFat;
-        dailyProtein += food.gramsProtein;
+        dailyCalories += Math.round(food.calories);
+        dailyCarbs += Math.round(food.gramsCarbs);
+        dailyFat += Math.round(food.gramsFat);
+        dailyProtein += Math.round(food.gramsProtein);
     })
     
     let totalMacros = dailyCarbs + dailyFat + dailyProtein;
@@ -79,10 +79,10 @@ const NutritionIndex = () => {
                 <div className='chart-container'>
                     <Pie data={data} options={options}/>
                     <div className="daily-wrapper">
-                        <div>{dailyCalories} Calories</div>
-                        <div>{dailyCarbs}g Carbs</div>
-                        <div>{dailyFat}g Fat</div>
-                        <div>{dailyProtein}g Protein</div>
+                        <div>{Math.round(dailyCalories).toFixed(1)} Calories</div>
+                        <div>{Math.round(dailyCarbs).toFixed(1)} g Carbs</div>
+                        <div>{Math.round(dailyFat).toFixed(1)} g Fat</div>
+                        <div>{Math.round(dailyProtein).toFixed(1)} g Protein</div>
                     </div>
                 </div>
 
@@ -97,10 +97,10 @@ const NutritionIndex = () => {
                     <div className='macros-item'>
                         <h3>{food.foodName}</h3>
                         <div className='macros-wrapper'>
-                            <div>Calories: {food.calories}</div>
-                            <div>Protein: {food.gramsProtein}g</div>
-                            <div>Carbohydrates: {food.gramsCarbs}g</div>
-                            <div>Fat: {food.gramsFat}g</div>
+                            <div>Calories: {Math.round(food.calories).toFixed(1)}</div>
+                            <div>Protein: {Math.round(food.gramsProtein).toFixed(1)} g</div>
+                            <div>Carbohydrates: {Math.round(food.gramsCarbs).toFixed(1)} g</div>
+                            <div>Fat: {Math.round(food.gramsFat).toFixed(1)} g</div>
                         </div>
                         <div>
                             <button onClick={handleUpdate(food)}>Update Food</button>

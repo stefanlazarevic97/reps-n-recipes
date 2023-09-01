@@ -122,10 +122,6 @@ const FoodIndex = () => {
         } else {
             dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
         }
-
-        // return () => {
-        //     sessionStorage.removeItem("query");
-        // }
     }, [offset])
 
     useEffect(() => {
@@ -146,12 +142,18 @@ const FoodIndex = () => {
         
     return (
         <div className="food-index">
-            <h2>Search Results</h2>
+            <div className="date-input-container">
+                <label className="date-label">Select Date: </label>
 
-            <div className="date-input">
-                <label>Select Date: </label>
-                <input type="date" value={selectedDate} onChange={handleDateChange} />
+                <input 
+                    className="date-input"
+                    type="date" 
+                    value={selectedDate} 
+                    onChange={handleDateChange} 
+                />
             </div>
+         
+            <h2 className="header">Search Results</h2>
             
             <ul>
                 {searchResults && searchResults.map(food => (
@@ -166,8 +168,8 @@ const FoodIndex = () => {
 
                 {offset > 9 && (
                     <button 
-                    onClick={handlePreviousPage}
-                    className="button"
+                        onClick={handlePreviousPage}
+                        className="button"
                     >
                         Previous Page
                     </button>
@@ -185,26 +187,32 @@ const FoodIndex = () => {
 
             <div>
                 {selectedFood && (
-                <div className="selected-food">
-                    <h3>Selected Food: {selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
-                    <p>Calories: {destructureFood('Calories')}</p>
-                    <p>Carbs: {destructureFood('Carbohydrates')}</p>
-                    <p>Fat: {destructureFood('Fat')}</p>
-                    <p>Protein: {destructureFood('Protein')}</p>
-                    {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
+                    <div className="selected-food">
+                        <h3>Selected Food: {selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
+                        <p>Calories: {destructureFood('Calories')}</p>
+                        <p>Carbs: {destructureFood('Carbohydrates')}</p>
+                        <p>Fat: {destructureFood('Fat')}</p>
+                        <p>Protein: {destructureFood('Protein')}</p>
+                        {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
 
-                    <label>Quantity:               
-                        <input 
-                            type="number" 
-                            id="quantity" 
-                            value={foodQuantity} 
-                            onChange={handleQuantityChange} 
-                        />
-                    </label>
-                    
-                    <button onClick={handleAddFood}>Add Food</button>
-                </div>
-            )}
+                        <label>Quantity:               
+                            <input 
+                                className="food-index-input"
+                                type="number" 
+                                id="quantity" 
+                                value={foodQuantity} 
+                                onChange={handleQuantityChange} 
+                            />
+                        </label>
+                        
+                        <button 
+                            className="button pagination-button" 
+                            onClick={handleAddFood}
+                        >
+                            Add Food
+                        </button>
+                    </div>
+                )}
             </div>
         </div>
     )

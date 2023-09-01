@@ -1,65 +1,74 @@
-.switch-container {
-    border: 1px solid var(--navy);
-    background-color: var(--blue);
-    border-radius: 10px;
+.nutrition-page {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: 1fr auto;
+    gap: 20px;
+    height: 100vh;
 }
 
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
-    height: 34px;
-  }
-  
-  .switch input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-  }
-  
-  /* The slider (background) */
-  .switch .slider {
-    position: absolute;
+.food-input-section {
+    grid-column: 1 / span 1;
+}
+
+.nutrition-index {
+    grid-column: 2 / span 1;
+}
+
+.meal-plan-section {
+    grid-column: 3 / span 1;
+}
+
+.food-input-section, .nutrition-index, .meal-plan-section {
+    padding: 1rem;
+    box-sizing: border-box;
+}
+
+.footer {
+    grid-column: 1 / -1;
+}
+
+@media (max-width: 768px) {
+    .nutrition-page {
+        grid-template-columns: 1fr;
+    }
+
+    .food-input-section, .nutrition-index, .meal-plan-section {
+        grid-column: 1 / -1;
+    }
+}
+
+.modal-overlay {
+    position: fixed;
     top: 0;
     left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: #ccc;
-    transition: .4s;
-    border-radius: 34px;
-  }
-  
-  /* The circle that slides */
-  .switch .slider::before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 4px;
-    bottom: 4px;
-    background-color: white;
-    transition: .4s;
-    border-radius: 50%;
-  }
-  
-  /* When checked, change the slider background */
-  .switch input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  /* When checked, move the circle */
-  .switch input:checked + .slider::before {
-    transform: translateX(26px);
-  }
-
-  .footer {
-    /* position: fixed; */
-    left: 0;
-    bottom: 0;
     width: 100%;
-    height: 5vh;
-    background-color: var(--lightblue);
-    color: var(--navy);
-    padding: 5px 10px 0px 10px;
-    border-top: 1px solid var(--navy);
-  }
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--background);
+    border-radius: 0.5rem;
+    width: 500px;
+    max-width: 90%;
+}
+
+.modal-close {
+    position: absolute;
+    top: 0.5rem;
+    right: 1rem;
+    font-size: 2rem;
+    cursor: pointer;
+    color: var(--charcoal);
+    transition: color 0.2s;
+    font-weight: bold;
+}
+
+.modal-close:hover {
+    color: var(--blue);
+}
+

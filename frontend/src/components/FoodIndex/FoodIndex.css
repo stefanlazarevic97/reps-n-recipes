@@ -1,18 +1,63 @@
-.food-item {
-    /* width: 200px; */
-    height: 40px;
-    border: 1px solid black;
+.food-index {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    background: var(--background);
+    border-radius: 0.5rem;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
+}
+
+.date-input-container {
     display: flex;
     align-items: center;
+    margin-bottom: 1rem;
+}
+
+.date-label {
+    margin-right: 1rem;
+}
+
+.date-input {
+    padding: 0.5rem;
+    border: 1px solid var(--lightblue);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+}
+
+.header {
+    text-align: center;
+    margin-bottom: 1rem;
+}
+
+.food-item {
+    padding: 0.75rem 1rem;
+    border-radius: 0.25rem;
+    margin-bottom: 0.5rem;
+    cursor: pointer;
+    transition: background 0.2s;
+    list-style: none;
 }
 
 .food-item:hover {
-    cursor: pointer;
-    background-color: rgb(220,220,220);
+    background: var(--lightblue);
 }
 
-.food-index {
-    background-color: var(--blue);
-    border: 1px solid var(--navy);
-    padding: 10px;
+.food-index-input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--lightblue);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    margin: 1rem;
+    box-sizing: border-box;
+}
+
+.selected-food {
+    border-top: 2px solid var(--lightblue);
+    padding-top: 1rem;
+    margin-top: 1rem;
+}
+
+.pagination-button {
+    width: 50%;
 }
