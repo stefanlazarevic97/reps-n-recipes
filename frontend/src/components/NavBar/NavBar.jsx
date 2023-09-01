@@ -1,49 +1,59 @@
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import './NavBar.css';
 import { logout } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import HealthForm from '../HealthForm/HealthForm';
-import WorkoutForm from '../WorkoutForm/WorkoutForm';
-import { NavLink } from 'react-router-dom'
 
 function NavBar () {
-  const loggedIn = useSelector(state => !!state.session.user);
-  const dispatch = useDispatch();
-
-  
-  const logoutUser = e => {
-      e.preventDefault();
-      dispatch(logout());
-  }
-
-  const getLinks = () => {
-    if (loggedIn) {
-      return (
-        <div className="links-nav">
-          <Link to={'/profile'}>Profile</Link>
-          <button onClick={logoutUser}>Logout</button>
-          <button onClick={()=>dispatch(activateHealthForm())}>Health Form</button>
-          <HealthForm/>
-        </div>
-      );
-    } else {
-      return (
-        <div className="links-auth">
-          <Link to={'/signup'}>Signup</Link>
-          <Link to={'/login'}>Login</Link>
-        </div>
-      );
+    const loggedIn = useSelector(state => !!state.session.user);
+    const dispatch = useDispatch();
+    
+    const logoutUser = e => {
+        e.preventDefault();
+        dispatch(logout());
     }
-  }
 
-  return (
-    <div className='navBar'>
-      <NavLink to='/' className ='nav-link'>Reps 'N' Recipes</NavLink>
-    {/* <WorkoutForm/> */}
-      { getLinks() }
-    </div>
-  );
+    const getLinks = () => {
+        if (loggedIn) {
+            return (
+                <div className="links-nav-container">
+                    <div className="links-nav">
+                        <Link to={'/profile'}>Profile</Link>
+
+                        <button onClick={()=>dispatch(activateHealthForm())}>
+                            Health Form
+                        </button>
+
+                        <button onClick={logoutUser}>Logout</button>
+                        <HealthForm/>
+                    </div>
+                </div>
+            );
+        } else {
+            return (
+                <div className="links-auth-container">
+                    <div className="links-auth">
+                        <Link to={'/signup'}>Signup</Link>
+                        <Link to={'/login'}>Login</Link>
+                    </div>
+                </div>
+            );
+        }
+    }
+
+    return (
+        <div className='navBar'>
+            <div className="logo-container">
+                <Link className="logo-link" to='/'>
+                    <img className="logo" src="../../assets/logo.png" alt="logo"/>
+                </Link>
+            </div>
+
+            <NavLink to='/' className ='nav-link'>Reps 'N' Recipes</NavLink>
+            { getLinks() }
+        </div>
+    );
 }
 
 export default NavBar;
