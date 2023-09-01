@@ -4,6 +4,7 @@ import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
 import './HealthForm.css';
 import { receiveUserHealth, updateUser } from '../../store/users'
+import { RiInformationFill } from 'react-icons/ri'
 
 const HealthForm = () => {
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ const HealthForm = () => {
     const [weightGoal, setWeightGoal] = useState(null);
     const [targetCalories, setTargetCalories] = useState(null)
     const errors = useSelector(state => state.errors.session);
+    const [isHovered, setIsHovered] = useState({ S: false, LA: false, MA: false, VA: false, EA: false });
 
     if (!active) return null
 
@@ -82,18 +84,29 @@ const HealthForm = () => {
     }
 
     const TDEE = (mass, height, coeff) => {
-        return (sex === "M") ? coeff*(10*mass + 6.25*height - 5*age + 5)
-        : coeff*(10*mass + 6.25*height - 5*age - 161)
+        return (sex === "M") ?
+            coeff * (10 * mass + 6.25 * height - 5 * age + 5) : 
+            coeff * (10 * mass + 6.25 * height - 5 * age - 161)
     }
 
     const handleSubmit = async e => {
         e.preventDefault();
         const mass = (massUnit === "kilos") ? weight : lbToKg(weight);
-        const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch)
-        const coeff = activityCoefficient()
-        const tdee = TDEE(mass, height, coeff)
-        const activityMap = {"S":1, "LA":2, "MA":3,"VA":4, "EA":5}
-        const healthData = {mass,height,age,sex,activityLevel: activityMap[activity],TDEE: tdee, weightGoal}
+        const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch);
+        const coeff = activityCoefficient();
+        const tdee = TDEE(mass, height, coeff);
+        const activityMap = {"S": 1, "LA": 2, "MA": 3,"VA": 4, "EA": 5};
+
+        const healthData = {
+            mass, 
+            height, 
+            age, 
+            sex, 
+            activityLevel: activityMap[activity],
+            TDEE: tdee, 
+            weightGoal
+        }
+        
         if (currentUser){
             const updatedUser = {...currentUser,healthData}
             await dispatch(updateUser(updatedUser));
@@ -208,50 +221,106 @@ const HealthForm = () => {
 
                         <div className="radio-buttons-container">
                             <div className="radio-buttons-subheader">Activity Level</div>
+                            
                             <div className="radio-buttons">
-                                <label>
+                                <label className="activity-level-label">
                                     <input 
                                         type="radio" 
                                         value="S"
                                         checked={activity === "S"}
                                         onChange={e => setActivity(e.target.value)}
-                                        /> Sedentary
+                                    /> Sedentary
+
+                                    <RiInformationFill
+                                        className="info-icon"
+                                        onMouseEnter={() => setIsHovered({ ...isHovered, S: true })}
+                                        onMouseLeave={() => setIsHovered({ ...isHovered, S: false })}
+                                    >
+                                        {isHovered && (
+                                            <div className="tooltip">Little to no exercise and a desk job</div>
+                                        )}
+                                    </RiInformationFill>
                                 </label>
-                                <label>
+
+                                <label className="activity-level-label">
                                     <input 
                                         type="radio" 
                                         value="LA"
                                         checked={activity === "LA"}
                                         onChange={e => setActivity(e.target.value)}
-                                        /> Lightly Active
+                                    /> Lightly Active
+
+                                    <RiInformationFill
+                                        className="info-icon"
+                                        onMouseEnter={() => setIsHovered({ ...isHovered, LA: true })}
+                                        onMouseLeave={() => setIsHovered({ ...isHovered, LA: false })}
+                                    >
+                                        {isHovered && (
+                                            <div className="tooltip">Light exercise or sports 1-3 days a week</div>
+                                        )}
+                                    </RiInformationFill>
                                 </label>
-                                <label>
+
+                                <label className="activity-level-label">
                                     <input 
                                         type="radio" 
                                         value="MA"
                                         checked={activity === "MA"}
                                         onChange={e => setActivity(e.target.value)}
-                                        /> Moderately Active
+                                    /> Moderately Active
+
+                                    <RiInformationFill
+                                        className="info-icon"
+                                        onMouseEnter={() => setIsHovered({ ...isHovered, MA: true })}
+                                        onMouseLeave={() => setIsHovered({ ...isHovered, MA: false })}
+                                    >
+                                        {isHovered && (
+                                            <div className="tooltip">Moderate exercise or sports 3-5 days a week</div>
+                                        )}
+                                    </RiInformationFill>
                                 </label>
-                                <label>
+
+                                <label className="activity-level-label">
                                     <input 
                                         type="radio" 
                                         value="VA"
                                         checked={activity === "VA"}
                                         onChange={e => setActivity(e.target.value)}
-                                        /> Very Active
+                                    /> Very Active
+
+                                    <RiInformationFill
+                                        className="info-icon"
+                                        onMouseEnter={() => setIsHovered({ ...isHovered, VA: true })}
+                                        onMouseLeave={() => setIsHovered({ ...isHovered, VA: false })}
+                                    >
+                                        {isHovered && (
+                                            <div className="tooltip">Hard exercise or sports 6-7 days a week</div>
+                                        )}
+                                    </RiInformationFill>
                                 </label>
-                                <label>
+
+                                <label className="activity-level-label">
                                     <input 
                                         type="radio" 
                                         value="EA"
                                         checked={activity === "EA"}
                                         onChange={e => setActivity(e.target.value)}
-                                        /> Extremely Active
+                                    /> Extremely Active
+
+                                    <RiInformationFill
+                                        className="info-icon"
+                                        onMouseEnter={() => setIsHovered({ ...isHovered, EA: true })}
+                                        onMouseLeave={() => setIsHovered({ ...isHovered, EA: false })}
+                                    >
+                                        {isHovered && (
+                                            <div className="tooltip">Very hard exercise, physical job, or training twice a day</div>
+                                        )}
+                                    </RiInformationFill>
                                 </label>
                             </div>
                         </div>
                     </div>
+                    
                     <div className="right-radio-buttons">
                         <div className="radio-buttons-container">
                             <div className="radio-buttons-subheader">Weekly Weight Goals</div>
@@ -259,19 +328,10 @@ const HealthForm = () => {
                                 <label>
                                     <input 
                                         type="radio" 
-                                        value={-0.5}
-                                        checked={weightGoal === -0.5}
+                                        value={-2.0}
+                                        checked={weightGoal === -2.0}
                                         onChange={e => setWeightGoal(Number(e.target.value))}
-                                        /> Lose 0.5lb / 230g
-                                </label>
-
-                                <label>
-                                    <input 
-                                        type="radio" 
-                                        value={-1.0}
-                                        checked={(weightGoal === -1.0)}
-                                        onChange={e => setWeightGoal(Number(e.target.value))}
-                                        /> Lose 1lb / 450g
+                                        /> Lose 2lb / 900g
                                 </label>
 
                                 <label>
@@ -286,10 +346,28 @@ const HealthForm = () => {
                                 <label>
                                     <input 
                                         type="radio" 
-                                        value={-2.0}
-                                        checked={weightGoal === -2.0}
+                                        value={-1.0}
+                                        checked={(weightGoal === -1.0)}
                                         onChange={e => setWeightGoal(Number(e.target.value))}
-                                        /> Lose 2lb / 900g
+                                        /> Lose 1lb / 450g
+                                </label>
+
+                                <label>
+                                    <input 
+                                        type="radio" 
+                                        value={-0.5}
+                                        checked={weightGoal === -0.5}
+                                        onChange={e => setWeightGoal(Number(e.target.value))}
+                                        /> Lose 0.5lb / 230g
+                                </label>
+
+                                <label>
+                                    <input
+                                        type="radio"
+                                        value={0}
+                                        checked={weightGoal === 0}
+                                        onChange={e => setWeightGoal(Number(e.target.value))}
+                                    /> Maintain Weight
                                 </label>
 
                                 <label>

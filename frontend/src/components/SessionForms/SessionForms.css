@@ -5,7 +5,9 @@
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
     width: 30%;
     margin: 0 auto;
-    margin-top: 2rem;
+    margin-top: 1rem;
+    top: 20vh;
+    position: relative;
 }
 
 .header {
@@ -53,7 +55,6 @@
 /* bottom right rtoggle buttons  */
 
 .toggle-button-container{
-    /* background-color: purple; */
     height: 100px;
     width: 180px;
     position: fixed;

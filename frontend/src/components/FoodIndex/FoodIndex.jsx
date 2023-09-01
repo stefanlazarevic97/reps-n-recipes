@@ -6,12 +6,12 @@ import moment from 'moment';
 import {fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes} from '../../store/foods'
 import titleize from '../../Utils/utils'
 
-const FoodIndex = () => {
+const FoodIndex = ({selectedDate, setSelectedDate}) => {
     const dispatch = useDispatch();
     const foods = useSelector(getFoods);
     const selectedOption = useSelector(state => state.ui.selectedOption);
     const date = useSelector(state => state.ui.selectedDate);
-    const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
+    // const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
     const [searchResults, setSearchResults] = useState(foods);

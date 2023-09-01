@@ -72,7 +72,7 @@ const HomePage = () => {
                 )}
 
                 <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-                <FoodIndex selectedOption={selectedOption} />
+                <FoodIndex selectedOption={selectedOption} selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
             </section>
 
             <section className="nutrition-index">
@@ -84,20 +84,19 @@ const HomePage = () => {
                 <MealPlanShow />
             </section>
 
-
-
-
             <div className="toggle-button-container">
-                <div id="toggle-page-type-button" 
-                className="button workout-button" 
-                onClick={goToWorkoutPage}>
+                <div 
+                    id="toggle-page-type-button" 
+                    className="button workout-button" 
+                    onClick={goToWorkoutPage}
+                >
                     <div>
                         Workouts
                     </div>
                 </div>
             </div>
 
-            <footer className='footer'>
+            <footer className="footer">
                 Copyright &copy; 2023 Reps 'N' Recipes
             </footer>
         </div>
