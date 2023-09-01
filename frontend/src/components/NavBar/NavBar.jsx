@@ -21,11 +21,19 @@ function NavBar () {
                     <div className="links-nav">
                         <Link to={'/profile'}>Profile</Link>
 
-                        <button onClick={()=>dispatch(activateHealthForm())}>
+                        <button 
+                            className="links-nav-button"
+                            onClick={()=>dispatch(activateHealthForm())}
+                        >
                             Health Form
                         </button>
 
-                        <button onClick={logoutUser}>Logout</button>
+                        <button 
+                            className="links-nav-button"
+                            onClick={logoutUser}
+                        >
+                            Logout
+                        </button>
                         <HealthForm/>
                     </div>
                 </div>

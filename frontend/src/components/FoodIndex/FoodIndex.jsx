@@ -144,7 +144,7 @@ const FoodIndex = () => {
         <div className="food-index">
             <div className="date-input-container">
                 <label className="date-label">Select Date: </label>
-
+                
                 <input 
                     className="date-input"
                     type="date" 
@@ -155,7 +155,7 @@ const FoodIndex = () => {
          
             <h2 className="header">Search Results</h2>
             
-            <ul>
+            <ul className="food-item-container">
                 {searchResults && searchResults.map(food => (
                     <li
                         onClick={() => handleClick(food)}
@@ -165,48 +165,57 @@ const FoodIndex = () => {
                         {food.name ? food.name : food.title }
                     </li>
                 ))}
+                
+                <div className="pagination-button-container">
+                    {offset > 9 && (
+                        <button 
+                            onClick={handlePreviousPage}
+                            className="button pagination-button"
+                        >
+                            Previous Page
+                        </button>
+                    )}
 
-                {offset > 9 && (
-                    <button 
-                        onClick={handlePreviousPage}
-                        className="button"
-                    >
-                        Previous Page
-                    </button>
-                )}
-
-                {Object.values(searchResults).length === 10 && Object.values(searchResults) !== 0 && (
-                    <button 
-                        onClick={handleNextPage}
-                        className="button"
-                    >
-                        Next Page
-                    </button>
-                )}
+                    {Object.values(searchResults).length === 10 && Object.values(searchResults) !== 0 && (
+                        <button 
+                            onClick={handleNextPage}
+                            className="button pagination-button"
+                        >
+                            Next Page
+                        </button>
+                    )}
+                </div>
             </ul>
 
-            <div>
+            <div className="selected-food-container">
                 {selectedFood && (
                     <div className="selected-food">
-                        <h3>Selected Food: {selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
-                        <p>Calories: {destructureFood('Calories')}</p>
-                        <p>Carbs: {destructureFood('Carbohydrates')}</p>
-                        <p>Fat: {destructureFood('Fat')}</p>
-                        <p>Protein: {destructureFood('Protein')}</p>
-                        {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
+                        <div className="nutrition-facts">
+                            <h3 className="nutrition-facts-header">{selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
+                            <p>Calories: {destructureFood('Calories')}</p>
+                            <p>Carbs: {destructureFood('Carbohydrates')} g</p>
+                            <p>Fat: {destructureFood('Fat')} g</p>
+                            <p>Protein: {destructureFood('Protein')} g</p>
+                            {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
+                        </div>
 
-                        <label>Quantity:               
+                        <div className="food-index-quantity-container">
+                            <label 
+                                className="food-index-quantity-label"
+                            >
+                                Quantity:               
+                            </label>
                             <input 
                                 className="food-index-input"
                                 type="number" 
                                 id="quantity" 
                                 value={foodQuantity} 
                                 onChange={handleQuantityChange} 
-                            />
-                        </label>
-                        
+                            />    
+                        </div>
+
                         <button 
-                            className="button pagination-button" 
+                            className="button" 
                             onClick={handleAddFood}
                         >
                             Add Food
