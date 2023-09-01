@@ -240,3 +240,21 @@
 #toggle-page-type-button.nutrition-button:hover {
     background-color: var(--darkblue);
 }
+
+
+/* ! present user goals */
+.present-maintenance .maintenance{
+    color: red;
+}
+
+.present-goals .goals{
+    color: green;
+}
+
+.present-wieght-buttons{
+    display: flex;
+}
+
+.restart-form {
+    margin-right: 20px;
+}

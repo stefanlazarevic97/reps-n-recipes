@@ -1,10 +1,10 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
-import './HealthForm.css';
 import { receiveUserHealth, updateUser } from '../../store/users'
 import { RiInformationFill } from 'react-icons/ri'
+import './HealthForm.css';
 
 const HealthForm = () => {
     const dispatch = useDispatch()
@@ -21,10 +21,16 @@ const HealthForm = () => {
     const [activity, setActivity] = useState(null);
     const [weightGoal, setWeightGoal] = useState(null);
     const [targetCalories, setTargetCalories] = useState(null)
+    const [presentGoal, setPresentGoal] = useState(false)
+    const [tdee, setTdee] = useState(null)
     const errors = useSelector(state => state.errors.session);
     const [isHovered, setIsHovered] = useState({ S: false, LA: false, MA: false, VA: false, EA: false });
 
     if (!active) return null
+
+    // useEffect(()=>{
+        
+    // },[])
 
     const handleExit = e => {
         e.stopPropagation()
@@ -84,9 +90,10 @@ const HealthForm = () => {
     }
 
     const TDEE = (mass, height, coeff) => {
-        return (sex === "M") ?
-            coeff * (10 * mass + 6.25 * height - 5 * age + 5) : 
-            coeff * (10 * mass + 6.25 * height - 5 * age - 161)
+        const tdee = (sex === "M") ? coeff*(10*mass + 6.25*height - 5*age + 5)
+        : coeff*(10*mass + 6.25*height - 5*age - 161)
+        setTdee(tdee)
+        return tdee
     }
 
     const handleSubmit = async e => {
@@ -105,16 +112,18 @@ const HealthForm = () => {
             activityLevel: activityMap[activity],
             TDEE: tdee, 
             weightGoal
-        }
+        }  
         
         if (currentUser){
             const updatedUser = {...currentUser,healthData}
             await dispatch(updateUser(updatedUser));
             dispatch(receiveUserHealth(healthData));
-            dispatch(deactivateHealthForm())
+            setPresentGoal(true)
         } else {
             console.error("No user available to update");
         }
+
+        setTargetCalories(tdee + weightGoal*250)  
     }
 
     return (
@@ -122,6 +131,10 @@ const HealthForm = () => {
             <div className="health-form-background" onClick={handleExit}></div>
 
             <form className="health-form" onSubmit={handleSubmit}>
+
+                {!presentGoal && 
+                <>
+                
                 <h1 className="header">Tell us about yourself</h1>
                 <div className="health-form-errors">{errors?.weight}</div>
 
@@ -412,13 +425,50 @@ const HealthForm = () => {
 
                 <button 
                     className="button"
-                    disabled={!weight || !((foot && inch) || cm) || 
+                    disabled={!weight || !(foot || cm) || 
                 !age || !sex || !activity}
                 >
                     Submit
                 </button>
+
+                
+                </>
+
+                }
+
+                {
+                    presentGoal &&
+                    <>
+
+                        <div className="present-maintenance">
+                            <div className="header">Your daily maintenance calories are:</div>
+                            <div className="header maintenance">{Math.round(Math.abs(tdee))}</div>
+                        </div>
+
+                        <div className="present-goals">
+                            <div className="header">To {(weightGoal > 0) ? "gain" : "lose"} {Math.abs(weightGoal)} pounds per week, your daily target calories are:</div>
+                            <div className="header goals">{Math.round(Math.abs(targetCalories))}</div>
+                        </div>
+
+                        <div className='present-wieght-buttons'>
+                            <button className="button restart-form" onClick={()=>setPresentGoal(false)}>
+                                Start again
+                            </button>
+
+                            <button className="button" onClick={()=>dispatch(deactivateHealthForm())}>
+                                Done
+                            </button>
+                        </div>
+
+
+                    </>
+                }
+
+
             </form>  
+                    
         </div>
+        
     )
 }
 
