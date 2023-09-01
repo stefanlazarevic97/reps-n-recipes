@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 import LoginForm from './components/SessionForms/LoginForm';
-import SignupForm from './components/SessionForms/SignupForm';
+import SignUpForm from './components/SessionForms/SignUpForm';
 import Profile from './components/Profile/Profile';
 import HomePage from './components/HomePage/HomePage'
 import { getCurrentUser } from './store/session';
@@ -23,9 +23,8 @@ function App() {
             <NavBar />
             <ProtectedRoute exact path="/" component={HomePage} />
             <Switch>
-                {/* why is this not rendering??? */}
                 <AuthRoute exact path="/login" component={LoginForm} />
-                <AuthRoute exact path="/signup" component={SignupForm} />
+                <AuthRoute exact path="/signup" component={SignUpForm} />
                 <ProtectedRoute exact path="/workout" component={WorkoutPage} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
             </Switch>
