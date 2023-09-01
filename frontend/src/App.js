@@ -4,7 +4,7 @@ import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/Routes/Routes';
 import NavBar from './components/NavBar/NavBar';
 import LoginForm from './components/SessionForms/LoginForm';
-import SignUpForm from './components/SessionForms/SignUpForm';
+import SignUpForm from './components/SessionForms/sadfjkasndfaksd';
 import Profile from './components/Profile/Profile';
 import HomePage from './components/HomePage/HomePage'
 import { getCurrentUser } from './store/session';
