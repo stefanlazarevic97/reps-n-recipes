@@ -1,0 +1,97 @@
+.health-form-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10;
+}
+
+.health-form-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
+
+.weight-input-container, .height-input-container, .age-input-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.health-form {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--background);
+    padding: 2rem;
+    border-radius: 0.5rem;
+    max-width: 90%;
+}
+
+.subheader {
+    color: var(--charcoal);
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.health-form-input {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid var(--lightblue);
+    border-radius: 0.25rem;
+    margin: 1rem;
+    box-sizing: border-box;
+    font-size: 1rem;
+    background: white;
+}
+
+.health-form-errors {
+    color: red;
+}
+
+.input-group {
+    margin-bottom: 2rem;
+}
+
+.header {
+    color: var(--charcoal);
+}
+
+.health-form-radio-buttons {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.left-radio-buttons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.radio-buttons-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 1rem;
+}
+
+.radio-buttons {
+    display: grid;
+    color: var(--charcoal);
+    line-height: 2rem;
+}
+
+.radio-buttons-subheader {
+    color: var(--charcoal);
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+

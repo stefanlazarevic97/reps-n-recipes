@@ -6,6 +6,7 @@ import { fetchUserNutritionByDay, getUserNutritionByDay } from '../../store/user
 import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
 import { deleteUserNutrition } from '../../store/foods';
 import FoodUpdateForm from '../FoodUpdateForm/FoodUpdateForm';
+const moment = require('moment');
 
 Chart.register(PieController, ArcElement, Tooltip);
 
@@ -73,16 +74,22 @@ const NutritionIndex = () => {
     }
 
     return (
-        <div className="nutrition-index">
-            <h2 className="nutrition-index-title">Nutrition Index</h2>
+        <div className="nutrition-index-container">
+            <h2 className="header">Nutrition Index</h2>
             <div>
                 <div className='chart-container'>
-                    <Pie data={data} options={options}/>
-                    <div className="daily-wrapper">
-                        <div>{Math.round(dailyCalories).toFixed(1)} Calories</div>
-                        <div>{Math.round(dailyCarbs).toFixed(1)} g Carbs</div>
-                        <div>{Math.round(dailyFat).toFixed(1)} g Fat</div>
-                        <div>{Math.round(dailyProtein).toFixed(1)} g Protein</div>
+                    <Pie 
+                        className="pie-chart" 
+                        data={data} 
+                        options={options}
+                    />
+
+                    <div className="daily-nutrition-facts">
+                        <h1 className="header">{moment(selectedDate).format('dddd, MMMM D')}</h1>
+                        <div>Calories: {Math.round(dailyCalories).toFixed(1)}</div>
+                        <div>Carbohydrates: {Math.round(dailyCarbs).toFixed(1)} g</div>
+                        <div>Fat: {Math.round(dailyFat).toFixed(1)} g</div>
+                        <div>Protein: {Math.round(dailyProtein).toFixed(1)} g</div>
                     </div>
                 </div>
 
@@ -94,17 +101,34 @@ const NutritionIndex = () => {
                 }
                 
                 {dailyNutrition.map(food => (
-                    <div className='macros-item'>
-                        <h3>{food.foodName}</h3>
-                        <div className='macros-wrapper'>
-                            <div>Calories: {Math.round(food.calories).toFixed(1)}</div>
-                            <div>Protein: {Math.round(food.gramsProtein).toFixed(1)} g</div>
-                            <div>Carbohydrates: {Math.round(food.gramsCarbs).toFixed(1)} g</div>
-                            <div>Fat: {Math.round(food.gramsFat).toFixed(1)} g</div>
-                        </div>
-                        <div>
-                            <button onClick={handleUpdate(food)}>Update Food</button>
-                            <button onClick={handleDelete(food)}>Delete Food</button>
+                    <div className="macros-item-container">
+                        <h3 
+                            className="nutrition-facts-header"
+                        >
+                            {food.foodName}
+                        </h3>
+                        <div className='macros-item'>
+                            <div className='nutrition-facts'>
+                                <div>Calories: {Math.round(food.calories).toFixed(1)}</div>
+                                <div>Carbohydrates: {Math.round(food.gramsCarbs).toFixed(1)} g</div>
+                                <div>Fat: {Math.round(food.gramsFat).toFixed(1)} g</div>
+                                <div>Protein: {Math.round(food.gramsProtein).toFixed(1)} g</div>
+                            </div>
+
+                            <div className="update-delete-button-container">
+                                <button 
+                                    className="button update-delete-button"
+                                    onClick={handleUpdate(food)}
+                                >
+                                    Update Food
+                                </button>
+                                <button 
+                                    className="button update-delete-button"
+                                    onClick={handleDelete(food)}
+                                >
+                                    Delete Food
+                                </button>
+                            </div>
                         </div>
                     </div>
                 ))}

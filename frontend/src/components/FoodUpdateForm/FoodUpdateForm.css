@@ -1,0 +1,8 @@
+.food-update-button-container {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.food-update-button {
+    width: 45%;
+}

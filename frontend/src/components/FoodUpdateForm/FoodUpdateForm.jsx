@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { updateUserNutrition } from '../../store/foods';
+import './FoodUpdateForm.css'
 
 const FoodUpdateForm = ({ food, onCancel }) => {
     const dispatch = useDispatch();
@@ -25,14 +26,30 @@ const FoodUpdateForm = ({ food, onCancel }) => {
     return (
         <>
             <form onSubmit={handleSubmit}>
-                <input 
-                    value={foodQuantity}
-                    onChange={e => setFoodQuantity(e.target.value)}
-                />
+                <div className="food-index-quantity-container">
+                    <label 
+                        className="food-index-quantity-label"
+                    >
+                        Quantity:               
+                    </label>
 
-                <button>Save</button>
+                    <input 
+                        className="food-index-input"
+                        value={foodQuantity}
+                        onChange={e => setFoodQuantity(e.target.value)}
+                    />
+                </div>
+
+                <div className="food-update-button-container">
+                    <button className="button food-update-button">Save</button>
+                    <button 
+                        onClick={onCancel}
+                        className="button food-update-button"
+                    >
+                        Cancel
+                    </button>
+                </div>
             </form>
-            <button onClick={onCancel}>Cancel</button>
         </>
     )
 }

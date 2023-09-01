@@ -1,15 +1,15 @@
 .food-index {
-    max-width: 800px;
     margin: 0 auto;
     padding: 2rem;
     background: var(--background);
     border-radius: 0.5rem;
-    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
 }
 
 .date-input-container {
     display: flex;
     align-items: center;
+    justify-content: center;
     margin-bottom: 1rem;
 }
 
@@ -19,9 +19,11 @@
 
 .date-input {
     padding: 0.5rem;
+    background: white;
     border: 1px solid var(--lightblue);
     border-radius: 0.25rem;
     font-size: 1rem;
+    font: inherit;
 }
 
 .header {
@@ -30,7 +32,7 @@
 }
 
 .food-item {
-    padding: 0.75rem 1rem;
+    padding: 0.5rem;
     border-radius: 0.25rem;
     margin-bottom: 0.5rem;
     cursor: pointer;
@@ -42,22 +44,47 @@
     background: var(--lightblue);
 }
 
-.food-index-input {
+.nutrition-facts {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: start;
+    line-height: 1.5rem;
+}
+
+.nutrition-facts-header, .food-index-quantity-label {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin: 1rem 0;
+}
+
+.food-index-quantity-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
     width: 100%;
+}
+
+.food-index-input {
     padding: 1rem;
     border: 1px solid var(--lightblue);
     border-radius: 0.25rem;
     font-size: 1rem;
-    margin: 1rem;
+    margin: 1rem 0;
     box-sizing: border-box;
 }
 
 .selected-food {
-    border-top: 2px solid var(--lightblue);
-    padding-top: 1rem;
+    border-top: 1px solid var(--lightblue);
     margin-top: 1rem;
 }
 
-.pagination-button {
-    width: 50%;
+.pagination-button-container {
+    display: flex;
+    justify-content: space-evenly;
 }
+
+.pagination-button {
+    width: 45%;
+}
+

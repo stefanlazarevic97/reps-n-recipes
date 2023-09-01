@@ -37,7 +37,7 @@
     color: var(--lightblue);
 }
 
-.links-nav button {
+.links-nav-button {
     appearance: none;
     background: none;
     border: none;
