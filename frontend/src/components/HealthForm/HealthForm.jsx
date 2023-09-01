@@ -344,4 +344,4 @@ const HealthForm = () => {
     )
 }
 
-export default HealthForm
+export default HealthForm;
