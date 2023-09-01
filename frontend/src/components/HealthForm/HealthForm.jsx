@@ -23,6 +23,7 @@ const HealthForm = () => {
     const [sex, setSex] = useState(null);
     const [activity, setActivity] = useState(null);
     const [weightGoal, setWeightGoal] = useState(null);
+    const [targetCalories, setTargetCalories] = useState(null)
 
     const errors = useSelector(state => state.errors.session);
 
