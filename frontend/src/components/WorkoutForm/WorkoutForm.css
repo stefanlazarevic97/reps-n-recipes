@@ -1,4 +1,4 @@
-.workout-form-container {
+/* .workout-form-container {
     position: fixed;
     top: 0;
     left: 0;
@@ -28,14 +28,12 @@
     background-color: white;
     border: 1px solid #ccc;
     border-radius: 20px;
-    /* border: 1px solid black; */
     display: flex;
     flex-direction: column;
     align-items: center;
     z-index: 12;
 }
 
-/* ! drop down menu styling */
 .select-wrapper {
     overflow-y: auto;
     max-height: 700px;
@@ -87,14 +85,11 @@ select {
 }
 
 .item-overlay{
-    position: absolute;
+    position: relative;
+    top: 10vh;
     left: 20px;
     right: 20px;
-    height: 60px;
-    width: calc(100% - 40px);
 }
-
-
 
 .add-exercise {
     background-color: rgba(0, 0, 255, 0.1);
@@ -160,4 +155,121 @@ button.ready-to-press {
 .search-icon {
     margin-left: 20px;
     font-size: 18px;
+} */
+
+.workout-form-container {
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.workout-form-background {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.workout-form {
+    background: var(--background-workout);
+    padding: 1rem;
+    border-radius: 0.5rem;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    max-height: 80%;
+    overflow: auto;
+}
+
+@media (max-width: 600px) {
+    .workout-form {
+        width: 90%;
+        max-width: 500px;
+    }
+}
+
+.workout-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--orange);
+    color: var(--background-workout);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.hidden {
+    display: none;
+}
+
+.workout-button:hover {
+    background: var(--darkorange);
+}
+
+.ready-to-press {
+    background: var(--darkorange);
+}
+
+.search-exercise {
+    background: var(--background-workout);
+    border-radius: 0.5rem;
+    box-sizing: border-box;
+    padding: 1rem 0;
+    display: flex;
+    align-items: center;
+}
+
+.search-input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--lightorange);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+
+.search-input:focus {
+    outline: none;
+    border: 1px solid var(--orange);
+}
+
+.search-icon {
+    color: var(--orange);
+    margin-right: 1rem;
+    font-size: 2rem;
+}
+
+.list-item {
+    padding: 0 1rem;
+    box-sizing: border-box;
+    background: white;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+    cursor: pointer;
+    transition: transform 0.2s;
+}
+
+.exercise-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.exercise-gif {
+    height: 5rem;
+}
+
+.list-item:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.4);
+}
+
+.selected {
+    border: 2px solid var(--orange);
 }

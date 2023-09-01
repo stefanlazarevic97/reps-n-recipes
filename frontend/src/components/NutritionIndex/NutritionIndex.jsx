@@ -64,7 +64,7 @@ const NutritionIndex = () => {
                         const value = context.parsed || '';
                         const dataset = context.chart.data.datasets[context.datasetIndex];
                         const percentage = dataset.percentages[context.dataIndex];
-                        return `${label}: ${value} (${percentage}%)`;
+                        return `${label}: ${value} g (${percentage}%)`;
                     }
                 }
             }

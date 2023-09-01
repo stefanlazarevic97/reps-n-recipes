@@ -183,11 +183,9 @@ const WorkoutPage = () => {
             )
         })
         return (
-            <>
-                <ul>
-                    {list}
-                </ul>
-            </>
+            <ul>
+                {list}
+            </ul>
         )
     }
 
@@ -197,34 +195,62 @@ const WorkoutPage = () => {
                 <div className="workout-page-inner">
                     <div className="create-workout-header">
                         <h1 className="create-workout-h1">Create your workout</h1>
-                        <button className="cancel-workout" onClick={resetWorkout}>Cancel Workout</button>
+                        <button 
+                            className="cancel-workout" 
+                            onClick={resetWorkout}
+                        >
+                            Cancel Workout
+                        </button>
                     </div>
+
                     {makeExerciseList()}
-                    <button className="add-exercise" onClick={()=>dispatch(activateWorkoutForm())}>Add Exercises</button>             
+
+                    <button 
+                        className="add-exercise" 
+                        onClick={()=>dispatch(activateWorkoutForm())}
+                    >
+                        Add Exercises
+                    </button>  
+
                     {active && 
-                    <WorkoutForm 
-                    exerciseList={exerciseList} setExerciseList={setExerciseList}
-                    selectedExercise={selectedExercise} setSelectedExercise={setSelectedExercise}
-                    addExercise={addExercise} setAddExercise={setAddExercise}
-                    listItems={listItems}
-                    />}
-                    <button className="complete-workout" onClick={handleSubmit}>Complete Workout</button>       
+                        <WorkoutForm 
+                            exerciseList={exerciseList} 
+                            setExerciseList={setExerciseList}
+                            selectedExercise={selectedExercise} 
+                            setSelectedExercise={setSelectedExercise}
+                            addExercise={addExercise} 
+                            setAddExercise={setAddExercise}
+                            listItems={listItems}
+                        />
+                    }
+
+                    <button 
+                        className="complete-workout" 
+                        onClick={handleSubmit}
+                    >
+                        Complete Workout
+                    </button>       
                 </div>
 
 
                 <div className="toggle-button-container">
-                    <div id="toggle-page-type-button" 
+                    <div 
+                        id="toggle-page-type-button" 
                         className="button wprkout-button" 
-                        onClick={goToNutritionPage}>
+                        onClick={goToNutritionPage}
+                    >
                         <div>
                             Nutrition
+                        </div>
                     </div>
                 </div>
 
-            </div>
+                <footer className="footer">
+                    Copyright &copy; 2023 Reps 'N' Recipes
+                </footer>
             </div> 
         </>
     )
 }
 
-export default WorkoutPage
+export default WorkoutPage;

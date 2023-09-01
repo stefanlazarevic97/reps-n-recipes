@@ -37,6 +37,7 @@
     color: var(--charcoal);
     font-size: 1.25rem;
     font-weight: bold;
+    text-align: center;
 }
 
 .health-form-input {
@@ -78,8 +79,8 @@
 .radio-buttons-container {
     display: flex;
     flex-direction: column;
-    align-items: center;
     margin-bottom: 1rem;
+    width: 100%;
 }
 
 .radio-buttons {
@@ -93,12 +94,14 @@
     font-size: 1.25rem;
     font-weight: bold;
     margin-bottom: 1rem;
+    text-align: center;
 }
 
 .activity-level-label {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    position: relative;
 }
 
 .info-icon {
@@ -115,21 +118,15 @@
 
 .tooltip {
     position: absolute;
-    bottom: 100%;
-    left: 50%;
-    transform: translateX(-50%);
-    visibility: hidden;
-    background-color: var(--background);
-    color: var(--charcoal);
+    overflow: hidden;
+    white-space: nowrap;
+    width: auto;
+    left: 105%;
+    background-color: var(--blue);
+    font-size: 0.875rem;
+    color: var(--background);
     text-align: center;
-    padding: 5px;
-    border-radius: 5px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.info-icon:hover .tooltip {
-    visibility: visible;
-    opacity: 1;
-    z-index: 100;
+    padding: 0.5rem;
+    border-radius: 0.25rem;
+    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.2);
 }

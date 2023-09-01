@@ -237,98 +237,108 @@ const HealthForm = () => {
                             
                             <div className="radio-buttons">
                                 <label className="activity-level-label">
-                                    <input 
-                                        type="radio" 
-                                        value="S"
-                                        checked={activity === "S"}
-                                        onChange={e => setActivity(e.target.value)}
-                                    /> Sedentary
+                                    <div className="activity-level-container">
+                                        <input 
+                                            type="radio" 
+                                            value="S"
+                                            checked={activity === "S"}
+                                            onChange={e => setActivity(e.target.value)}
+                                        /> Sedentary
+                                    </div>
+
+                                    {isHovered.S && (
+                                        <div className="tooltip">Little to no exercise and a desk job</div>
+                                    )}
 
                                     <RiInformationFill
                                         className="info-icon"
                                         onMouseEnter={() => setIsHovered({ ...isHovered, S: true })}
                                         onMouseLeave={() => setIsHovered({ ...isHovered, S: false })}
-                                    >
-                                        {isHovered && (
-                                            <div className="tooltip">Little to no exercise and a desk job</div>
-                                        )}
-                                    </RiInformationFill>
+                                    />     
                                 </label>
 
                                 <label className="activity-level-label">
-                                    <input 
-                                        type="radio" 
-                                        value="LA"
-                                        checked={activity === "LA"}
-                                        onChange={e => setActivity(e.target.value)}
-                                    /> Lightly Active
+                                    <div className="activity-level-container">
+                                        <input 
+                                            type="radio" 
+                                            value="LA"
+                                            checked={activity === "LA"}
+                                            onChange={e => setActivity(e.target.value)}
+                                        /> Lightly Active
+                                    </div>
+
+                                    {isHovered.LA && (
+                                        <div className="tooltip">Light exercise or sports 1-3 days a week</div>
+                                    )}
 
                                     <RiInformationFill
                                         className="info-icon"
                                         onMouseEnter={() => setIsHovered({ ...isHovered, LA: true })}
                                         onMouseLeave={() => setIsHovered({ ...isHovered, LA: false })}
-                                    >
-                                        {isHovered && (
-                                            <div className="tooltip">Light exercise or sports 1-3 days a week</div>
-                                        )}
-                                    </RiInformationFill>
+                                    />
                                 </label>
 
                                 <label className="activity-level-label">
-                                    <input 
-                                        type="radio" 
-                                        value="MA"
-                                        checked={activity === "MA"}
-                                        onChange={e => setActivity(e.target.value)}
-                                    /> Moderately Active
+                                    <div className="activity-level-container">
+                                        <input 
+                                            type="radio" 
+                                            value="MA"
+                                            checked={activity === "MA"}
+                                            onChange={e => setActivity(e.target.value)}
+                                        /> Moderately Active
+                                    </div>
+
+                                    {isHovered.MA && (
+                                        <div className="tooltip">Moderate exercise or sports 3-5 days a week</div>
+                                    )}
 
                                     <RiInformationFill
                                         className="info-icon"
                                         onMouseEnter={() => setIsHovered({ ...isHovered, MA: true })}
                                         onMouseLeave={() => setIsHovered({ ...isHovered, MA: false })}
-                                    >
-                                        {isHovered && (
-                                            <div className="tooltip">Moderate exercise or sports 3-5 days a week</div>
-                                        )}
-                                    </RiInformationFill>
+                                    />
                                 </label>
 
                                 <label className="activity-level-label">
-                                    <input 
-                                        type="radio" 
-                                        value="VA"
-                                        checked={activity === "VA"}
-                                        onChange={e => setActivity(e.target.value)}
-                                    /> Very Active
+                                    <div className="activity-level-container">
+                                        <input 
+                                            type="radio" 
+                                            value="VA"
+                                            checked={activity === "VA"}
+                                            onChange={e => setActivity(e.target.value)}
+                                        /> Very Active
+                                    </div>
+
+                                    {isHovered.VA && (
+                                        <div className="tooltip">Hard exercise or sports 6-7 days a week</div>
+                                    )}
 
                                     <RiInformationFill
                                         className="info-icon"
                                         onMouseEnter={() => setIsHovered({ ...isHovered, VA: true })}
                                         onMouseLeave={() => setIsHovered({ ...isHovered, VA: false })}
-                                    >
-                                        {isHovered && (
-                                            <div className="tooltip">Hard exercise or sports 6-7 days a week</div>
-                                        )}
-                                    </RiInformationFill>
+                                    />
                                 </label>
 
                                 <label className="activity-level-label">
-                                    <input 
-                                        type="radio" 
-                                        value="EA"
-                                        checked={activity === "EA"}
-                                        onChange={e => setActivity(e.target.value)}
-                                    /> Extremely Active
+                                    <div className="activity-level-container">
+                                        <input 
+                                            type="radio" 
+                                            value="EA"
+                                            checked={activity === "EA"}
+                                            onChange={e => setActivity(e.target.value)}
+                                        /> Extremely Active
+                                    </div>
+
+                                    {isHovered.EA && (
+                                        <div className="tooltip">Very hard exercise, physical job, or training twice a day</div>
+                                    )}
 
                                     <RiInformationFill
                                         className="info-icon"
                                         onMouseEnter={() => setIsHovered({ ...isHovered, EA: true })}
                                         onMouseLeave={() => setIsHovered({ ...isHovered, EA: false })}
-                                    >
-                                        {isHovered && (
-                                            <div className="tooltip">Very hard exercise, physical job, or training twice a day</div>
-                                        )}
-                                    </RiInformationFill>
+                                    />
                                 </label>
                             </div>
                         </div>
@@ -463,12 +473,8 @@ const HealthForm = () => {
 
                     </>
                 }
-
-
-            </form>  
-                    
-        </div>
-        
+            </form>      
+        </div>  
     )
 }
 

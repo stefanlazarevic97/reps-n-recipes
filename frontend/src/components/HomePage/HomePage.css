@@ -5,7 +5,7 @@
     gap: 20px;
     height: 100vh;
     top: 10vh;
-    position:relative;
+    position: relative;
     z-index: 1;
 }
 
@@ -76,10 +76,10 @@
 }
 
 #toggle-page-type-button.workout-button{
-    background-color: var(--logo-orange);
+    background-color: var(--orange);
 }
 #toggle-page-type-button.workout-button:hover {
-    background-color: var(--logo-orange-dark);
+    background-color: var(--darkorange);
 }
 
 .footer {

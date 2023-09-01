@@ -74,11 +74,11 @@
     justify-content: center;
     align-items: center;
     transition: all 0.3s ease;
-    box-shadow: 3px 3px 5px #888888;
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
     z-index: 200;
 }
 
 #toggle-page-type-button:hover{
-    transform: scale(1.1);
-    box-shadow: 5px 5px 10px #888888;
+    transform: scale(1.05);
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
 }

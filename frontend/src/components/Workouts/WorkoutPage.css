@@ -1,11 +1,9 @@
 .workout-page-container{
     left: 0;
     right: 0;
-    position: fixed;
-    /* width: 600px; */
-    /* margin: () */
+    position: relative;
+    top: 10vh;
     display: flex;
-    /* align-items: center; */
     justify-content: center;
 }
 
@@ -63,9 +61,6 @@
     justify-content: space-between;
     align-items: center;
     margin: 5px 0px;
-    /* background-color: green; */
-
-    /* background-color: orange; */
 }
 
 .exercise-headers, 
