@@ -90,8 +90,6 @@ const usersReducer = (state = initialState, action) => {
         case RECEIVE_WORKOUT:
             nextState.workouts = action.workout
             return nextState;
-        case RECEIVE_WORKOUTS:
-            return { ...state, workouts: action.workouts}
         case RECEIVE_USER_LOGOUT:
             return initialState;
         default:

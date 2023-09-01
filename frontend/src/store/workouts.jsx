@@ -40,7 +40,7 @@ export const createWorkout = workout => async dispatch => {
             method: 'POST',
             body: JSON.stringify(workout)
         })
-        const newWorkout = res.json()
+        const newWorkout = await res.json()
         dispatch(receiveWorkout(newWorkout))
     } catch(err) {
         const errors = await err.json();
