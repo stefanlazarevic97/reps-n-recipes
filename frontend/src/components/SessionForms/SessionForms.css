@@ -2,16 +2,17 @@
     background: white;
     padding: 2rem;
     border-radius: 0.5rem;
-    box-shadow: 0 0.1rem 0.4rem rgba(0, 0, 0, 0.1);
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
     width: 30%;
     margin: 0 auto;
     margin-top: 2rem;
 }
 
-.session-header {
+.header {
     text-align: center;
     font-size: 1.5rem;
     margin-bottom: 1rem;
+    font-weight: bold;
 }
 
 .session-form-input {
@@ -30,9 +31,8 @@
     display: block;
     width: 100%;
     padding: 1rem;
-    margin-top: 1rem;
     background: var(--blue);
-    color: white;
+    color: var(--background);
     border: none;
     border-radius: 0.25rem;
     font-size: 1.1rem;

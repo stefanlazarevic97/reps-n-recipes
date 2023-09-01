@@ -1,7 +1,54 @@
 .food-search-container {
-    border: 1px solid var(--navy);
-    background-color: var(--darkblue);
-    border-radius: 10px;
-    gap: 10px;
-    padding: 10px;
+    max-width: 100%;
+    margin: 1rem 0;
+    padding: 1rem;
+    background: white;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.food-search-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.food-search-dropdown-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 80%;
+    align-items: center;
+}
+.food-search-dropdown {
+    margin: 1rem;
+    text-align: start;
+}
+
+.food-search-dropdown-input {
+    text-align: start;
+    font-size: 1rem;
+    border: 1px solid var(--lightblue);
+    border-radius: 0.25rem;
+    padding: 0.5rem;
+    width: 75%;
+    height: 80%;
+}
+
+.food-search-input {
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid var(--lightblue);
+    border-radius: 0.25rem;
+    font-size: 1rem;
+    margin: 1rem;
+    box-sizing: border-box;
+}
+
+.food-search-input:focus {
+    outline: none;
+    border-color: var(--blue);
+}
+
+.button:hover {
+    background: var(--darkblue);
 }

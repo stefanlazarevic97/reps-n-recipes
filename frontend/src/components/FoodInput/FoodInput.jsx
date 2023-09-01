@@ -37,13 +37,16 @@ const FoodInput = () => {
     
     return (
         <div className='food-search-container'>
-            <h2 className="food-search">Search for a Food</h2>
+            <h2 className="header">Search for a Food</h2>
+            
             <form 
                 className="food-search-form"
                 onSubmit={handleSubmit}
             >
-                <label className="search-dropdown">Select Category:
+                <div className="food-search-dropdown-container">
+                    <label className="food-search-dropdown">Select Category: </label>
                     <select 
+                        className="food-search-dropdown-input"
                         value={selectedOption}
                         onChange={handleDropdownChange}
                     >
@@ -52,17 +55,15 @@ const FoodInput = () => {
                         <option value="menuItems">Menu Items</option>
                         <option value="recipes">Recipes</option>
                     </select>
-                </label>
+                </div>
 
-                <label className="search-label">
-                    <input 
-                        className='search-query'
-                        placeholder="Enter food name here"
-                        type="text" 
-                        value={searchQuery}
-                        onChange={handleSearchChange}
-                    />
-                </label>
+                <input 
+                    className='food-search-input'
+                    placeholder="Enter food name here"
+                    type="text" 
+                    value={searchQuery}
+                    onChange={handleSearchChange}
+                />
                 
                 <button className="button">Search</button>
             </form>
