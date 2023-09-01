@@ -4,7 +4,7 @@ import WorkoutForm from "../WorkoutForm/WorkoutForm"
 import { useEffect, useState } from "react"
 import { fetchExercises } from "../../store/exercises.jsx"
 import {TiTickOutline} from "react-icons/ti"
-
+import { useHistory } from "react-router-dom";
 import './WorkoutPage.css'
 import { createWorkout } from "../../store/workouts"
 
@@ -15,33 +15,22 @@ const WorkoutPage = () => {
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
     const currentUser = useSelector(state => state.session.user);
-    
+    const history = useHistory();
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
     
-    // console.log(exerciseList, "LISTTTT")
-    // const [setCounts, ]
+    const goToNutritionPage = () => {
+        history.push("/");
+    };
 
     const handleSubmit = () => {
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-
-        // debugger
-
         let updatedSets = currentWorkout.sets.map(exerciseObj => {
             const setArray = Object.values(exerciseObj)[0]
             const name = Object.keys(exerciseObj)[0]
             return {[name]: setArray.filter(setObj => setObj["done"])}
         })
-
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
-        
         const updatedWorkout = {...currentWorkout, sets: updatedSets}
-
-        // updatedWorkout = updatedWorkout.sets.filter(exercise => Object.values(exercise).length !== 0)
-
-        // debugger
-
-        // }
-        // currentWorkout
         dispatch(createWorkout(updatedWorkout))
     }
 
@@ -57,17 +46,13 @@ const WorkoutPage = () => {
     const resetWorkout = () => {
         const newWorkout = {
             title: "Workout title",
-            // description: "",
             sets: [],
-            // performer: currentUser._id,
-            // workoutType: ""
         }
         sessionStorage.setItem(
             "currentWorkout", JSON.stringify(newWorkout)
         )
         setExerciseList([])
     }
-
 
     useEffect(()=>{
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
@@ -98,21 +83,20 @@ const WorkoutPage = () => {
         const exercise = currentWorkout.sets.find(exercise => exercise[name])
         exercise[name][index]["kg"] = kgs
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+
         const updatedExerciseList = exerciseList.map(exercise => {
             if (exercise[name]) {
                 exercise[name][index]["kg"] = kgs
             }
+
             return exercise;
         })
+
         setExerciseList(updatedExerciseList)
     }
 
     const updateRepInput = (name, index, e) => {
-
-        // if ()
         const reps = Number(e.currentTarget.value) || null
-
-
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exercise = currentWorkout.sets.find(exercise => exercise[name])
         exercise[name][index]["reps"] = reps
@@ -128,7 +112,6 @@ const WorkoutPage = () => {
 
     const setDone = (name, index, e) => {
         let newDone = null
-
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exercise = currentWorkout.sets.find(exercise => exercise[name])
         if (exercise[name][index]["done"]){
@@ -139,8 +122,6 @@ const WorkoutPage = () => {
             newDone = true
         }
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
-
-        // update exerciseList
         const updatedExerciseList = exerciseList.map(exercise => {
             if (exercise[name]) {
                 exercise[name][index]["done"] = newDone
@@ -229,10 +210,21 @@ const WorkoutPage = () => {
                     />}
                     <button className="complete-workout" onClick={handleSubmit}>Complete Workout</button>       
                 </div>
+
+
+                <div className="toggle-button-container">
+                    <div id="toggle-page-type-button" 
+                        className="button wprkout-button" 
+                        onClick={goToNutritionPage}>
+                        <div>
+                            Nutrition
+                    </div>
+                </div>
+
+            </div>
             </div> 
         </>
     )
-
 }
 
 export default WorkoutPage

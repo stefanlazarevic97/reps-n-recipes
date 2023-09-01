@@ -231,3 +231,12 @@
 .cancel-workout:hover {
     background-color: rgba(255, 0, 0,0.2);
 }
+
+/* toggle to nutrition page */
+
+#toggle-page-type-button.nutrition-button{
+    background-color: var(--blue);
+}
+#toggle-page-type-button.nutrition-button:hover {
+    background-color: var(--darkblue);
+}

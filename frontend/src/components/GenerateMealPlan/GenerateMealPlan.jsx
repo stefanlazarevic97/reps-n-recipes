@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { generateMealPlan } from '../../store/foods';
 import './GenerateMealPlan.css';
@@ -6,9 +6,16 @@ import './GenerateMealPlan.css';
 const GenerateMealPlan = () => {
     const dispatch = useDispatch();
     const TDEE = Math.floor(useSelector(state => state.users.healthData.TDEE));
-    const [calories, setCalories] = useState(TDEE);
+    const weightGoal = useSelector(state => state.users.healthData.weightGoal);
+    const targetCalories = TDEE + weightGoal * 250;
+    const [calories, setCalories] = useState(targetCalories);
     const [diet, setDiet] = useState('');
     const [exclusions, setExclusions] = useState('');
+
+    useEffect(() => {
+        setCalories(TDEE)
+        setCalories(targetCalories)
+    }, [TDEE])
 
     const diets = [
         'Gluten Free', 
@@ -30,14 +37,23 @@ const GenerateMealPlan = () => {
 
     return (
         <div className='meal-plan-generator-container'>
-            <form onSubmit={handleSubmit}>
-                <input 
-                    type="number"
-                    value={calories}
-                    onChange={e => setCalories(e.target.value)} 
-                    />
+            <h1 className="header">Generate Meal Plan</h1>
+            <form 
+                className="meal-plan-generator-form"
+                onSubmit={handleSubmit}
+            >
+                <div className="tdee-container">
+                    <label className="tdee-label">Calories:</label>
+                    <input 
+                        className="food-search-input"
+                        type="number"
+                        value={calories}
+                        onChange={e => setCalories(e.target.value)} 
+                        />
+                </div>
 
                 <select
+                    className="food-search-input"
                     value={diet}
                     onChange={e => setDiet(e.target.value)}  
                     >
@@ -48,15 +64,15 @@ const GenerateMealPlan = () => {
                         ))}
                 </select>
                 
-                <label>Excluded ingredients, separated by a comma:
-                    <input
-                        value={exclusions}
-                        onChange={e => setExclusions(e.target.value)}
-                        placeholder="nuts, dairy, etc."
-                        />
-                </label>
+                <label>Excluded ingredients, separated by a comma:</label>
+                <input
+                    className="food-search-input"
+                    value={exclusions}
+                    onChange={e => setExclusions(e.target.value)}
+                    placeholder="Nuts, dairy, etc."
+                    />
 
-                <button>Generate Meal Plan</button>
+                <button className="button">Generate Meal Plan</button>
             </form>
         </div>
     )

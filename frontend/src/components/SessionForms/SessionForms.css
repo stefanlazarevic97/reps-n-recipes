@@ -49,3 +49,35 @@
     text-align: center;
     margin-bottom: 0.5rem;
 }
+
+/* bottom right rtoggle buttons  */
+
+.toggle-button-container{
+    /* background-color: purple; */
+    height: 100px;
+    width: 180px;
+    position: fixed;
+    z-index: 100;
+    right: 0;
+    bottom: 0;
+}
+
+#toggle-page-type-button{
+    position: sticky;
+    width: 100px;
+    height: 32px;
+    border-radius: 32px;
+    font-size: 20px;
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s ease;
+    box-shadow: 3px 3px 5px #888888;
+    z-index: 200;
+}
+
+#toggle-page-type-button:hover{
+    transform: scale(1.1);
+    box-shadow: 5px 5px 10px #888888;
+}

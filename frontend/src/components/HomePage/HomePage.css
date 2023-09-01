@@ -72,3 +72,9 @@
     color: var(--blue);
 }
 
+#toggle-page-type-button.workout-button{
+    background-color: var(--logo-orange);
+}
+#toggle-page-type-button.workout-button:hover {
+    background-color: var(--logo-orange-dark);
+}

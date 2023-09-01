@@ -44,9 +44,9 @@ const FoodInput = () => {
                 onSubmit={handleSubmit}
             >
                 <div className="food-search-dropdown-container">
-                    <label className="food-search-dropdown">Select Category: </label>
+                    <label className="food-search-dropdown-label">Select Category: </label>
                     <select 
-                        className="food-search-dropdown-input"
+                        className="food-search-input"
                         value={selectedOption}
                         onChange={handleDropdownChange}
                     >

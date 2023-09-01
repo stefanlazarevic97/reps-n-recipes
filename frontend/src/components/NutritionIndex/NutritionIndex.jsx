@@ -6,6 +6,7 @@ import { fetchUserNutritionByDay, getUserNutritionByDay } from '../../store/user
 import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
 import { deleteUserNutrition } from '../../store/foods';
 import FoodUpdateForm from '../FoodUpdateForm/FoodUpdateForm';
+import titleize from '../../Utils/utils'
 const moment = require('moment');
 
 Chart.register(PieController, ArcElement, Tooltip);
@@ -50,14 +51,20 @@ const NutritionIndex = () => {
     
     const options = {
         plugins: {
-            tooltip: {
+            legend: {
+
+            },
+            tooltip: {            
+                bodyFont: {
+                    size: 18
+                },
                 callbacks: {
                     label: function(context) {
-                        const label = context.label || ''
-                        const value = context.parsed || ''
+                        const label = context.label || '';
+                        const value = context.parsed || '';
                         const dataset = context.chart.data.datasets[context.datasetIndex];
-                        const percentage = dataset.percentages[context.dataIndex]
-                        return `${label}: ${value} (${percentage}%)`
+                        const percentage = dataset.percentages[context.dataIndex];
+                        return `${label}: ${value} (${percentage}%)`;
                     }
                 }
             }
@@ -86,10 +93,10 @@ const NutritionIndex = () => {
 
                     <div className="daily-nutrition-facts">
                         <h1 className="header">{moment(selectedDate).format('dddd, MMMM D')}</h1>
-                        <div>Calories: {Math.round(dailyCalories).toFixed(1)}</div>
-                        <div>Carbohydrates: {Math.round(dailyCarbs).toFixed(1)} g</div>
-                        <div>Fat: {Math.round(dailyFat).toFixed(1)} g</div>
-                        <div>Protein: {Math.round(dailyProtein).toFixed(1)} g</div>
+                        <div>Calories: {Math.round(dailyCalories)}</div>
+                        <div>Carbohydrates: {Math.round(dailyCarbs)} g</div>
+                        <div>Fat: {Math.round(dailyFat)} g</div>
+                        <div>Protein: {Math.round(dailyProtein)} g</div>
                     </div>
                 </div>
 
@@ -105,14 +112,14 @@ const NutritionIndex = () => {
                         <h3 
                             className="nutrition-facts-header"
                         >
-                            {food.foodName}
+                            {titleize(food.foodName)}
                         </h3>
                         <div className='macros-item'>
                             <div className='nutrition-facts'>
-                                <div>Calories: {Math.round(food.calories).toFixed(1)}</div>
-                                <div>Carbohydrates: {Math.round(food.gramsCarbs).toFixed(1)} g</div>
-                                <div>Fat: {Math.round(food.gramsFat).toFixed(1)} g</div>
-                                <div>Protein: {Math.round(food.gramsProtein).toFixed(1)} g</div>
+                                <div>Calories: {Math.round(food.calories)}</div>
+                                <div>Carbohydrates: {Math.round(food.gramsCarbs)} g</div>
+                                <div>Fat: {Math.round(food.gramsFat)} g</div>
+                                <div>Protein: {Math.round(food.gramsProtein)} g</div>
                             </div>
 
                             <div className="update-delete-button-container">

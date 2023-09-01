@@ -14,24 +14,15 @@
 }
 
 .food-search-dropdown-container {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    width: 80%;
+    display: flex;
+    justify-content: space-between;
     align-items: center;
-}
-.food-search-dropdown {
-    margin: 1rem;
-    text-align: start;
+    width: 100%;
 }
 
-.food-search-dropdown-input {
-    text-align: start;
-    font-size: 1rem;
-    border: 1px solid var(--lightblue);
-    border-radius: 0.25rem;
-    padding: 0.5rem;
-    width: 75%;
-    height: 80%;
+.food-search-dropdown-label {
+    box-sizing: border-box;
+    width: 60%;
 }
 
 .food-search-input {
@@ -40,13 +31,13 @@
     border: 1px solid var(--lightblue);
     border-radius: 0.25rem;
     font-size: 1rem;
-    margin: 1rem;
+    margin: 1rem 0;
     box-sizing: border-box;
 }
 
 .food-search-input:focus {
     outline: none;
-    border-color: var(--blue);
+    border: 1px solid var(--blue);
 }
 
 .button:hover {

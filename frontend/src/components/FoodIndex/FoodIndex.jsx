@@ -3,8 +3,8 @@ import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import moment from 'moment';
-import { changeSelectedDate } from '../../store/ui';
 import {fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes} from '../../store/foods'
+import titleize from '../../Utils/utils'
 
 const FoodIndex = () => {
     const dispatch = useDispatch();
@@ -17,10 +17,10 @@ const FoodIndex = () => {
     const [searchResults, setSearchResults] = useState(foods);
     const [offset, setOffset] = useState(0);
 
-    const handleDateChange = (e) => {
-        setSelectedDate(e.target.value);
-        dispatch(changeSelectedDate(e.target.value));
-    }
+    // const handleDateChange = (e) => {
+    //     setSelectedDate(e.target.value);
+    //     dispatch(changeSelectedDate(e.target.value));
+    // }
 
     const handleQuantityChange = (e) => {
         setFoodQuantity(e.target.value);
@@ -141,89 +141,93 @@ const FoodIndex = () => {
     } 
         
     return (
-        <div className="food-index">
-            <div className="date-input-container">
-                <label className="date-label">Select Date: </label>
+        <>
+            {searchResults.length > 0 && 
+                <div className="food-index">
+                    {/* <div className="date-input-container">
+                        <label className="date-label">Select Date: </label>
+                        
+                        <input 
+                            className="date-input"
+                            type="date" 
+                            value={selectedDate} 
+                            onChange={handleDateChange} 
+                        />
+                    </div> */}
                 
-                <input 
-                    className="date-input"
-                    type="date" 
-                    value={selectedDate} 
-                    onChange={handleDateChange} 
-                />
-            </div>
-         
-            <h2 className="header">Search Results</h2>
-            
-            <ul className="food-item-container">
-                {searchResults && searchResults.map(food => (
-                    <li
-                        onClick={() => handleClick(food)}
-                        key={food.id}
-                        className="food-item"
-                    >
-                        {food.name ? food.name : food.title }
-                    </li>
-                ))}
-                
-                <div className="pagination-button-container">
-                    {offset > 9 && (
-                        <button 
-                            onClick={handlePreviousPage}
-                            className="button pagination-button"
-                        >
-                            Previous Page
-                        </button>
-                    )}
-
-                    {Object.values(searchResults).length === 10 && Object.values(searchResults) !== 0 && (
-                        <button 
-                            onClick={handleNextPage}
-                            className="button pagination-button"
-                        >
-                            Next Page
-                        </button>
-                    )}
-                </div>
-            </ul>
-
-            <div className="selected-food-container">
-                {selectedFood && (
-                    <div className="selected-food">
-                        <div className="nutrition-facts">
-                            <h3 className="nutrition-facts-header">{selectedFood.name ? selectedFood.name : selectedFood.title}</h3>
-                            <p>Calories: {destructureFood('Calories')}</p>
-                            <p>Carbs: {destructureFood('Carbohydrates')} g</p>
-                            <p>Fat: {destructureFood('Fat')} g</p>
-                            <p>Protein: {destructureFood('Protein')} g</p>
-                            {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
-                        </div>
-
-                        <div className="food-index-quantity-container">
-                            <label 
-                                className="food-index-quantity-label"
+                    <h2 className="header">Search Results</h2>
+                    
+                    <ul className="food-item-container">
+                        {searchResults && searchResults.map(food => (
+                            <li
+                                onClick={() => handleClick(food)}
+                                key={food.id}
+                                className="food-item"
                             >
-                                Quantity:               
-                            </label>
-                            <input 
-                                className="food-index-input"
-                                type="number" 
-                                id="quantity" 
-                                value={foodQuantity} 
-                                onChange={handleQuantityChange} 
-                            />    
-                        </div>
+                                {food.name ? titleize(food.name) : titleize(food.title) }
+                            </li>
+                        ))}
+                        
+                        <div className="pagination-button-container">
+                            {offset > 9 && (
+                                <button 
+                                    onClick={handlePreviousPage}
+                                    className="button pagination-button"
+                                >
+                                    Previous Page
+                                </button>
+                            )}
 
-                        <button 
-                            className="button" 
-                            onClick={handleAddFood}
-                        >
-                            Add Food
-                        </button>
+                            {Object.values(searchResults).length === 10 && Object.values(searchResults) !== 0 && (
+                                <button 
+                                    onClick={handleNextPage}
+                                    className="button pagination-button"
+                                >
+                                    Next Page
+                                </button>
+                            )}
+                        </div>
+                    </ul>
+
+                    <div className="selected-food-container">
+                        {selectedFood && (
+                            <div className="selected-food">
+                                <div className="nutrition-facts">
+                                    <h3 className="nutrition-facts-header">{selectedFood.name ? titleize(selectedFood.name) : titleize(selectedFood.title)}</h3>
+                                    <p>Calories: {Math.round(destructureFood('Calories'))}</p>
+                                    <p>Carbs: {Math.round(destructureFood('Carbohydrates'))} g</p>
+                                    <p>Fat: {Math.round(destructureFood('Fat'))} g</p>
+                                    <p>Protein: {Math.round(destructureFood('Protein'))} g</p>
+                                    {servingAmount() && servingUnit() && <p>Serving Size: {servingAmount()} {servingUnit()}</p>}
+                                </div>
+
+                                <div className="food-index-quantity-container">
+                                    <label 
+                                        className="food-index-quantity-label"
+                                    >
+                                        Quantity:               
+                                    </label>
+                                    <input 
+                                        className="food-index-input"
+                                        type="number" 
+                                        id="quantity" 
+                                        value={foodQuantity} 
+                                        onChange={handleQuantityChange} 
+                                    />    
+                                </div>
+
+                                <button 
+                                    className="button" 
+                                    onClick={handleAddFood}
+                                >
+                                    Add Food
+                                </button>
+                            </div>
+                        )}
                     </div>
-                )}
-            </div>
-        </div>
+                </div>
+            }
+        </>
     )
 }
 
