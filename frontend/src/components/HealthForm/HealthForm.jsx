@@ -123,7 +123,7 @@ const HealthForm = () => {
             console.error("No user available to update");
         }
 
-        setTargetCalories(tdee + weightGoal*250)  
+        setTargetCalories(tdee + weightGoal*500)  
     }
 
     return (
