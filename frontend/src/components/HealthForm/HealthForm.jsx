@@ -10,6 +10,7 @@ const HealthForm = () => {
     const dispatch = useDispatch()
     const active = useSelector(getHealthFormState)
     const currentUser = useSelector(state => state.session.user);
+    const userHealthData = useSelector(state => state.users.healthData)
     const [distanceUnit, setDistanceUnit] = useState('feet-inches'); 
     const [massUnit, setMassUnit] = useState('pounds'); 
     const [weight, setWeight] = useState('');
@@ -26,11 +27,39 @@ const HealthForm = () => {
     const errors = useSelector(state => state.errors.session);
     const [isHovered, setIsHovered] = useState({ S: false, LA: false, MA: false, VA: false, EA: false });
 
+    const revertActivityLevelMap = {
+        1: "S",
+        2: "LA",
+        3: "MA",
+        4: "VA",
+        5: "EA"
+    };
+
+    const cmToFeetInches = cm => {
+        const totalInches = cm / 2.54;
+        const feet = Math.floor(totalInches / 12);
+        const inches = Math.round(totalInches % 12);
+        return { feet, inches };
+    }
+    useEffect(()=>{
+        if (userHealthData) {
+            if (massUnit === 'pounds') {
+                setWeight(Math.round(userHealthData.mass * 2.2) || '');
+            } else {
+                setWeight(Math.round(userHealthData.mass) || '');
+            }
+            setFoot(cmToFeetInches(userHealthData.height).feet || '');
+            setInch(cmToFeetInches(userHealthData.height).inches || '');
+            setCm(userHealthData.height || '');
+            setAge(userHealthData.age || '');
+            setSex(userHealthData.sex || null);
+            setActivity(revertActivityLevelMap[userHealthData.activityLevel] || null);
+            setWeightGoal(userHealthData.weightGoal || null);
+        }
+    },[userHealthData, massUnit])
+
     if (!active) return null
 
-    // useEffect(()=>{
-        
-    // },[])
 
     const handleExit = e => {
         e.stopPropagation()
@@ -90,8 +119,8 @@ const HealthForm = () => {
     }
 
     const TDEE = (mass, height, coeff) => {
-        const tdee = (sex === "M") ? coeff*(10*mass + 6.25*height - 5*age + 5)
-        : coeff*(10*mass + 6.25*height - 5*age - 161)
+        const tdee = (sex === "M") ? coeff * (10 * mass + 6.25 * height - 5 * age + 5)
+        : coeff * (10 * mass + 6.25 * height - 5 * age - 161)
         setTdee(tdee)
         return tdee
     }
