@@ -6,7 +6,7 @@ const Exercise = mongoose.model('Exercise')
 const handleValidationErrors = require("../../validation/handleValidationErrors");
 const Workout = mongoose.model('Workout')
 const User = mongoose.model('User')
-const { requireUser, restoreUser } = require('../../config/passport')
+const { requireUser } = require('../../config/passport')
 const validateWorkout = require('../../validation/workout');
 
 
