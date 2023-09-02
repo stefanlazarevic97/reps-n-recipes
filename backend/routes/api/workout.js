@@ -1,6 +1,5 @@
 const express = require("express");
 const router = express.Router();
-const passport = require('passport');
 const mongoose = require('mongoose');
 const Exercise = mongoose.model('Exercise')
 const handleValidationErrors = require("../../validation/handleValidationErrors");
