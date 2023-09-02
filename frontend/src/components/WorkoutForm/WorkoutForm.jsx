@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deactivateWorkoutForm } from '../../store/ui';
-import { FaSearch } from "react-icons/fa"
+import { FaSearch } from "react-icons/fa";
+import React, { useState } from 'react';
 import './WorkoutForm.css';
 
 const WorkoutForm = ({
@@ -12,6 +13,8 @@ const WorkoutForm = ({
     listItems
 }) => {
     const dispatch = useDispatch();
+
+    const [isFocused, setIsFocused] = useState(false);
 
     const handleExit = e => {
         e.stopPropagation();
@@ -82,16 +85,20 @@ const WorkoutForm = ({
             <div className="workout-form-background" onClick={handleExit}></div>
             <form className="workout-form" onSubmit={handleSubmit}>
                 <h3 className="subheader">Choose an Exercise</h3>
-                
-                <div className="search-exercise">
-                    <FaSearch className='search-icon'/>
 
+                <div className={`search-container ${isFocused ? 'focused' : ''}`}>
+                    <div className="search-exercise">
+                        <FaSearch className='search-icon'/>
+                    </div>
                     <input 
                         className="search-input"
                         type="text" 
                         placeholder='Search for exercise...'
+                        onFocus={() => setIsFocused(true)}
+                        onBlur={() => setIsFocused(false)}
                     />
                 </div>
+                
 
                 <button 
                     onClick={handleAdd}
