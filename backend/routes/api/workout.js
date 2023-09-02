@@ -30,6 +30,16 @@ router.get('/', requireUser, async (req, res) => {
 //     }
 // })
 
+router.get('/', requireUser, async (req, res) => {
+    try {
+        const workouts = await Workout.find({ performer: req.user._id })
+        .populate('performer', '_id username')
+        return res.json(workouts)
+    } catch(err) {
+        return res.json([])
+    }
+})
+
 router.post('/', requireUser, async (req, res, next) => {
     try {
         const newWorkout = {
@@ -38,9 +48,9 @@ router.post('/', requireUser, async (req, res, next) => {
         }
         console.log(newWorkout)
         let currentUser = await User.findById(req.user._id);
-        currentUser.workout.push(newWorkout);
+        currentUser.workouts.push(newWorkout);
         await currentUser.save();
-        return res.json({ workouts: currentUser.workout });
+        return res.json({ workouts: currentUser.workouts});
     } catch(err) {
         next(err)
     }

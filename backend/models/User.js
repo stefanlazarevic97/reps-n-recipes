@@ -69,7 +69,7 @@ const userSchema = new Schema({
         required: true
     },
     nutrition: [nutritionSchema],
-    workout: [workoutSchema],
+    workouts: [workoutSchema],
     healthData: {
         mass: Number,
         height: Number,
