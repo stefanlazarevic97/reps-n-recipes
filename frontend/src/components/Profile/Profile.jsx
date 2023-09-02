@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
 import titleize from '../../Utils/utils'
 import './Profile.css'
+import NutritionCharts from '../NutritionCharts/NutritionCharts';
 
 const Profile = () => {
     const currentUser = useSelector(state => state.session.user);    
     const healthData = useSelector(state => state.users.healthData)
-
 
     return (
         <div>
@@ -17,6 +17,8 @@ const Profile = () => {
                 <div>Activity Level: {healthData.activityLevel}</div>
                 <div>TDEE: {Math.round(healthData.TDEE)}</div>
             </div>
+
+            <NutritionCharts />
         </div>
     );
 }
