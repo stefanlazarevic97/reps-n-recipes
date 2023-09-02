@@ -7,14 +7,16 @@
     justify-content: center;
 }
 
+.select-workout-container{
+    width: 400px;
+    border: 1px solid black;
+}
+
 .workout-page-inner {
-    /* background-color: rgb(178, 250, 226); */
     width: 600px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    /* justify-content: center; */
-    /* align-items: center; */
     padding: 0 80px;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
@@ -23,7 +25,6 @@
 
 .create-workout-h1 {
     font-size: 24px;
-    /* margin-bottom: 20px; */
 }
 
 .create-workout-header{
@@ -205,10 +206,6 @@
     border-radius: 50%;
 }
 
-.cross-button:hover{
-    /* background-color: var(--darkorangehover); */
-}
-
 .tick-button{
     font-size: 32px;
     border-radius: 50%;
@@ -216,16 +213,13 @@
 
 .tick-button:hover {
     background-color: rgba(0, 255, 0, 0.2);
-    /* background-color: #cccc; */
 }
 
 .done-overlay {
     background-color: rgba(0, 255, 0, 0.2);
-    /* z-index: 10; */
 }
 
 .input-upper.done-overlay input {
-    /* background-color: white; */
     background-color: transparent;
 }
 

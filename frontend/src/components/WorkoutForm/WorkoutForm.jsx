@@ -84,32 +84,34 @@ const WorkoutForm = ({
         <div className="workout-form-container">
             <div className="workout-form-background" onClick={handleExit}></div>
             <form className="workout-form" onSubmit={handleSubmit}>
-                <h3 className="subheader">Choose an Exercise</h3>
+                {/* <h3 className="subheader exercise-subheader">Choose an Exercise</h3> */}
 
-                <div className={`search-container ${isFocused ? 'focused' : ''}`}>
-                    <div className="search-exercise">
-                        <FaSearch className='search-icon'/>
+                <div className='add-search-container'>
+
+                    <div className={`search-container ${isFocused ? 'focused' : ''}`}>
+                        <div className="search-exercise">
+                            <FaSearch className='search-icon'/>
+                        </div>
+                        <input 
+                            className="search-input"
+                            type="text" 
+                            placeholder='Search for exercise...'
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                        />
                     </div>
-                    <input 
-                        className="search-input"
-                        type="text" 
-                        placeholder='Search for exercise...'
-                        onFocus={() => setIsFocused(true)}
-                        onBlur={() => setIsFocused(false)}
-                    />
-                </div>
-                
 
-                <button 
-                    onClick={handleAdd}
-                    className={
-                        `${selectedExercise ?
-                        "workout-button ready-to-press" 
-                        : "workout-button hidden"}`
-                    }
-                >
-                    Add
-                </button>
+                    <button 
+                        onClick={handleAdd}
+                        className={
+                            `${selectedExercise ?
+                            "workout-button ready-to-press" 
+                            : "workout-button hidden"}`
+                        }
+                    >
+                        Add
+                    </button>
+                </div>
 
                 <div className="list-wrapper">
                     {mapListItems()}

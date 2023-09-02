@@ -174,7 +174,7 @@ button.ready-to-press {
 
 .workout-form {
     background: var(--background-workout);
-    padding: 2rem;
+    /* padding: 0 2rem; */
     border-radius: 0.5rem;
     position: absolute;
     top: 50%;
@@ -184,6 +184,10 @@ button.ready-to-press {
     overflow: auto;
 }
 
+.exercise-subheader{
+    margin-top: 2rem;
+}
+
 @media (max-width: 600px) {
     .workout-form {
         width: 90%;
@@ -191,7 +195,21 @@ button.ready-to-press {
     }
 }
 
+.add-search-container{
+    position: sticky;
+    top: 0;
+    /* padding: 20px; */
+    /* width: calc(100% + 40px); */
+    padding: 2rem;
+    background: var(--background-workout);
+    /* border: 1px solid black; */
+    z-index: 20;
+}
+
 .workout-button {
+    /* position: sticky;
+    top: 0; */
+
     display: block;
     width: 100%;
     padding: 1rem;
@@ -221,25 +239,20 @@ button.ready-to-press {
     align-items: center;
     background-color: white;
     border-radius: 0.5rem;
-    margin: 1rem 0; 
+    margin: 1rem 0;
+    /* margin: 1rem 0;  */
 }
-
 
 .search-container.focused {
     border: 1px solid var(--orange);
     border-radius: 0.5rem;
 }
-/* border: 1px solid var(--orange); */
 
 .search-exercise {
     margin-left: 1rem; 
     height: 30px;
     width: 30px;
-    /* background: blue; */
-    /* border-radius: 0.5rem; */
     box-sizing: border-box;
-    /* padding: 1rem 0; */
-
     display: flex;
     align-items: center;
     justify-content: center;
@@ -257,12 +270,10 @@ button.ready-to-press {
 
 .search-input:focus {
     outline: none;
-    /* border: 1px solid var(--orange); */
 }
 
 .search-icon {
     color: var(--orange);
-    /* margin-right: 1rem; */
     font-size: 2rem;
 }
 
@@ -284,6 +295,10 @@ button.ready-to-press {
 
 .exercise-gif {
     height: 5rem;
+}
+
+.list-wrapper{
+    margin: 0 2rem;
 }
 
 .list-item:hover {

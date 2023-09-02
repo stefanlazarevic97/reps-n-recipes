@@ -8,6 +8,7 @@ import { useHistory } from "react-router-dom";
 import { createWorkout } from "../../store/workouts";
 import { LuCross } from "react-icons/lu";
 import {MdRemoveCircleOutline} from "react-icons/md";
+import SelectWorkoutTemplate from "./SelectWorkoutTemplate"
 import './WorkoutPage.css'
 
 const WorkoutPage = () => {
@@ -210,7 +211,12 @@ const WorkoutPage = () => {
     return (
         <>
             <div className="workout-page-container">
+            <div className="select-workout-container">
+                <SelectWorkoutTemplate/>
+            </div>
+
                 <div className="workout-page-inner">
+                    
                     <div className="create-workout-header">
                         <h1 className="create-workout-h1">Create your workout</h1>
                         <button 
