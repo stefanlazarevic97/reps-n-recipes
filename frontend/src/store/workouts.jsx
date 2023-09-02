@@ -49,7 +49,6 @@ export const createWorkout = workout => async dispatch => {
 }
 
 const workoutsReducer = (state = {}, action) => {
-    const nextState = { ...state }
     switch (action.type) {
         default:
             return state
