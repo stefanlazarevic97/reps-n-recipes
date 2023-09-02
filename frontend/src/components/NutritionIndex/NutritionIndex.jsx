@@ -39,13 +39,20 @@ const NutritionIndex = () => {
         dispatch(fetchUserNutritionByDay(selectedDate))
     }, [dispatch])
 
-    const data = {
+    const data = !totalMacros ? {
+        labels: ['No Data'],
+        datasets: [{
+            data: [100],
+            backgroundColor: ['#2D69AF'],
+            hoverBackgroundColor: ['#2D69AF']
+        }]
+    } : {
         labels: ['Carbs', 'Fat', 'Protein'],
         datasets: [{
             data: [dailyCarbs, dailyFat, dailyProtein],
             percentages: [carbsPercentage, fatPercentage, proteinPercentage],
-            backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56'],
-            hoverBackgroundColor: ['#FF6384', '#36A2EB', '#FFCE56']
+            backgroundColor: ['#2D69AF', '#33302E', '#FE6A15'],
+            hoverBackgroundColor: ['#2D69AF', '#33302E', '#FE6A15']
         }]
     }
     
@@ -60,6 +67,9 @@ const NutritionIndex = () => {
                 },
                 callbacks: {
                     label: function(context) {
+                        if (!totalMacros) {
+                            return 'No Nutrition Data Yet';
+                        }
                         const label = context.label || '';
                         const value = context.parsed || '';
                         const dataset = context.chart.data.datasets[context.datasetIndex];
