@@ -10,3 +10,17 @@
     --orange: #fe6a15;
     --darkorange: #e93b00;
 }
+
+.footer {
+    background-color: var(--blue);
+    color: var(--background);
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    box-sizing: border-box;
+    height: 7.5vh;
+    bottom: 0;
+    margin-top: 1rem;
+}

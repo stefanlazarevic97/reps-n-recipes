@@ -30,8 +30,6 @@ export const getUserNutritionByDay = state => {
     return dailyNutrition;
 }
 
-// export const getUserHealthData = state => {}
-
 // THUNK ACTION CREATORS
 
 export const updateUser = updatedUser => async dispatch => {
@@ -63,7 +61,7 @@ export const fetchUserNutritionByDay = selectedDate => async dispatch => {
 
 const initialState = {
     nutritionItems: {},
-    workouts: {},
+    workouts: [],
     healthData: {},
     mealPlan: {}
 };
@@ -75,7 +73,7 @@ const usersReducer = (state = initialState, action) => {
         case RECEIVE_CURRENT_USER:
             nextState.nutritionItems = action.currentUser?.nutritionData ? action.currentUser.nutritionData : {}
             nextState.healthData = action.currentUser?.healthData ? action.currentUser.healthData : {}
-            nextState.workouts = action.currentUser?.workouts ? action.currentUser.workouts : {}
+            nextState.workouts = action.currentUser?.workouts || []
             return nextState
         case RECEIVE_USER_NUTRITION:
             nextState.nutritionItems = action.userNutrition.nutrition
@@ -89,8 +87,11 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, healthData: action.healthData };
         case RECEIVE_MEAL_PLAN:
             return { ...state, mealPlan: action.mealPlan };
-        case RECEIVE_WORKOUT:
-            nextState.workouts = action.workout
+            case RECEIVE_WORKOUT:
+                nextState.workouts = [...nextState.workouts, ...action.workout.workouts];
+                return nextState;            
+        case RECEIVE_WORKOUTS:
+            nextState.workouts = action.workouts;
             return nextState;
         case RECEIVE_USER_LOGOUT:
             return initialState;

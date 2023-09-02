@@ -1,8 +1,4 @@
 import { useSelector } from 'react-redux';
-import FoodInput from '../FoodInput/FoodInput';
-import FoodIndex from '../FoodIndex/FoodIndex';
-import { useState } from 'react';
-import NutritionIndex from '../NutritionIndex/NutritionIndex'
 import titleize from '../../Utils/utils'
 import './Profile.css'
 
@@ -16,7 +12,7 @@ const Profile = () => {
             <h2 className="header">Hello, {titleize(currentUser.username)}</h2>
             <div className="profile-info">
                 <div>Mass: {Math.round(healthData.mass)} kg</div>
-                <div>Height: {healthData.height} cm</div>
+                <div>Height: {Math.round(healthData.height)} cm</div>
                 <div>Age: {healthData.age}</div>
                 <div>Activity Level: {healthData.activityLevel}</div>
                 <div>TDEE: {Math.round(healthData.TDEE)}</div>
