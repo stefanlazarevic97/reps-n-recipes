@@ -1,8 +1,4 @@
 import { useSelector } from 'react-redux';
-import FoodInput from '../FoodInput/FoodInput';
-import FoodIndex from '../FoodIndex/FoodIndex';
-import { useState } from 'react';
-import NutritionIndex from '../NutritionIndex/NutritionIndex'
 import titleize from '../../Utils/utils'
 import './Profile.css'
 
