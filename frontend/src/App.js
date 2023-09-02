@@ -19,10 +19,11 @@ function App() {
     }, [dispatch]);
 
     return loaded && (
-        <>
+        <div className="app-container">
             <NavBar />
-            <ProtectedRoute exact path="/" component={HomePage} />
+            
             <Switch>
+                <ProtectedRoute exact path="/" component={HomePage} />
                 <AuthRoute exact path="/login" component={LoginForm} />
                 <AuthRoute exact path="/signup" component={SignUpForm} />
                 <ProtectedRoute exact path="/workout" component={WorkoutPage} />
@@ -32,7 +33,7 @@ function App() {
             <footer className="footer">
                 Copyright &copy; 2023 Reps 'N' Recipes
             </footer>
-        </>
+        </div>
     );
 }
 

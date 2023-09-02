@@ -1,5 +1,6 @@
 import jwtFetch from './jwt'
 import { RECEIVE_USER_LOGOUT } from './session';
+import moment from 'moment';
 
 // CONSTANTS
 
@@ -45,6 +46,23 @@ const clearFoodErrors = () => ({ type: CLEAR_FOOD_ERRORS });
 export const getFoods = state => Object.values(state.foods);
 export const getFood = foodId => state => state.foods.results[foodId]
 export const getFullFoodItem = selectedFood => state => state.foods[selectedFood.id]
+
+export const getNutritionByDate = nutrient => state => {
+    const nutritionByDate = {};
+
+    state.users.nutritionItems.forEach(item => {
+        const date = moment(item.dateConsumed).add(1, 'days').format('MMM D'); 
+        const amount = item[nutrient];
+
+        if (date in nutritionByDate) {
+            nutritionByDate[date] += amount; 
+        } else {
+            nutritionByDate[date] = amount;
+        } 
+    });
+
+    return nutritionByDate;
+}
 
 // THUNK ACTION CREATORS
 
