@@ -86,11 +86,15 @@ const seedDatabase = async () => {
 
     for (let exercise of exerciseData) {
         for (let i = 0; i < exercise.nameArr.length; i++) {
-            await Exercise.create({
-                name: exercise.nameArr[i],
-                muscleGroup: exercise.muscleGroup,
-                gif: exercise.imgUrlArr[i]
-            });
+            try {
+                await Exercise.create({
+                    name: exercise.nameArr[i],
+                    muscleGroup: exercise.muscleGroup,
+                    gif: exercise.imgUrlArr[i]
+                });
+            } catch (err) {
+                console.error(`Error creating exercise: ${exercise.nameArr[i]}`, err);
+            }
         }
     }
 
