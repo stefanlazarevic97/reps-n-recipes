@@ -2,7 +2,6 @@ import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import moment from 'moment';
 import {fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes} from '../../store/foods'
 import titleize from '../../Utils/utils'
 
@@ -10,7 +9,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
     const dispatch = useDispatch();
     const foods = useSelector(getFoods);
     const selectedOption = useSelector(state => state.ui.selectedOption);
-    const date = useSelector(state => state.ui.selectedDate);
+    // const date = useSelector(state => state.ui.selectedDate);
     // const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
