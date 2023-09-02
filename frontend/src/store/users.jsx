@@ -30,8 +30,6 @@ export const getUserNutritionByDay = state => {
     return dailyNutrition;
 }
 
-// export const getUserHealthData = state => {}
-
 // THUNK ACTION CREATORS
 
 export const updateUser = updatedUser => async dispatch => {
