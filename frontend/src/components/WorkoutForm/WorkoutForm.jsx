@@ -59,7 +59,7 @@ const WorkoutForm = ({
                         setSelectedExercise('') : 
                         setSelectedExercise(item.name)
                     }
-                >
+                    >
                     <div
                         className="exercise-container"
                     >

@@ -198,18 +198,12 @@ button.ready-to-press {
 .add-search-container{
     position: sticky;
     top: 0;
-    /* padding: 20px; */
-    /* width: calc(100% + 40px); */
     padding: 2rem;
     background: var(--background-workout);
-    /* border: 1px solid black; */
     z-index: 20;
 }
 
 .workout-button {
-    /* position: sticky;
-    top: 0; */
-
     display: block;
     width: 100%;
     padding: 1rem;
@@ -240,7 +234,6 @@ button.ready-to-press {
     background-color: white;
     border-radius: 0.5rem;
     margin: 1rem 0;
-    /* margin: 1rem 0;  */
 }
 
 .search-container.focused {
