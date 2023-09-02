@@ -24,7 +24,8 @@ router.get('/current', restoreUser, (req, res) => {
     res.json({
         user: {_id: req.user._id, username: req.user.username, email: req.user.email},
         healthData: req.user.healthData,
-        nutritionData: req.user.nutrition
+        nutritionData: req.user.nutrition,
+        workouts: req.user.workouts
     });
 })
 

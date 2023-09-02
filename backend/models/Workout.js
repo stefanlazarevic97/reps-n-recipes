@@ -5,10 +5,6 @@ const workoutSchema = new Schema({
 
     title: { type: String, required: true },
 
-    // description: { type: String }, 
-
-    // duration: { type: Number, min: 0 },
-
     performer: { 
         type: Schema.Types.ObjectId, 
         ref: 'User'
