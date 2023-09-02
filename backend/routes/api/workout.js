@@ -20,16 +20,6 @@ router.get('/', requireUser, async (req, res) => {
     } 
 })
 
-// router.post('/', requireUser, async (req, res) => {
-//     try {
-//         const workout = await Workout.create(req.body)
-//         .populate('performer', '_id username')
-//         return res.json(workout);
-//     } catch (err) {
-//         next(err)
-//     }
-// })
-
 router.get('/', requireUser, async (req, res) => {
     try {
         const workouts = await Workout.find({ performer: req.user._id })
