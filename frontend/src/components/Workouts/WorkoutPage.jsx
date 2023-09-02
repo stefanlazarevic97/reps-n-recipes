@@ -1,12 +1,14 @@
 import { useDispatch, useSelector } from "react-redux"
-import { activateWorkoutForm, getWorkoutFormState, deactivateWorkoutForm } from "../../store/ui" 
+import { activateWorkoutForm, getWorkoutFormState } from "../../store/ui" 
 import WorkoutForm from "../WorkoutForm/WorkoutForm"
 import { useEffect, useState } from "react"
 import { fetchExercises } from "../../store/exercises.jsx"
 import {TiTickOutline} from "react-icons/ti"
 import { useHistory } from "react-router-dom";
+import { createWorkout } from "../../store/workouts";
+import { LuCross } from "react-icons/lu";
+import {MdRemoveCircleOutline} from "react-icons/md";
 import './WorkoutPage.css'
-import { createWorkout } from "../../store/workouts"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -14,7 +16,7 @@ const WorkoutPage = () => {
     const [selectedExercise, setSelectedExercise] = useState('')
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
-    const currentUser = useSelector(state => state.session.user);
+    // const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
     
@@ -131,6 +133,39 @@ const WorkoutPage = () => {
         setExerciseList(updatedExerciseList)
     }
 
+    // const removeSet = (name, index) => {
+    //     const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+    //     const exercise = currentWorkout.sets.find(exercise => exercise[name])
+    //     if (exercise && exercise[name].length === 1){
+    //         // delete the entire exercise 
+    //     }else if (exercise && exercise[name]) {
+    //         exercise[name].splice(index, 1);
+    //     }
+    //     sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+    //     setExerciseList([...currentWorkout.sets])
+    // }
+
+    const removeSet = (name, index) => {
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        const exerciseIndex = currentWorkout.sets.findIndex(exercise => exercise[name]);
+      
+        if (exerciseIndex !== -1) {
+          if (currentWorkout.sets[exerciseIndex][name].length === 1) {
+            // Delete the entire exercise
+            currentWorkout.sets.splice(exerciseIndex, 1);
+          } else {
+            // Remove the set at index
+            currentWorkout.sets[exerciseIndex][name].splice(index, 1);
+          }
+        }
+        
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+        setExerciseList([...currentWorkout.sets]);
+    };
+
+
+
+
 
     const displaySets = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
@@ -141,26 +176,33 @@ const WorkoutPage = () => {
             const reps = set["reps"]
             const done = set["done"]
             setDisplay.push(
-                <div className={`input-upper  ${done && "done-overlay"}`}>
-
-                    {/* {done && "done-overlay"}
-                    {done &&
-                    <div className="done-overlay"></div>
-                    } */}
-                    <div className="exercise-inputs">
-                        <div className="set-val">
-                            <div>{i + 1}</div>
+                <div className="remove-button-container">
+                    <div className={`input-upper  ${done && "done-overlay"}`}>
+                        <div className="exercise-inputs">
+                            <div className="set-val">
+                                <div>{i + 1}</div>
+                            </div>
+                            <div className="kg-input">
+                                <input type="text" value={kg} onChange={(e) => updateKgInput(name, i, e)}/>
+                            </div>
+                            <div className="reps-input">
+                                <input type="text" value={reps} onChange={(e) => updateRepInput(name, i, e)}/>
+                            </div>
                         </div>
-                        <div className="kg-input">
-                            <input type="text" value={kg} onChange={(e) => updateKgInput(name, i, e)}/>
-                        </div>
-                        <div className="reps-input">
-                            <input type="text" value={reps} onChange={(e) => updateRepInput(name, i, e)}/>
+                        <div className="complete-set-button">
+                            {
+                                ((kg && reps) && !done) &&
+                                <TiTickOutline className="tick-button" onClick={() => setDone(name, i)}/>
+                            }
+                            {    ((kg && reps) && done) &&
+                                <LuCross className="cross-button" onClick={() => setDone(name, i)}/>
+                            }
                         </div>
                     </div>
-                    <div className="complete-set-button">
-                        <TiTickOutline onClick={() => setDone(name, i)}/>
+                    <div className="remove-button">
+                        <MdRemoveCircleOutline className="reemove-button" onClick={() => removeSet(name, i)}/>
                     </div>
+                   
                 </div>
             )
         })
@@ -173,9 +215,12 @@ const WorkoutPage = () => {
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>
                     <div className="exercise-headers">
-                        <div className="set-header">Set</div>
-                        <div className="kg-header">kg</div>
-                        <div className="reps-header">reps</div>
+                        <div className="workout-details">
+                            <div className="set-header">Set</div>
+                            <div className="kg-header">kg</div>
+                            <div className="reps-header">reps</div>
+                        </div>
+                        <div className="completed-header">completed</div>
                     </div>
                     {displaySets(exercise)}
                     <button className="add-a-set" onClick={() => addSet(exercise)}>+ Add Set</button>

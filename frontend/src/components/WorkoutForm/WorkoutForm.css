@@ -174,7 +174,7 @@ button.ready-to-press {
 
 .workout-form {
     background: var(--background-workout);
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 0.5rem;
     position: absolute;
     top: 50%;
