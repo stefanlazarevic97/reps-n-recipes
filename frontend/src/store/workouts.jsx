@@ -51,13 +51,6 @@ export const createWorkout = workout => async dispatch => {
 const workoutsReducer = (state = {}, action) => {
     const nextState = { ...state }
     switch (action.type) {
-        // case RECEIVE_WORKOUTS:
-        //     return { ...action.workouts }
-        // case RECEIVE_WORKOUT:
-        //     return { ...state, [action.workout.id]: action.workout}
-        // case REMOVE_WORKOUT:
-        //     delete nextState[action.workoutId]
-        //     return nextState
         default:
             return state
     }
