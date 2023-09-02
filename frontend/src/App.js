@@ -28,6 +28,10 @@ function App() {
                 <ProtectedRoute exact path="/workout" component={WorkoutPage} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
             </Switch>
+            
+            <footer className="footer">
+                Copyright &copy; 2023 Reps 'N' Recipes
+            </footer>
         </>
     );
 }

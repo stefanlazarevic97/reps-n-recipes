@@ -1,10 +1,9 @@
 .nutrition-page {
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: 1fr auto;
+    grid-template-rows: 1fr;
     gap: 20px;
-    height: 100vh;
-    top: 10vh;
+    height: fit-content;
     position: relative;
     z-index: 1;
 }
@@ -86,11 +85,12 @@
     background-color: var(--blue);
     color: var(--background);
     text-align: center;
+    display: flex;
+    justify-content: center;
     align-items: center;
-    padding: 1rem 0;
     width: 100vw;
     box-sizing: border-box;
-    height: 50px;
-    position: fixed;
+    height: 7.5vh;
     bottom: 0;
+    margin-top: 1rem;
 }

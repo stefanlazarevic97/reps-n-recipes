@@ -95,10 +95,6 @@ const HomePage = () => {
                     </div>
                 </div>
             </div>
-
-            <footer className="footer">
-                Copyright &copy; 2023 Reps 'N' Recipes
-            </footer>
         </div>
     );
 }

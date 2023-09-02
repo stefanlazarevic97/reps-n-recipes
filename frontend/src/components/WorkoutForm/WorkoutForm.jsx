@@ -62,7 +62,6 @@ const WorkoutForm = ({
                     >
                         <div className="exercise-titles">
                             <div>{item.name}</div>
-                            {/* <div>{item.muscleGroup}</div> */}
                         </div>
 
                         <div className="image-container">
@@ -90,7 +89,7 @@ const WorkoutForm = ({
                     <input 
                         className="search-input"
                         type="text" 
-                        placeholder='search'
+                        placeholder='Search for exercise...'
                     />
                 </div>
 

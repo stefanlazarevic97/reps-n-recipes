@@ -52,18 +52,14 @@
     margin-bottom: 0.5rem;
 }
 
-/* bottom right rtoggle buttons  */
-
-.toggle-button-container{
-    height: 100px;
-    width: 180px;
-    position: fixed;
+.toggle-button-container {
+    position: sticky;
     z-index: 100;
-    right: 0;
-    bottom: 0;
+    margin: 0 1rem;
+    bottom: 1rem;
 }
 
-#toggle-page-type-button{
+#toggle-page-type-button {
     position: sticky;
     width: 100px;
     height: 32px;
@@ -78,7 +74,7 @@
     z-index: 200;
 }
 
-#toggle-page-type-button:hover{
+#toggle-page-type-button:hover {
     transform: scale(1.05);
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
 }

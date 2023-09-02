@@ -231,24 +231,19 @@ const WorkoutPage = () => {
                         Complete Workout
                     </button>       
                 </div>
-
-
-                <div className="toggle-button-container">
-                    <div 
-                        id="toggle-page-type-button" 
-                        className="button wprkout-button" 
-                        onClick={goToNutritionPage}
-                    >
-                        <div>
-                            Nutrition
-                        </div>
+            </div> 
+            
+            <div className="toggle-button-container">
+                <div 
+                    id="toggle-page-type-button" 
+                    className="button wprkout-button" 
+                    onClick={goToNutritionPage}
+                >
+                    <div>
+                        Nutrition
                     </div>
                 </div>
-
-                <footer className="footer">
-                    Copyright &copy; 2023 Reps 'N' Recipes
-                </footer>
-            </div> 
+            </div>
         </>
     )
 }
