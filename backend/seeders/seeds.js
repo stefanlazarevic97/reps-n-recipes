@@ -20,7 +20,7 @@ const seedDatabase = async () => {
 
         console.log("Dropped collections!");
 
-        const chestExercises = ["Barbell Bench Press", "Dumbbell Bench Press", "Barbell Incline Bench Press", "Dumbbell Incline Bench Press", "Barbell Decline Bench Press", "Dumbbell Decline Bench Press", "Cable Fly", "Dumbbell Chest Fly", "Machine Chest Fly", "Machine Chest Press", "Machine Incline Press", "Push-up", "Barbell Bench Press"]
+        const chestExercises = ["Barbell Bench Press", "Dumbbell Bench Press", "Barbell Incline Bench Press", "Dumbbell Incline Bench Press", "Barbell Decline Bench Press", "Dumbbell Decline Bench Press", "Cable Fly", "Dumbbell Chest Fly", "Machine Chest Fly", "Machine Chest Press", "Machine Incline Press", "Push-up"]
 
         const backExercises = ["Pendlay Row", "Barbell Bent-over Row", "Dumbbell Bent-over Row", "Incline Dumbbell Row", "Pull-up", "Chin-up", "Neutral Grip Pull-up", "Lat Pulldown", "Cable Row", "Wide Grip Cable Row", "Seated Machine Row", "Machine Lat Pulldown", "T-Bar Row", "Dumbbell Pullover", "Barbell Pullover", "Cable Pullover", "Back Extension"]
 
