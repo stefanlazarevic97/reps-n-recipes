@@ -39,7 +39,3 @@
     outline: none;
     border: 1px solid var(--blue);
 }
-
-.button:hover {
-    background: var(--darkblue);
-}
