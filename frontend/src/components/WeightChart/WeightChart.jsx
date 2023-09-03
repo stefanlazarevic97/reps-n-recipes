@@ -19,10 +19,14 @@ const WeightChart = () => {
     const filterData = (days) => {
         const cutOffDate = new Date();
         cutOffDate.setDate(cutOffDate.getDate() - days);
+        const today = new Date();
 
         setFilteredData(
             Object.entries(weightsByDate)
-                .filter(([date]) => new Date(date) >= cutOffDate)
+                .filter(([date]) => {
+                    const parsedDate = new Date(date);
+                    return parsedDate >= cutOffDate && parsedDate <= today;
+                })
                 .sort((a, b) => new Date(a[0]) - new Date(b[0]))
         );
     };
@@ -54,23 +58,30 @@ const WeightChart = () => {
     };
 
     return (
-        <div className="weight-charts">
-            <h2 className="subheader">Weight</h2>
-            
-            <select onChange={(e) => setUnit(e.target.value)} value={unit}>
-                <option value="kg">Kilograms</option>
-                <option value="lbs">Pounds</option>
-            </select>
+        <div className="charts">
+            <div className="chart-header">
+                <div className="chart-toggle-container">
+                    <select className="chart-toggle"
+                        onChange={(e) => setUnit(e.target.value)} value={unit}
+                    >
+                        <option value="kg">Kilograms</option>
+                        <option value="lbs">Pounds</option>
+                    </select>
 
-            <select
-                onChange={(e) => setTimeRange(e.target.value)}
-                value={timeRange}
-            >
-                <option value="7">Last 7 days</option>
-                <option value="14">Last 14 days</option>
-                <option value="30">Last 30 days</option>
-                <option value="90">Last 3 months</option>
-            </select>
+                    <select
+                        className="chart-toggle"
+                        onChange={(e) => setTimeRange(e.target.value)}
+                        value={timeRange}
+                    >
+                        <option value="7">Last 7 days</option>
+                        <option value="14">Last 14 days</option>
+                        <option value="30">Last 30 days</option>
+                        <option value="90">Last 3 months</option>
+                    </select>
+                </div>
+
+                <h2 className="profile-header">Weight</h2>
+            </div>
 
             <Scatter
                 data={weightData}
@@ -105,7 +116,7 @@ const WeightChart = () => {
                             title: {
                                 display: true,
                                 text: 'Date',
-                                font: { size: 14, weight: 'bold' },
+                                font: { size: 18, weight: 'bold' },
                                 color: '#33302E',
                             },
                             ticks: { font: { size: 14 }, color: '#33302E' },
@@ -120,7 +131,7 @@ const WeightChart = () => {
                             title: {
                                 display: true,
                                 text: `Weight (${unit})`,
-                                font: { size: 14, weight: 'bold' },
+                                font: { size: 18, weight: 'bold' },
                                 color: '#33302E',
                             },
                             ticks: { font: { size: 14 }, color: '#33302E' },

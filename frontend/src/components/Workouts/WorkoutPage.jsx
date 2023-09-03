@@ -19,6 +19,8 @@ const WorkoutPage = () => {
     const [selectedExercise, setSelectedExercise] = useState('')
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
+    const workouts = useSelector(state => state.users.workouts)
+    console.log(workouts)
     // const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
@@ -36,6 +38,7 @@ const WorkoutPage = () => {
         })
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
         const updatedWorkout = {...currentWorkout, sets: updatedSets}
+        console.log(updatedWorkout)
         dispatch(createWorkout(updatedWorkout))
     }
 
@@ -164,6 +167,22 @@ const WorkoutPage = () => {
         return rpeIndex !== -1;
     }
 
+    const prevTopSet = (name) => {
+        for (let i = workouts.length - 1; i >= 0; i--) {
+            const sets = workouts[i].sets;
+            const exerciseSet = sets.find(set => set[name]);
+            if (exerciseSet) {
+                const reversedSets = [...exerciseSet[name]].reverse();
+                
+                const maxKg = Math.max(...exerciseSet[name].map(set => set.kg));
+    
+                const latestLargestSet = reversedSets.find(set => set.kg === maxKg);
+            
+                return latestLargestSet;
+            }
+        }
+    }
+
     const displaySets = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
         const setArray = exerciseObj[name];
@@ -201,6 +220,9 @@ const WorkoutPage = () => {
                                 placeholder={`${recReps ? recReps : ""}`}
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
+                            <div className="prev-top-set-input">
+                                {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
+                            </div>
                         </div>
                         <div className={`complete-set-button 
                             ${ready ? (done ? "completed" : "ready") : ""}`}>
@@ -227,6 +249,7 @@ const WorkoutPage = () => {
 
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
+            console.log(exercise, "exercise")
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>
@@ -238,6 +261,11 @@ const WorkoutPage = () => {
                             {rpe(exercise) &&
                                 <div className="rpe-header">RPE</div>
                             }
+                            <div 
+                                className="prev-top-set"
+                            >
+                                Prev Top Set
+                            </div>
                         </div>
                         {/* <div className="completed-header">completed</div> */}
                         { contentFilled(exercise) &&
@@ -257,9 +285,17 @@ const WorkoutPage = () => {
     }
 
     const getTitle = () => {
-        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-        const key = Object.keys(currentWorkout)[0] 
-        return currentWorkout["title"] || `${moment(new Date()).format('dddd, MMMM D')} Workout`
+        const rawWorkout = sessionStorage.getItem("currentWorkout");
+        if (!rawWorkout) return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
+        
+        const currentWorkout = JSON.parse(rawWorkout);
+        if (!currentWorkout || !Object.keys(currentWorkout).length) {
+            return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
+        }
+
+        currentWorkout.title = currentWorkout?.title || `${moment(new Date()).format('dddd, MMMM D')} Workout`;
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+        return currentWorkout?.title
     }
 
     return (
