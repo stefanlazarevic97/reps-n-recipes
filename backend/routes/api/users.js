@@ -4,13 +4,10 @@ const bcrypt = require('bcryptjs');
 const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
-const { loginUser, restoreUser } = require('../../config/passport');
-
-const { requireUser } = require('../../config/passport')
-
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-
+const { loginUser, restoreUser } = require('../../config/passport');
+const { requireUser } = require('../../config/passport')
 const { isProduction } = require('../../config/keys');
 
 router.get('/current', restoreUser, (req, res) => {
@@ -25,7 +22,8 @@ router.get('/current', restoreUser, (req, res) => {
         user: {_id: req.user._id, username: req.user.username, email: req.user.email},
         healthData: req.user.healthData,
         nutritionData: req.user.nutrition,
-        workouts: req.user.workouts
+        workouts: req.user.workouts,
+        weightByDate: req.user.weightByDate
     });
 })
 
@@ -107,8 +105,48 @@ router.patch('/:id', requireUser, async (req, res, next) => {
     }
 });
 
+// router.post('/weight', requireUser, async (req, res, next) => {
+//     try {
+//         const newWeightEntry = {
+//             date: req.body.date,
+//             weight: req.body.weight
+//         }
+        
+//         let currentUser = await User.findById(req.user._id);
+        
+//         if (!currentUser.weightByDate) {
+//             currentUser.weightByDate = {};
+//         }
+
+//         currentUser.weightByDate[newWeightEntry.date] = newWeightEntry.weight;
+//         await currentUser.save();
+//         return res.json({ weightByDate: currentUser.weightByDate });
+//     } catch(err) {
+//         next(err)
+//     }
+// });
+
+router.post('/weight', requireUser, async (req, res, next) => {
+    try {
+        const newWeightEntry = {
+            date: req.body.date,
+            weight: req.body.weight
+        }
+
+        let currentUser = await User.findById(req.user._id);
+
+        if (!currentUser.weightByDate) {
+            currentUser.weightByDate = new Map();
+        }
+
+        currentUser.weightByDate.set(newWeightEntry.date, newWeightEntry.weight);
+        await currentUser.save();
+        return res.json({ weightByDate: currentUser.weightByDate });
+
+    } catch(err) {
+        next(err)
+    }
+});
+
+
 module.exports = router;
-
-// 45WbvfoQ-ZZKp9j2NNbNmFrk-jUmJY8yW1Zs
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NGVkMzY4ZDIzMTMwYTljYmViMTc4NjAiLCJ1c2VybmFtZSI6Im5pY282NjYiLCJlbWFpbCI6ImNhcmxpZXIubmljaG9sYXNAZ21haWwuY29tIiwiaWF0IjoxNjkzMjcxMDcwLCJleHAiOjE2OTMyNzQ2NzB9.6XWdeCfzz3UAJZU1qD5l8usb0jsnLx_z_ehED1UoFJk

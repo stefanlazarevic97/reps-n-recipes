@@ -8,7 +8,6 @@ const User = mongoose.model('User')
 const { requireUser } = require('../../config/passport')
 const validateWorkout = require('../../validation/workout');
 
-
 router.get('/', requireUser, async (req, res) => {
     try {
         const exercises = await Exercise.find({ performer: req.user._id })
@@ -35,7 +34,7 @@ router.post('/', requireUser, async (req, res, next) => {
             title: req.body.title,
             sets: req.body.sets
         }
-        console.log(newWorkout)
+        
         let currentUser = await User.findById(req.user._id);
         currentUser.workouts.push(newWorkout);
         await currentUser.save();

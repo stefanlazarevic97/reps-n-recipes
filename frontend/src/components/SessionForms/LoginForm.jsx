@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { login, clearSessionErrors } from '../../store/session';
+import DemoUserLogin from './DemoUserLogin';
 
 function LoginForm () {
     const [email, setEmail] = useState('');
@@ -26,34 +27,34 @@ function LoginForm () {
     }
 
     return (
-        <form className="session-form" onSubmit={handleSubmit}>
-            <h2 className="header">Log In</h2>
-            <div className="session-errors">{errors?.email}</div>
-            
-            <input 
-                className="session-form-input" 
-                type="text"
-                value={email}
-                onChange={update('email')}
-                placeholder="Email"
-            />
+        <div className="session-form-container">
+            <form className="session-form" onSubmit={handleSubmit}>
+                <h2 className="header">Log In</h2>
+                <div className="session-errors">{errors?.email}</div>
+                
+                <input 
+                    className="session-form-input" 
+                    type="text"
+                    value={email}
+                    onChange={update('email')}
+                    placeholder="Email"
+                />
 
-            <div className="session-errors">{errors?.password}</div>
+                <div className="session-errors">{errors?.password}</div>
 
-            <input
-                className="session-form-input" 
-                type="password"
-                value={password}
-                onChange={update('password')}
-                placeholder="Password"
-            />
+                <input
+                    className="session-form-input" 
+                    type="password"
+                    value={password}
+                    onChange={update('password')}
+                    placeholder="Password"
+                />
 
-            <input
-                className="button"
-                type="submit"
-                value="Log In"
-            />
-        </form>
+                <button className="button">Log In</button>
+            </form>
+
+            <DemoUserLogin />
+        </div>
     );
 }
 

@@ -70,7 +70,7 @@ const nullErrors = null;
 export const sessionErrorsReducer = (state = nullErrors, action) => {
     switch(action.type) {
         case RECEIVE_SESSION_ERRORS:
-            return action.errors;
+            return action.errors || nullErrors;
         case RECEIVE_CURRENT_USER:
         case CLEAR_SESSION_ERRORS:
             return nullErrors;

@@ -1,4 +1,4 @@
-.session-form {
+.session-form-container {
     background: var(--background);
     padding: 2rem;
     border-radius: 0.5rem;
@@ -6,7 +6,6 @@
     width: 30%;
     margin: 0 auto;
     margin-top: 1rem;
-    top: 20vh;
     position: relative;
 }
 
@@ -44,6 +43,16 @@
 
 .button:hover {
     background: var(--darkblue);
+}
+
+.demo-user-button {
+    background: var(--orange);
+    color: var(--background-workout);
+    margin-top: 1rem;
+}
+
+.demo-user-button:hover {
+    background: var(--darkorange);
 }
 
 .session-errors {
