@@ -368,9 +368,9 @@ const seedDatabase = async () => {
             return datesArray;
         }
 
-        const startDate = new Date("2023-09-02T00:00:00.000Z");
-        const days = 30;
-        const datesConsumed = generatePastDates(startDate, days);
+        const startDate = new Date("2023-12-31T00:00:00.000Z");
+        const days = 120;
+        const datesConsumed = generatePastDates(startDate, days)
         
         const getRandom = (arr) => {
             const index = Math.floor(Math.random() * arr.length);
