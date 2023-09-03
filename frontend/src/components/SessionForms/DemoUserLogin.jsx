@@ -13,7 +13,7 @@ const DemoUserLogin = () => {
 
     const handleDemoLogin = () => {
         const demoEmail = 'demo@user.io';
-        const demoPassword = 'demo-user-password';
+        const demoPassword = 'password';
         dispatch(login({ email: demoEmail, password: demoPassword }));
     };
 
