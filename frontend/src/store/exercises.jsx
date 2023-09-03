@@ -17,8 +17,8 @@ const clearExerciseErrors = () => ({ type: CLEAR_EXERCISE_ERRORS });
 
 // SELECTORS
 
-export const getFoods = state => Object.values(state.exercises);
-export const getFood = exerciseId => state => state.exercises.results[exerciseId]
+export const getExercises = state => Object.values(state.exercises);
+export const getExercise = exerciseId => state => state.exercises.results[exerciseId]
 
 
 export const fetchExercises = async dispatch => {

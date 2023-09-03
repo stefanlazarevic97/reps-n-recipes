@@ -100,11 +100,8 @@ const NutritionCharts = () => {
         ]
     };
 
-    console.log("calorieData", calorieData);
-    console.log("macroData", macroData);
     return (
-        <div className="nutrition-charts-container">
-            <h1 className="header">Nutrition Charts</h1>
+        <div className="charts-container">
             <div className="nutrition-charts">
                 <h2 className="subheader">Calories</h2>
                 <Scatter 
@@ -123,7 +120,7 @@ const NutritionCharts = () => {
                                         );
                                     },
                                     label: function (tooltipItem) {
-                                        return Math.round(tooltipItem.raw.y);
+                                        return `${Math.round(tooltipItem.raw.y)} calories`;
                                     }
                                 }
                             }
@@ -150,10 +147,12 @@ const NutritionCharts = () => {
                                 title: { 
                                     display: true, 
                                     text: 'Date',
-                                    font: { size: 18, weight: 'bold' }
+                                    font: { size: 14, weight: 'bold' },
+                                    color: '#33302E'
                                 },
                                 ticks: {
-                                    font: { size: 14 }
+                                    font: { size: 14 },
+                                    color: '#33302E'
                                 },
                                 time: {
                                     unit: 'day',
@@ -166,10 +165,12 @@ const NutritionCharts = () => {
                                 title: { 
                                     display: true, 
                                     text: 'Calories',
-                                    font: { size: 18, weight: 'bold' }
+                                    font: { size: 14, weight: 'bold', },
+                                    color: '#33302E'
                                 },
                                 ticks: {
-                                    font: { size: 14 }
+                                    font: { size: 14 },
+                                    color: '#33302E'
                                 }
                             }
                         }
@@ -205,7 +206,16 @@ const NutritionCharts = () => {
                                             )
                                     )
                                 ),
-                                title: { display: true, text: 'Date' },
+                                title: { 
+                                    display: true, 
+                                    text: 'Date',
+                                    font: { size: 14, weight: 'bold', },
+                                    color: '#33302E'
+                                },
+                                ticks: {
+                                    font: { size: 14 },
+                                    color: '#33302E'
+                                },
                                 time: {
                                     unit: 'day',
                                     displayFormats: {
@@ -213,7 +223,18 @@ const NutritionCharts = () => {
                                     }
                                 }
                             },
-                            y: { title: { display: true, text: 'Calories' } }
+                            y: { 
+                                title: { 
+                                    display: true, 
+                                    text: 'Grams',
+                                    font: { size: 14, weight: 'bold', },
+                                    color: '#33302E'
+                                },
+                                ticks: {
+                                    font: { size: 14 },
+                                    color: '#33302E'
+                                }
+                            }
                         }
                     }}
                 />

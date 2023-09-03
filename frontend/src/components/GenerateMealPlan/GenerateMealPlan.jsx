@@ -16,11 +16,6 @@ const GenerateMealPlan = () => {
         setCalories(targetCalories)
     }, [TDEE])
 
-    console.log("targetCalories", targetCalories);
-    console.log("TDEE", TDEE);
-    console.log("calories", calories);
-    console.log("weightGoal", weightGoal);
-
     const diets = [
         'Gluten Free', 
         'Ketogenic',
