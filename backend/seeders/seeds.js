@@ -369,7 +369,7 @@ const seedDatabase = async () => {
         }
 
         const startDate = new Date("2023-12-31T00:00:00.000Z");
-        const days = 120;
+        const days = 180;
         const datesConsumed = generatePastDates(startDate, days)
         
         const getRandom = (arr) => {
@@ -430,6 +430,15 @@ const seedDatabase = async () => {
 
                 const weightByDateObj = Object.fromEntries(weightByDate);
 
+                const getFormattedDate = (date) => {
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    return `${year}-${month}-${day}`;
+                };
+
+                const todayFormatted = getFormattedDate(new Date());
+
                 const demoUser = new User({
                     username: "demo",
                     email: "demo@user.io",
@@ -441,7 +450,7 @@ const seedDatabase = async () => {
                         activityLevel: 3,
                         age: 25,
                         height: 177.8,
-                        mass: 83.91457405642596,
+                        mass: weightByDateObj[todayFormatted],
                         sex: "M",
                         weightGoal: 0.5
                     },
