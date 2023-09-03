@@ -164,9 +164,10 @@ const HealthForm = () => {
             setPresentGoal(true)
         } else {
             console.error("No user available to update");
+        
+        setTargetCalories(tdee + weightGoal*500)  
         }
 
-        setTargetCalories(tdee + weightGoal * 500)  
     }
 
     return (
@@ -523,4 +524,4 @@ const HealthForm = () => {
     )
 }
 
-export default HealthForm;
+export default HealthForm

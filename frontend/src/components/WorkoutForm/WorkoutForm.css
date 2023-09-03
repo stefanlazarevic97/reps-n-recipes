@@ -174,7 +174,7 @@ button.ready-to-press {
 
 .workout-form {
     background: var(--background-workout);
-    padding: 1rem;
+    /* padding: 0 2rem; */
     border-radius: 0.5rem;
     position: absolute;
     top: 50%;
@@ -184,11 +184,23 @@ button.ready-to-press {
     overflow: auto;
 }
 
+.exercise-subheader{
+    margin-top: 2rem;
+}
+
 @media (max-width: 600px) {
     .workout-form {
         width: 90%;
         max-width: 500px;
     }
+}
+
+.add-search-container{
+    position: sticky;
+    top: 0;
+    padding: 2rem;
+    background: var(--background-workout);
+    z-index: 20;
 }
 
 .workout-button {
@@ -216,13 +228,27 @@ button.ready-to-press {
     background: var(--darkorange);
 }
 
-.search-exercise {
-    background: var(--background-workout);
-    border-radius: 0.5rem;
-    box-sizing: border-box;
-    padding: 1rem 0;
+.search-container{
     display: flex;
     align-items: center;
+    background-color: white;
+    border-radius: 0.5rem;
+    margin: 1rem 0;
+}
+
+.search-container.focused {
+    border: 1px solid var(--orange);
+    border-radius: 0.5rem;
+}
+
+.search-exercise {
+    margin-left: 1rem; 
+    height: 30px;
+    width: 30px;
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search-input {
@@ -232,16 +258,15 @@ button.ready-to-press {
     border-radius: 0.25rem;
     font-size: 1rem;
     box-sizing: border-box;
+    background-color: transparent;
 }
 
 .search-input:focus {
     outline: none;
-    border: 1px solid var(--orange);
 }
 
 .search-icon {
     color: var(--orange);
-    margin-right: 1rem;
     font-size: 2rem;
 }
 
@@ -263,6 +288,10 @@ button.ready-to-press {
 
 .exercise-gif {
     height: 5rem;
+}
+
+.list-wrapper{
+    margin: 0 2rem;
 }
 
 .list-item:hover {

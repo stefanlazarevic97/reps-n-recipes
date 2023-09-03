@@ -105,6 +105,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
         return servingUnit ? servingUnit : null;
     }
     
+
     useEffect(() => {
         if (initialRender.current) {
             initialRender.current = false;
@@ -123,6 +124,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
         //     dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
         // }
     }, [offset])
+
 
     useEffect(() => {
         return () => {

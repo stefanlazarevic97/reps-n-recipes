@@ -1,6 +1,7 @@
 import { useDispatch } from 'react-redux';
 import { deactivateWorkoutForm } from '../../store/ui';
-import { FaSearch } from "react-icons/fa"
+import { FaSearch } from "react-icons/fa";
+import React, { useState } from 'react';
 import './WorkoutForm.css';
 
 const WorkoutForm = ({
@@ -12,6 +13,8 @@ const WorkoutForm = ({
     listItems
 }) => {
     const dispatch = useDispatch();
+
+    const [isFocused, setIsFocused] = useState(false);
 
     const handleExit = e => {
         e.stopPropagation();
@@ -56,7 +59,7 @@ const WorkoutForm = ({
                         setSelectedExercise('') : 
                         setSelectedExercise(item.name)
                     }
-                >
+                    >
                     <div
                         className="exercise-container"
                     >
@@ -81,28 +84,34 @@ const WorkoutForm = ({
         <div className="workout-form-container">
             <div className="workout-form-background" onClick={handleExit}></div>
             <form className="workout-form" onSubmit={handleSubmit}>
-                <h3 className="subheader">Choose an Exercise</h3>
-                
-                <div className="search-exercise">
-                    <FaSearch className='search-icon'/>
+                {/* <h3 className="subheader exercise-subheader">Choose an Exercise</h3> */}
 
-                    <input 
-                        className="search-input"
-                        type="text" 
-                        placeholder='Search for exercise...'
-                    />
+                <div className='add-search-container'>
+
+                    <div className={`search-container ${isFocused ? 'focused' : ''}`}>
+                        <div className="search-exercise">
+                            <FaSearch className='search-icon'/>
+                        </div>
+                        <input 
+                            className="search-input"
+                            type="text" 
+                            placeholder='Search for exercise...'
+                            onFocus={() => setIsFocused(true)}
+                            onBlur={() => setIsFocused(false)}
+                        />
+                    </div>
+
+                    <button 
+                        onClick={handleAdd}
+                        className={
+                            `${selectedExercise ?
+                            "workout-button ready-to-press" 
+                            : "workout-button hidden"}`
+                        }
+                    >
+                        Add
+                    </button>
                 </div>
-
-                <button 
-                    onClick={handleAdd}
-                    className={
-                        `${selectedExercise ?
-                        "workout-button ready-to-press" 
-                        : "workout-button hidden"}`
-                    }
-                >
-                    Add
-                </button>
 
                 <div className="list-wrapper">
                     {mapListItems()}
