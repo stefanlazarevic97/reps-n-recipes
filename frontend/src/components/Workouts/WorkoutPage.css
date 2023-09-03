@@ -61,8 +61,17 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 5px 0px;
+
+    padding: 5px 0px;
+    padding-right: 20px;
     width: calc(100% - 60px);
+
+    transition: all 0.5s ease-out;
+}
+
+.slide-out {
+    transform: translateX(-100%);
+    background-color: red;
 }
 
 .exercise-headers, 
@@ -83,26 +92,6 @@
 }
 
 /* ! set header and inputs */
-
-.remove-button-container{
-    display: flex;
-    align-items: center;
-}
-
-.remove-button {
-    margin-left: 30px;
-    width: 30px;
-    height: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 24px;
-    border-radius: 50%;
-}
-
-.remove-button:hover {
-    background-color: var(--darkorangehover);
-}
 
 
 .set-header,
@@ -183,7 +172,10 @@
 }
 
 /* ! add a set button */
-
+.remove-button-container{
+    display: flex;
+    align-items: center;
+}
 
 .completed-header { 
     width: 80px;
@@ -191,30 +183,48 @@
 }
 
 .complete-set-button {
-    height: 30px;
-    width: 80px;
-    border-radius: 50%;
+    height: 28px;
+    width: 50px;
+    border-radius: 0.4em;
+    color: #cccc;
     cursor: pointer;
-    font-size: 24px;
+    font-size: 28px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: rgba(0,0,0,0.1);
+}
+
+.complete-set-button.ready {
+    color: black;
+}
+
+.complete-set-button.completed {
+    color: white;
+    background-color: rgba(19, 169, 3, 0.784);
+}
+
+.remove-button{
+    height: 20px;
+    width: 20px;
+    border-radius: 50%;
+    border: 3px solid #cccc;
+    color: #cccc;
+    cursor: pointer;
+
+    margin-left: 20px;
+    font-size: 30px;
+
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.cross-button{
-    padding: 4px;
-    font-size: 24px;
-    transform: rotate(45deg);
-    border-radius: 50%;
-}
-
-.tick-button{
-    font-size: 32px;
+.remove-button:hover {
+    background-color: var(--darkorange);
+    color: black;
+    border: 3px solid black;
     /* border-radius: 50%; */
-}
-
-.tick-button:hover {
-    background-color: rgba(0, 255, 0, 0.2);
 }
 
 .done-overlay {
@@ -224,12 +234,6 @@
 .done-overlay.warmup{
     background-color: rgba(234, 183, 14, 0.4)
 }
-
-/* .set-val div,
-.kg-input input,
-.reps-input input {
-    background-color: transparent;
-} */
 
 .done-overlay .set-val div,
 .done-overlay .kg-input input,

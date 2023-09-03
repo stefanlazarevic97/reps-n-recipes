@@ -6,7 +6,7 @@ import { fetchExercises } from "../../store/exercises.jsx"
 import {TiTickOutline} from "react-icons/ti"
 import { useHistory } from "react-router-dom";
 import { createWorkout } from "../../store/workouts";
-import { LuCross } from "react-icons/lu";
+import { BiMinus } from "react-icons/bi";
 import {MdRemoveCircleOutline} from "react-icons/md";
 import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
 import moment from "moment"
@@ -105,7 +105,8 @@ const WorkoutPage = () => {
         // }
     }
 
-    const setDone = (name, index, e) => {
+    const setDone = (name, index, ready) => {
+        if (!ready) return null
         let newDone = null
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exercise = currentWorkout.sets.find(exercise => exercise[name])
@@ -139,6 +140,10 @@ const WorkoutPage = () => {
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         setExerciseList([...currentWorkout.sets]);
     };
+
+
+
+
 
     const contentFilled = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
@@ -182,16 +187,19 @@ const WorkoutPage = () => {
         const setDisplay = [];
         let s = 0;
         setArray.forEach((set, i)=>{
-            const kg = set["kg"] || null
-            const reps = set["reps"] || null
-            const done = set["done"] || false
-            const recReps = set["rec-reps"] || null
+            const kg = set["kg"]
+            const reps = set["reps"]
+            const ready = kg && reps
+            const done = set["done"]
+            const recReps = set["rec-reps"]
             // debugger
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
             setDisplay.push(
                 <div className="remove-button-container">
-                    <div className={`input-upper  ${done && "done-overlay"} ${warmup && "warmup"}`}>
+                    <div id={`${name}-row-${i}`} 
+                    // const stringWithDashes = "lat pulldown".replace(/ /g, '-');
+                    className={`input-upper  ${done && "done-overlay"} ${warmup && "warmup"}`}>
                         <div className="exercise-inputs">
                             <div className="set-val">
                                 { warmup ? 
@@ -200,7 +208,6 @@ const WorkoutPage = () => {
                                     <div>{s}</div>
 
                                 }
-                                {/* <div>{`${warmup ? "W" : ""} ${i + 1}`}</div> */}
                             </div>
                             <div className="kg-input">
                                 <input type="text" value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
@@ -215,18 +222,21 @@ const WorkoutPage = () => {
                                 {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
                             </div>
                         </div>
-                        <div className="complete-set-button">
-                            {
-                                ((kg && reps) && !done) &&
-                                <TiTickOutline className="tick-button" onClick={() => setDone(name, i)}/>
-                            }
-                            {    ((kg && reps) && done) &&
-                                <LuCross className="cross-button" onClick={() => setDone(name, i)}/>
-                            }
+                        <div className={`complete-set-button 
+                            ${ready ? (done ? "completed" : "ready") : ""}`}>
+                            <TiTickOutline className="tick-button" onClick={() => setDone(name, i, ready)}/>
                         </div>
+                   
                     </div>
                     <div className="remove-button">
-                        <MdRemoveCircleOutline className="reemove-button" onClick={() => removeSet(name, i)}/>
+                        <BiMinus className="minus-button" 
+                        onClick={() => {
+                            document.getElementById(`row-${i}`).classList.add("slide-out");
+                            setTimeout(() => {
+                            removeSet(name, i);
+                            }, 500);
+                        }}
+                        />
                     </div>
                    
                 </div>
