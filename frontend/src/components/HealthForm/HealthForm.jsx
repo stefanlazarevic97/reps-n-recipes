@@ -157,15 +157,14 @@ const HealthForm = () => {
             weightGoal
         }  
         
-        if (currentUser){
+        if (currentUser) {
             const updatedUser = {...currentUser, healthData}
             await dispatch(updateUser(updatedUser));
             dispatch(receiveUserHealth(healthData));
             setPresentGoal(true)
+            setTargetCalories(tdee + weightGoal * 500)  
         } else {
             console.error("No user available to update");
-        
-        setTargetCalories(tdee + weightGoal*500)  
         }
 
     }
@@ -493,7 +492,7 @@ const HealthForm = () => {
 
                         <div className="present-maintenance">
                             <div className="header">Your estimated daily energy expenditure is:</div>
-                            <div className="header maintenance">{Math.round(Math.abs(tdee))} calories</div>
+                            <div className="header maintenance">{Math.round(tdee)} calories</div>
                         </div>
 
                         <div className="present-goals">
@@ -505,7 +504,7 @@ const HealthForm = () => {
                                 <div className="header">To {(weightGoal > 0) ? "gain" : "lose"} {Math.abs(weightGoal)} {(weightGoal === 1 || weightGoal === -1) ? "pound" : "pounds"} per week, your recommended daily intake is:</div>
                             }
 
-                            <div className="header goals">{Math.round(Math.abs(targetCalories))} calories</div>
+                            <div className="header goals">{Math.round(targetCalories)} calories</div>
                         </div>
 
                         <div className='present-weight-buttons'>

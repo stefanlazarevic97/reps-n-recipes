@@ -10,7 +10,7 @@ const seedDatabase = async () => {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
-        console.log("MongoDB connected");
+        console.log("*MongoDB CONNECTED*");
 
         console.log("Dropping exercises...");
         await Exercise.collection.drop();
@@ -353,7 +353,7 @@ const seedDatabase = async () => {
             { foodName: "Texas Roadhouse Prime Rib", calories: 291, gramsCarbs: 0, gramsFat: 23, gramsProtein: 20 }
         ];
 
-        const servings = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3, 3.25, 3.5, 3.75, 4, 4.25, 4.5, 4.75, 5]
+        const servings = [0.25, 0.333, 0.5, 0.667, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3]
 
         const generatePastDates = (startDate, days) => {
             const datesArray = [];
@@ -386,7 +386,7 @@ const seedDatabase = async () => {
         const seedNutritionData = async (foods, servings, datesConsumed) => {
             const nutritionItems = [];
             for (const date of datesConsumed) {
-                const dailyItems = getRandomInt(8, 12);
+                const dailyItems = getRandomInt(7, 10);
 
                 for (let i = 0; i < dailyItems; i++) {
                     const item = getRandom(foods);
@@ -418,6 +418,18 @@ const seedDatabase = async () => {
                 const hashedPassword = await bcrypt.hash("password", 10);
                 const nutritionArray = await seedNutritionData(foods, servings, datesConsumed);
 
+                let initialWeight = 80.0;
+                const weightByDate = new Map();
+
+                for (let date of datesConsumed) {
+                    let change = Math.random() * (0.1 + 0.25) - 0.25;
+                    initialWeight += change;
+                    let formattedDate = new Date(date).toISOString().split('T')[0];
+                    weightByDate.set(formattedDate, initialWeight);
+                }
+
+                const weightByDateObj = Object.fromEntries(weightByDate);
+
                 const demoUser = new User({
                     username: "demo",
                     email: "demo@user.io",
@@ -425,7 +437,7 @@ const seedDatabase = async () => {
                     nutrition: nutritionArray,
                     workouts: [],
                     healthData: {},
-                    weightByDate: new Map(),
+                    weightByDate: weightByDateObj
                 });
 
                 await demoUser.save();
@@ -446,6 +458,7 @@ const seedDatabase = async () => {
         console.error("Error seeding database:", error);
     } finally {
         await mongoose.disconnect();
+        console.log("*MongoDB DISCONNECTED*")
     }
 };
 
