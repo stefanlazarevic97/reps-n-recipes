@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const Exercise = mongoose.model('Exercise')
 
 const { requireUser } = require('../../config/passport')
-// const validateExerciseInput = require('../../validation/exercise')
 
 router.get('/', requireUser, async (req, res) => {
     try {

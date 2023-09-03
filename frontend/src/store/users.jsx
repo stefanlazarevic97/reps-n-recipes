@@ -9,12 +9,19 @@ import { RECEIVE_WORKOUT, RECEIVE_WORKOUTS } from './workouts';
 // CONSTANTS 
 
 const RECEIVE_USER_HEALTH = 'users/RECEIVE_USER_HEALTH'
+const RECEIVE_WEIGHT_BY_DATE = 'users/RECEIVE_WEIGHT_BY_DATE'
 
 // ACTION CREATORS
 
 export const receiveUserHealth = healthData => ({
     type: RECEIVE_USER_HEALTH,
     healthData
+});
+
+export const receiveWeightByDate = (weight, date) => ({
+    type: RECEIVE_WEIGHT_BY_DATE,
+    weight,
+    date
 });
 
 // SELECTORS
@@ -57,13 +64,36 @@ export const fetchUserNutritionByDay = selectedDate => async dispatch => {
     }
 }
 
+export const addWeightByDate = (weight, date) => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/users/weight`, {
+            method: "POST",
+            body: JSON.stringify({ weight, date })
+        });
+
+        console.log("Response: ", res);
+
+        if (res.ok) {
+            dispatch(receiveWeightByDate(weight, date));
+        } else {
+            const errorData = await res.json();
+            console.log("Error Data: ", errorData);
+            return dispatch(receiveErrors(errorData.errors));
+        }
+    } catch(err) {
+        const res = await err.json();
+        return dispatch(receiveErrors(res.errors));
+    }
+}
+
 // REDUCER
 
 const initialState = {
     nutritionItems: {},
     workouts: [],
     healthData: {},
-    mealPlan: {}
+    mealPlan: {},
+    weightByDate: {}
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -74,6 +104,7 @@ const usersReducer = (state = initialState, action) => {
             nextState.nutritionItems = action.currentUser?.nutritionData ? action.currentUser.nutritionData : {}
             nextState.healthData = action.currentUser?.healthData ? action.currentUser.healthData : {}
             nextState.workouts = action.currentUser?.workouts || []
+            nextState.weightByDate = action.currentUser?.weightByDate || {}
             return nextState
         case RECEIVE_USER_NUTRITION:
             nextState.nutritionItems = action.userNutrition.nutrition
@@ -92,6 +123,9 @@ const usersReducer = (state = initialState, action) => {
                 return nextState;            
         case RECEIVE_WORKOUTS:
             nextState.workouts = action.workouts;
+            return nextState;
+        case RECEIVE_WEIGHT_BY_DATE:
+            nextState.weightByDate[action.date] = action.weight;
             return nextState;
         case RECEIVE_USER_LOGOUT:
             return initialState;

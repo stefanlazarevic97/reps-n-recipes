@@ -34,11 +34,13 @@ export const deactivateWorkoutForm = () => ({
     type: DEACTIVATE_WORKOUT_FORM
 })
 
-// SELECTORS 
+// SELECTORS
+ 
 export const getHealthFormState = state => state.ui.healthForm
 export const getWorkoutFormState = state => state.ui.workoutForm
 
 // REDUCER
+
 const initialState = {
     healthForm: false,
     selectedOption: 'ingredients',

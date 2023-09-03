@@ -1,5 +1,6 @@
 import jwtFetch from './jwt'
 import { RECEIVE_USER_LOGOUT } from './session';
+import moment from 'moment';
 
 // CONSTANTS
 
@@ -46,6 +47,23 @@ export const getFoods = state => Object.values(state.foods);
 export const getFood = foodId => state => state.foods.results[foodId]
 export const getFullFoodItem = selectedFood => state => state.foods[selectedFood.id]
 
+export const getNutritionByDate = nutrient => state => {
+    const nutritionByDate = {};
+
+    state.users.nutritionItems.forEach(item => {
+        const date = moment(item.dateConsumed).add(1, 'days').format('MMM D'); 
+        const amount = item[nutrient];
+
+        if (date in nutritionByDate) {
+            nutritionByDate[date] += amount; 
+        } else {
+            nutritionByDate[date] = amount;
+        } 
+    });
+
+    return nutritionByDate;
+}
+
 // THUNK ACTION CREATORS
 
 export const fetchIngredients = (ingredientSearch, offset) => async dispatch => {
@@ -53,7 +71,7 @@ export const fetchIngredients = (ingredientSearch, offset) => async dispatch => 
         const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&offset=${offset}&apiKey=${apiKey}`);
         const ingredients = await res.json();
 
-        // debugger
+        console.log("Fetching ingredients...");
 
         const data = ingredients.results.reduce((acc, ingredient) => 
             Object.assign(acc, { [ingredient.id]: ingredient }), {}
@@ -235,7 +253,6 @@ export const generateMealPlan = (targetCalories, diet, exclusions) => async disp
     const encodedExclusions = encodeURIComponent(exclusions)
     try {
         const res = await jwtFetch(`https://api.spoonacular.com/mealplanner/generate?timeFrame=day&targetCalories=${targetCalories}&diet=${diet}&exclude=${encodedExclusions}&apiKey=${apiKey}`)
-        console.log(res, 'res')
         const mealPlan = await res.json()
         dispatch(receiveMealPlan(mealPlan))
         return mealPlan

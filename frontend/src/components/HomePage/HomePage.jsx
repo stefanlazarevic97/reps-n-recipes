@@ -37,7 +37,7 @@ const HomePage = () => {
 
     return (
         <div className="nutrition-page">
-            <section className="food-input-section">
+            <section className="nutrition-section">
                 <div className="date-input-container">
                     <label className="date-label">Select Date: </label>
                     
@@ -75,11 +75,11 @@ const HomePage = () => {
                 <FoodIndex selectedOption={selectedOption} selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
             </section>
 
-            <section className="nutrition-index">
+            <section className="nutrition-section">
                 <NutritionIndex />
             </section>
 
-            <section className="meal-plan-section">
+            <section className="nutrition-section">
                 <GenerateMealPlan />
                 <MealPlanShow />
             </section>

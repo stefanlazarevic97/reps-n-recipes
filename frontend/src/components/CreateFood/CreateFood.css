@@ -46,10 +46,6 @@
     border-color: var(--blue);
 }
 
-.button:hover {
-    background: var(--darkblue);
-}
-
 @media (max-width: 576px) {
     .create-food-label {
         flex-direction: column;

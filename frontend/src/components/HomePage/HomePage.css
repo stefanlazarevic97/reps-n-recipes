@@ -2,25 +2,12 @@
     display: grid;
     grid-template-columns: 1fr 1fr 1fr;
     grid-template-rows: 1fr;
-    gap: 20px;
     height: fit-content;
     position: relative;
     z-index: 1;
 }
 
-.food-input-section {
-    grid-column: 1 / span 1;
-}
-
-.nutrition-index {
-    grid-column: 2 / span 1;
-}
-
-.meal-plan-section {
-    grid-column: 3 / span 1;
-}
-
-.food-input-section, .nutrition-index, .meal-plan-section {
+.nutrition-section {
     padding: 1rem;
     box-sizing: border-box;
 }

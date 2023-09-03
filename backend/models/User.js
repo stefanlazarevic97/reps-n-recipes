@@ -78,6 +78,10 @@ const userSchema = new Schema({
         activityLevel: Number,
         TDEE: Number,
         weightGoal: Number
+    },
+    weightByDate: {
+        type: Map,
+        of: Number
     }
     }, {
     timestamps: true

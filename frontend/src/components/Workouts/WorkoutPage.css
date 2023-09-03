@@ -286,8 +286,6 @@
     background-color: var(--darkblue);
 }
 
-
-/* ! present user goals */
 .present-maintenance .maintenance{
     color: red;
 }
@@ -296,7 +294,7 @@
     color: green;
 }
 
-.present-wieght-buttons{
+.present-weight-buttons{
     display: flex;
 }
 
