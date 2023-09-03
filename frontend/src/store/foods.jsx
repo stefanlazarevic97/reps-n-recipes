@@ -51,7 +51,7 @@ export const getNutritionByDate = nutrient => state => {
     const nutritionByDate = {};
 
     state.users.nutritionItems.forEach(item => {
-        const date = moment(item.dateConsumed).add(1, 'days').format('MMM D'); 
+        const date = moment(item.dateConsumed).add(1, 'days').format('YYYY-MM-DD'); 
         const amount = item[nutrient];
 
         if (date in nutritionByDate) {

@@ -3,7 +3,7 @@ import titleize from '../../Utils/utils'
 import './Profile.css'
 import ExerciseCharts from '../ExerciseCharts/ExerciseCharts';
 import { AiOutlineBarChart } from 'react-icons/ai';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { addWeightByDate, receiveUserHealth, updateUser } from '../../store/users';
 import CalorieChart from '../CalorieChart/CalorieChart';
 import MacronutrientChart from '../MacronutrientChart/MacronutrientChart';
@@ -19,7 +19,7 @@ const Profile = () => {
     const [chart, setChart] = useState('weight');
     const [showDropdown, setShowDropdown] = useState(false);
     const dispatch = useDispatch();
-    const chartDropdown = ['weight', 'calories', 'macros', 'exercises']
+    const chartDropdown = ['weight', 'calories', 'macronutrients', 'exercises']
 
     const handleChartChange = (chart) => {
         setChart(chart);
@@ -71,18 +71,12 @@ const Profile = () => {
         <div>
             <div className="profile-container">
                 <section className="profile-section">
-                    <div className="profile-chart-container">
-                        <CalorieChart />
-                        <MacronutrientChart />
-                    </div>
-                </section>
+                    <div className="profile-info-container">
 
-                <section className="profile-section">
-
-                    <div className="profile-info">
-                        <h2 className="header">Hello, {titleize(currentUser.username)}</h2>
-                        
-                        <div className="stats">
+                        <div className="profile-info">
+                            <h2 className="header">Hello, {titleize(currentUser.username)}</h2>
+                            
+                            <div className="stats">
                                 <div className="stat-label">Weight</div>
                                 <div className="stat-value">{healthData.mass.toFixed(1)} kg</div>
 
@@ -111,65 +105,76 @@ const Profile = () => {
 
                                 <div className="stat-label">Recommended Daily Intake</div>
                                 <div className="stat-value">{Math.round(healthData.TDEE + weightGoal * 500)} calories</div>
-                        </div>
-
-                        <form 
-                            onSubmit={handleWeightSubmit}
-                            className='weight-update-container'
-                        >
-                            <div className='subheader'>Enter Current Weight</div>
-                            
-                            <div className="weight-update">
-                                <input 
-                                    className="weight-update-input"
-                                    type="number"
-                                    step="0.1"
-                                    value={weight}
-                                    onChange={handleWeightChange}
-                                />
-
-                                <select 
-                                    className="weight-update-input"
-                                    onChange={handleMassUnitChange} 
-                                    value={massUnit}
-                                >
-                                    <option value="pounds">lb</option>
-                                    <option value="kilos">kg</option>
-                                </select>
                             </div>
 
-                            <button className="button">Update Weight</button>
-                        </form>
+                            <form 
+                                onSubmit={handleWeightSubmit}
+                                className='weight-update-container'
+                            >
+                                <div className='subheader'>Enter Current Weight</div>
+                                
+                                <div className="weight-update">
+                                    <input 
+                                        className="weight-update-input"
+                                        type="number"
+                                        step="0.1"
+                                        value={weight}
+                                        onChange={handleWeightChange}
+                                    />
+
+                                    <select 
+                                        className="weight-update-input"
+                                        onChange={handleMassUnitChange} 
+                                        value={massUnit}
+                                    >
+                                        <option value="pounds">lb</option>
+                                        <option value="kilos">kg</option>
+                                    </select>
+                                </div>
+
+                                <button className="button">Update Weight</button>
+                            </form>
+                        </div>
                     </div>
                 </section>
 
                 <section className="profile-section">
-                    <div className='dropdown-container'>
-                        <AiOutlineBarChart 
-                            className="chart-icon" 
-                            onClick={toggleDropdown}
-                        />
-                        {showDropdown &&
-                            <div className="chart-dropdown show">
-                                {chartDropdown.map(chart => (
-                                    <div 
-                                        className='chart-dropdown-item'
-                                        key={chart}
-                                        onClick={() => {
-                                            handleChartChange(chart);
-                                            toggleDropdown();
-                                        }}
-                                    >
-                                        {titleize(chart)}
-                                    </div>
-                                ))}
-                            </div>
+                    <div className="profile-chart-container">
+                        <div className='dropdown-container'>
+                            <AiOutlineBarChart 
+                                className="chart-icon" 
+                                onClick={toggleDropdown}
+                            />
+                            {showDropdown &&
+                                <div className="chart-dropdown show">
+                                    {chartDropdown.map(chart => (
+                                        <div 
+                                            className='chart-dropdown-item'
+                                            key={chart}
+                                            onClick={() => {
+                                                handleChartChange(chart);
+                                                toggleDropdown();
+                                            }}
+                                        >
+                                            {titleize(chart)}
+                                        </div>
+                                    ))}
+                                </div>
+                            }
+                        </div>
+                        {chart === 'weight' &&
+                            <WeightChart className="profile-chart" />
+                        }
+                        {chart === 'calories' &&
+                            <CalorieChart className="profile-chart" />
+                        }
+                        {chart === 'macronutrients' &&
+                            <MacronutrientChart className="profile-chart" />
+                        }
+                        {chart === 'exercises' &&
+                            <ExerciseCharts className="profile-chart" />
                         }
                     </div>
-                    <div className="profile-chart-container">
-                        <ExerciseCharts />
-                    </div>
-                    <WeightChart />
                 </section>
             </div>
         </div>

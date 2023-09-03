@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { useSelector } from "react-redux";
 import { getNutritionByDate } from "../../store/foods";
 import { Scatter } from 'react-chartjs-2';
@@ -11,36 +11,59 @@ Chart.register(TimeScale, LinearScale, CategoryScale, PointElement, LineElement 
 const MacronutrientChart = () => {
     const pointRadius = 5;
     const year = new Date().getFullYear();
+    const [filteredCarbs, setFilteredCarbs] = useState([]);
+    const [filteredFat, setFilteredFat] = useState([]);
+    const [filteredProtein, setFilteredProtein] = useState([])
+    const [timeRange, setTimeRange] = useState('7');
     const carbsByDate = useSelector(getNutritionByDate("gramsCarbs"));
     const fatByDate = useSelector(getNutritionByDate("gramsFat"));
     const proteinByDate = useSelector(getNutritionByDate("gramsProtein"));
+    
+    const filterData = (days) => {
+        const cutOffDate = new Date();
+        cutOffDate.setDate(cutOffDate.getDate() - days);
+        const today = new Date();
+    
+        setFilteredCarbs(
+            Object.entries(carbsByDate)
+                .filter(([date]) => {
+                    const parsedDate = new Date(date);
+                    return parsedDate >= cutOffDate && parsedDate <= today;
+                })
+                .sort((a, b) => new Date(a[0]) - new Date(b[0]))
+        );
 
-    const sortedCarbs = Object.entries(carbsByDate).sort((a, b) => {
-        const dateA = new Date(`${a[0]}, ${year}`);
-        const dateB = new Date(`${b[0]}, ${year}`);
-        return dateA - dateB;
-    });
+        setFilteredFat(
+            Object.entries(fatByDate)
+                .filter(([date]) => {
+                    const parsedDate = new Date(date);
+                    return parsedDate >= cutOffDate && parsedDate <= today;
+                })
+                .sort((a, b) => new Date(a[0]) - new Date(b[0]))
+        );
 
-    const sortedFat = Object.entries(fatByDate).sort((a, b) => {
-        const dateA = new Date(`${a[0]}, ${year}`);
-        const dateB = new Date(`${b[0]}, ${year}`);
-        return dateA - dateB;
-    });
+        setFilteredProtein(
+            Object.entries(proteinByDate)
+                .filter(([date]) => {
+                    const parsedDate = new Date(date);
+                    return parsedDate >= cutOffDate && parsedDate <= today;
+                })
+                .sort((a, b) => new Date(a[0]) - new Date(b[0]))
+        );
+    };
 
-    const sortedProtein = Object.entries(proteinByDate).sort((a, b) => {
-        const dateA = new Date(`${a[0]}, ${year}`);
-        const dateB = new Date(`${b[0]}, ${year}`);
-        return dateA - dateB;
-    });
+    useEffect(() => {
+        filterData(timeRange)
+    }, [timeRange]);
     
     const macroData = {
-        labels: sortedCarbs.map(date => date[0]),
+        labels: filteredCarbs?.map(date => date[0]),
         datasets: [
             {
                 label: 'Carbohydrates',
-                data: sortedCarbs.map((entry, index) => ({
-                    x: new Date(`${entry[0]}, ${year}`),
-                    y: entry[1]
+                data: filteredCarbs.map((entry) => ({
+                    x: new Date(entry[0]), 
+                    y: entry[1] 
                 })),
                 
                 backgroundColor: '#2D69AF',
@@ -50,8 +73,8 @@ const MacronutrientChart = () => {
             },
             {
                 label: 'Fat',
-                data: sortedFat.map((entry, index) => ({
-                    x: new Date(`${entry[0]}, ${year}`),
+                data: filteredFat?.map((entry) => ({
+                    x: new Date(entry[0]),
                     y: entry[1]
                 })),
                 
@@ -62,8 +85,8 @@ const MacronutrientChart = () => {
             },
             {
                 label: 'Protein',
-                data: sortedProtein.map((entry, index) => ({
-                    x: new Date(`${entry[0]}, ${year}`),
+                data: filteredProtein?.map((entry) => ({
+                    x: new Date(entry[0]),
                     y: entry[1]
                 })),
                 
@@ -75,16 +98,38 @@ const MacronutrientChart = () => {
         ]
     };
 
+    console.log("macroData", macroData);
+
     return (
-        <div className="nutrition-charts">
-            <h2 className="subheader">Macronutrients</h2>
+        <div className="charts">
+            <div className="chart-header">
+                <div className="chart-toggle-container">
+                    <select
+                        className="chart-toggle"
+                        onChange={(e) => setTimeRange(e.target.value)}
+                        value={timeRange}
+                    >
+                        <option value="7">Last 7 days</option>
+                        <option value="14">Last 14 days</option>
+                        <option value="30">Last 30 days</option>
+                        <option value="90">Last 3 months</option>
+                    </select>
+                </div>
+
+                <h2 className="profile-header">Macronutrients</h2>
+            </div>
+            
             <Scatter
                 data={macroData} 
                 options={{
                     plugins: {
                         legend: {
                             display: true,
-                            position: 'bottom'
+                            position: 'bottom',
+                            labels: {
+                                font: { size: 14 },
+                                color: '#33302E'
+                            }
                         },
                         tooltip: {
                             enabled: true,
@@ -102,42 +147,22 @@ const MacronutrientChart = () => {
                     scales: {
                         x: {
                             type: 'time',
-                            min: new Date(
-                                Math.min.apply(
-                                    null, Object.keys(carbsByDate).map(
-                                        date => new Date(`${date}, ${year}`)
-                                    )
-                                )
-                            ),
-                            max: new Date(
-                                Math.max.apply(
-                                    null, Object.keys(carbsByDate).map(
-                                        date => new Date(`${date}, ${year}`)
-                                    )
-                                )
-                            ),
+                            min: filteredCarbs.length > 0 ? new Date(filteredCarbs[0][0]).toISOString() : undefined,
+                            max: filteredCarbs.length > 0 ? new Date(filteredCarbs[filteredCarbs.length - 1][0]).toISOString() : undefined,
                             title: { 
                                 display: true, 
+                                font: { size: 18, weight: 'bold' },
                                 text: 'Date',
-                                font: { size: 14, weight: 'bold', },
                                 color: '#33302E'
                             },
-                            ticks: {
-                                font: { size: 14 },
-                                color: '#33302E'
-                            },
-                            time: {
-                                unit: 'day',
-                                displayFormats: {
-                                    day: 'MMM d'
-                                }
-                            }
+                            ticks: { font: { size: 14 }, color: '#33302E' },
+                            time: { unit: 'day', displayFormats: { day: 'MMM d' } }
                         },
                         y: { 
                             title: { 
                                 display: true, 
                                 text: 'Grams',
-                                font: { size: 14, weight: 'bold', },
+                                font: { size: 18, weight: 'bold', },
                                 color: '#33302E'
                             },
                             ticks: {
