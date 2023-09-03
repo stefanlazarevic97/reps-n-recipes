@@ -105,19 +105,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
         return servingUnit ? servingUnit : null;
     }
     
-<<<<<<< HEAD
-    // useEffect(() => {
-    //     if (selectedOption === 'ingredients') {
-    //         dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
-    //     } else if (selectedOption === 'products') {
-    //         dispatch(fetchProducts(sessionStorage.getItem("query"), offset));
-    //     } else if (selectedOption === 'menuItems') {
-    //         dispatch(fetchMenuItems(sessionStorage.getItem("query"), offset));
-    //     } else {
-    //         dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
-    //     }
-    // }, [offset])
-=======
+
     useEffect(() => {
         if (initialRender.current) {
             initialRender.current = false;
@@ -136,7 +124,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
         //     dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
         // }
     }, [offset])
->>>>>>> main
+
 
     useEffect(() => {
         return () => {
