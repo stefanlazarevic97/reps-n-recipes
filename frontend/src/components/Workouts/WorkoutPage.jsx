@@ -20,7 +20,6 @@ const WorkoutPage = () => {
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
     const workouts = useSelector(state => state.users.workouts)
-    console.log(workouts)
     // const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
@@ -38,7 +37,6 @@ const WorkoutPage = () => {
         })
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
         const updatedWorkout = {...currentWorkout, sets: updatedSets}
-        console.log(updatedWorkout)
         dispatch(createWorkout(updatedWorkout))
     }
 
@@ -184,10 +182,10 @@ const WorkoutPage = () => {
         const setDisplay = [];
         let s = 0;
         setArray.forEach((set, i)=>{
-            const kg = set["kg"]
-            const reps = set["reps"]
-            const done = set["done"]
-            const recReps = set["rec-reps"]
+            const kg = set["kg"] || null
+            const reps = set["reps"] || null
+            const done = set["done"] || false
+            const recReps = set["rec-reps"] || null
             // debugger
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
@@ -239,7 +237,6 @@ const WorkoutPage = () => {
 
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
-            console.log(exercise, "exercise")
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>
