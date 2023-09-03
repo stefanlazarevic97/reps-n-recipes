@@ -61,7 +61,7 @@
 
 
 .template-list-wrapper{
-    margin: 0 2rem;
+    padding: 0 2rem;
     max-height: 700px; 
     overflow: auto;
     scrollbar-width: none;
@@ -79,4 +79,12 @@
 
 .selected {
     border: 2px solid var(--orange);
+}
+
+.start-template{
+    position: sticky;
+    top: 0;
+    padding: 2rem;
+    background: var(--background-workout);
+    z-index: 20;
 }

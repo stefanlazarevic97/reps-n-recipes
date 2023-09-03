@@ -8,12 +8,13 @@ import { useHistory } from "react-router-dom";
 import { createWorkout } from "../../store/workouts";
 import { LuCross } from "react-icons/lu";
 import {MdRemoveCircleOutline} from "react-icons/md";
-import SelectWorkoutTemplate from "./SelectWorkoutTemplate"
+import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
+import moment from "moment"
 import './WorkoutPage.css'
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
-    const [contentFilled, setContentFilled] = useState(false)
+    // const [contentFilled, setContentFilled] = useState(false)
     const active = useSelector(getWorkoutFormState)
     const [selectedExercise, setSelectedExercise] = useState('')
     const [listItems, setListItems] = useState([])
@@ -96,11 +97,11 @@ const WorkoutPage = () => {
         })
         setExerciseList(updatedExerciseList)
         // set filled in state
-        if (!exercise[name][index][type] || !exercise[name][index][type]){
-            setContentFilled(false);
-        }else {
-            setContentFilled(true);
-        }
+        // if (!exercise[name][index][type] || !exercise[name][index][type]){
+        //     setContentFilled(false);
+        // }else {
+        //     setContentFilled(true);
+        // }
     }
 
     const setDone = (name, index, e) => {
@@ -138,6 +139,15 @@ const WorkoutPage = () => {
         setExerciseList([...currentWorkout.sets]);
     };
 
+    const contentFilled = (name) => {
+        const exerciseObj = exerciseList.find(exercise => exercise[name])
+        if (!exerciseObj) return false;
+        const filledSetIndex = Object.values(exerciseObj)[0].findIndex(set =>
+            (set["kg"] !== null) && (set["reps"] !== null)
+        )
+        return filledSetIndex !== -1;
+    }
+
     const displaySets = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
         const setArray = exerciseObj[name];
@@ -146,6 +156,7 @@ const WorkoutPage = () => {
             const kg = set["kg"]
             const reps = set["reps"]
             const done = set["done"]
+            const recReps = set["rec-reps"]
             setDisplay.push(
                 <div className="remove-button-container">
                     <div className={`input-upper  ${done && "done-overlay"}`}>
@@ -157,7 +168,10 @@ const WorkoutPage = () => {
                                 <input type="text" value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
                             </div>
                             <div className="reps-input">
-                                <input type="text" value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
+                                <input type="text" 
+
+                                placeholder={`${recReps ? recReps : ""}`}
+                                value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                         </div>
                         <div className="complete-set-button">
@@ -192,7 +206,7 @@ const WorkoutPage = () => {
                             <div className="reps-header">reps</div>
                         </div>
                         {/* <div className="completed-header">completed</div> */}
-                        { contentFilled &&
+                        { contentFilled(exercise) &&
                         <div className="completed-header">completed</div>
                         }
                     </div>
@@ -212,13 +226,26 @@ const WorkoutPage = () => {
         <>
             <div className="workout-page-container">
             <div className="select-workout-container">
-                <SelectWorkoutTemplate/>
+                <SelectWorkoutTemplate
+                exerciseList = {exerciseList}
+                setExerciseList = {setExerciseList}
+                />
             </div>
+
+            <div>
 
                 <div className="workout-page-inner">
                     
                     <div className="create-workout-header">
-                        <h1 className="create-workout-h1">Create your workout</h1>
+                        <h1 className="create-workout-h1">
+                            {
+                            Object.keys(JSON.parse(sessionStorage.getItem("currentWorkout")))[0] ||
+                            `${moment(new Date()).format('dddd, MMMM D')} Workout`
+                        
+                            }
+                            {/* const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout")); */}
+                            {/* Create your workout */}
+                            </h1>
                         <button 
                             className="cancel-workout" 
                             onClick={resetWorkout}
@@ -256,18 +283,22 @@ const WorkoutPage = () => {
                     </button>       
                 </div>
             </div> 
+
+        </div>
             
-            <div className="toggle-button-container">
-                <div 
-                    id="toggle-page-type-button" 
-                    className="button wprkout-button" 
-                    onClick={goToNutritionPage}
-                >
-                    <div>
-                        Nutrition
-                    </div>
+        <div className="toggle-button-container">
+            <div 
+                id="toggle-page-type-button" 
+                className="button wprkout-button" 
+                onClick={goToNutritionPage}
+            >
+                <div>
+                    Nutrition
                 </div>
             </div>
+        </div>
+
+
         </>
     )
 }

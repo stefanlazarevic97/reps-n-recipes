@@ -9,6 +9,7 @@
 
 .select-workout-container{
     width: 400px;
+    margin-right: 40px;
     /* height: 700px;700px; */
     /* border: 1px solid black; */
 }
@@ -18,7 +19,7 @@
     height: 100vh;
     display: flex;
     flex-direction: column;
-    padding: 0 80px;
+    padding: 0 40px;
     border-left: 1px solid #ccc;
     border-right: 1px solid #ccc;
     overflow-y: auto;
