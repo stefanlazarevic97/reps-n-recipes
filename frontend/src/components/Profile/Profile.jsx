@@ -3,6 +3,7 @@ import titleize from '../../Utils/utils'
 import './Profile.css'
 import NutritionCharts from '../NutritionCharts/NutritionCharts';
 import ExerciseCharts from '../ExerciseCharts/ExerciseCharts';
+import { AiOutlineBarChart } from 'react-icons/ai';
 import { useEffect, useState } from 'react';
 import { addWeightByDate, receiveUserHealth, updateUser } from '../../store/users';
 
@@ -14,12 +15,18 @@ const Profile = () => {
     const [weight, setWeight] = useState(healthData.mass * 2.204623);
     const [massUnit, setMassUnit] = useState('pounds'); 
     const [chart, setChart] = useState('weight');
+    const [showDropdown, setShowDropdown] = useState(false);
     const dispatch = useDispatch();
     const chartDropdown = ['weight', 'calories', 'macros', 'exercises']
 
-    const handleChartChange = e => {
-        setChart(e.currentTarget.value);
+    const handleChartChange = (chart) => {
+        setChart(chart);
     };
+
+    const toggleDropdown = () => {
+        setShowDropdown(prev => !prev)
+    }
+
 
     const handleMassUnitChange = e => {
         const newUnit = e.currentTarget.value;
@@ -126,17 +133,27 @@ const Profile = () => {
                 </section>
 
                 <section className="profile-section">
-                    <div>
-                        <select name="chart-dropdown">
-                            {chartDropdown.map(chart => (
-                                <option 
-                                    value={chart}
-                                    onChange={handleChartChange}
-                                >
-                                    {titleize(chart)}
-                                </option>
-                            ))}
-                        </select>
+                    <div className='dropdown-container'>
+                        <AiOutlineBarChart 
+                            className="chart-icon" 
+                            onClick={toggleDropdown}
+                        />
+                        {showDropdown &&
+                            <div className="chart-dropdown show">
+                                {chartDropdown.map(chart => (
+                                    <div 
+                                        className='chart-dropdown-item'
+                                        key={chart}
+                                        onClick={() => {
+                                            handleChartChange(chart);
+                                            toggleDropdown();
+                                        }}
+                                    >
+                                        {titleize(chart)}
+                                    </div>
+                                ))}
+                            </div>
+                        }
                     </div>
                     <div className="profile-chart-container">
                         <ExerciseCharts />
