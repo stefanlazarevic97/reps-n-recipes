@@ -3,7 +3,7 @@ import titleize from '../../Utils/utils'
 import './Profile.css'
 import NutritionCharts from '../NutritionCharts/NutritionCharts';
 import ExerciseCharts from '../ExerciseCharts/ExerciseCharts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addWeightByDate, receiveUserHealth, updateUser } from '../../store/users';
 
 const Profile = () => {
@@ -13,8 +13,14 @@ const Profile = () => {
     const maintain = weightGoal ? null : 'Maintain Weight';
     const [weight, setWeight] = useState(healthData.mass * 2.204623);
     const [massUnit, setMassUnit] = useState('pounds'); 
+    const [chart, setChart] = useState('weight');
     const dispatch = useDispatch();
-    
+    const chartDropdown = ['weight', 'calories', 'macros', 'exercises']
+
+    const handleChartChange = e => {
+        setChart(e.currentTarget.value);
+    };
+
     const handleMassUnitChange = e => {
         const newUnit = e.currentTarget.value;
     
@@ -63,7 +69,7 @@ const Profile = () => {
                         <h2 className="header">Hello, {titleize(currentUser.username)}</h2>
                         
                         <div className="stats">
-                                <div className="stat-label">Mass</div>
+                                <div className="stat-label">Weight</div>
                                 <div className="stat-value">{healthData.mass.toFixed(1)} kg</div>
 
                                 <div className="stat-label">Height</div>
@@ -120,6 +126,18 @@ const Profile = () => {
                 </section>
 
                 <section className="profile-section">
+                    <div>
+                        <select name="chart-dropdown">
+                            {chartDropdown.map(chart => (
+                                <option 
+                                    value={chart}
+                                    onChange={handleChartChange}
+                                >
+                                    {titleize(chart)}
+                                </option>
+                            ))}
+                        </select>
+                    </div>
                     <div className="profile-chart-container">
                         <ExerciseCharts />
                     </div>
