@@ -14,7 +14,8 @@ const Profile = () => {
     const [weight, setWeight] = useState(healthData.mass * 2.204623);
     const [massUnit, setMassUnit] = useState('pounds'); 
     const dispatch = useDispatch();
-    
+    const chartDropdown = ['calories', 'macros', 'weight', 'exercises']
+
     const handleMassUnitChange = e => {
         const newUnit = e.currentTarget.value;
     
@@ -63,7 +64,7 @@ const Profile = () => {
                         <h2 className="header">Hello, {titleize(currentUser.username)}</h2>
                         
                         <div className="stats">
-                                <div className="stat-label">Mass</div>
+                                <div className="stat-label">Weight</div>
                                 <div className="stat-value">{healthData.mass.toFixed(1)} kg</div>
 
                                 <div className="stat-label">Height</div>
@@ -120,6 +121,13 @@ const Profile = () => {
                 </section>
 
                 <section className="profile-section">
+                    <div>
+                        <select name="chart-dropdown">
+                            {chartDropdown.map(chart => (
+                                <option value={chart}>{titleize(chart)}</option>
+                            ))}
+                        </select>
+                    </div>
                     <div className="profile-chart-container">
                         <ExerciseCharts />
                     </div>
