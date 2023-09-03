@@ -15,7 +15,7 @@ const Profile = () => {
     const [massUnit, setMassUnit] = useState('pounds'); 
     const [chart, setChart] = useState('weight');
     const dispatch = useDispatch();
-    const chartDropdown = ['calories', 'macros', 'weight', 'exercises']
+    const chartDropdown = ['weight', 'calories', 'macros', 'exercises']
 
     const handleChartChange = e => {
         setChart(e.currentTarget.value);
