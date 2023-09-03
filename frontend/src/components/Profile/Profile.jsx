@@ -30,9 +30,9 @@ const Profile = () => {
     const handleWeightChange = e => {
         let value = parseFloat(e.currentTarget.value);
             if (Number.isNaN(value)) {
-                setWeight('');  // Allow empty input to clear the field
+                setWeight('');
             } else {
-                setWeight(parseFloat(value.toFixed(1)));  // Round to one decimal place
+                setWeight(parseFloat(value.toFixed(1)));
         }  
     };
 
