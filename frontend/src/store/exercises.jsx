@@ -22,7 +22,6 @@ export const getExercise = exerciseId => state => state.exercises.results[exerci
 
 
 export const fetchExercises = async dispatch => {
-    // debugger
     try {
         const res = await jwtFetch('/api/exercises');
         const exercises = await res.json();
@@ -34,9 +33,7 @@ export const fetchExercises = async dispatch => {
     }
 }
 
-
 // THUNK ACTION CREATORS
-
 
 export const fetchExercise = exerciseId => async dispatch => {
     try {

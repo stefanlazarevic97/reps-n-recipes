@@ -38,8 +38,6 @@ const nutritionSchema = new Schema({
         type: Number,
         required: true
     }
-}, {
-    timestamps: true
 })
 
 const workoutSchema = new Schema({

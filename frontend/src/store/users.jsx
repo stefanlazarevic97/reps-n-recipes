@@ -37,6 +37,8 @@ export const getUserNutritionByDay = state => {
     return dailyNutrition;
 }
 
+export const getUserWeightByDate = state => state.users.weightByDate;
+
 // THUNK ACTION CREATORS
 
 export const updateUser = updatedUser => async dispatch => {
