@@ -436,7 +436,15 @@ const seedDatabase = async () => {
                     hashedPassword: hashedPassword,
                     nutrition: nutritionArray,
                     workouts: [],
-                    healthData: {},
+                    healthData: {
+                        TDEE: 2837.1133978746025,
+                        activityLevel: 3,
+                        age: 25,
+                        height: 177.8,
+                        mass: 83.91457405642596,
+                        sex: "M",
+                        weightGoal: 0.5
+                    },
                     weightByDate: weightByDateObj
                 });
 

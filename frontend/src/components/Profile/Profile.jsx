@@ -1,17 +1,19 @@
 import { useDispatch, useSelector } from 'react-redux';
 import titleize from '../../Utils/utils'
 import './Profile.css'
-import NutritionCharts from '../NutritionCharts/NutritionCharts';
 import ExerciseCharts from '../ExerciseCharts/ExerciseCharts';
 import { useState } from 'react';
 import { addWeightByDate, receiveUserHealth, updateUser } from '../../store/users';
+import CalorieChart from '../CalorieChart/CalorieChart';
+import MacronutrientChart from '../MacronutrientChart/MacronutrientChart';
+import WeightChart from '../WeightChart/WeightChart';
 
 const Profile = () => {
     const currentUser = useSelector(state => state.session.user);    
     const healthData = useSelector(state => state.users.healthData);
     const weightGoal = useSelector(state => state.users.healthData.weightGoal);
     const maintain = weightGoal ? null : 'Maintain Weight';
-    const [weight, setWeight] = useState(healthData.mass * 2.204623);
+    const [weight, setWeight] = useState(parseFloat((healthData.mass * 2.204623).toFixed(1)));
     const [massUnit, setMassUnit] = useState('pounds'); 
     const dispatch = useDispatch();
     
@@ -40,7 +42,11 @@ const Profile = () => {
 
     const handleWeightSubmit = (e) => {
         e.preventDefault();
-        const date = new Date().toLocaleDateString();
+        const now = new Date();
+
+        const date = `${now.getFullYear()}-${String(now.getMonth() + 1)
+            .padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+            
         const updatedUser = { ...currentUser, healthData: updatedHealthData };
         const weightInKg = massUnit === 'pounds' ? weight / 2.204623 : weight;
         dispatch(addWeightByDate(Number(weightInKg), date));
@@ -53,7 +59,8 @@ const Profile = () => {
             <div className="profile-container">
                 <section className="profile-section">
                     <div className="profile-chart-container">
-                        <NutritionCharts />
+                        <CalorieChart />
+                        <MacronutrientChart />
                     </div>
                 </section>
 
@@ -83,6 +90,10 @@ const Profile = () => {
 
                                 {!maintain && weightGoal > 0 && 
                                     <div className="stat-value">Gain {weightGoal} lbs per week</div>
+                                }
+
+                                {!maintain && weightGoal < 0 && 
+                                    <div className="stat-value">Lose {Math.abs(weightGoal)} lbs per week</div>
                                 }
 
                                 <div className="stat-label">Recommended Daily Intake</div>
@@ -123,6 +134,7 @@ const Profile = () => {
                     <div className="profile-chart-container">
                         <ExerciseCharts />
                     </div>
+                    <WeightChart />
                 </section>
             </div>
         </div>
