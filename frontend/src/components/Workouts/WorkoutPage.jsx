@@ -50,7 +50,7 @@ const WorkoutPage = () => {
 
     const resetWorkout = () => {
         const newWorkout = {
-            title: "Workout title",
+            title: "",
             sets: [],
         }
         sessionStorage.setItem(
@@ -148,21 +148,42 @@ const WorkoutPage = () => {
         return filledSetIndex !== -1;
     }
 
+    const rpe = (name) => {
+        // debugger
+        // if (name === "Dumbbell Bench Press"){
+        //     debugger
+        // }
+        const exerciseObj = exerciseList.find(exercise => exercise[name])
+        if (!exerciseObj) return false;
+        const rpeIndex = Object.values(exerciseObj)[0].findIndex(set =>  !!set["RPE"])
+        return rpeIndex !== -1;
+    }
+
     const displaySets = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
         const setArray = exerciseObj[name];
         const setDisplay = [];
+        let s = 0;
         setArray.forEach((set, i)=>{
             const kg = set["kg"]
             const reps = set["reps"]
             const done = set["done"]
             const recReps = set["rec-reps"]
+            // debugger
+            const warmup = set["type"] === "warmup"
+            if (!warmup) s = s + 1;
             setDisplay.push(
                 <div className="remove-button-container">
-                    <div className={`input-upper  ${done && "done-overlay"}`}>
+                    <div className={`input-upper  ${done && "done-overlay"} ${warmup && "warmup"}`}>
                         <div className="exercise-inputs">
                             <div className="set-val">
-                                <div>{i + 1}</div>
+                                { warmup ? 
+                                    <div>{`${warmup ? "W" : ""}`}</div>
+                                    :
+                                    <div>{s}</div>
+
+                                }
+                                {/* <div>{`${warmup ? "W" : ""} ${i + 1}`}</div> */}
                             </div>
                             <div className="kg-input">
                                 <input type="text" value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
@@ -204,6 +225,9 @@ const WorkoutPage = () => {
                             <div className="set-header">Set</div>
                             <div className="kg-header">kg</div>
                             <div className="reps-header">reps</div>
+                            {rpe(exercise) &&
+                                <div className="rpe-header">RPE</div>
+                            }
                         </div>
                         {/* <div className="completed-header">completed</div> */}
                         { contentFilled(exercise) &&
@@ -222,6 +246,12 @@ const WorkoutPage = () => {
         )
     }
 
+    const getTitle = () => {
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        const key = Object.keys(currentWorkout)[0] 
+        return currentWorkout["title"] || `${moment(new Date()).format('dddd, MMMM D')} Workout`
+    }
+
     return (
         <>
             <div className="workout-page-container">
@@ -238,11 +268,7 @@ const WorkoutPage = () => {
                     
                     <div className="create-workout-header">
                         <h1 className="create-workout-h1">
-                            {
-                            Object.keys(JSON.parse(sessionStorage.getItem("currentWorkout")))[0] ||
-                            `${moment(new Date()).format('dddd, MMMM D')} Workout`
-                        
-                            }
+                            {getTitle()}
                             {/* const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout")); */}
                             {/* Create your workout */}
                             </h1>

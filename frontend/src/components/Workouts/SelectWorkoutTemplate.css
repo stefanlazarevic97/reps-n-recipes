@@ -86,5 +86,5 @@
     top: 0;
     padding: 2rem;
     background: var(--background-workout);
-    z-index: 20;
+    /* z-index: 20; */
 }

@@ -210,7 +210,7 @@
 
 .tick-button{
     font-size: 32px;
-    border-radius: 50%;
+    /* border-radius: 50%; */
 }
 
 .tick-button:hover {
@@ -221,7 +221,19 @@
     background-color: rgba(0, 255, 0, 0.2);
 }
 
-.input-upper.done-overlay input {
+.done-overlay.warmup{
+    background-color: rgba(234, 183, 14, 0.4)
+}
+
+/* .set-val div,
+.kg-input input,
+.reps-input input {
+    background-color: transparent;
+} */
+
+.done-overlay .set-val div,
+.done-overlay .kg-input input,
+.done-overlay .reps-input input {
     background-color: transparent;
 }
 
