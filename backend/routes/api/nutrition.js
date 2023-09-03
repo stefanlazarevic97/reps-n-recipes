@@ -72,7 +72,6 @@ router.delete("/:nutritionId", restoreUser, async (req, res, next) => {
         let currentUser = await User.findById(req.user._id);
 
         let nutritionItem = currentUser.nutrition.id(nutritionId);
-        console.log(nutritionItem)
         if (nutritionItem) {
             nutritionItem.deleteOne();
             await currentUser.save();

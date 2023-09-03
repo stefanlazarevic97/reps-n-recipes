@@ -1,25 +1,19 @@
 import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient, fetchProduct, clearFoods } from '../../store/foods';
 import './FoodIndex.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import {fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes} from '../../store/foods'
 import titleize from '../../Utils/utils'
 
 const FoodIndex = ({selectedDate, setSelectedDate}) => {
     const dispatch = useDispatch();
+    const initialRender = useRef(true);
     const foods = useSelector(getFoods);
     const selectedOption = useSelector(state => state.ui.selectedOption);
-    // const date = useSelector(state => state.ui.selectedDate);
-    // const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
     const [searchResults, setSearchResults] = useState(foods);
     const [offset, setOffset] = useState(0);
-
-    // const handleDateChange = (e) => {
-    //     setSelectedDate(e.target.value);
-    //     dispatch(changeSelectedDate(e.target.value));
-    // }
 
     const handleQuantityChange = (e) => {
         setFoodQuantity(e.target.value);
@@ -112,15 +106,22 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
     }
     
     useEffect(() => {
-        if (selectedOption === 'ingredients') {
-            dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
-        } else if (selectedOption === 'products') {
-            dispatch(fetchProducts(sessionStorage.getItem("query"), offset));
-        } else if (selectedOption === 'menuItems') {
-            dispatch(fetchMenuItems(sessionStorage.getItem("query"), offset));
-        } else {
-            dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
+        if (initialRender.current) {
+            initialRender.current = false;
+            return;
         }
+
+        console.log("Effect is running", initialRender.current, offset);
+
+        // if (selectedOption === 'ingredients') {
+        //     dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
+        // } else if (selectedOption === 'products') {
+        //     dispatch(fetchProducts(sessionStorage.getItem("query"), offset));
+        // } else if (selectedOption === 'menuItems') {
+        //     dispatch(fetchMenuItems(sessionStorage.getItem("query"), offset));
+        // } else {
+        //     dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
+        // }
     }, [offset])
 
     useEffect(() => {
@@ -129,6 +130,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
             sessionStorage.removeItem("query");
         }
     }, [])
+    
     const handleNextPage = (e) => {
         setOffset((prev) => prev + 10);
         e.preventDefault();

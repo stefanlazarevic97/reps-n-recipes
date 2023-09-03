@@ -100,6 +100,89 @@ const seedDatabase = async () => {
 
     console.log("Done!")
 
+    for (let i = 0; i < count; i++) {
+        let category = faker.datatype.number({ min: 1, max: 5 });
+        let nutrition;
+    
+        switch (category) {
+            case 1: // Meat
+                nutrition = new Nutrition({
+                    foodName: faker.commerce.productName(),
+                    foodQuantity: 100,
+                    foodQuantityUnit: 'g',
+                    calories: faker.datatype.float({ min: 150, max: 300 }),
+                    gramsCarbs: 0,
+                    gramsFat: faker.datatype.float({ min: 5, max: 25 }),
+                    gramsProtein: faker.datatype.float({ min: 15, max: 30 }),
+                    dateConsumed: faker.date.recent(40),
+                    servings: faker.datatype.float({ min: 1, max: 5 })
+                });
+                break;
+    
+            case 2: // Vegetables
+                nutrition = new Nutrition({
+                    foodName: faker.commerce.productName(),
+                    foodQuantity: 100,
+                    foodQuantityUnit: 'g',
+                    calories: faker.datatype.float({ min: 20, max: 50 }),
+                    gramsCarbs: faker.datatype.float({ min: 4, max: 10 }),
+                    gramsFat: faker.datatype.float({ min: 0, max: 1 }),
+                    gramsProtein: faker.datatype.float({ min: 1, max: 3 }),
+                    dateConsumed: faker.date.recent(40),
+                    servings: faker.datatype.float({ min: 1, max: 5 })
+                });
+                break;
+    
+            case 3: // Fruits
+                nutrition = new Nutrition({
+                    foodName: faker.commerce.productName(),
+                    foodQuantity: 100,
+                    foodQuantityUnit: 'g',
+                    calories: faker.datatype.float({ min: 30, max: 120 }),
+                    gramsCarbs: faker.datatype.float({ min: 5, max: 30 }),
+                    gramsFat: faker.datatype.float({ min: 0, max: 3 }),
+                    gramsProtein: faker.datatype.float({ min: 0, max: 2 }),
+                    dateConsumed: faker.date.recent(40),
+                    servings: faker.datatype.float({ min: 1, max: 5 })
+                });
+                break;
+    
+            case 4: // Carbs
+                nutrition = new Nutrition({
+                    foodName: faker.commerce.productName(),
+                    foodQuantity: 100,
+                    foodQuantityUnit: 'g',
+                    calories: faker.datatype.float({ min: 80, max: 300 }),
+                    gramsCarbs: faker.datatype.float({ min: 20, max: 60 }),
+                    gramsFat: faker.datatype.float({ min: 1, max: 5 }),
+                    gramsProtein: faker.datatype.float({ min: 2, max: 8 }),
+                    dateConsumed: faker.date.recent(40),
+                    servings: faker.datatype.float({ min: 1, max: 5 })
+                });
+                break;
+    
+            case 5: // Fatty Foods
+                nutrition = new Nutrition({
+                    foodName: faker.commerce.productName(),
+                    foodQuantity: 100,
+                    foodQuantityUnit: 'g',
+                    calories: faker.datatype.float({ min: 200, max: 600 }), 
+                    gramsCarbs: faker.datatype.float({ min: 2, max: 20 }),
+                    gramsFat: faker.datatype.float({ min: 15, max: 50 }),
+                    gramsProtein: faker.datatype.float({ min: 2, max: 10 }),
+                    dateConsumed: faker.date.recent(40),
+                    servings: faker.datatype.float({ min: 1, max: 5 })
+                });
+                break;
+    
+            default:
+                break;
+        }
+    
+        await nutrition.save();
+    }
+    
+
     await mongoose.disconnect();
 }
 
