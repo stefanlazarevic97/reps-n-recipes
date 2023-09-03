@@ -3,7 +3,7 @@ import titleize from '../../Utils/utils'
 import './Profile.css'
 import NutritionCharts from '../NutritionCharts/NutritionCharts';
 import ExerciseCharts from '../ExerciseCharts/ExerciseCharts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { addWeightByDate, receiveUserHealth, updateUser } from '../../store/users';
 
 const Profile = () => {
@@ -13,8 +13,13 @@ const Profile = () => {
     const maintain = weightGoal ? null : 'Maintain Weight';
     const [weight, setWeight] = useState(healthData.mass * 2.204623);
     const [massUnit, setMassUnit] = useState('pounds'); 
+    const [chart, setChart] = useState('weight');
     const dispatch = useDispatch();
     const chartDropdown = ['calories', 'macros', 'weight', 'exercises']
+
+    const handleChartChange = e => {
+        setChart(e.currentTarget.value);
+    };
 
     const handleMassUnitChange = e => {
         const newUnit = e.currentTarget.value;
@@ -124,7 +129,12 @@ const Profile = () => {
                     <div>
                         <select name="chart-dropdown">
                             {chartDropdown.map(chart => (
-                                <option value={chart}>{titleize(chart)}</option>
+                                <option 
+                                    value={chart}
+                                    onChange={handleChartChange}
+                                >
+                                    {titleize(chart)}
+                                </option>
                             ))}
                         </select>
                     </div>
