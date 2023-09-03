@@ -219,7 +219,7 @@ const WorkoutPage = () => {
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                             <div className="prev-top-set-input">
-                                {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
+                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
                             </div>
                         </div>
                         <div className={`complete-set-button 
