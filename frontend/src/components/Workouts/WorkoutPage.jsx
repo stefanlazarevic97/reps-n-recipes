@@ -163,16 +163,17 @@ const WorkoutPage = () => {
     }
 
     const prevTopSet = (name) => {
-        for (let i = workouts.length - 1; i > 0; i--) {
-            const workout = workouts[i];
-            const sets = workout.sets;
-            console.log(sets, 'sets')
-            const set = sets.find(set => set[name])
-            console.log('set', set)
-            if (set) {
-                const largestKg = Math.max(...set[name].map(set => set["kg"]))
-                console.log(largestKg, 'largestKg')
-                return largestKg
+        for (let i = workouts.length - 1; i >= 0; i--) {
+            const sets = workouts[i].sets;
+            const exerciseSet = sets.find(set => set[name]);
+            if (exerciseSet) {
+                const reversedSets = [...exerciseSet[name]].reverse();
+                
+                const maxKg = Math.max(...exerciseSet[name].map(set => set.kg));
+    
+                const latestLargestSet = reversedSets.find(set => set.kg === maxKg);
+            
+                return latestLargestSet;
             }
         }
     }
@@ -213,7 +214,7 @@ const WorkoutPage = () => {
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                             <div className="prev-top-set-input">
-                                {prevTopSet(name)}
+                                {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
                             </div>
                         </div>
                         <div className="complete-set-button">
