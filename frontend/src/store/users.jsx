@@ -120,9 +120,10 @@ const usersReducer = (state = initialState, action) => {
             return { ...state, healthData: action.healthData };
         case RECEIVE_MEAL_PLAN:
             return { ...state, mealPlan: action.mealPlan };
-            case RECEIVE_WORKOUT:
-                nextState.workouts = [...nextState.workouts, ...action.workout.workouts];
-                return nextState;            
+        case RECEIVE_WORKOUT:
+            const newWorkout = action.workout.workouts[action.workout.workouts.length - 1];
+            nextState.workouts.push(newWorkout);
+            return nextState
         case RECEIVE_WORKOUTS:
             nextState.workouts = action.workouts;
             return nextState;

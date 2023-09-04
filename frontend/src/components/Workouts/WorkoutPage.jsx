@@ -12,6 +12,7 @@ import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
 import Timer from "./Timer"
 import moment from "moment"
 import './WorkoutPage.css'
+import WorkoutHistory from "./WorkoutHistory"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -202,6 +203,8 @@ const WorkoutPage = () => {
         let s = 0;
         setArray.forEach((set, i)=>{
             const kg = set["kg"]
+            const prevKg = set["prevKg"];
+            const prevReps = set["prevReps"];
             const reps = set["reps"]
             const ready = kg && reps
             const done = set["done"]
@@ -225,16 +228,16 @@ const WorkoutPage = () => {
                                 }
                             </div>
                             <div className="kg-input">
-                                <input type="text" value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
+                                <input type="text" placeholder={prevKg} value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
                             </div>
                             <div className="reps-input">
                                 <input type="text" 
 
-                                placeholder={`${recReps ? recReps : ""}`}
+                                placeholder={recReps ? recReps : (prevReps ? prevReps : "")}
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                             <div className="prev-top-set-input">
-                                {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
+                            {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
                             </div>
                         </div>
                         <div className={`complete-set-button 
@@ -378,7 +381,14 @@ const WorkoutPage = () => {
                     </button>    
                 </div>
             </div> 
-
+            <div className="select-workout-container">
+                <WorkoutHistory
+                exerciseList = {exerciseList}
+                setExerciseList = {setExerciseList}
+                stopWatchActive = {stopWatchActive}
+                setStopWatchActive = {setStopWatchActive}
+                />
+            </div>
         </div>
             
         <div className="toggle-button-container">
