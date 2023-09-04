@@ -29,10 +29,6 @@ function LoginForm () {
 
     return (
         <>
-
-        <div className='food-friends'>
-            <img src={foodFriends} alt="fit veggies" />
-        </div>
         <div className="session-form-container">
             <form className="session-form" onSubmit={handleSubmit}>
                 <h2 className="header">Log In</h2>
@@ -62,7 +58,7 @@ function LoginForm () {
             <DemoUserLogin />
         </div>
 
-       
+        <img className='food-friends login' src={foodFriends} alt="fit veggies" />
        
         </>
     );

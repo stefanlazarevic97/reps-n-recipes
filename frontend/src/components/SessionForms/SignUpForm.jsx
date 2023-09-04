@@ -104,9 +104,7 @@ function SignupForm () {
             <DemoUserLogin />
         </div>
 
-        <div className='food-friends'>
-            <img src={foodFriends} alt="fit veggies" />
-        </div>
+        <img className='food-friends signup' src={foodFriends} alt="fit veggies" />
 
         </>
 

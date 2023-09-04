@@ -35,15 +35,19 @@
     justify-content: space-between;
 }
 
-.food-friends {
-    width: 200px;
 
+.food-friends{
     position: absolute;
-    top: 24vh;
-    left: calc(50vw - 100px)
+    z-index: 0;
+    width: 200px;
+    left: calc(50vw - 100px);
+    z-index: -1;
 }
 
-.food-friends img{
-    width: 100%;
-    height: auto;
+.food-friends.login {
+    top: 24vh;
+}
+
+.food-friends.signup {
+    top: 18.5vh;
 }
