@@ -3,6 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { login, clearSessionErrors } from '../../store/session';
 import DemoUserLogin from './DemoUserLogin';
+import foodFriends from "../../assets/gym-fellas.gif"
 
 function LoginForm () {
     const [email, setEmail] = useState('');
@@ -27,6 +28,7 @@ function LoginForm () {
     }
 
     return (
+        <>
         <div className="session-form-container">
             <form className="session-form" onSubmit={handleSubmit}>
                 <h2 className="header">Log In</h2>
@@ -55,6 +57,10 @@ function LoginForm () {
 
             <DemoUserLogin />
         </div>
+
+        <img className='food-friends login' src={foodFriends} alt="fit veggies" />
+       
+        </>
     );
 }
 

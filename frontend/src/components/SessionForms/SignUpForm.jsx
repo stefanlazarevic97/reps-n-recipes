@@ -4,6 +4,7 @@ import './SessionForms.css';
 import { signup, clearSessionErrors } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import DemoUserLogin from './DemoUserLogin';
+import foodFriends from "../../assets/gym-fellas.gif"
 
 function SignupForm () {
     const [email, setEmail] = useState('');
@@ -50,6 +51,7 @@ function SignupForm () {
     }
 
     return (
+        <>
         <div className="session-form-container">
 
             <form className="session-form" onSubmit={handleSubmit}>
@@ -101,6 +103,11 @@ function SignupForm () {
     
             <DemoUserLogin />
         </div>
+
+        <img className='food-friends signup' src={foodFriends} alt="fit veggies" />
+
+        </>
+
     );
 }
 
