@@ -20,7 +20,6 @@ const WorkoutPage = () => {
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
     const workouts = useSelector(state => state.users.workouts)
-    console.log(workouts)
     // const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
@@ -38,7 +37,6 @@ const WorkoutPage = () => {
         })
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
         const updatedWorkout = {...currentWorkout, sets: updatedSets}
-        console.log(updatedWorkout)
         dispatch(createWorkout(updatedWorkout))
     }
 
@@ -220,7 +218,7 @@ const WorkoutPage = () => {
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                             <div className="prev-top-set-input">
-                                {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
+                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
                             </div>
                         </div>
                         <div className={`complete-set-button 
@@ -248,7 +246,6 @@ const WorkoutPage = () => {
 
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
-            console.log(exercise, "exercise")
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>
