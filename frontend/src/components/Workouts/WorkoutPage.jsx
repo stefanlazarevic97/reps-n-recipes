@@ -194,7 +194,6 @@ const WorkoutPage = () => {
             const ready = kg && reps
             const done = set["done"]
             const recReps = set["rec-reps"]
-            // debugger
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
             setDisplay.push(
