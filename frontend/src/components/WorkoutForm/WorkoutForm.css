@@ -180,7 +180,9 @@ button.ready-to-press {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    max-height: 80%;
+    height: 800px;
+    width: 500px;
+    /* max-height: 80%; */
     overflow: auto;
 }
 
@@ -234,6 +236,8 @@ button.ready-to-press {
     background-color: white;
     border-radius: 0.5rem;
     margin: 1rem 0;
+    height: 3rem;
+    overflow: hidden;
 }
 
 .search-container.focused {
@@ -255,7 +259,6 @@ button.ready-to-press {
     width: 100%;
     padding: 1rem;
     border: 1px solid var(--lightorange);
-    border-radius: 0.25rem;
     font-size: 1rem;
     box-sizing: border-box;
     background-color: transparent;
@@ -268,6 +271,50 @@ button.ready-to-press {
 .search-icon {
     color: var(--orange);
     font-size: 2rem;
+}
+
+.filter-button{
+    background-color: #cccc;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+.filter-button select {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 40px;
+    color: transparent;
+    appearance: none;
+    background-color: transparent;
+  border: none;
+  outline: none;
+  height: 100%;
+}
+
+.filter-button select:hover{
+    cursor: pointer;
+}
+
+.visible-stuff{
+    z-index: 10;
+    top: 0;
+    left: 0;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    pointer-events: none;
+}
+
+.dropdown-arrow{
+    margin-right: 7.5px;
+    font-size: 18px;
+}
+
+.selected-group{
+    padding: 0 7.5px;
 }
 
 .list-item {

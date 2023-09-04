@@ -1,7 +1,10 @@
 import { useDispatch } from 'react-redux';
 import { deactivateWorkoutForm } from '../../store/ui';
 import { FaSearch } from "react-icons/fa";
+// import { VscListFilter } from "react-icons/vs";
 import React, { useState } from 'react';
+import { IoIosArrowDown } from "react-icons/io";
+// import { VscListFilter } from "react-icons/vs";
 import './WorkoutForm.css';
 
 const WorkoutForm = ({
@@ -13,8 +16,29 @@ const WorkoutForm = ({
     listItems
 }) => {
     const dispatch = useDispatch();
-
     const [isFocused, setIsFocused] = useState(false);
+    const [searchString, setSearchString] = useState("");
+    const [searchFilter, setSearchFilter] = useState("");
+    const [searchResults, setSearchResults] = useState([]);
+
+    // console.log(searchFilter)
+
+    const handleSearchUpdate = e => {
+        const newSearchString = e.target.value;
+        setSearchString(newSearchString);
+
+        if (newSearchString){
+            const matchingExercises = listItems
+            .filter(item => item["name"].toLowerCase().includes(newSearchString.toLowerCase()))
+            .sort((a, b) => 
+                a["name"].toLowerCase().indexOf(newSearchString.toLowerCase()) - 
+                b["name"].toLowerCase().indexOf(newSearchString.toLowerCase())
+            );
+            setSearchResults(matchingExercises)
+        }else {
+            setSearchResults(null)
+        }
+    }
 
     const handleExit = e => {
         e.stopPropagation();
@@ -42,7 +66,10 @@ const WorkoutForm = ({
 
 
     const mapListItems = () => {
-        return listItems.map((item, i) => {
+        if ( searchString && searchResults.length === 0 ){
+            return <div>No exercises match this search</div>
+        }
+        return (searchString ? searchResults : listItems).map((item, i) => {
             return (
                 <div 
                     key = {i}
@@ -80,6 +107,12 @@ const WorkoutForm = ({
         })
     }
 
+    const mapFilterOptions = () => {
+        return ['chest', 'back', 'shoulders', 'bicep', 'tricep', 'quad', 'hamstring', 'glute', 'calf', 'core'].map(group => {
+            return <option value={group}>{group}</option>
+        })
+    }
+
     return (
         <div className="workout-form-container">
             <div className="workout-form-background" onClick={handleExit}></div>
@@ -98,7 +131,19 @@ const WorkoutForm = ({
                             placeholder='Search for exercise...'
                             onFocus={() => setIsFocused(true)}
                             onBlur={() => setIsFocused(false)}
+                            onChange={handleSearchUpdate}
+                            value={searchString}
                         />
+                        <div className='filter-button'>
+                            <div className='visible-stuff'>
+                                <div className='selected-group'>{searchFilter || "All" }</div>
+                                <IoIosArrowDown className='dropdown-arrow'/>
+                            </div>
+                            {/* <div>{searchFilter}</div> */}
+                            <select name="" id="" value={searchFilter} onChange={e=>setSearchFilter(e.target.value)}>
+                                {mapFilterOptions()}
+                            </select>
+                        </div>
                     </div>
 
                     <button 
