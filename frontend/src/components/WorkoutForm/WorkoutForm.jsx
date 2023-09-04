@@ -21,7 +21,9 @@ const WorkoutForm = ({
     const [searchFilter, setSearchFilter] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
-    // console.log(searchFilter)
+    console.log(searchResults)
+
+    // console.log(listItems)
 
     const handleSearchUpdate = e => {
         const newSearchString = e.target.value;
@@ -36,7 +38,20 @@ const WorkoutForm = ({
             );
             setSearchResults(matchingExercises)
         }else {
-            setSearchResults(null)
+            setSearchResults([])
+        }
+    }
+
+    const handleFilterUpdate = e => {
+        // debugger
+        const filter = e.target.value
+        setSearchFilter(filter)
+        if (filter && searchResults.length === 0){
+            const matchingExercises = listItems.filter(item => item["muscleGroup"] === filter)
+            setSearchResults(matchingExercises)
+        }else if (filter && searchResults.length !== 0){
+            const matchingExercises = searchResults.filter(item => item["muscleGroup"] === filter)
+            setSearchResults(matchingExercises)
         }
     }
 
@@ -69,7 +84,7 @@ const WorkoutForm = ({
         if ( searchString && searchResults.length === 0 ){
             return <div>No exercises match this search</div>
         }
-        return (searchString ? searchResults : listItems).map((item, i) => {
+        return ((searchString || searchFilter) ? searchResults : listItems).map((item, i) => {
             return (
                 <div 
                     key = {i}
@@ -140,7 +155,7 @@ const WorkoutForm = ({
                                 <IoIosArrowDown className='dropdown-arrow'/>
                             </div>
                             {/* <div>{searchFilter}</div> */}
-                            <select name="" id="" value={searchFilter} onChange={e=>setSearchFilter(e.target.value)}>
+                            <select name="" id="" value={searchFilter} onChange={handleFilterUpdate}>
                                 {mapFilterOptions()}
                             </select>
                         </div>
