@@ -50,7 +50,10 @@ const workoutSchema = new Schema({
         ref: 'User'
     },
     sets: []
-
+    // dateConsumed: {
+    //     type: Date,
+    //     required: true
+    // }
 }, { timestamps: true });
 
 const userSchema = new Schema({
