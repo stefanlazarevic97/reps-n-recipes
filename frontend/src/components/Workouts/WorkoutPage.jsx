@@ -12,6 +12,7 @@ import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
 import Timer from "./Timer"
 import moment from "moment"
 import './WorkoutPage.css'
+import WorkoutHistory from "./WorkoutHistory"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -378,7 +379,14 @@ const WorkoutPage = () => {
                     </button>    
                 </div>
             </div> 
-
+            <div className="select-workout-container">
+                <WorkoutHistory
+                exerciseList = {exerciseList}
+                setExerciseList = {setExerciseList}
+                stopWatchActive = {stopWatchActive}
+                setStopWatchActive = {setStopWatchActive}
+                />
+            </div>
         </div>
             
         <div className="toggle-button-container">
