@@ -43,11 +43,11 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
     const buildSets = (ingredients) => {
         const sets = []
 
-        for (let i=0; i < ingredients["warm"]; i++){
-            sets.push({"kg": null, "reps": null, "done": false, "type": "warmup"})
-        }
-        for (let i=0; i < ingredients["work"]; i++){
-            sets.push({"kg": null, "reps": null, "done": false, "type": "working",
+        // for (let i=0; i < ingredients; i++){
+        //     sets.push({"kg": null, "reps": null, "done": false, "type": "warmup"})
+        // }
+        for (let i=0; i < ingredients.length; i++){
+            sets.push({"prevKg": ingredients[i]['kg'], "prevReps": ingredients[i]['reps'], "done": false, "type": "working",
             "rec-reps": ingredients["rec-reps"], "RPE": ingredients["RPE"]  })
         }
         return sets
@@ -61,8 +61,11 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
 
         // create a list of exercise grouped sets
         const sets = selectedTemplate.sets.map(exercise => {
+            console.log(exercise, 'exercise')
             const key = Object.keys(exercise)[0];
+            console.log(key, 'key')
             const ingredients = Object.values(exercise)[0];
+            console.log(ingredients, 'ingredients')
             return {[key]: buildSets(ingredients) }
         })
         // build the workout
