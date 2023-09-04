@@ -104,28 +104,7 @@ router.patch('/:id', requireUser, async (req, res, next) => {
         next(err);
     }
 });
-
-// router.post('/weight', requireUser, async (req, res, next) => {
-//     try {
-//         const newWeightEntry = {
-//             date: req.body.date,
-//             weight: req.body.weight
-//         }
-        
-//         let currentUser = await User.findById(req.user._id);
-        
-//         if (!currentUser.weightByDate) {
-//             currentUser.weightByDate = {};
-//         }
-
-//         currentUser.weightByDate[newWeightEntry.date] = newWeightEntry.weight;
-//         await currentUser.save();
-//         return res.json({ weightByDate: currentUser.weightByDate });
-//     } catch(err) {
-//         next(err)
-//     }
-// });
-
+7
 router.post('/weight', requireUser, async (req, res, next) => {
     try {
         const newWeightEntry = {
@@ -147,6 +126,5 @@ router.post('/weight', requireUser, async (req, res, next) => {
         next(err)
     }
 });
-
 
 module.exports = router;

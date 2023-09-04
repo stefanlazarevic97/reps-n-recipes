@@ -11,6 +11,7 @@ import {MdRemoveCircleOutline} from "react-icons/md";
 import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
 import moment from "moment"
 import './WorkoutPage.css'
+import { BsThreeDots } from "react-icons/bs";
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -130,6 +131,7 @@ const WorkoutPage = () => {
     const removeSet = (name, index) => {
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exerciseIndex = currentWorkout.sets.findIndex(exercise => exercise[name]);
+
         if (exerciseIndex !== -1) {
           if (currentWorkout.sets[exerciseIndex][name].length === 1) {
             currentWorkout.sets.splice(exerciseIndex, 1);
@@ -140,10 +142,6 @@ const WorkoutPage = () => {
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         setExerciseList([...currentWorkout.sets]);
     };
-
-
-
-
 
     const contentFilled = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
@@ -241,14 +239,46 @@ const WorkoutPage = () => {
                 </div>
             )
         })
-        return setDisplay
+        return setDisplay;
     }
 
+    const removeExercise = (index) => {
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        currentWorkout.sets.splice(index, 1);
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+        setExerciseList([...currentWorkout.sets]);
+    }
+
+    //     const removeSet = (name, index) => {
+    //     const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+    //     const exerciseIndex = currentWorkout.sets.findIndex(exercise => exercise[name]);
+
+    //     if (exerciseIndex !== -1) {
+    //       if (currentWorkout.sets[exerciseIndex][name].length === 1) {
+    //         currentWorkout.sets.splice(exerciseIndex, 1);
+    //       } else {
+    //         currentWorkout.sets[exerciseIndex][name].splice(index, 1);
+    //       }
+    //     }
+    //     sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+    //     setExerciseList([...currentWorkout.sets]);
+    // };
+
     const makeExerciseList = () => {
-        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
+        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
                 <li className='exercise-ele'>
-                    <div className="exercise-title">{exercise}</div>
+                    <div className="exercise-header-container">
+                        <div className="exercise-title">{exercise}</div>
+
+                        <div 
+                            className="remove-exercise"
+                            onClick={() => removeExercise(index)}
+                        >
+                            &times;
+                        </div>
+                    </div>
+
                     <div className="exercise-headers">
                         <div className="workout-details">
                             <div className="set-header">Set</div>
@@ -293,6 +323,7 @@ const WorkoutPage = () => {
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         return currentWorkout?.title
     }
+
 
     return (
         <>

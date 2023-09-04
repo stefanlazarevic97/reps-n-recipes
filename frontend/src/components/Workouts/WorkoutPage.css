@@ -317,3 +317,14 @@
 .restart-form {
     margin-right: 20px;
 }
+
+.remove-exercise {
+    font-size: 2rem;
+    color: var(--charcoal);
+}
+
+.exercise-header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
