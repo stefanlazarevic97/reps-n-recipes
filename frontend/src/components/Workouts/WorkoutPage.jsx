@@ -7,11 +7,12 @@ import {TiTickOutline} from "react-icons/ti"
 import { useHistory } from "react-router-dom";
 import { createWorkout } from "../../store/workouts";
 import { BiMinus } from "react-icons/bi";
-import {MdRemoveCircleOutline} from "react-icons/md";
 import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
 import Timer from "./Timer"
 import moment from "moment"
 import './WorkoutPage.css'
+import WorkoutHistory from "./WorkoutHistory"
+import { BsThreeDots } from "react-icons/bs";
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -134,6 +135,7 @@ const WorkoutPage = () => {
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exerciseObj = currentWorkout.sets.find(exercise => exercise.hasOwnProperty(name));
 
+
         // console.log(exerciseObj)
 
         if (exerciseObj) {
@@ -202,12 +204,13 @@ const WorkoutPage = () => {
         let s = 0;
         setArray.forEach((set, i)=>{
             const kg = set["kg"]
+            const prevKg = set["prevKg"];
+            const prevReps = set["prevReps"];
             const reps = set["reps"]
             const ready = kg && reps
             const done = set["done"]
             const recReps = set["rec-reps"]
             const id = `${name.replace(/ /g, '-')}-row-${i}`
-            // debugger
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
             setDisplay.push(
@@ -225,16 +228,17 @@ const WorkoutPage = () => {
                                 }
                             </div>
                             <div className="kg-input">
-                                <input type="text" value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
+                                <input type="text" placeholder={prevKg} value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
                             </div>
                             <div className="reps-input">
                                 <input type="text" 
 
-                                placeholder={`${recReps ? recReps : ""}`}
+                                placeholder={recReps ? recReps : (prevReps ? prevReps : "")}
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                             <div className="prev-top-set-input">
-                                {/* {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`} */}
+
+                            {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
                             </div>
                         </div>
                         <div className={`complete-set-button 
@@ -259,15 +263,47 @@ const WorkoutPage = () => {
                 </div>
             )
         })
-        return setDisplay
+        return setDisplay;
     }
 
+    const removeExercise = (index) => {
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        currentWorkout.sets.splice(index, 1);
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+        setExerciseList([...currentWorkout.sets]);
+    }
+
+    //     const removeSet = (name, index) => {
+    //     const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+    //     const exerciseIndex = currentWorkout.sets.findIndex(exercise => exercise[name]);
+
+    //     if (exerciseIndex !== -1) {
+    //       if (currentWorkout.sets[exerciseIndex][name].length === 1) {
+    //         currentWorkout.sets.splice(exerciseIndex, 1);
+    //       } else {
+    //         currentWorkout.sets[exerciseIndex][name].splice(index, 1);
+    //       }
+    //     }
+    //     sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+    //     setExerciseList([...currentWorkout.sets]);
+    // };
+
     const makeExerciseList = () => {
-        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
+        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             console.log(exercise, "exercise")
             return (
                 <li className='exercise-ele'>
-                    <div className="exercise-title">{exercise}</div>
+                    <div className="exercise-header-container">
+                        <div className="exercise-title">{exercise}</div>
+
+                        <div 
+                            className="remove-exercise"
+                            onClick={() => removeExercise(index)}
+                        >
+                            &times;
+                        </div>
+                    </div>
+
                     <div className="exercise-headers">
                         <div className="workout-details">
                             <div className="set-header">Set</div>
@@ -312,6 +348,7 @@ const WorkoutPage = () => {
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         return currentWorkout?.title
     }
+
 
     return (
         <>
@@ -378,7 +415,14 @@ const WorkoutPage = () => {
                     </button>    
                 </div>
             </div> 
-
+            <div className="select-workout-container">
+                <WorkoutHistory
+                exerciseList = {exerciseList}
+                setExerciseList = {setExerciseList}
+                stopWatchActive = {stopWatchActive}
+                setStopWatchActive = {setStopWatchActive}
+                />
+            </div>
         </div>
             
         <div className="toggle-button-container">
