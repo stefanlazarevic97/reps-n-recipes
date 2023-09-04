@@ -129,29 +129,33 @@ const WorkoutPage = () => {
 
     const removeSet = (name, index, id) => {
 
-        document.getElementById(`${id}`).classList.add("slide-out");
+        // document.getElementById(`${id}`).classList.add("slide-out");
 
         // debugger
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exerciseObj = currentWorkout.sets.find(exercise => exercise.hasOwnProperty(name));
 
-        // console.log(currentWorkout.sets[0][name])
+        // console.log(exerciseObj)
 
         if (exerciseObj) {
             if (exerciseObj[name].length === 1) {
               currentWorkout.sets = currentWorkout.sets.filter(exercise => !exercise.hasOwnProperty(name));
             } else {
-              const updated = exerciseObj[name].splice(index-1, 1);
+              const updated = exerciseObj[name].splice(index, 1);
               currentWorkout.sets[name] = updated;
             }
         }
 
-        // console.log(currentWorkout.sets[0][name])
-
+        
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         setExerciseList([...currentWorkout.sets]);
+        // console.log(currentWorkout.sets[0][name])
+
+
+        // console.log("after deletion", exerciseObj)
     };
 
+    console.log(exerciseList)
 
 
 
