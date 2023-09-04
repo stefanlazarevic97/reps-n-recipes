@@ -9,6 +9,7 @@ import { createWorkout } from "../../store/workouts";
 import { BiMinus } from "react-icons/bi";
 import {MdRemoveCircleOutline} from "react-icons/md";
 import SelectWorkoutTemplate from "./SelectWorkoutTemplate";
+import Timer from "./Timer"
 import moment from "moment"
 import './WorkoutPage.css'
 
@@ -20,10 +21,14 @@ const WorkoutPage = () => {
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
     const workouts = useSelector(state => state.users.workouts)
+    // console.log(workouts)
     // const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
     
+    const [stopWatchActive, setStopWatchActive] = useState(false);
+
+
     const goToNutritionPage = () => {
         history.push("/");
     };
@@ -97,12 +102,6 @@ const WorkoutPage = () => {
             return exercise;
         })
         setExerciseList(updatedExerciseList)
-        // set filled in state
-        // if (!exercise[name][index][type] || !exercise[name][index][type]){
-        //     setContentFilled(false);
-        // }else {
-        //     setContentFilled(true);
-        // }
     }
 
     const setDone = (name, index, ready) => {
@@ -127,20 +126,35 @@ const WorkoutPage = () => {
         setExerciseList(updatedExerciseList)
     }
 
-    const removeSet = (name, index) => {
+    const removeSet = (name, index, id) => {
+
+        // document.getElementById(`${id}`).classList.add("slide-out");
+
+        // debugger
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-        const exerciseIndex = currentWorkout.sets.findIndex(exercise => exercise[name]);
-        if (exerciseIndex !== -1) {
-          if (currentWorkout.sets[exerciseIndex][name].length === 1) {
-            currentWorkout.sets.splice(exerciseIndex, 1);
-          } else {
-            currentWorkout.sets[exerciseIndex][name].splice(index, 1);
-          }
+        const exerciseObj = currentWorkout.sets.find(exercise => exercise.hasOwnProperty(name));
+
+        // console.log(exerciseObj)
+
+        if (exerciseObj) {
+            if (exerciseObj[name].length === 1) {
+              currentWorkout.sets = currentWorkout.sets.filter(exercise => !exercise.hasOwnProperty(name));
+            } else {
+              const updated = exerciseObj[name].splice(index, 1);
+              currentWorkout.sets[name] = updated;
+            }
         }
+
+        
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         setExerciseList([...currentWorkout.sets]);
+        // console.log(currentWorkout.sets[0][name])
+
+
+        // console.log("after deletion", exerciseObj)
     };
 
+    console.log(exerciseList)
 
 
 
@@ -192,14 +206,15 @@ const WorkoutPage = () => {
             const ready = kg && reps
             const done = set["done"]
             const recReps = set["rec-reps"]
+            const id = `${name.replace(/ /g, '-')}-row-${i}`
             // debugger
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
             setDisplay.push(
                 <div className="remove-button-container">
-                    <div id={`${name}-row-${i}`} 
+                    <div id={id} 
                     // const stringWithDashes = "lat pulldown".replace(/ /g, '-');
-                    className={`input-upper  ${done && "done-overlay"} ${warmup && "warmup"}`}>
+                    className={`input-upper  ${done ? "done-overlay" : ""} ${warmup ? "warmup" : ""}`}>
                         <div className="exercise-inputs">
                             <div className="set-val">
                                 { warmup ? 
@@ -219,7 +234,7 @@ const WorkoutPage = () => {
                                 value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
                             </div>
                             <div className="prev-top-set-input">
-                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
+                                {`${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}`}
                             </div>
                         </div>
                         <div className={`complete-set-button 
@@ -230,12 +245,14 @@ const WorkoutPage = () => {
                     </div>
                     <div className="remove-button">
                         <BiMinus className="minus-button" 
-                        onClick={() => {
-                            document.getElementById(`row-${i}`).classList.add("slide-out");
-                            setTimeout(() => {
-                            removeSet(name, i);
-                            }, 500);
-                        }}
+                        onClick={()=>{removeSet(name, i, id)}}
+                        // onClick={() => {
+                        //     // debugger
+                        //     document.getElementById(`${id}`).classList.add("slide-out");
+                        //     setTimeout(() => {
+                        //     removeSet(name, i);
+                        //     }, 500);
+                        // }}
                         />
                     </div>
                    
@@ -247,6 +264,7 @@ const WorkoutPage = () => {
 
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise)=>{
+            console.log(exercise, "exercise")
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-title">{exercise}</div>
@@ -302,6 +320,8 @@ const WorkoutPage = () => {
                 <SelectWorkoutTemplate
                 exerciseList = {exerciseList}
                 setExerciseList = {setExerciseList}
+                stopWatchActive = {stopWatchActive}
+                setStopWatchActive = {setStopWatchActive}
                 />
             </div>
 
@@ -315,12 +335,18 @@ const WorkoutPage = () => {
                             {/* const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout")); */}
                             {/* Create your workout */}
                             </h1>
-                        <button 
-                            className="cancel-workout" 
-                            onClick={resetWorkout}
-                        >
-                            Cancel Workout
-                        </button>
+                        {/* <div> */}
+                            <Timer
+                             isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
+                            />
+                            <button 
+                                className="complete-workout" 
+                                onClick={handleSubmit}
+                                >
+                                Finish Workout
+                            </button>   
+                            
+                        {/* </div> */}
                     </div>
 
                     {makeExerciseList()}
@@ -345,11 +371,11 @@ const WorkoutPage = () => {
                     }
 
                     <button 
-                        className="complete-workout" 
-                        onClick={handleSubmit}
-                    >
-                        Complete Workout
-                    </button>       
+                        className="cancel-workout" 
+                        onClick={resetWorkout}
+                        >
+                        Cancel Workout
+                    </button>    
                 </div>
             </div> 
 
