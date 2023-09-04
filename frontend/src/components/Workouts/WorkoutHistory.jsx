@@ -1,21 +1,16 @@
+import './WorkoutHistory.css'
 import { useState } from 'react'
 import { templates } from './Templates';
-import './SelectWorkoutTemplate.css'
+import { useSelector } from 'react-redux';
 
-const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActive }) => {
-
+const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) => {
+    const workouts = useSelector(state => state.users.workouts)
     const [selectedTemplate, setSelectedTemplate] = useState('');
-    // const [isFocused, setIsFocused] = useState(false);
-
-
-    // console.log("selected", selectedTemplate)
 
     const createTemplateList = () => {
 
-        // console.log(templates())
-
-        const listEles = templates().map((exercise, i) => {
-            const name = Object.values(exercise)[0];
+        const listEles = workouts.map((workout, i) => {
+            const name = Object.values(workout)[0];
             return (
                 <>
                    <div key = {i} 
@@ -28,9 +23,9 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
                     }
                    value={name}
                     onClick={() => (
-                        selectedTemplate.title === exercise.title) ? 
+                        selectedTemplate.title === workout.title) ? 
                         setSelectedTemplate('') : 
-                        setSelectedTemplate(exercise)
+                        setSelectedTemplate(workout)
                     }
                     >
                     <div className="exercise-container">
@@ -48,18 +43,14 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
     const buildSets = (ingredients) => {
         const sets = []
 
-        // debugger 
-
-        for (let i=0; i < ingredients["warm"]; i++){
-            sets.push({"kg": null, "reps": null, "done": false, "type": "warmup"})
-        }
-        for (let i=0; i < ingredients["work"]; i++){
-            sets.push({"kg": null, "reps": null, "done": false, "type": "working",
+        // for (let i=0; i < ingredients; i++){
+        //     sets.push({"kg": null, "reps": null, "done": false, "type": "warmup"})
+        // }
+        for (let i=0; i < ingredients.length; i++){
+            sets.push({"prevKg": ingredients[i]['kg'], "prevReps": ingredients[i]['reps'], "done": false, "type": "working",
             "rec-reps": ingredients["rec-reps"], "RPE": ingredients["RPE"]  })
         }
-
         return sets
-
     }
 
     const handleStartTemplate = (e) => {
@@ -68,9 +59,6 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
         sessionStorage.setItem("currentWorkout", JSON.stringify({}));
         setExerciseList([]);
 
-        // debugger
-
-    
         // create a list of exercise grouped sets
         const sets = selectedTemplate.sets.map(exercise => {
             const key = Object.keys(exercise)[0];
@@ -88,11 +76,9 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
         setStopWatchActive(true)
     }
 
-
-    return (
-        
+    return ( 
         <div className='template-list-container'>
-            <h1 className='select-template-header'>Select a template workout</h1>
+            <h1 className='select-template-header'>Your Previous Workouts</h1>
             <form className="template-list">
                 <div className='start-template'>
 
@@ -116,14 +102,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
             </form>  
 
         </div>
-
-
-
-
-    
     )
-
 }
 
-
-export default SelectWorkoutTemplate
+export default WorkoutHistory;

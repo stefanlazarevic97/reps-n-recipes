@@ -201,7 +201,7 @@
 
 .complete-set-button.completed {
     color: white;
-    background-color: rgba(19, 169, 3, 0.784);
+    background-color: var(--green);
 }
 
 .remove-button{
@@ -264,6 +264,15 @@
     cursor: pointer;
 }
 
+.workout-page-inner .complete-workout{
+    background-color: var(--green);
+    color: white;
+}
+
+/* .complete-workout:hover {
+    background-color: rgba(255, 0, 0,0.2);
+} */
+
 .add-exercise {
     background-color: rgba(0, 0, 255, 0.1);
     color: blue;
@@ -273,14 +282,11 @@
     background-color: rgba(0, 0, 255, 0.2);
 }
 
-.complete-workout{
+/* .complete-workout{
     background-color: rgba(255, 0, 0,0.1);
     color: var(--darkorange);
-}
+} */
 
-.complete-workout:hover {
-    background-color: rgba(255, 0, 0,0.2);
-}
 
 /* ! cancel workout button */
 .cancel-workout{
