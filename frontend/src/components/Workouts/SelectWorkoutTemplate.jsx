@@ -2,13 +2,13 @@ import { useState } from 'react'
 import { templates } from './Templates';
 import './SelectWorkoutTemplate.css'
 
-const SelectWorkoutTemplate = ({ exerciseList, setExerciseList }) => {
+const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActive }) => {
 
     const [selectedTemplate, setSelectedTemplate] = useState('');
     // const [isFocused, setIsFocused] = useState(false);
 
 
-    console.log("selected", selectedTemplate)
+    // console.log("selected", selectedTemplate)
 
     const createTemplateList = () => {
 
@@ -62,7 +62,8 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList }) => {
 
     }
 
-    const handleStartTemplate = () => {
+    const handleStartTemplate = (e) => {
+        e.preventDefault()
         // empty previious running workout (n future should warn first)
         sessionStorage.setItem("currentWorkout", JSON.stringify({}));
         setExerciseList([]);
@@ -83,6 +84,8 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList }) => {
         }
         sessionStorage.setItem("currentWorkout", JSON.stringify(workout));
         setExerciseList([...sets]);
+
+        setStopWatchActive(true)
     }
 
 
