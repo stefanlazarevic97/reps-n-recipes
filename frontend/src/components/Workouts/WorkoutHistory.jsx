@@ -61,11 +61,8 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
 
         // create a list of exercise grouped sets
         const sets = selectedTemplate.sets.map(exercise => {
-            console.log(exercise, 'exercise')
             const key = Object.keys(exercise)[0];
-            console.log(key, 'key')
             const ingredients = Object.values(exercise)[0];
-            console.log(ingredients, 'ingredients')
             return {[key]: buildSets(ingredients) }
         })
         // build the workout
