@@ -1,38 +1,35 @@
 import jwtFetch from "./jwt"
 
-export const RECEIVE_WORKOUTS = 'workout/RECEIVE_WORKOUTS'
-export const RECEIVE_WORKOUT = 'workout/RECEIVE_WORKOUT'
-export const REMOVE_WORKOUT = 'workout/REMOVE_WORKOUT'
-const RECEIVE_WORKOUT_ERRORS = 'workout/RECEIVE_WORKOUT_ERRORS'
-// const CLEAR_WORKOUT_ERRORS = 'workout/CLEAR_WORKOUT_ERRORS'
-
-// const receiveWorkouts = workouts => ({
-//     type: RECEIVE_WORKOUTS,
-//     workouts
-// })
+export const RECEIVE_WORKOUTS = 'workout/RECEIVE_WORKOUTS';
+export const RECEIVE_WORKOUT = 'workout/RECEIVE_WORKOUT';
+export const REMOVE_WORKOUT = 'workout/REMOVE_WORKOUT';
+const RECEIVE_WORKOUT_ERRORS = 'workout/RECEIVE_WORKOUT_ERRORS';
 
 const receiveWorkout = workout => ({
     type: RECEIVE_WORKOUT,
     workout
 })
 
-// const removeWorkout = workoutId => ({
-//     type: REMOVE_WORKOUT,
-//     workoutId
-// })
-
 const receiveWorkoutErrors = errors => ({
     type: RECEIVE_WORKOUT_ERRORS,
     errors
 })
 
-// const clearWorkoutErrors = () => ({
-//     type: CLEAR_WORKOUT_ERRORS
-// })
-
-// const getWorkouts = state => Object.values(state.workouts)
-
-// const getWorkout = workoutId => state => state.workouts[workoutId]
+export const getWorkoutsByExercise = exercise => state => {
+    const exerciseByDate = []
+    const workouts = state.users.workouts
+    const workoutsByExercise = workouts.filter(workout => workout.sets.find(set => set.hasOwnProperty(exercise)))
+        .reduce((acc, workout) => {
+            const exerciseSets = workout.sets.find(set => set.hasOwnProperty(exercise))[exercise];
+            
+            if (exerciseSets && exerciseSets.length > 0) {
+                const topSet = exerciseSets.sort((a, b) => a.kg - b.kg).slice(-1)[0];
+                acc[workout.datePerformed] = topSet;
+            }
+            return acc;
+        }, {});
+    return workoutsByExercise
+}
 
 export const createWorkout = workout => async dispatch => {
     try {

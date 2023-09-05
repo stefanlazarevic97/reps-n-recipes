@@ -2,6 +2,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import { getExercises, fetchExercises } from "../../store/exercises";
 import { useState } from 'react';
+import { getWorkoutsByExercise } from '../../store/workouts';
 import titleize from '../../Utils/utils';
 
 const ExerciseCharts = () => {
@@ -11,13 +12,18 @@ const ExerciseCharts = () => {
     const [timeRange, setTimeRange] = useState('7');
     const [muscleGroup, setMuscleGroup] = useState('all')
     const muscleGroups = ['all', 'chest', 'back', 'shoulders', 'bicep', 'tricep', 'quad', 'hamstring', 'calf', 'glute', 'core'];
+    const [exerciseQuery, setExerciseQuery] = useState("Barbell Bench Press");
     const displayedExercises = muscleGroup !== 'all' ? exercises.filter(exercise => exercise.muscleGroup === muscleGroup) : exercises;
+    const topSet = useSelector(getWorkoutsByExercise(exerciseQuery));
+    console.log("topSet", topSet);
+    console.log("exercise query:", exerciseQuery);    
 
     useEffect(() => {
         dispatch(fetchExercises)
     }, [dispatch])
 
     const handleMuscleChange = e => setMuscleGroup(e.target.value);
+    const handleExerciseChange = e => setExerciseQuery(e.target.value);
 
     return (
 
@@ -44,9 +50,13 @@ const ExerciseCharts = () => {
                     </select>
                     <select 
                         name="exercises"
+                        onChange={handleExerciseChange}
                     >
                         {displayedExercises.map(exercise => (
-                            <option value={exercise._id} key={exercise._id}>
+                            <option 
+                                value={exercise.name} 
+                                key={exercise._id}
+                            >
                                 {exercise.name}
                             </option>
 
