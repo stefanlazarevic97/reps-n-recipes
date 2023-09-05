@@ -64,7 +64,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
 
     const handleStartTemplate = (e) => {
         e.preventDefault()
-        // empty previious running workout (n future should warn first)
+        // empty previous running workout (n future should warn first)
         sessionStorage.setItem("currentWorkout", JSON.stringify({}));
         setExerciseList([]);
 
