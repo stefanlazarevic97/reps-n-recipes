@@ -11,7 +11,8 @@
     --darkorange: #e93b00;
     --darkorangehover: rgba(233, 59, 0, 0.2);
     --orangehover: rgba(254,106,21,0.2);
-    --green: rgba(19, 169, 3, 0.784)
+    --green: rgba(19, 169, 3, 0.784);
+    /* --lightgreen: rgba(19, 169, 3, 0.1);  */
 }
 
 .footer {
