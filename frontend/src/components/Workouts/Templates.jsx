@@ -198,7 +198,7 @@ export const templates = () => {
                 ]
             },
             {
-                "title": "Core Workout 2",
+                "title": "Core 2",
                 "sets": [
                     {"Hanging Leg Raise": {"reps": null, "kg": null, "warm": 0, "work": 3, "rec-reps": "8-10", "RPE": "8-9"}},
                     {"Side Plank": {"reps": null, "kg": null, "warm": 0, "work": 3, "rec-reps": "30-45s", "RPE": "8-9"}},
@@ -236,14 +236,14 @@ export const templates = () => {
             {
                 "title": "Bodyweight",
                 "sets": [
-                    {"Push-up": {"reps": null, "warm": 1, "work": 3, "rec-reps": "10-15", "RPE": "9"}},
-                    {"Pull-up": {"reps": null, "warm": 1, "work": 3, "rec-reps": "6-10", "RPE": "9"}},
-                    {"Dip": {"reps": null, "warm": 1, "work": 3, "rec-reps": "8-12", "RPE": "9"}},
-                    {"Pistol Squat": {"reps": null, "warm": 1, "work": 3, "rec-reps": "6-10", "RPE": "9"}},
-                    {"Cossack Squat": {"reps": null, "warm": 0, "work": 3, "rec-reps": "8-12", "RPE": "9"}},
-                    {"Standing Single Leg Calf Raise": {"reps": null, "warm": 0, "work": 3, "rec-reps": "12-15", "RPE": "9"}},
-                    {"Plank": {"reps": null, "warm": 0, "work": 1, "rec-reps": "30-60 seconds", "RPE": null}},
-                    {"Bicycle Crunch": {"reps": null, "warm": 0, "work": 1, "rec-reps": "15-20", "RPE": null}}
+                    {"Push-up": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "10-15", "RPE": "9"}},
+                    {"Pull-up": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "6-10", "RPE": "9"}},
+                    {"Dip": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "8-12", "RPE": "9"}},
+                    {"Pistol Squat": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "6-10", "RPE": "9"}},
+                    {"Cossack Squat": {"reps": null, "kg": null, "warm": 0, "work": 3, "rec-reps": "8-12", "RPE": "9"}},
+                    {"Standing Single Leg Calf Raise": {"reps": null, "kg": null, "warm": 0, "work": 3, "rec-reps": "12-15", "RPE": "9"}},
+                    {"Plank": {"reps": null, "kg": null, "warm": 0, "work": 1, "rec-reps": "30-60 seconds", "RPE": null}},
+                    {"Bicycle Crunch": {"reps": null, "kg": null, "warm": 0, "work": 1, "rec-reps": "15-20", "RPE": null}}
                 ]
             },
             {

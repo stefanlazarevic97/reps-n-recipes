@@ -353,24 +353,1290 @@ const seedDatabase = async () => {
             { foodName: "Texas Roadhouse Prime Rib", calories: 291, gramsCarbs: 0, gramsFat: 23, gramsProtein: 20 }
         ];
 
-        const servings = [0.25, 0.333, 0.5, 0.667, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3]
-
         const generatePastDates = (startDate, days) => {
             const datesArray = [];
-
+            
             for (let i = 0; i < days; i++) {
                 const date = new Date(startDate);
                 date.setDate(date.getDate() - i);
                 const isoString = date.toISOString();
                 datesArray.push(isoString);
             }
-
+            
             return datesArray;
         }
 
         const startDate = new Date("2023-12-31T00:00:00.000Z");
         const days = 180;
-        const datesConsumed = generatePastDates(startDate, days)
+        const datesConsumed = generatePastDates(startDate, days);
+        const datesPerformed = datesConsumed.reverse()
+
+        const workoutsArray = [
+            { // Week 1
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 30, "done": true}, {"reps": 4, "kg": 30, "done": true}, {"reps": 4, "kg": 30, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[0]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 110, "done": true}, {"reps": 4, "kg": 110, "done": true}, {"reps": 4, "kg": 110, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 75, "done": true}, {"reps": 4, "kg": 75, "done": true}, {"reps": 4, "kg": 75, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 90, "done": true}, {"reps": 8, "kg": 90, "done": true}, {"reps": 8, "kg": 90, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 65, "done": true}, {"reps": 12, "kg": 65, "done": true}, {"reps": 12, "kg": 65, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 20, "done": true}, {"reps": 8, "kg": 20, "done": true}, {"reps": 8, "kg": 20, "done": true}]}
+                ],
+                datePerformed: datesPerformed[1]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 0, "done": true}, {"reps": 10, "kg": 0, "done": true}, {"reps": 10, "kg": 0, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 10, "done": true}, {"reps": 12, "kg": 10, "done": true}, {"reps": 12, "kg": 10, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[3]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 70, "done": true}, {"reps": 6, "kg": 70, "done": true}, {"reps": 6, "kg": 70, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 80, "done": true}, {"reps": 8, "kg": 80, "done": true}, {"reps": 8, "kg": 80, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 140, "done": true}, {"reps": 10, "kg": 140, "done": true}, {"reps": 10, "kg": 140, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 40, "done": true}, {"reps": 8, "kg": 40, "done": true}, {"reps": 8, "kg": 40, "done": true}]}
+                ],
+                datePerformed: datesPerformed[4]
+            },
+            { // Week 2
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
+                    {"Cable Row": [{"reps": 12, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 15, "kg": 25, "done": true}, {"reps": 15, "kg": 25, "done": true}, {"reps": 15, "kg": 25, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 25, "done": true}, {"reps": 15, "kg": 25, "done": true}, {"reps": 15, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[7]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 6, "kg": 110, "done": true}, {"reps": 6, "kg": 110, "done": true}, {"reps": 6, "kg": 110, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 10, "kg": 90, "done": true}, {"reps": 10, "kg": 90, "done": true}, {"reps": 10, "kg": 90, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 15, "kg": 65, "done": true}, {"reps": 15, "kg": 65, "done": true}, {"reps": 15, "kg": 65, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}]}
+                ],
+                datePerformed: datesPerformed[8]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}]},
+                    {"Chin-up": [{"reps": 12, "kg": 0, "done": true}, {"reps": 12, "kg": 0, "done": true}, {"reps": 12, "kg": 0, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
+                    {"T-Bar Row": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 10, "done": true}, {"reps": 12, "kg": 10, "done": true}, {"reps": 12, "kg": 10, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}]},
+                    {"Preacher Curl": [{"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[10]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 8, "kg": 70, "done": true}, {"reps": 8, "kg": 70, "done": true}, {"reps": 8, "kg": 70, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}]},
+                    {"Hack Squat": [{"reps": 10, "kg": 80, "done": true}, {"reps": 10, "kg": 80, "done": true}, {"reps": 10, "kg": 80, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}]},
+                    {"Leg Press": [{"reps": 12, "kg": 140, "done": true}, {"reps": 12, "kg": 140, "done": true}, {"reps": 12, "kg": 140, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]}
+                ],
+                datePerformed: datesPerformed[11]
+            },
+            { // Week 3
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 32.5, "done": true}, {"reps": 4, "kg": 32.5, "done": true}, {"reps": 4, "kg": 32.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[14]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 112.5, "done": true}, {"reps": 4, "kg": 112.5, "done": true}, {"reps": 4, "kg": 112.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 77.5, "done": true}, {"reps": 4, "kg": 77.5, "done": true}, {"reps": 4, "kg": 77.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 67.5, "done": true}, {"reps": 12, "kg": 67.5, "done": true}, {"reps": 12, "kg": 67.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 22.5, "done": true}, {"reps": 8, "kg": 22.5, "done": true}, {"reps": 8, "kg": 22.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[15]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 2.5, "done": true}, {"reps": 10, "kg": 2.5, "done": true}, {"reps": 10, "kg": 2.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 12.5, "done": true}, {"reps": 12, "kg": 12.5, "done": true}, {"reps": 12, "kg": 12.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[17]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 72.5, "done": true}, {"reps": 6, "kg": 72.5, "done": true}, {"reps": 6, "kg": 72.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 82.5, "done": true}, {"reps": 8, "kg": 82.5, "done": true}, {"reps": 8, "kg": 82.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 142.5, "done": true}, {"reps": 10, "kg": 142.5, "done": true}, {"reps": 12.5, "kg": 140, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 12.5, "kg": 40, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 42.5, "done": true}, {"reps": 8, "kg": 42.5, "done": true}, {"reps": 8, "kg": 42.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[18]
+            },
+            { // Week 4
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                    {"Cable Row": [{"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 15, "kg": 27.5, "done": true}, {"reps": 15, "kg": 27.5, "done": true}, {"reps": 15, "kg": 27.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 15, "kg": 27.5, "done": true}, {"reps": 15, "kg": 27.5, "done": true}, {"reps": 15, "kg": 27.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[21]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 6, "kg": 112.5, "done": true}, {"reps": 6, "kg": 112.5, "done": true}, {"reps": 6, "kg": 112.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 15, "kg": 67.5, "done": true}, {"reps": 15, "kg": 67.5, "done": true}, {"reps": 15, "kg": 67.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[23]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
+                    {"Chin-up": [{"reps": 12, "kg": 2.5, "done": true}, {"reps": 12, "kg": 2.5, "done": true}, {"reps": 12, "kg": 2.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 12.5, "done": true}, {"reps": 12, "kg": 12.5, "done": true}, {"reps": 12, "kg": 12.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[24]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 8, "kg": 72.5, "done": true}, {"reps": 8, "kg": 72.5, "done": true}, {"reps": 8, "kg": 72.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 10, "kg": 82.5, "done": true}, {"reps": 10, "kg": 82.5, "done": true}, {"reps": 10, "kg": 82.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 12, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}]},
+                    {"Leg Press": [{"reps": 12, "kg": 142.5, "done": true}, {"reps": 12, "kg": 142.5, "done": true}, {"reps": 12.5, "kg": 140, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12.5, "kg": 40, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[26]
+            },
+            { // Week 5
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}]}
+                ],
+                datePerformed: datesPerformed[28]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 70, "done": true}, {"reps": 12, "kg": 70, "done": true}, {"reps": 12, "kg": 70, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 25, "done": true}, {"reps": 8, "kg": 25, "done": true}, {"reps": 8, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[29]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 15, "done": true}, {"reps": 12, "kg": 15, "done": true}, {"reps": 12, "kg": 15, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[31]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 85, "done": true}, {"reps": 8, "kg": 85, "done": true}, {"reps": 8, "kg": 85, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 145, "done": true}, {"reps": 10, "kg": 145, "done": true}, {"reps": 10, "kg": 145, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}]}
+                ],
+                datePerformed: datesPerformed[32]
+            },
+            { // Week 6
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}]}
+                ],
+                datePerformed: datesPerformed[35]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 70, "done": true}, {"reps": 12, "kg": 70, "done": true}, {"reps": 12, "kg": 70, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 25, "done": true}, {"reps": 8, "kg": 25, "done": true}, {"reps": 8, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[36]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 15, "done": true}, {"reps": 12, "kg": 15, "done": true}, {"reps": 12, "kg": 15, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]}
+                ],
+                datePerformed: datesPerformed[38]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 85, "done": true}, {"reps": 8, "kg": 85, "done": true}, {"reps": 8, "kg": 85, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 145, "done": true}, {"reps": 10, "kg": 145, "done": true}, {"reps": 10, "kg": 145, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}]}
+                ],
+                datePerformed: datesPerformed[39]
+            },
+            { // Week 7
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[42]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 72.5, "done": true}, {"reps": 12, "kg": 72.5, "done": true}, {"reps": 12, "kg": 72.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 27.5, "done": true}, {"reps": 8, "kg": 27.5, "done": true}, {"reps": 8, "kg": 27.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[43]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 17.5, "done": true}, {"reps": 12, "kg": 17.5, "done": true}, {"reps": 12, "kg": 17.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[45]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 87.5, "done": true}, {"reps": 8, "kg": 87.5, "done": true}, {"reps": 8, "kg": 87.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 12.5, "kg": 50, "done": true}, {"reps": 12.5, "kg": 50, "done": true}, {"reps": 12.5, "kg": 50, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 147.5, "done": true}, {"reps": 10, "kg": 147.5, "done": true}, {"reps": 10, "kg": 147.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[47]
+            },
+            { // Week 8
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[49]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 72.5, "done": true}, {"reps": 12, "kg": 72.5, "done": true}, {"reps": 12, "kg": 72.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 27.5, "done": true}, {"reps": 8, "kg": 27.5, "done": true}, {"reps": 8, "kg": 27.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[50]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 17.5, "done": true}, {"reps": 12, "kg": 17.5, "done": true}, {"reps": 12, "kg": 17.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[52]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 87.5, "done": true}, {"reps": 8, "kg": 87.5, "done": true}, {"reps": 8, "kg": 87.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 12.5, "kg": 50, "done": true}, {"reps": 12.5, "kg": 50, "done": true}, {"reps": 12.5, "kg": 50, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 147.5, "done": true}, {"reps": 10, "kg": 147.5, "done": true}, {"reps": 10, "kg": 147.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[54]
+            },
+            { // Week 9
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 30, "done": true}, {"reps": 10, "kg": 30, "done": true}, {"reps": 10, "kg": 30, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}]}
+                ],
+                datePerformed: datesPerformed[56]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 75, "done": true}, {"reps": 12, "kg": 75, "done": true}, {"reps": 12, "kg": 75, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}]}
+                ],
+                datePerformed: datesPerformed[57]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]}
+            ],
+            datePerformed: datesPerformed[59]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 90, "done": true}, {"reps": 8, "kg": 90, "done": true}, {"reps": 8, "kg": 90, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 150, "done": true}, {"reps": 10, "kg": 150, "done": true}, {"reps": 10, "kg": 150, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 50, "done": true}, {"reps": 8, "kg": 50, "done": true}, {"reps": 8, "kg": 50, "done": true}]}
+                ],
+                datePerformed: datesPerformed[61]
+            },
+            { // Week 10
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 30, "done": true}, {"reps": 10, "kg": 30, "done": true}, {"reps": 10, "kg": 30, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}]}
+                ],
+                datePerformed: datesPerformed[63]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 75, "done": true}, {"reps": 12, "kg": 75, "done": true}, {"reps": 12, "kg": 75, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}]}
+                ],
+                datePerformed: datesPerformed[64]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]}
+            ],
+            datePerformed: datesPerformed[67]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 90, "done": true}, {"reps": 8, "kg": 90, "done": true}, {"reps": 8, "kg": 90, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 150, "done": true}, {"reps": 10, "kg": 150, "done": true}, {"reps": 10, "kg": 150, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 50, "done": true}, {"reps": 8, "kg": 50, "done": true}, {"reps": 8, "kg": 50, "done": true}]}
+                ],
+                datePerformed: datesPerformed[69]
+            },
+            { // Week 11
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 32.5, "done": true}, {"reps": 10, "kg": 32.5, "done": true}, {"reps": 10, "kg": 32.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[70]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 77.5, "done": true}, {"reps": 12, "kg": 77.5, "done": true}, {"reps": 12, "kg": 77.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[71]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 37.5, "kg": 35, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[73]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 152.5, "done": true}, {"reps": 10, "kg": 152.5, "done": true}, {"reps": 10, "kg": 152.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 52.5, "done": true}, {"reps": 8, "kg": 52.5, "done": true}, {"reps": 8, "kg": 52.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[74]
+            },
+            { // Week 12
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 32.5, "done": true}, {"reps": 10, "kg": 32.5, "done": true}, {"reps": 10, "kg": 32.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[77]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 77.5, "done": true}, {"reps": 12, "kg": 77.5, "done": true}, {"reps": 12, "kg": 77.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[78]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[80]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 152.5, "done": true}, {"reps": 10, "kg": 152.5, "done": true}, {"reps": 10, "kg": 152.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 52.5, "done": true}, {"reps": 8, "kg": 52.5, "done": true}, {"reps": 8, "kg": 52.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[81]
+            },
+            { // Week 13
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 32.5, "done": true}, {"reps": 10, "kg": 32.5, "done": true}, {"reps": 10, "kg": 32.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[84]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 77.5, "done": true}, {"reps": 12, "kg": 77.5, "done": true}, {"reps": 12, "kg": 77.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[85]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[87]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}, {"reps": 8, "kg": 92.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 152.5, "done": true}, {"reps": 10, "kg": 152.5, "done": true}, {"reps": 10, "kg": 152.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 52.5, "done": true}, {"reps": 8, "kg": 52.5, "done": true}, {"reps": 8, "kg": 52.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[88]
+            },
+            { // Week 14
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]}
+                ],
+                datePerformed: datesPerformed[91]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 80, "done": true}, {"reps": 12, "kg": 80, "done": true}, {"reps": 12, "kg": 80, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 35, "done": true}, {"reps": 8, "kg": 35, "done": true}, {"reps": 8, "kg": 35, "done": true}]}
+                ],
+                datePerformed: datesPerformed[92]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]}
+            ],
+            datePerformed: datesPerformed[93]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 155, "done": true}, {"reps": 10, "kg": 155, "done": true}, {"reps": 10, "kg": 155, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 55, "done": true}, {"reps": 8, "kg": 55, "done": true}, {"reps": 8, "kg": 55, "done": true}]}
+                ],
+                datePerformed: datesPerformed[97]
+            },
+            { // Week 15
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]}
+                ],
+                datePerformed: datesPerformed[99]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 80, "done": true}, {"reps": 12, "kg": 80, "done": true}, {"reps": 12, "kg": 80, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 35, "done": true}, {"reps": 8, "kg": 35, "done": true}, {"reps": 8, "kg": 35, "done": true}]}
+                ],
+                datePerformed: datesPerformed[100]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}, {"reps": 12, "kg": 25, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]}
+            ],
+            datePerformed: datesPerformed[102]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}, {"reps": 8, "kg": 95, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 155, "done": true}, {"reps": 10, "kg": 155, "done": true}, {"reps": 10, "kg": 155, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 55, "done": true}, {"reps": 8, "kg": 55, "done": true}, {"reps": 8, "kg": 55, "done": true}]}
+                ],
+                datePerformed: datesPerformed[104]
+            },
+            { // Week 16
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[105]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 82.5, "done": true}, {"reps": 12, "kg": 82.5, "done": true}, {"reps": 12, "kg": 82.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 37.5, "done": true}, {"reps": 8, "kg": 37.5, "done": true}, {"reps": 8, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[106]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[108]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 157.5, "done": true}, {"reps": 10, "kg": 157.5, "done": true}, {"reps": 10, "kg": 157.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 57.5, "done": true}, {"reps": 8, "kg": 57.5, "done": true}, {"reps": 8, "kg": 57.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[109]
+            },
+            { // Week 17
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[112]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 82.5, "done": true}, {"reps": 12, "kg": 82.5, "done": true}, {"reps": 12, "kg": 82.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 37.5, "done": true}, {"reps": 8, "kg": 37.5, "done": true}, {"reps": 8, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[113]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}, {"reps": 12, "kg": 27.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[115]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}, {"reps": 8, "kg": 97.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 157.5, "done": true}, {"reps": 10, "kg": 157.5, "done": true}, {"reps": 10, "kg": 157.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 57.5, "done": true}, {"reps": 8, "kg": 57.5, "done": true}, {"reps": 8, "kg": 57.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[116]
+            },
+            { // Week 18
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}]}
+                ],
+                datePerformed: datesPerformed[119]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 110, "done": true}, {"reps": 8, "kg": 110, "done": true}, {"reps": 8, "kg": 110, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 85, "done": true}, {"reps": 12, "kg": 85, "done": true}, {"reps": 12, "kg": 85, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 40, "done": true}, {"reps": 8, "kg": 40, "done": true}, {"reps": 8, "kg": 40, "done": true}]}
+                ],
+                datePerformed: datesPerformed[120]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]}
+            ],
+            datePerformed: datesPerformed[122]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 120, "done": true}, {"reps": 10, "kg": 120, "done": true}, {"reps": 10, "kg": 120, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 60, "done": true}, {"reps": 8, "kg": 60, "done": true}, {"reps": 8, "kg": 60, "done": true}]}
+                ],
+                datePerformed: datesPerformed[124]
+            },
+            { // Week 19
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 45, "done": true}]}
+                ],
+                datePerformed: datesPerformed[126]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 110, "done": true}, {"reps": 8, "kg": 110, "done": true}, {"reps": 8, "kg": 110, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 85, "done": true}, {"reps": 12, "kg": 85, "done": true}, {"reps": 12, "kg": 85, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 40, "done": true}, {"reps": 8, "kg": 40, "done": true}, {"reps": 8, "kg": 40, "done": true}]}
+                ],
+                datePerformed: datesPerformed[128]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}, {"reps": 12, "kg": 30, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]}
+            ],
+            datePerformed: datesPerformed[129]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}, {"reps": 8, "kg": 100, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 120, "done": true}, {"reps": 10, "kg": 120, "done": true}, {"reps": 10, "kg": 120, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 60, "done": true}, {"reps": 8, "kg": 60, "done": true}, {"reps": 8, "kg": 60, "done": true}]}
+                ],
+                datePerformed: datesPerformed[132]
+            },
+            { // Week 20
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 52.5, "done": true}, {"reps": 4, "kg": 52.5, "done": true}, {"reps": 4, "kg": 52.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[134]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 112.5, "done": true}, {"reps": 8, "kg": 112.5, "done": true}, {"reps": 8, "kg": 112.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 87.5, "done": true}, {"reps": 12, "kg": 87.5, "done": true}, {"reps": 12, "kg": 87.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 42.5, "done": true}, {"reps": 8, "kg": 42.5, "done": true}, {"reps": 8, "kg": 42.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[136]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[137]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 122.5, "done": true}, {"reps": 10, "kg": 122.5, "done": true}, {"reps": 10, "kg": 122.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 62.5, "done": true}, {"reps": 8, "kg": 62.5, "done": true}, {"reps": 8, "kg": 62.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[139]
+            },
+            { // Week 21
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 52.5, "done": true}, {"reps": 4, "kg": 52.5, "done": true}, {"reps": 4, "kg": 52.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 45, "done": true}, {"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}, {"reps": 12, "kg": 47.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[142]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 112.5, "done": true}, {"reps": 8, "kg": 112.5, "done": true}, {"reps": 8, "kg": 112.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 87.5, "done": true}, {"reps": 12, "kg": 87.5, "done": true}, {"reps": 12, "kg": 87.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 42.5, "done": true}, {"reps": 8, "kg": 42.5, "done": true}, {"reps": 8, "kg": 42.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[143]
+            },
+            {
+            "title": "Upper Body 2",
+            "sets": [
+                {"Barbell Bench Press": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
+                {"Chin-up": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]},
+                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                {"T-Bar Row": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}, {"reps": 12, "kg": 32.5, "done": true}]},
+                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                {"Preacher Curl": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]}
+            ],
+            datePerformed: datesPerformed[145]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}, {"reps": 8, "kg": 102.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 122.5, "done": true}, {"reps": 10, "kg": 122.5, "done": true}, {"reps": 10, "kg": 122.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 62.5, "done": true}, {"reps": 8, "kg": 62.5, "done": true}, {"reps": 8, "kg": 62.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[147]
+            },
+            { // Week 22
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}]}
+                ],
+                datePerformed: datesPerformed[149]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 115, "done": true}, {"reps": 8, "kg": 115, "done": true}, {"reps": 8, "kg": 115, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 90, "done": true}, {"reps": 12, "kg": 90, "done": true}, {"reps": 12, "kg": 90, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}]}
+                ],
+                datePerformed: datesPerformed[151]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]}
+                ],
+            datePerformed: datesPerformed[151]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 125, "done": true}, {"reps": 10, "kg": 125, "done": true}, {"reps": 10, "kg": 125, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 65, "done": true}, {"reps": 8, "kg": 65, "done": true}, {"reps": 8, "kg": 65, "done": true}]}
+                ],
+                datePerformed: datesPerformed[154]
+            },
+            { // Week 23
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}, {"reps": 12, "kg": 50, "done": true}]}
+                ],
+                datePerformed: datesPerformed[156]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 115, "done": true}, {"reps": 8, "kg": 115, "done": true}, {"reps": 8, "kg": 115, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 90, "done": true}, {"reps": 12, "kg": 90, "done": true}, {"reps": 12, "kg": 90, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}, {"reps": 8, "kg": 45, "done": true}]}
+                ],
+                datePerformed: datesPerformed[158]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}, {"reps": 12, "kg": 35, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]}
+                ],
+            datePerformed: datesPerformed[160]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}, {"reps": 8, "kg": 105, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 125, "done": true}, {"reps": 10, "kg": 125, "done": true}, {"reps": 10, "kg": 125, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 65, "done": true}, {"reps": 8, "kg": 65, "done": true}, {"reps": 8, "kg": 65, "done": true}]}
+                ],
+                datePerformed: datesPerformed[162]
+            },
+            { // Week 24
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[165]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 117.5, "done": true}, {"reps": 8, "kg": 117.5, "done": true}, {"reps": 8, "kg": 117.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 92.5, "done": true}, {"reps": 12, "kg": 92.5, "done": true}, {"reps": 12, "kg": 92.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[167]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.55, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]}
+                ],
+            datePerformed: datesPerformed[168]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 127.5, "done": true}, {"reps": 10, "kg": 127.5, "done": true}, {"reps": 10, "kg": 127.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 67.5, "done": true}, {"reps": 8, "kg": 67.5, "done": true}, {"reps": 8, "kg": 67.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[170]
+            },
+            { // Week 25
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}, {"reps": 12, "kg": 52.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[172]
+            },
+            {
+                "title": "Lower Body 1",
+                "sets": [
+                    {"Barbell Back Squat": [{"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}]},
+                    {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
+                    {"Machine Hip Thrust": [{"reps": 8, "kg": 117.5, "done": true}, {"reps": 8, "kg": 117.5, "done": true}, {"reps": 8, "kg": 117.5, "done": true}]},
+                    {"Barbell Standing Calf Raise": [{"reps": 12, "kg": 92.5, "done": true}, {"reps": 12, "kg": 92.5, "done": true}, {"reps": 12, "kg": 92.5, "done": true}]},
+                    {"Seated Leg Curl": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
+                    {"Dumbbell Lunge": [{"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}, {"reps": 8, "kg": 47.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[174]
+            },
+            {
+                "title": "Upper Body 2",
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}, {"reps": 12, "kg": 37.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]}
+                ],
+            datePerformed: datesPerformed[175]
+            },
+            {
+                "title": "Lower Body 2",
+                "sets": [
+                    {"Barbell Front Squat": [{"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}]},
+                    {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}]},
+                    {"Hack Squat": [{"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}, {"reps": 8, "kg": 107.5, "done": true}]},
+                    {"Smith Machine Calf Raise": [{"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}, {"reps": 10, "kg": 72.5, "done": true}]},
+                    {"Leg Press": [{"reps": 10, "kg": 127.5, "done": true}, {"reps": 10, "kg": 127.5, "done": true}, {"reps": 10, "kg": 127.5, "done": true}]},
+                    {"Lying Leg Curl": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
+                    {"Barbell Bulgarian Split Squats": [{"reps": 8, "kg": 67.5, "done": true}, {"reps": 8, "kg": 67.5, "done": true}, {"reps": 8, "kg": 67.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[176]
+            },
+            { // Week 26
+                "title": "Upper Body 1",
+                "sets": [
+                    {"Dumbbell Bench Press": [{"reps": 4, "kg": 60, "done": true}, {"reps": 4, "kg": 60, "done": true}, {"reps": 4, "kg": 60, "done": true}]},
+                    {"Lat Pulldown": [{"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}]},
+                    {"Seated Dumbbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Cable Row": [{"reps": 10, "kg": 75, "done": true}, {"reps": 10, "kg": 75, "done": true}, {"reps": 10, "kg": 75, "done": true}]},
+                    {"EZ Bar Tricep Extension": [{"reps": 12, "kg": 55, "done": true}, {"reps": 12, "kg": 55, "done": true}, {"reps": 12, "kg": 55, "done": true}]},
+                    {"EZ Bar Bicep Curl": [{"reps": 12, "kg": 55, "done": true}, {"reps": 12, "kg": 55, "done": true}, {"reps": 12, "kg": 55, "done": true}]}
+                ],
+                datePerformed: datesPerformed[179]
+            }
+        ]
+        
+        const servings = [0.25, 0.333, 0.5, 0.667, 0.75, 1, 1.25, 1.5, 1.75, 2, 2.25, 2.5, 2.75, 3]
         
         const getRandom = (arr) => {
             const index = Math.floor(Math.random() * arr.length);
@@ -444,7 +1710,7 @@ const seedDatabase = async () => {
                     email: "demo@user.io",
                     hashedPassword: hashedPassword,
                     nutrition: nutritionArray,
-                    workouts: [],
+                    workouts: workoutsArray,
                     healthData: {
                         TDEE: 2837.1133978746025,
                         activityLevel: 3,
