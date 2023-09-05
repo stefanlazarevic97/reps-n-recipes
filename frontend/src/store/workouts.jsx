@@ -16,18 +16,25 @@ const receiveWorkoutErrors = errors => ({
 })
 
 export const getWorkoutsByExercise = exercise => state => {
-    const exerciseByDate = []
     const workouts = state.users.workouts
     const workoutsByExercise = workouts.filter(workout => workout.sets.find(set => set.hasOwnProperty(exercise)))
-        .reduce((acc, workout) => {
-            const exerciseSets = workout.sets.find(set => set.hasOwnProperty(exercise))[exercise];
-            
-            if (exerciseSets && exerciseSets.length > 0) {
-                const topSet = exerciseSets.sort((a, b) => a.kg - b.kg).slice(-1)[0];
-                acc[workout.datePerformed] = topSet;
-            }
-            return acc;
-        }, {});
+    .reduce((accumulator, workout) => {
+        const exerciseSets = workout.sets.find(set => set.hasOwnProperty(exercise))[exercise];
+        
+        if (exerciseSets && exerciseSets.length > 0) {
+            const topSet = exerciseSets.sort((a, b) => {
+                if (a.kg !== b.kg) {
+                    return a.kg - b.kg;
+                } else {
+                    return a.reps - b.reps;
+                }
+            }).slice(-1)[0];
+
+            accumulator[workout.datePerformed] = topSet;
+        }
+
+        return accumulator;
+    }, {});
     return workoutsByExercise
 }
 
