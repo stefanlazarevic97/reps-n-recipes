@@ -22,6 +22,9 @@ const WorkoutPage = () => {
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
     const workouts = useSelector(state => state.users.workouts)
+
+
+    const [workoutStarted, setWorkoutStarted] = useState(true)
     // console.log(workouts)
     // const currentUser = useSelector(state => state.session.user);
     const history = useHistory();
@@ -158,7 +161,7 @@ const WorkoutPage = () => {
         // console.log("after deletion", exerciseObj)
     };
 
-    console.log(exerciseList)
+    // console.log(exerciseList)
 
 
 
@@ -368,34 +371,58 @@ const WorkoutPage = () => {
 
                 <div className="workout-page-inner">
                     
-                    <div className="create-workout-header">
-                        <h1 className="create-workout-h1">
-                            {getTitle()}
-                            {/* const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout")); */}
-                            {/* Create your workout */}
-                            </h1>
-                        {/* <div> */}
-                            <Timer
-                             isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
-                            />
-                            <button 
-                                className="complete-workout" 
-                                onClick={handleSubmit}
-                                >
-                                Finish Workout
-                            </button>   
+
+                    {
+
+                        workoutStarted ? 
+                        
+                        <>
+                        
+                            <div className="create-workout-header">
+                                <h1 className="create-workout-h1">
+                                    {getTitle()}
+                                </h1>
+                        
+                                <div className="workout-control">
+                                    <button 
+                                        className="complete-workout" 
+                                        onClick={handleSubmit}
+                                        >
+                                        Finish Workout
+                                    </button> 
+                                    <Timer 
+                                    isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
+                                    />  
+                                </div>
                             
-                        {/* </div> */}
-                    </div>
+                            </div> 
 
-                    {makeExerciseList()}
+                     
 
-                    <button 
-                        className="add-exercise" 
-                        onClick={()=>dispatch(activateWorkoutForm())}
-                    >
-                        Add Exercises
-                    </button>  
+                            {makeExerciseList()}
+
+                            <button 
+                                className="add-exercise" 
+                                onClick={()=>dispatch(activateWorkoutForm())}
+                            >
+                                Add Exercises
+                            </button>  
+
+                            <button 
+                                className="cancel-workout" 
+                                onClick={resetWorkout}
+                                >
+                                Cancel Workout
+                            </button>  
+
+                        </>
+
+                        :
+
+                        <div>
+                            Hello world
+                        </div>
+                    }
 
                     {active && 
                         <WorkoutForm 
@@ -409,12 +436,7 @@ const WorkoutPage = () => {
                         />
                     }
 
-                    <button 
-                        className="cancel-workout" 
-                        onClick={resetWorkout}
-                        >
-                        Cancel Workout
-                    </button>    
+                   
                 </div>
             </div> 
             <div className="select-workout-container">
