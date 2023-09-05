@@ -21,7 +21,7 @@ const WorkoutForm = ({
     const [searchFilter, setSearchFilter] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
-    console.log(searchResults)
+    // console.log(searchResults)
 
     // console.log(listItems)
 
@@ -30,6 +30,7 @@ const WorkoutForm = ({
         setSearchString(newSearchString);
 
         if (newSearchString){
+            setSearchFilter("")
             const matchingExercises = listItems
             .filter(item => item["name"].toLowerCase().includes(newSearchString.toLowerCase()))
             .sort((a, b) => 
@@ -46,13 +47,15 @@ const WorkoutForm = ({
         // debugger
         const filter = e.target.value
         setSearchFilter(filter)
-        if (filter && searchResults.length === 0){
+        if (filter){
             const matchingExercises = listItems.filter(item => item["muscleGroup"] === filter)
             setSearchResults(matchingExercises)
-        }else if (filter && searchResults.length !== 0){
-            const matchingExercises = searchResults.filter(item => item["muscleGroup"] === filter)
-            setSearchResults(matchingExercises)
         }
+        // // this was attempting to filter on top of a search string
+        // else if (filter && searchResults.length !== 0){
+        //     const matchingExercises = searchResults.filter(item => item["muscleGroup"] === filter)
+        //     setSearchResults(matchingExercises)
+        // }
     }
 
     const handleExit = e => {
