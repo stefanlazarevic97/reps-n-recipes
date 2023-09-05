@@ -1,6 +1,6 @@
 import { getFoods, addUserNutrition, fetchRecipe, fetchMenuItem, fetchIngredient, fetchProduct, clearFoods } from '../../store/foods';
 import './FoodIndex.css';
-import { useDispatch, useSelector } from 'react-redux';
+import { shallowEqual, useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState, useRef } from 'react';
 import {fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes} from '../../store/foods'
 import titleize from '../../Utils/utils'
@@ -8,7 +8,7 @@ import titleize from '../../Utils/utils'
 const FoodIndex = ({selectedDate, setSelectedDate}) => {
     const dispatch = useDispatch();
     const initialRender = useRef(true);
-    const foods = useSelector(getFoods);
+    const foods = useSelector(getFoods, shallowEqual);
     const selectedOption = useSelector(state => state.ui.selectedOption);
     const [selectedFood, setSelectedFood] = useState(null);
     const [foodQuantity, setFoodQuantity] = useState(1);
@@ -114,15 +114,15 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
 
         console.log("Effect is running", initialRender.current, offset);
 
-        // if (selectedOption === 'ingredients') {
-        //     dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
-        // } else if (selectedOption === 'products') {
-        //     dispatch(fetchProducts(sessionStorage.getItem("query"), offset));
-        // } else if (selectedOption === 'menuItems') {
-        //     dispatch(fetchMenuItems(sessionStorage.getItem("query"), offset));
-        // } else {
-        //     dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
-        // }
+        if (selectedOption === 'ingredients') {
+            dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
+        } else if (selectedOption === 'products') {
+            dispatch(fetchProducts(sessionStorage.getItem("query"), offset));
+        } else if (selectedOption === 'menuItems') {
+            dispatch(fetchMenuItems(sessionStorage.getItem("query"), offset));
+        } else {
+            dispatch(fetchRecipes(sessionStorage.getItem("query"), offset))
+        }
     }, [offset])
 
 

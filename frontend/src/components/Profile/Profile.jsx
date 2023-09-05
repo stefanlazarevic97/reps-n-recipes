@@ -53,7 +53,7 @@ const Profile = () => {
 
     const updatedHealthData = { ...healthData, mass: massUnit === 'pounds' ? weight / 2.204623 : weight};
 
-    const handleWeightSubmit = (e) => {
+    const handleWeightSubmit = async e => {
         e.preventDefault();
         const now = new Date();
 
@@ -62,9 +62,9 @@ const Profile = () => {
             
         const updatedUser = { ...currentUser, healthData: updatedHealthData };
         const weightInKg = massUnit === 'pounds' ? weight / 2.204623 : weight;
-        dispatch(addWeightByDate(Number(weightInKg), date));
-        dispatch(updateUser(updatedUser));
-        dispatch(receiveUserHealth(updatedHealthData));
+        await dispatch(addWeightByDate(Number(weightInKg), date));
+        await dispatch(updateUser(updatedUser));
+        await dispatch(receiveUserHealth(updatedHealthData));
     };
 
     return (
@@ -163,7 +163,7 @@ const Profile = () => {
                             }
                         </div>
                         {chart === 'weight' &&
-                            <WeightChart className="profile-chart" />
+                            <WeightChart className="profile-chart" healthData = {healthData} />
                         }
                         {chart === 'calories' &&
                             <CalorieChart className="profile-chart" />
