@@ -49,11 +49,11 @@ const workoutSchema = new Schema({
         type: Schema.Types.ObjectId, 
         ref: 'User'
     },
-    sets: []
-    // dateConsumed: {
-    //     type: Date,
-    //     required: true
-    // }
+    sets: [],
+    datePerformed: {
+        type: Date,
+        required: true
+    }
 }, { timestamps: true });
 
 const userSchema = new Schema({

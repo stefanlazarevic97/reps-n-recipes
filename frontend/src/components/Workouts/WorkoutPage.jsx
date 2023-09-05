@@ -41,8 +41,10 @@ const WorkoutPage = () => {
             const name = Object.keys(exerciseObj)[0]
             return {[name]: setArray.filter(setObj => setObj["done"])}
         })
+        const datePerformed = new Date();
+        console.log(datePerformed)
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
-        const updatedWorkout = {...currentWorkout, sets: updatedSets}
+        const updatedWorkout = {...currentWorkout, sets: updatedSets, datePerformed: datePerformed }
         dispatch(createWorkout(updatedWorkout))
     }
 

@@ -55,11 +55,9 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
 
     const handleStartTemplate = (e) => {
         e.preventDefault()
-        // empty previious running workout (n future should warn first)
         sessionStorage.setItem("currentWorkout", JSON.stringify({}));
         setExerciseList([]);
 
-        // create a list of exercise grouped sets
         const sets = selectedTemplate.sets.map(exercise => {
             const key = Object.keys(exercise)[0];
             const ingredients = Object.values(exercise)[0];

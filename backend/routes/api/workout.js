@@ -32,7 +32,8 @@ router.post('/', requireUser, async (req, res, next) => {
     try {
         const newWorkout = {
             title: req.body.title,
-            sets: req.body.sets
+            sets: req.body.sets,
+            datePerformed: req.body.datePerformed
         }
         
         let currentUser = await User.findById(req.user._id);
