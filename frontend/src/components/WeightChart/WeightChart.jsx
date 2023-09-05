@@ -32,9 +32,7 @@ const WeightChart = ({ healthData }) => {
     };
 
     useEffect(() => {
-        // debugger
         filterData(timeRange);
-        console.log('hello')
     }, [healthData.mass, timeRange]);
 
     const minWeight = Math.min(...filteredData.map((entry) => entry[1]));

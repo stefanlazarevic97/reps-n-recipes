@@ -30,12 +30,14 @@ export const getWorkoutsByExercise = exercise => state => {
                 }
             }).slice(-1)[0];
 
-            accumulator[workout.datePerformed] = topSet;
+            const estimated1RM = topSet.kg / (1.0278 - (0.0278 * topSet.reps));
+            accumulator[workout.datePerformed.split('T')[0]] = estimated1RM;
         }
 
         return accumulator;
     }, {});
-    return workoutsByExercise
+
+    return workoutsByExercise;
 }
 
 export const createWorkout = workout => async dispatch => {
