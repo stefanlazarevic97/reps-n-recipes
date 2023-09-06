@@ -26,9 +26,6 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
         setExerciseList([...sets]);
     }
 
-
-
-
     const createTemplateList = () => {
         const listEles = templates().map((workout, i) => {
             const name = Object.values(workout)[0];
