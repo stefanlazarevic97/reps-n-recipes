@@ -486,7 +486,7 @@ const WorkoutPage = () => {
                             <div className="workout-page-upper">
                                 <button 
                                     className="button green-button" 
-                                    onClick={handleSubmit}
+                                    onClick={saveToDB}
                                 >
                                     Finish Workout
                                 </button> 
