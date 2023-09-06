@@ -3,10 +3,33 @@ import { useState } from 'react'
 import { templates } from './Templates';
 import { useSelector } from 'react-redux';
 
-const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) => {
+const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, setExerciseList, setStopWatchActive }) => {
     const workouts = useSelector(state => state.users.workouts)
-    const [selectedTemplate, setSelectedTemplate] = useState('');
     let lastTenWorkouts;
+
+    const handleSelectTemplate = async (workout) => {
+        if (selectedTemplate.title === workout.title){
+            sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+            setExerciseList([]);
+            setSelectedTemplate(null);
+        } else {
+            setSelectedTemplate(workout)
+            renderWorkout(workout)
+        }
+    }
+
+    const renderWorkout = (workout) => {
+        sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+        setExerciseList([]);
+      
+        const sets = workout.sets.map(exercise => {
+            const key = Object.keys(exercise)[0];
+            const ingredients = Object.values(exercise)[0];
+            return {[key]: buildSets(ingredients) }
+        })
+       
+        setExerciseList([...sets]);
+    }
 
     const filterData = () => {
         const cutOffDate = new Date();
@@ -40,11 +63,7 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
                         }`
                     }
                    value={name}
-                    onClick={() => (
-                        selectedTemplate.title === workout.title) ? 
-                        setSelectedTemplate('') : 
-                        setSelectedTemplate(workout)
-                    }
+                   onClick={() => handleSelectTemplate(workout)}
                     >
                     <div className="exercise-container">
                         <div className="exercise-titles">
@@ -93,22 +112,6 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
         <div className='template-list-container'>
             <h1 className='header'>Your Previous Workouts</h1>
             <form className="template-list">
-                <div className='start-template'>
-
-                    { selectedTemplate && 
-                        <button 
-                            onClick={handleStartTemplate}
-                            className={
-                                `${selectedTemplate ?
-                                "workout-button ready-to-press" 
-                                : "workout-button hidden"}`
-                            }
-                        >
-                            Start
-                        </button>
-                    }
-                </div>
-
                 <div className="template-list-wrapper">
                     {createTemplateList()}
                 </div>

@@ -509,6 +509,8 @@ const WorkoutPage = () => {
                 {!workoutStarted &&
                     <div className="select-workout-container">
                         <WorkoutHistory
+                            selectedTemplate = {selectedTemplate}
+                            setSelectedTemplate = {setSelectedTemplate}
                             exerciseList = {exerciseList}
                             setExerciseList = {setExerciseList}
                             stopWatchActive = {stopWatchActive}
