@@ -9,7 +9,6 @@ import Profile from './components/Profile/Profile';
 import HomePage from './components/HomePage/HomePage'
 import { getCurrentUser } from './store/session';
 import WorkoutPage from './components/Workouts/WorkoutPage';
-import foodFriends from "./assets/gym-fellas.gif"
 
 function App() {
     const [loaded, setLoaded] = useState(false);

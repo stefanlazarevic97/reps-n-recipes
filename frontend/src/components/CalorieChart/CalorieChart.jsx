@@ -4,7 +4,6 @@ import { getNutritionByDate } from "../../store/foods";
 import { Scatter } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
 import { Chart, CategoryScale, LinearScale, TimeScale, PointElement, LineElement } from 'chart.js'; 
-import './CalorieChart.css'
 
 Chart.register(TimeScale, LinearScale, CategoryScale, PointElement, LineElement);
 

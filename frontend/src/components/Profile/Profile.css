@@ -139,7 +139,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 50%;
 }
 
 .chart-toggle {
@@ -157,14 +156,28 @@
 }
 
 .chart-header {
-    width: 57%;
-    display: flex;
-    justify-content: space-between;
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
     align-items: center;
     margin: 0 0 1rem 0;
 }
 
 .profile-header {
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
     font-size: 1.5rem;
     font-weight: bold;
+}
+
+.exercise-toggle {
+    width: fit-content;
+}
+
+.exercise-toggle-container {
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    margin-bottom: 1rem;
 }

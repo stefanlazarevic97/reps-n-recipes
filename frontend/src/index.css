@@ -34,20 +34,3 @@
     min-height: 100vh;
     justify-content: space-between;
 }
-
-
-.food-friends{
-    position: absolute;
-    z-index: 0;
-    width: 200px;
-    left: calc(50vw - 100px);
-    z-index: -1;
-}
-
-.food-friends.login {
-    top: 24vh;
-}
-
-.food-friends.signup {
-    top: 18.5vh;
-}

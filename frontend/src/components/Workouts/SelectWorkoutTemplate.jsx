@@ -114,15 +114,8 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
                     {createTemplateList()}
                 </div>
             </form>  
-
-        </div>
-
-
-
-
-    
+        </div>    
     )
-
 }
 
 

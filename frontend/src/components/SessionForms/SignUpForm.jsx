@@ -4,7 +4,7 @@ import './SessionForms.css';
 import { signup, clearSessionErrors } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import DemoUserLogin from './DemoUserLogin';
-import foodFriends from "../../assets/gym-fellas.gif"
+import fitVeggies from "../../assets/fit-veggies.webp"
 
 function SignupForm () {
     const [email, setEmail] = useState('');
@@ -51,63 +51,60 @@ function SignupForm () {
     }
 
     return (
-        <>
-        <div className="session-form-container">
+        <div className="user-auth-page">
+            <img className='food-friends' src={fitVeggies} alt="fit veggies" />
 
-            <form className="session-form" onSubmit={handleSubmit}>
-                <h2 className="header">Sign Up</h2>
-                <div className="session-errors">{errors?.email}</div>
-    
-                <input
-                    className="session-form-input" 
-                    type="text"
-                    value={email}
-                    onChange={update('email')}
-                    placeholder="Email"
-                />
-    
-                <div className="session-errors">{errors?.username}</div>
-    
-                <input 
-                    className="session-form-input" 
-                    type="text"
-                    value={username}
-                    onChange={update('username')}
-                    placeholder="Username"
-                />
-    
-                <div className="session-errors">{errors?.password}</div>
-    
-                <input 
-                    className="session-form-input" 
-                    type="password"
-                    value={password}
-                    onChange={update('password')}
-                    placeholder="Password"
-                />
-    
-                <div className="session-errors">
-                    {password !== password2 && 'Confirm Password field must match'}
-                </div>
-    
-                <input 
-                    className="session-form-input" 
-                    type="password"
-                    value={password2}
-                    onChange={update('password2')}
-                    placeholder="Confirm Password"
-                />
-    
-                <button className="button">Sign Up</button>
-            </form>
-    
-            <DemoUserLogin />
+            <div className="session-form-container">
+                <form className="session-form" onSubmit={handleSubmit}>
+                    <h2 className="header">Sign Up</h2>
+                    <div className="session-errors">{errors?.email}</div>
+        
+                    <input
+                        className="session-form-input" 
+                        type="text"
+                        value={email}
+                        onChange={update('email')}
+                        placeholder="Email"
+                    />
+        
+                    <div className="session-errors">{errors?.username}</div>
+        
+                    <input 
+                        className="session-form-input" 
+                        type="text"
+                        value={username}
+                        onChange={update('username')}
+                        placeholder="Username"
+                    />
+        
+                    <div className="session-errors">{errors?.password}</div>
+        
+                    <input 
+                        className="session-form-input" 
+                        type="password"
+                        value={password}
+                        onChange={update('password')}
+                        placeholder="Password"
+                    />
+        
+                    <div className="session-errors">
+                        {password !== password2 && 'Confirm Password field must match'}
+                    </div>
+        
+                    <input 
+                        className="session-form-input" 
+                        type="password"
+                        value={password2}
+                        onChange={update('password2')}
+                        placeholder="Confirm Password"
+                    />
+        
+                    <button className="button">Sign Up</button>
+                </form>
+        
+                <DemoUserLogin />
+            </div>
         </div>
-
-        <img className='food-friends signup' src={foodFriends} alt="fit veggies" />
-
-        </>
-
     );
 }
 

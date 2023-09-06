@@ -59,7 +59,9 @@ const NutritionIndex = () => {
     const options = {
         plugins: {
             legend: {
-
+                display: true,
+                position: 'bottom',
+                labels: { font: { size: 14 }, color: '#33302E' }
             },
             tooltip: {            
                 bodyFont: {

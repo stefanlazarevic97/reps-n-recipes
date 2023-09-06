@@ -76,16 +76,32 @@ const ExerciseCharts = () => {
     };
 
     return (
-            <div className="charts-container">
-                <div>
+        <div className="charts-container">
+            <div className="charts">
+                <div className="chart-header">
+                    <div className="chart-toggle-container">
+                        <select className="chart-toggle"
+                            onChange={(e) => setUnit(e.target.value)} value={unit}
+                        >
+                            <option value="kg">Kilograms</option>
+                            <option value="lbs">Pounds</option>
+                        </select>
+
+                        <select
+                            className="chart-toggle"
+                            onChange={(e) => setTimeRange(e.target.value)}
+                            value={timeRange}
+                        >
+                            <option value="30">Last 30 days</option>
+                            <option value="90">Last 3 months</option>
+                        </select>
+                    </div>
+
+                    <h2 className="profile-header">{exerciseQuery} 1RM</h2>
+                </div>
+                <div className="chart-toggle-container exercise-toggle-container">
                     <select 
-                        onChange={handleMuscleChange}
-                    >
-                        {muscleGroups.map(muscleGroup => (
-                            <option value={muscleGroup}>{titleize(muscleGroup)}</option>
-                            ))}
-                    </select>
-                    <select 
+                        className="chart-toggle exercise-toggle"
                         name="exercises"
                         onChange={handleExerciseChange}
                         >
@@ -97,90 +113,76 @@ const ExerciseCharts = () => {
                                 {exercise.name}
                             </option>
 
-))}
+                        ))}
                     </select>
-                </div>
-                <div className="charts">
-            <div className="chart-header">
-                <div className="chart-toggle-container">
-                    <select className="chart-toggle"
-                        onChange={(e) => setUnit(e.target.value)} value={unit}
+                    <select 
+                        className="chart-toggle exercise-toggle"
+                        onChange={handleMuscleChange}
                     >
-                        <option value="kg">Kilograms</option>
-                        <option value="lbs">Pounds</option>
-                    </select>
-
-                    <select
-                        className="chart-toggle"
-                        onChange={(e) => setTimeRange(e.target.value)}
-                        value={timeRange}
-                    >
-                        <option value="30">Last 30 days</option>
-                        <option value="90">Last 3 months</option>
+                        {muscleGroups.map(muscleGroup => (
+                            <option value={muscleGroup}>{titleize(muscleGroup)}</option>
+                            ))}
                     </select>
                 </div>
 
-                <h2 className="profile-header">{exerciseQuery} 1RM</h2>
+                <Scatter
+                    data={weightData}
+                    options={{
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: true,
+                                callbacks: {
+                                    title: (tooltipItems) => {
+                                        const date = tooltipItems[0].raw.x;
+                                        return date.toLocaleDateString('en-US', {
+                                            month: 'short',
+                                            day: '2-digit',
+                                        });
+                                    },
+
+                                    label: (tooltipItem) => {
+                                        return `${tooltipItem.raw.y.toFixed(1)} ${unit}`;
+                                    },
+                                },
+                            },
+                        },
+
+                        scales: {
+                            x: {
+                                type: 'time',
+                                min: filteredData.length > 0 ? new Date(filteredData[0][0]).toISOString() : undefined,
+                                max: filteredData.length > 0 ? new Date(filteredData[filteredData.length - 1][0]).toISOString() : undefined,
+                                title: {
+                                    display: true,
+                                    text: 'Date',
+                                    font: { size: 18, weight: 'bold' },
+                                    color: '#33302E',
+                                },
+                                ticks: { font: { size: 14 }, color: '#33302E' },
+                                time: {
+                                    unit: 'day',
+                                    displayFormats: { day: 'MMM d' },
+                                },
+                            },
+                            y: {
+                                min: Math.floor(convertWeight(minWeight)),
+                                max: Math.ceil(convertWeight(maxWeight)),
+                                title: {
+                                    display: true,
+                                    text: `Weight (${unit})`,
+                                    font: { size: 18, weight: 'bold' },
+                                    color: '#33302E',
+                                },
+                                ticks: { font: { size: 14 }, color: '#33302E' },
+                            },
+                        },
+                    }}
+                />
             </div>
-
-            <Scatter
-                data={weightData}
-                options={{
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: true,
-                            callbacks: {
-                                title: (tooltipItems) => {
-                                    const date = tooltipItems[0].raw.x;
-                                    return date.toLocaleDateString('en-US', {
-                                        month: 'short',
-                                        day: '2-digit',
-                                    });
-                                },
-
-                                label: (tooltipItem) => {
-                                    return `${tooltipItem.raw.y.toFixed(1)} ${unit}`;
-                                },
-                            },
-                        },
-                    },
-
-                    scales: {
-                        x: {
-                            type: 'time',
-                            min: filteredData.length > 0 ? new Date(filteredData[0][0]).toISOString() : undefined,
-                            max: filteredData.length > 0 ? new Date(filteredData[filteredData.length - 1][0]).toISOString() : undefined,
-                            title: {
-                                display: true,
-                                text: 'Date',
-                                font: { size: 18, weight: 'bold' },
-                                color: '#33302E',
-                            },
-                            ticks: { font: { size: 14 }, color: '#33302E' },
-                            time: {
-                                unit: 'day',
-                                displayFormats: { day: 'MMM d' },
-                            },
-                        },
-                        y: {
-                            min: Math.floor(convertWeight(minWeight)),
-                            max: Math.ceil(convertWeight(maxWeight)),
-                            title: {
-                                display: true,
-                                text: `Weight (${unit})`,
-                                font: { size: 18, weight: 'bold' },
-                                color: '#33302E',
-                            },
-                            ticks: { font: { size: 14 }, color: '#33302E' },
-                        },
-                    },
-                }}
-            />
         </div>
-            </div>
     )
 }
 

@@ -4,7 +4,6 @@ import { getUserWeightByDate } from '../../store/users';
 import { Scatter } from 'react-chartjs-2';
 import 'chartjs-adapter-date-fns';
 import { Chart, CategoryScale, LinearScale, TimeScale, PointElement, LineElement, Legend } from 'chart.js';
-import './WeightChart.css';
 
 Chart.register(TimeScale, LinearScale, CategoryScale, PointElement, LineElement, Legend);
 
@@ -81,6 +80,7 @@ const WeightChart = ({ healthData }) => {
                 </div>
 
                 <h2 className="profile-header">Weight</h2>
+                <div className="placeholder"></div>
             </div>
 
             <Scatter
