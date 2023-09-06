@@ -14,7 +14,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     }
 
     const renderWorkout = (workout) => {
-        sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+        sessionStorage.setItem("currentWorkout", JSON.stringify({title: "", sets: []}));
         setExerciseList([]);
       
         const sets = workout.sets.map(exercise => {
