@@ -1,6 +1,6 @@
 import './NutritionIndex.css'
 import { Pie } from 'react-chartjs-2';
-import { useDispatch, useSelector } from 'react-redux'
+import { shallowEqual, useDispatch, useSelector } from 'react-redux'
 import { useState, useEffect } from 'react'
 import { fetchUserNutritionByDay, getUserNutritionByDay } from '../../store/users'
 import { Chart, PieController, ArcElement, Tooltip } from 'chart.js';
@@ -13,7 +13,7 @@ Chart.register(PieController, ArcElement, Tooltip);
 
 const NutritionIndex = () => {
     const dispatch = useDispatch();
-    const dailyNutrition = useSelector(getUserNutritionByDay);
+    const dailyNutrition = useSelector(getUserNutritionByDay, shallowEqual);
     const selectedDate = useSelector(state => state.ui.selectedDate)
     const [showUpdate, setShowUpdate] = useState(false)
     const [foodToUpdate, setFoodToUpdate] = useState(null);
@@ -120,7 +120,10 @@ const NutritionIndex = () => {
                 }
                 
                 {dailyNutrition.map(food => (
-                    <div className="macros-item-container">
+                    <div 
+                        className="macros-item-container"
+                        key={food.foodName}
+                    >
                         <h3 
                             className="nutrition-facts-header"
                         >
