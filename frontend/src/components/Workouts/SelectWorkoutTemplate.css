@@ -2,6 +2,7 @@
     border-radius: 0.5rem;
     background: var(--background-workout);
     padding-top: 20px;
+    box-shadow: var(--RNRboxshadow);
 }
 
 .select-template-header {
