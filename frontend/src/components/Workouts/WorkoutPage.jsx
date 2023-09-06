@@ -160,8 +160,23 @@ const WorkoutPage = () => {
 
     console.log(exerciseList)
 
+    let pastWorkouts;
 
+    const filterData = () => {
+        const cutOffDate = new Date(2023, 7, 1);
+        const yesterday = new Date();
+    
+        const filteredWorkouts = workouts
+            .filter(workout => {
+                const parsedDate = new Date(workout.datePerformed);
+                return parsedDate >= cutOffDate && parsedDate <= yesterday;
+            })
+            .sort((a, b) => new Date(a.datePerformed) - new Date(b.datePerformed));
+    console.log(filteredWorkouts, 'filteredWorkouts')
+        return filteredWorkouts;
+    }
 
+    pastWorkouts = filterData()
 
     const contentFilled = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
@@ -184,8 +199,8 @@ const WorkoutPage = () => {
     }
 
     const prevTopSet = (name) => {
-        for (let i = workouts.length - 1; i >= 0; i--) {
-            const sets = workouts[i].sets;
+        for (let i = pastWorkouts.length - 1; i >= 0; i--) {
+            const sets = pastWorkouts[i].sets;
             const exerciseSet = sets.find(set => set[name]);
             if (exerciseSet) {
                 const reversedSets = [...exerciseSet[name]].reverse();
