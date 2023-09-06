@@ -420,7 +420,7 @@ const WorkoutPage = () => {
     return (
         <>
             <div className="workout-page-container">
-                { !workoutStarted &&
+                {!workoutStarted &&
                     <div className="select-workout-container">
                         <SelectWorkoutTemplate
                             selectedTemplate = {selectedTemplate}
@@ -433,46 +433,49 @@ const WorkoutPage = () => {
                     </div>
                 }
           
-            <div className="workout-page-inner">
-                {
-                    workoutStarted ? 
-                    <>
-                        <button 
-                            className="button green-button" 
-                            onClick={handleSubmit}
-                        >
-                            Finish Workout
-                        </button> 
+                <div className="workout-page-inner">
+                    {workoutStarted ? 
+                        <div className="workout-page-wrapper">
+                            <div className="workout-page-upper">
+                                <button 
+                                    className="button green-button" 
+                                    onClick={handleSubmit}
+                                >
+                                    Finish Workout
+                                </button> 
 
-                        <div className="create-workout-header">
-                            <h1 className="create-workout-h1">
-                                {getTitle()}
-                            </h1>
-                    
-                            <div className="workout-control">
-                                <Timer 
-                                isActive= {stopWatchActive} setIsActive= {setStopWatchActive} resumeTime={resumeTime} setResumeTime={setResumeTime}
-                                />  
+                                <div className="create-workout-header">
+                                    <h1 className="create-workout-h1">
+                                        {getTitle()}
+                                    </h1>
+                            
+                                    <div className="workout-control">
+                                        <Timer 
+                                        isActive= {stopWatchActive} setIsActive= {setStopWatchActive} resumeTime={resumeTime} setResumeTime={setResumeTime}
+                                        />  
+                                    </div>
+                                </div> 
+                                <div className="workout-header-spacer"></div>
+                                {makeExerciseList()}
                             </div>
-                        </div> 
-                        <div className="workout-header-spacer"></div>
-                        {makeExerciseList()}
 
-                            <button 
-                                className="add-exercise-button button" 
-                                onClick={()=>dispatch(activateWorkoutForm())}
-                            >
-                                Add Exercises
-                            </button>  
+                            <div className="workout-page-lower">
+                                <button 
+                                    className="add-exercise-button button" 
+                                    onClick={()=>dispatch(activateWorkoutForm())}
+                                >
+                                    Add Exercises
+                                </button>  
 
-                            <button 
-                                className="workout-button" 
-                                onClick={resetWorkout}
-                            >
-                                Cancel Workout
-                            </button>  
-                        </> :
-                        <>
+                                <button 
+                                    className="workout-button" 
+                                    onClick={resetWorkout}
+                                >
+                                    Cancel Workout
+                                </button>  
+                            </div>
+                        </div> :
+                        <div>
                             <button 
                                 className="workout-button" 
                                 onClick={startEmptyWorkout}
@@ -494,9 +497,9 @@ const WorkoutPage = () => {
                                     {viewTemplate()}
                                 </>
                             }
-                        </>
+                        </div>
                     }
-
+                    
                     {active && 
                         <WorkoutForm 
                             exerciseList={exerciseList} 
@@ -509,32 +512,26 @@ const WorkoutPage = () => {
                         />
                     } 
 
-
-                    {
-                        congrats && 
+                    {congrats && 
                         <div className="congrats-container">
-                            <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
-                                <div className="workout-form">
-                                    <div className='add-search-container'>
-                                        <button 
-                                            onClick={handleSubmit}
-                                            className={
-                                                `${selectedExercise ?
-                                                "workout-button ready-to-press" 
-                                                : "workout-button hidden"}`
-                                            }
-                                        >
-                                            Save as Template
-                                        </button>
-                                    </div>
-                                 
-                                </div>  
-                            </div>
+                            <div className="congrats-background" onClick={() => setCongrats(false)}></div>
+                            
+                            <div className="workout-form">
+                                <div className='add-search-container'>
+                                    <button 
+                                        onClick={handleSubmit}
+                                        className={
+                                            `${selectedExercise ?
+                                            "workout-button ready-to-press" 
+                                            : "workout-button hidden"}`
+                                        }
+                                    >
+                                        Save as Template
+                                    </button>
+                                </div>              
+                            </div>  
+                        </div>
                     }
-
-
-
-
                 </div>
 
                 {!workoutStarted &&
