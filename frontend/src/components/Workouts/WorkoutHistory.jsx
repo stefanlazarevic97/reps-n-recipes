@@ -9,7 +9,7 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
 
     const handleSelectTemplate = async (workout) => {
         if (selectedTemplate.title === workout.title){
-            sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+            sessionStorage.setItem("currentWorkout", JSON.stringify({title: "", sets: []}));
             setExerciseList([]);
             setSelectedTemplate(null);
         } else {
