@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getExercises, fetchExercises } from "../../store/exercises";
 import { getWorkoutsByExercise } from '../../store/workouts';
@@ -46,7 +46,7 @@ const ExerciseCharts = () => {
     
     useEffect(() => {
         filterData(timeRange);
-    }, [timeRange]);
+    }, [exerciseQuery, timeRange]);
     
     const minWeight = Math.min(...filteredData.map((entry) => entry[1]));
     const maxWeight = Math.max(...filteredData.map((entry) => entry[1]));
@@ -79,7 +79,7 @@ const ExerciseCharts = () => {
                     <div className="chart-toggle-container">
                         <select className="chart-toggle"
                             onChange={(e) => setUnit(e.target.value)} value={unit}
-                        >
+                            >
                             <option value="kg">Kilograms</option>
                             <option value="lbs">Pounds</option>
                         </select>
@@ -88,7 +88,7 @@ const ExerciseCharts = () => {
                             className="chart-toggle"
                             onChange={(e) => setTimeRange(e.target.value)}
                             value={timeRange}
-                        >
+                            >
                             <option value="30">Last 30 days</option>
                             <option value="90">Last 3 months</option>
                         </select>
@@ -101,11 +101,11 @@ const ExerciseCharts = () => {
                         className="chart-toggle exercise-toggle"
                         name="exercises"
                         onChange={handleExerciseChange}
-                        >
+                    >
                         {displayedExercises.map(exercise => (
                             <option 
-                            value={exercise.name} 
-                            key={exercise._id}
+                                value={exercise.name} 
+                                key={exercise._id}
                             >
                                 {exercise.name}
                             </option>
@@ -115,69 +115,72 @@ const ExerciseCharts = () => {
                     <select 
                         className="chart-toggle exercise-toggle"
                         onChange={handleMuscleChange}
-                    >
+                        >
                         {muscleGroups.map(muscleGroup => (
                             <option value={muscleGroup}>{titleize(muscleGroup)}</option>
                             ))}
                     </select>
                 </div>
 
-                <Scatter
-                    data={weightData}
-                    options={{
-                        plugins: {
-                            legend: {
-                                display: false,
-                            },
-                            tooltip: {
-                                enabled: true,
-                                callbacks: {
-                                    title: (tooltipItems) => {
-                                        const date = tooltipItems[0].raw.x;
-                                        return date.toLocaleDateString('en-US', {
-                                            month: 'short',
-                                            day: '2-digit',
-                                        });
-                                    },
+                {Object.keys(topSet).length !== 0 ?
+                    <Scatter
+                        data={weightData}
+                        options={{
+                            plugins: {
+                                legend: {
+                                    display: false,
+                                },
+                                tooltip: {
+                                    enabled: true,
+                                    callbacks: {
+                                        title: (tooltipItems) => {
+                                            const date = tooltipItems[0].raw.x;
+                                            return date.toLocaleDateString('en-US', {
+                                                month: 'short',
+                                                day: '2-digit',
+                                            });
+                                        },
 
-                                    label: (tooltipItem) => {
-                                        return `${tooltipItem.raw.y.toFixed(1)} ${unit}`;
+                                        label: (tooltipItem) => {
+                                            return `${tooltipItem.raw.y.toFixed(1)} ${unit}`;
+                                        },
                                     },
                                 },
                             },
-                        },
 
-                        scales: {
-                            x: {
-                                type: 'time',
-                                min: filteredData.length > 0 ? new Date(filteredData[0][0]).toISOString() : undefined,
-                                max: filteredData.length > 0 ? new Date(filteredData[filteredData.length - 1][0]).toISOString() : undefined,
-                                title: {
-                                    display: true,
-                                    text: 'Date',
-                                    font: { size: 18, weight: 'bold' },
-                                    color: '#33302E',
+                            scales: {
+                                x: {
+                                    type: 'time',
+                                    min: filteredData.length > 0 ? new Date(filteredData[0][0]).toISOString() : undefined,
+                                    max: filteredData.length > 0 ? new Date(filteredData[filteredData.length - 1][0]).toISOString() : undefined,
+                                    title: {
+                                        display: true,
+                                        text: 'Date',
+                                        font: { size: 18, weight: 'bold' },
+                                        color: '#33302E',
+                                    },
+                                    ticks: { font: { size: 14 }, color: '#33302E' },
+                                    time: {
+                                        unit: 'day',
+                                        displayFormats: { day: 'MMM d' },
+                                    },
                                 },
-                                ticks: { font: { size: 14 }, color: '#33302E' },
-                                time: {
-                                    unit: 'day',
-                                    displayFormats: { day: 'MMM d' },
+                                y: {
+                                    min: Math.floor(convertWeight(minWeight)),
+                                    max: Math.ceil(convertWeight(maxWeight)),
+                                    title: {
+                                        display: true,
+                                        text: `Weight (${unit})`,
+                                        font: { size: 18, weight: 'bold' },
+                                        color: '#33302E',
+                                    },
+                                    ticks: { font: { size: 14 }, color: '#33302E' },
                                 },
                             },
-                            y: {
-                                min: Math.floor(convertWeight(minWeight)),
-                                max: Math.ceil(convertWeight(maxWeight)),
-                                title: {
-                                    display: true,
-                                    text: `Weight (${unit})`,
-                                    font: { size: 18, weight: 'bold' },
-                                    color: '#33302E',
-                                },
-                                ticks: { font: { size: 14 }, color: '#33302E' },
-                            },
-                        },
-                    }}
-                />
+                        }}
+                    /> : 
+                    <div className="no-data-available">No Data Available</div>
+                }
             </div>
         </div>
     )
