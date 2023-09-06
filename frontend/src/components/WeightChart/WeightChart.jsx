@@ -8,7 +8,7 @@ import './WeightChart.css';
 
 Chart.register(TimeScale, LinearScale, CategoryScale, PointElement, LineElement, Legend);
 
-const WeightChart = () => {
+const WeightChart = ({ healthData }) => {
     const [unit, setUnit] = useState('kg');
     const [filteredData, setFilteredData] = useState([]);
     const [timeRange, setTimeRange] = useState('7');
@@ -33,7 +33,7 @@ const WeightChart = () => {
 
     useEffect(() => {
         filterData(timeRange);
-    }, [weightsByDate, timeRange]);
+    }, [healthData.mass, timeRange]);
 
     const minWeight = Math.min(...filteredData.map((entry) => entry[1]));
     const maxWeight = Math.max(...filteredData.map((entry) => entry[1]));
