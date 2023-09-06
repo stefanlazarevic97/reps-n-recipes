@@ -349,48 +349,74 @@ const WorkoutPage = () => {
 
 
 
-    const viewTemplate = () => {
-        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
-            // console.log(exercise, "exercise")
-            return (
-                <li className='exercise-ele'>
-                    <div className="exercise-header-container">
-                        <div className="exercise-title">{exercise}</div>
 
-                        <div 
-                            className="remove-exercise"
-                            onClick={() => removeExercise(index)}
-                        >
-                            &times;
+
+
+        const displaySetsSimple = (name) => {
+            const exerciseObj = exerciseList.find(exercise => exercise[name])
+            const setArray = exerciseObj[name];
+            const setDisplay = [];
+            let s = 0;
+            setArray.forEach((set, i)=>{
+                const kg = set["kg"]
+                const prevKg = set["prevKg"];
+                const prevReps = set["prevReps"];
+                const reps = set["reps"]
+                const done = set["done"]
+                const recReps = set["rec-reps"]
+                const id = `${name.replace(/ /g, '-')}-row-${i}`
+                const warmup = set["type"] === "warmup"
+                if (!warmup) s = s + 1;
+                setDisplay.push(
+                    
+                        <div id={id} 
+                        className={`input-upper  ${done ? "done-overlay" : ""} ${warmup ? "warmup" : ""}`}>
+                            <div className="exercise-inputs">
+                                <div className="set-val">
+                                    { warmup ? 
+                                        <div>{`${warmup ? "W" : ""}`}</div>
+                                        :
+                                        <div>{s}</div>
+                                    }
+                                </div>
+                               
+                                <div className="prev-top-set-input">
+    
+                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
+                                </div>
+                            </div>
+                        
+                       
                         </div>
-                    </div>
+           
+                       
+                )
+            })
+            return setDisplay;
+        }
 
-                    <div className="exercise-headers">
-                        <div className="workout-details">
-                            <div className="set-header">Set</div>
-                            <div className="kg-header">kg</div>
-                            <div className="reps-header">reps</div>
-                            {rpe(exercise) &&
-                                <div className="rpe-header">RPE</div>
-                            }
-                            <div 
-                                className="prev-top-set"
-                            >
-                                Prev Top Set
+        const viewTemplate = () => {
+            const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
+                return (
+                    <li className='template-exercise-ele'>
+                        <div className="exercise-header-container">
+                            <div className="exercise-title">{exercise}</div>
+                        </div>
+                        <div className="exercise-headers">
+                            <div className="workout-details">
+                                <div className="set-header">Set</div>
+                                <div className="prev-top-set">Prev Top Set</div>
                             </div>
                         </div>
-                        {/* <div className="completed-header">completed</div> */}
-                        { contentFilled(exercise) &&
-                        <div className="completed-header">completed</div>
-                        }
-                    </div>
-                    {displaySets(exercise)}
-                    <button className="add-a-set" onClick={() => addSet(exercise)}>+ Add Set</button>
-                </li>
-            )
-        })
+                        {displaySetsSimple(exercise)}
+                    </li>
+                )
+            })
+
+
+
         return (
-            <ul>
+            <ul className="template-exercise-list">
                 {list}
             </ul>
         )
@@ -517,13 +543,6 @@ const WorkoutPage = () => {
                                         Start this Template
                                 </button> 
 
-                                {/* <ViewWorkout
-                                exerciseList={exerciseList} 
-                                setExerciseList={setExerciseList}
-                                addExercise={addExercise} 
-                                setAddExercise={setAddExercise}
-                                listItems={listItems}
-                                /> */}
                                 {viewTemplate()}
                             </>
                         }

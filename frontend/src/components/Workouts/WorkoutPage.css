@@ -9,19 +9,20 @@
 
 .select-workout-container{
     width: 400px;
-    /* margin-right: 40px; */
-    /* height: 700px;700px; */
-    /* border: 1px solid black; */
 }
 
 .workout-page-inner {
-    width: 600px;
+    width: 40vw;
+    min-height: 85vh;
     /* height: 100vh; */
     display: flex;
     flex-direction: column;
     padding: 0 40px;
-    border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc;
+    border-radius: 0.4rem;
+    border: 1px solid #cccc;
+    /* border-left: 1px solid #ccc;
+    border-right: 1px solid #ccc; */
+    margin: 0 20px;
     overflow-y: auto;
 }
 
@@ -62,6 +63,27 @@
     border-radius: 0.4em;
     margin: 40px 0px;
     border-bottom: 1px solid #ccc;
+}
+
+.template-exercise-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.template-exercise-ele{
+
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    width: calc(50% - 30px);
+    border-radius: 0.4em;
+    /* margin: 40px 0px; */
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+
+    padding: 10px;
+
 }
 
 .exercise-title {
