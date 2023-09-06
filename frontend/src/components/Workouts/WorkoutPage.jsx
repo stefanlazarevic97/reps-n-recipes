@@ -28,6 +28,7 @@ const WorkoutPage = () => {
     const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
     const [stopWatchActive, setStopWatchActive] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('');
+    const [resumeTime, setResumeTime] = useState(null);
 
     const goToNutritionPage = () => {
         history.push("/");
@@ -56,25 +57,25 @@ const WorkoutPage = () => {
 
 
     const resetWorkout = () => {
-        const newWorkout = {
-            title: "",
-            sets: [],
-        }
-        sessionStorage.setItem(
-            "currentWorkout", JSON.stringify(newWorkout)
-        )
+        sessionStorage.setItem("currentWorkout",JSON.stringify({title: "", sets: []}))
+        sessionStorage.setItem("currentWorkoutMETA",JSON.stringify({active: false, time: 0}))
         setExerciseList([])
         setSelectedTemplate("")
         setWorkoutStarted(false)
     }
 
+    // setTimeTo = () => {
+
+    // }
+
     useEffect(()=>{
-        // debugger
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-        let started = workoutStarted
         if (currentWorkout){
             sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
-            setWorkoutStarted(started)
+            const workoutMeta = JSON.parse(sessionStorage.getItem("currentWorkoutMETA"));
+            setWorkoutStarted(workoutMeta.active)
+            setResumeTime(parseInt(workoutMeta.time,10))
+            setExerciseList([...currentWorkout.sets])
         } else {
             resetWorkout()
         }
@@ -363,6 +364,7 @@ const WorkoutPage = () => {
 
     const startEmptyWorkout = () => {
         sessionStorage.setItem("currentWorkout", JSON.stringify({"title": getTitle(), "sets" : []}));
+        sessionStorage.setItem("currentWorkoutMETA",JSON.stringify({"active": true, "time": 0}))
         setExerciseList([]);
         setWorkoutStarted(true);
         setStopWatchActive(true);
@@ -432,7 +434,7 @@ const WorkoutPage = () => {
                                     Finish Workout
                                 </button> 
                                 <Timer 
-                                isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
+                                isActive= {stopWatchActive} setIsActive= {setStopWatchActive} resumeTime={resumeTime} setResumeTime={setResumeTime}
                                 />  
                             </div>
                         </div> 
