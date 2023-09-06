@@ -411,3 +411,17 @@
     color: black;
     font-weight: 600;
 }
+
+/* !Completed Workout */
+
+.demonstrate-completed{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0.4rem;
+    border: #cccc;
+    background-color: white;
+    box-shadow: var(--RNRboxshadow);
+    display: flex;
+    align-items: center;
+}

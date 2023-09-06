@@ -417,15 +417,46 @@ const WorkoutPage = () => {
         return currentWorkout?.title
     }
 
+
+    const viewCompleted = () => {
+        const list = completedWorkout?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
+            return (
+                <li className='template-exercise-ele' key={`${exercise}-${index}`}>
+                    <div className="exercise-header-container">
+                        <div className="exercise-title">{exercise}</div>
+                    </div>
+                    <div className="exercise-headers">
+                        <div className="workout-details">
+                            <div className="set-header">Set</div>
+                            <div className="prev-top-set">Prev Top Set</div>
+                        </div>
+                    </div>
+
+                    {displaySetsSimple(exercise)}
+                </li>
+            )
+        })
+
+        return (
+            <ul className="template-exercise-list">
+                {list}
+            </ul>
+        )
+    }
+
     const saveAsTemplate = () => {
+        let exercise = exerciseList
         saveToDB()
         resetWorkout()
         setCongrats(false)
+        // setCompletedWorkout(exercise)
     }
 
     const closeCongrats = () => {
+        let exercise = exerciseList
         resetWorkout()
         setCongrats(false)
+        // setCompletedWorkout(exercise)
     }
 
     const finishWorkout = () => {
@@ -528,27 +559,42 @@ const WorkoutPage = () => {
 
 
                     {
-                        congrats && 
-                        <div className="congrats-container">
-                            <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
-                                <div className="congrats-modal">
-                                    {/* <div className="congrats-emoji">🎉</div> */}
-                                    <div className="cograts-header">Save as Template?</div>
-                                    <div className="save-template-description">Save this workout as a template so you can perform t again in the future</div>
-                                    <button 
-                                            onClick={saveAsTemplate}
-                                            className="save-button">
-                                            Save as Template
-                                    </button>
-                                    <button 
-                                            onClick={closeCongrats}
-                                            className="dont-save-button">
-                                            No thanks!
-                                    </button>
+                    congrats && 
+                    <div className="congrats-container">
+                        <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
+                            <div className="congrats-modal">
+                                {/* <div className="congrats-emoji">🎉</div> */}
+                                <div className="cograts-header">Save as Template?</div>
+                                <div className="save-template-description">Save this workout as a template so you can perform t again in the future</div>
+                                <button 
+                                        onClick={saveAsTemplate}
+                                        className="save-button">
+                                        Save as Template
+                                </button>
+                                <button 
+                                        onClick={closeCongrats}
+                                        className="dont-save-button">
+                                        No thanks!
+                                </button>
+                        
+                                
+                            </div>  
+                        </div>
+                    }
+
+                    {
                          
-                                 
-                                </div>  
-                            </div>
+                        completedWorkout && 
+                        <div className="demonstrate-completed">
+                            <div className="congrats-emoji">🎉</div>
+                            <div className="congrats-message">Congratulations on your workout today!</div>
+                            <div className="congrats-submessage">One step closer to that summer body</div>
+                            <div>Your workout:</div>
+
+                            {viewCompleted()}
+
+                        </div>
+                       
                     }
 
 
