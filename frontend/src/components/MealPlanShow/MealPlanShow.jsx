@@ -49,7 +49,10 @@ const MealPlanShow = () => {
                 </div>
                 
                 {meals?.map(meal => (
-                    <div className="meal-item-container">
+                    <div
+                        className="meal-item-container"
+                        key = {meal.id}
+                    >
                         <div 
                             className="meal-item"
                             key={meal.id}
