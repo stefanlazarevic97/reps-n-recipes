@@ -6,10 +6,27 @@ import { useSelector } from 'react-redux';
 const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) => {
     const workouts = useSelector(state => state.users.workouts)
     const [selectedTemplate, setSelectedTemplate] = useState('');
+    let lastTenWorkouts;
+
+    const filterData = () => {
+        const cutOffDate = new Date();
+        cutOffDate.setDate(cutOffDate.getDate() - 14); //last 2 weeks
+        const today = new Date();
+    
+        const filteredWorkouts = workouts
+            .filter(workout => {
+                const parsedDate = new Date(workout.datePerformed);
+                return parsedDate >= cutOffDate && parsedDate <= today;
+            })
+            .sort((a, b) => new Date(b.datePerformed) - new Date(a.datePerformed));
+    
+        return filteredWorkouts;
+    }
+    lastTenWorkouts = filterData()
 
     const createTemplateList = () => {
 
-        const listEles = workouts.map((workout, i) => {
+        const listEles = lastTenWorkouts.map((workout, i) => {
             const name = Object.values(workout)[0];
             return (
                 <>
