@@ -282,24 +282,9 @@ const WorkoutPage = () => {
         setExerciseList([...currentWorkout.sets]);
     }
 
-    //     const removeSet = (name, index) => {
-    //     const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-    //     const exerciseIndex = currentWorkout.sets.findIndex(exercise => exercise[name]);
-
-    //     if (exerciseIndex !== -1) {
-    //       if (currentWorkout.sets[exerciseIndex][name].length === 1) {
-    //         currentWorkout.sets.splice(exerciseIndex, 1);
-    //       } else {
-    //         currentWorkout.sets[exerciseIndex][name].splice(index, 1);
-    //       }
-    //     }
-    //     sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
-    //     setExerciseList([...currentWorkout.sets]);
-    // };
 
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
-            // console.log(exercise, "exercise")
             return (
                 <li className='exercise-ele'>
                     <div className="exercise-header-container">
@@ -327,7 +312,6 @@ const WorkoutPage = () => {
                                 Prev Top Set
                             </div>
                         </div>
-                        {/* <div className="completed-header">completed</div> */}
                         { contentFilled(exercise) &&
                         <div className="completed-header">completed</div>
                         }
@@ -358,38 +342,25 @@ const WorkoutPage = () => {
             const setDisplay = [];
             let s = 0;
             setArray.forEach((set, i)=>{
-                const kg = set["kg"]
-                const prevKg = set["prevKg"];
-                const prevReps = set["prevReps"];
-                const reps = set["reps"]
-                const done = set["done"]
-                const recReps = set["rec-reps"]
                 const id = `${name.replace(/ /g, '-')}-row-${i}`
                 const warmup = set["type"] === "warmup"
                 if (!warmup) s = s + 1;
                 setDisplay.push(
-                    
-                        <div id={id} 
-                        className={`input-upper  ${done ? "done-overlay" : ""} ${warmup ? "warmup" : ""}`}>
-                            <div className="exercise-inputs">
-                                <div className="set-val">
-                                    { warmup ? 
-                                        <div>{`${warmup ? "W" : ""}`}</div>
-                                        :
-                                        <div>{s}</div>
-                                    }
-                                </div>
-                               
-                                <div className="prev-top-set-input">
-    
-                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
-                                </div>
+                    <div id={id} 
+                    className={`input-upper ${warmup ? "warmup" : ""}`}>
+                        <div className="exercise-inputs">
+                            <div className="set-val">
+                                { warmup ? 
+                                    <div>{`${warmup ? "W" : ""}`}</div>
+                                    :
+                                    <div>{s}</div>
+                                }
                             </div>
-                        
-                       
+                            <div className="prev-top-set-input">
+                            {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
+                            </div>
                         </div>
-           
-                       
+                    </div> 
                 )
             })
             return setDisplay;
@@ -456,122 +427,131 @@ const WorkoutPage = () => {
     return (
         <>
             <div className="workout-page-container">
-            <div className="select-workout-container">
-                <SelectWorkoutTemplate
-                selectedTemplate = {selectedTemplate}
-                setSelectedTemplate = {setSelectedTemplate}
-                exerciseList = {exerciseList}
-                setExerciseList = {setExerciseList}
-                stopWatchActive = {stopWatchActive}
-                setStopWatchActive = {setStopWatchActive}
-                />
-            </div>
 
-            <div>
+            { !workoutStarted &&
 
-                <div className="workout-page-inner">
+                <div className="select-workout-container">
+                    <SelectWorkoutTemplate
+                    selectedTemplate = {selectedTemplate}
+                    setSelectedTemplate = {setSelectedTemplate}
+                    exerciseList = {exerciseList}
+                    setExerciseList = {setExerciseList}
+                    stopWatchActive = {stopWatchActive}
+                    setStopWatchActive = {setStopWatchActive}
+                    />
+                </div>
+
+            }
+            
+
+           
+
+            <div className="workout-page-inner">
+                
+
+                {
+
+                    workoutStarted ? 
                     
-
-                    {
-
-                        workoutStarted ? 
+                    <>
+                    
+                        <div className="create-workout-header">
+                            <h1 className="create-workout-h1">
+                                {getTitle()}
+                            </h1>
+                    
+                            <div className="workout-control">
+                                <button 
+                                    className="complete-workout" 
+                                    onClick={handleSubmit}
+                                    >
+                                    Finish Workout
+                                </button> 
+                                <Timer 
+                                isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
+                                />  
+                            </div>
                         
-                        <>
-                        
-                            <div className="create-workout-header">
-                                <h1 className="create-workout-h1">
-                                    {getTitle()}
-                                </h1>
-                        
-                                <div className="workout-control">
-                                    <button 
-                                        className="complete-workout" 
-                                        onClick={handleSubmit}
-                                        >
-                                        Finish Workout
-                                    </button> 
-                                    <Timer 
-                                    isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
-                                    />  
-                                </div>
-                            
-                            </div> 
+                        </div> 
 
-                     
-                            <div className="workout-header-spacer"></div>
+                    
+                        <div className="workout-header-spacer"></div>
 
-                            {makeExerciseList()}
-
-
-                            <button 
-                                className="add-exercise" 
-                                onClick={()=>dispatch(activateWorkoutForm())}
-                            >
-                                Add Exercises
-                            </button>  
-
-                            <button 
-                                className="cancel-workout" 
-                                onClick={resetWorkout}
-                                >
-                                Cancel Workout
-                            </button>  
-
-                        </>
-
-                        :
-
-                        <>
+                        {makeExerciseList()}
 
 
                         <button 
-                                className="create-a-workout" 
-                                onClick={startEmptyWorkout}
+                            className="add-exercise" 
+                            onClick={()=>dispatch(activateWorkoutForm())}
+                        >
+                            Add Exercises
+                        </button>  
+
+                        <button 
+                            className="cancel-workout" 
+                            onClick={resetWorkout}
                             >
-                                Create an Empty Workout
-                        </button> 
+                            Cancel Workout
+                        </button>  
 
-                        {
-                            selectedTemplate &&
-                            <>
-                                <div className="workout-header-spacer"></div>
+                    </>
 
-                                <button 
-                                        className="start-a-template" 
-                                        onClick={() => setWorkoutStarted(true)}
-                                    >
-                                        Start this Template
-                                </button> 
+                    :
 
-                                {viewTemplate()}
-                            </>
-                        }
+                    <>
+
+
+                    <button 
+                            className="create-a-workout" 
+                            onClick={startEmptyWorkout}
+                        >
+                            Create an Empty Workout
+                    </button> 
+
+                    {
+                        selectedTemplate &&
+                        <>
+                            <div className="workout-header-spacer"></div>
+
+                            <button 
+                                    className="start-a-template" 
+                                    onClick={() => setWorkoutStarted(true)}
+                                >
+                                    Start this Template
+                            </button> 
+
+                            {viewTemplate()}
                         </>
                     }
+                    </>
+                }
 
-                    {active && 
-                        <WorkoutForm 
-                            exerciseList={exerciseList} 
-                            setExerciseList={setExerciseList}
-                            selectedExercise={selectedExercise} 
-                            setSelectedExercise={setSelectedExercise}
-                            addExercise={addExercise} 
-                            setAddExercise={setAddExercise}
-                            listItems={listItems}
-                        />
-                    }
+                {active && 
+                    <WorkoutForm 
+                        exerciseList={exerciseList} 
+                        setExerciseList={setExerciseList}
+                        selectedExercise={selectedExercise} 
+                        setSelectedExercise={setSelectedExercise}
+                        addExercise={addExercise} 
+                        setAddExercise={setAddExercise}
+                        listItems={listItems}
+                    />
+                }
 
-                   
-                </div>
-            </div> 
-            <div className="select-workout-container">
-                <WorkoutHistory
-                exerciseList = {exerciseList}
-                setExerciseList = {setExerciseList}
-                stopWatchActive = {stopWatchActive}
-                setStopWatchActive = {setStopWatchActive}
-                />
+                
             </div>
+
+            { !workoutStarted &&
+                <div className="select-workout-container">
+                    <WorkoutHistory
+                    exerciseList = {exerciseList}
+                    setExerciseList = {setExerciseList}
+                    stopWatchActive = {stopWatchActive}
+                    setStopWatchActive = {setStopWatchActive}
+                    />
+                </div>
+            }
+            
         </div>
             
         <div className="toggle-button-container">
