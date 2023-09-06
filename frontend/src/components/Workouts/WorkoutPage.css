@@ -1,8 +1,5 @@
 .workout-page-container{
-    /* left: 0; */
-    /* right: 0; */
-    /* position: relative; */
-    margin-top: 2.5vh;
+    margin-top: 1rem;
     display: flex;
     justify-content: center;
 }
@@ -13,15 +10,10 @@
 
 .workout-page-inner {
     width: 40vw;
-    min-height: 85vh;
-    /* height: 100vh; */
     display: flex;
     flex-direction: column;
-    padding: 0 40px;
-    border-radius: 0.4rem;
-    /* border: 1px solid #cccc; */
-    /* border-left: 1px solid #ccc;
-    border-right: 1px solid #ccc; */
+    padding: 1rem;
+    border-radius: 0.5rem;
     margin: 0 20px;
     overflow-y: auto;
     background: var(--background-workout);
@@ -48,22 +40,16 @@
     width: 100%;
     height: 1px;
     background-color: #cccc;
-    margin: 40px 0px 20px 0px;
+    margin-top: 1rem;
 }
 
-
-
-/* ! exercise recording */
-
-
-/* ! OVERALL ELE */
 .exercise-ele {
     list-style: none;
     display: flex;
     flex-direction: column;
-    width: 100%;
+    box-sizing: border-box;
     border-radius: 0.4em;
-    margin: 40px 0px;
+    margin: 1rem ;
     border-bottom: 1px solid #ccc;
 }
 
@@ -74,14 +60,11 @@
 }
 
 .template-exercise-ele{
-
     list-style: none;
     display: flex;
     flex-direction: column;
     width: calc(50% - 30px);
     border-radius: 0.4em;
-    /* margin: 40px 0px; */
-    /* border: 1px solid #ccc; */
     margin-bottom: 10px;
     background-color: white;
 
@@ -124,13 +107,9 @@
     width: calc(100% - 60px);
 }
 
-/* reset all inputs within the list */
 .exercise-ele input {
     all: unset;
 }
-
-/* ! set header and inputs */
-
 
 .set-header,
 .set-val {
@@ -149,9 +128,7 @@
     width: 100%;
 }
 
-/* ! kg header and inputs */
-.kg-header,
-.kg-input {
+.kg-header, .kg-input {
     height: 100%;
     width: 60px;
     margin-right: 40px;
@@ -167,7 +144,6 @@
     width: 60px;
 }
 
-/* ! reps header and inputs */
 .reps-header,
 .reps-input {
     height: 100%;
@@ -190,8 +166,6 @@
     display: flex;
 }
 
-/* add a set button */
-
 .add-a-set {
     height: 30px;
     font-size: 18px;
@@ -209,7 +183,6 @@
     cursor: pointer;
 }
 
-/* ! add a set button */
 .remove-button-container{
     display: flex;
     align-items: center;
@@ -249,10 +222,8 @@
     border: 3px solid #cccc;
     color: #cccc;
     cursor: pointer;
-
     margin-left: 20px;
     font-size: 30px;
-
     display: flex;
     justify-content: center;
     align-items: center;
@@ -262,7 +233,6 @@
     background-color: var(--darkorange);
     color: black;
     border: 3px solid black;
-    /* border-radius: 50%; */
 }
 
 .done-overlay {
@@ -279,29 +249,8 @@
     background-color: transparent;
 }
 
-
-/* !  MAIN BUTTONS  */
-
-.add-exercise, 
-.complete-workout,
-.cancel-workout,
-.create-a-workout,
-.start-a-template {
-    /* width: 200px; */
-    height: 47.5px;
-    display: flex;
-    align-items: center;
-    margin: 20px 0px;
-    background-color: white;
-    border: none;
-    border-radius: 10px;
-    color: black;
-    font-size: 14px;
-    display: flex;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 18px;
-    cursor: pointer;
+.add-exercise-button {
+    margin-bottom: 1rem;
 }
 
 .workout-page-inner .complete-workout{
@@ -309,18 +258,12 @@
     color: white;
 }
 
-/* .complete-workout:hover {
-    background-color: rgba(255, 0, 0,0.2);
-} */
-
 .start-a-template {
     color: var(--green);
-    /* background-color: var(--lightgreen); */
     background-color: rgba(19, 169, 3, 0.1);
 }
 
 .start-a-template:hover {
-    /* background-color: var(--lightgreen); */
     background-color: rgba(19, 169, 3, 0.25);
 }
 
@@ -335,13 +278,6 @@
     background-color: rgba(0, 0, 255, 0.2);
 }
 
-/* .complete-workout{
-    background-color: rgba(255, 0, 0,0.1);
-    color: var(--darkorange);
-} */
-
-
-/* ! cancel workout button */
 .cancel-workout{
     width: 150px;
     background-color: rgba(255, 0, 0,0.1);
@@ -351,8 +287,6 @@
 .cancel-workout:hover {
     background-color: rgba(255, 0, 0,0.2);
 }
-
-/* toggle to nutrition page */
 
 #toggle-page-type-button.nutrition-button{
     background-color: var(--blue);
@@ -386,4 +320,14 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+.green-button {
+    background-color: var(--green);
+    color: var(--background-green);
+    margin-bottom: 1rem;
+}
+
+.green-button:hover {
+    background-color: var(--darkgreen);
 }

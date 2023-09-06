@@ -61,9 +61,6 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
     const buildSets = (ingredients) => {
         const sets = []
 
-        // for (let i=0; i < ingredients; i++){
-        //     sets.push({"kg": null, "reps": null, "done": false, "type": "warmup"})
-        // }
         for (let i=0; i < ingredients.length; i++){
             sets.push({"prevKg": ingredients[i]['kg'], "prevReps": ingredients[i]['reps'], "done": false, "type": "working",
             "rec-reps": ingredients["rec-reps"], "RPE": ingredients["RPE"]  })
@@ -81,7 +78,7 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
             const ingredients = Object.values(exercise)[0];
             return {[key]: buildSets(ingredients) }
         })
-        // build the workout
+        
         const workout = {
             "title": selectedTemplate.title,
             "sets": [...sets]
@@ -94,7 +91,7 @@ const WorkoutHistory = ({ exerciseList, setExerciseList, setStopWatchActive }) =
 
     return ( 
         <div className='template-list-container'>
-            <h1 className='select-template-header'>Your Previous Workouts</h1>
+            <h1 className='header'>Your Previous Workouts</h1>
             <form className="template-list">
                 <div className='start-template'>
 

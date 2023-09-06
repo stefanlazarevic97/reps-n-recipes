@@ -20,10 +20,7 @@ const ExerciseCharts = () => {
     const displayedExercises = muscleGroup !== 'all' ? exercises.filter(exercise => exercise.muscleGroup === muscleGroup) : exercises;
     const topSet = useSelector(getWorkoutsByExercise(exerciseQuery));
     const [unit, setUnit] = useState('kg');
-    const pointRadius = 5;
-
-    console.log("topSet", topSet);
-    console.log("exercise query:", exerciseQuery);    
+    const pointRadius = 5;  
 
     useEffect(() => {
         dispatch(fetchExercises)
