@@ -13,6 +13,7 @@ import moment from "moment"
 import './WorkoutPage.css'
 import WorkoutHistory from "./WorkoutHistory"
 import { BsThreeDots } from "react-icons/bs";
+import ViewWorkout from "../ViewWorkout/ViewWorkout"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
@@ -516,6 +517,13 @@ const WorkoutPage = () => {
                                         Start this Template
                                 </button> 
 
+                                {/* <ViewWorkout
+                                exerciseList={exerciseList} 
+                                setExerciseList={setExerciseList}
+                                addExercise={addExercise} 
+                                setAddExercise={setAddExercise}
+                                listItems={listItems}
+                                /> */}
                                 {viewTemplate()}
                             </>
                         }

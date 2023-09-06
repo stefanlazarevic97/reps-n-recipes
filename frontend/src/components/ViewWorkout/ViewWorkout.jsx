@@ -1,4 +1,6 @@
-const ViewWorkout = () => {
+const ViewWorkout = ( 
+    {exerciseList, setExerciseList, addExercise, setAddExercise, listItems}
+) => {
 
     const rpe = (name) => {
         // debugger
@@ -9,6 +11,22 @@ const ViewWorkout = () => {
         if (!exerciseObj) return false;
         const rpeIndex = Object.values(exerciseObj)[0].findIndex(set =>  !!set["RPE"])
         return rpeIndex !== -1;
+    }
+
+    const updateInput = (name, index, type, e) => {
+        const val = Number(e.currentTarget.value) || null
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        const exercise = currentWorkout.sets.find(exercise => exercise[name])
+        exercise[name][index][type] = val
+        sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+        const updatedExerciseList = exerciseList.map(exercise => {
+            if (exercise[name]) {
+                exercise[name][index][type] = val
+                if (val === null) exercise[name][index]["done"] = false
+            }
+            return exercise;
+        })
+        setExerciseList(updatedExerciseList)
     }
 
     const contentFilled = (name) => {
@@ -151,3 +169,5 @@ const ViewWorkout = () => {
     )
    
 }
+
+export default ViewWorkout
