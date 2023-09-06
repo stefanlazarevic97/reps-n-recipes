@@ -74,22 +74,6 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
         <div className='template-list-container'>
             <h1 className='header'>Select a template workout</h1>
             <form className="template-list">
-                {/* <div className='start-template'>
-
-                    { selectedTemplate && 
-                        <button 
-                            onClick={handleStartTemplate}
-                            className={
-                                `${selectedTemplate ?
-                                "workout-button ready-to-press" 
-                                : "workout-button hidden"}`
-                            }
-                        >
-                            Start
-                        </button>
-                    }
-                </div> */}
-
                 <div className="template-list-wrapper">
                     {createTemplateList()}
                 </div>
