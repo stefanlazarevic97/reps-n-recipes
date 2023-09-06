@@ -31,7 +31,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
             const name = Object.values(workout)[0];
             return (
                 <>
-                   <div key = {i} 
+                   <div key = {`template-${workout.title}-${i}`} 
                      className = {
                         `template-item ${
                             selectedTemplate["title"] === name ?

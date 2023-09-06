@@ -54,7 +54,7 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
             const name = Object.values(workout)[0];
             return (
                 <>
-                   <div key = {i} 
+                   <div key = {`history-${workout}-${i}`} 
                      className = {
                         `template-item ${
                             selectedTemplate["title"] === name ?

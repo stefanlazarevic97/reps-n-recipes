@@ -287,7 +287,7 @@ const WorkoutPage = () => {
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
-                <li className='exercise-ele'>
+                <li className='exercise-ele' key={index}>
                     <div className="exercise-header-container">
                         <div className="exercise-title">{exercise}</div>
 
@@ -362,7 +362,7 @@ const WorkoutPage = () => {
     const viewTemplate = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
-                <li className='template-exercise-ele'>
+                <li className='template-exercise-ele' key={`${exercise}-${index}`}>
                     <div className="exercise-header-container">
                         <div className="exercise-title">{exercise}</div>
                     </div>
