@@ -148,15 +148,8 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
                     {createTemplateList()}
                 </div>
             </form>  
-
-        </div>
-
-
-
-
-    
+        </div>    
     )
-
 }
 
 

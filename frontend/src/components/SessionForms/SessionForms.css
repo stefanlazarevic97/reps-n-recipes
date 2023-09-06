@@ -1,10 +1,15 @@
+.user-auth-page {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
 .session-form-container {
     background: var(--background);
     padding: 2rem;
     border-radius: 0.5rem;
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
     width: 30%;
-    margin: 0 auto;
     margin-top: 1rem;
     position: relative;
 }
@@ -86,4 +91,8 @@
 #toggle-page-type-button:hover {
     transform: scale(1.05);
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
+}
+
+.food-friends {
+    width: 35vw;
 }

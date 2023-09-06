@@ -16,10 +16,6 @@
     overflow: auto;
 }
 
-
-
-
-
 .workout-button {
     display: block;
     width: 100%;
@@ -33,20 +29,7 @@
     transition: background 0.2s;
 }
 
-
-/* .workout-button:hover {
-    background: var(--darkorange);
-} */
-
-/* .ready-to-press {
-    background: var(--darkorange);
-} */
-
-
-
-
 .template-item {
-    /* height: 40px; */
     height: 5em;
     display: flex;
     align-items: center;
@@ -59,7 +42,6 @@
     cursor: pointer;
     transition: transform 0.2s;
 }
-
 
 .template-list-wrapper{
     padding: 0 2rem;
@@ -83,9 +65,8 @@
 }
 
 .start-template{
-    position: sticky;
     top: 0;
     padding: 2rem;
     background: var(--background-workout);
-    /* z-index: 20; */
+    z-index: 1;
 }

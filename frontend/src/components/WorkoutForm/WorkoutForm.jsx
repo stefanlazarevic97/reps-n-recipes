@@ -1,10 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { deactivateWorkoutForm } from '../../store/ui';
 import { FaSearch } from "react-icons/fa";
-// import { VscListFilter } from "react-icons/vs";
 import React, { useState } from 'react';
 import { IoIosArrowDown } from "react-icons/io";
-// import { VscListFilter } from "react-icons/vs";
 import './WorkoutForm.css';
 
 const WorkoutForm = ({
@@ -21,41 +19,32 @@ const WorkoutForm = ({
     const [searchFilter, setSearchFilter] = useState("");
     const [searchResults, setSearchResults] = useState([]);
 
-    // console.log(searchResults)
-
-    // console.log(listItems)
-
     const handleSearchUpdate = e => {
         const newSearchString = e.target.value;
         setSearchString(newSearchString);
 
         if (newSearchString){
-            setSearchFilter("")
+            setSearchFilter("");
             const matchingExercises = listItems
-            .filter(item => item["name"].toLowerCase().includes(newSearchString.toLowerCase()))
-            .sort((a, b) => 
-                a["name"].toLowerCase().indexOf(newSearchString.toLowerCase()) - 
-                b["name"].toLowerCase().indexOf(newSearchString.toLowerCase())
-            );
-            setSearchResults(matchingExercises)
-        }else {
-            setSearchResults([])
+                .filter(item => item["name"].toLowerCase().includes(newSearchString.toLowerCase()))
+                .sort((a, b) => 
+                    a["name"].toLowerCase().indexOf(newSearchString.toLowerCase()) - 
+                    b["name"].toLowerCase().indexOf(newSearchString.toLowerCase())
+                );
+            setSearchResults(matchingExercises);
+        } else {
+            setSearchResults([]);
         }
     }
 
     const handleFilterUpdate = e => {
-        // debugger
-        const filter = e.target.value
-        setSearchFilter(filter)
-        if (filter){
-            const matchingExercises = listItems.filter(item => item["muscleGroup"] === filter)
-            setSearchResults(matchingExercises)
+        const filter = e.target.value;
+        setSearchFilter(filter);
+        
+        if (filter) {
+            const matchingExercises = listItems.filter(item => item["muscleGroup"] === filter);
+            setSearchResults(matchingExercises);
         }
-        // // this was attempting to filter on top of a search string
-        // else if (filter && searchResults.length !== 0){
-        //     const matchingExercises = searchResults.filter(item => item["muscleGroup"] === filter)
-        //     setSearchResults(matchingExercises)
-        // }
     }
 
     const handleExit = e => {
@@ -87,6 +76,7 @@ const WorkoutForm = ({
         if ( searchString && searchResults.length === 0 ){
             return <div>No exercises match this search</div>
         }
+
         return ((searchString || searchFilter) ? searchResults : listItems).map((item, i) => {
             return (
                 <div 
@@ -134,11 +124,9 @@ const WorkoutForm = ({
     return (
         <div className="workout-form-container">
             <div className="workout-form-background" onClick={handleExit}></div>
+
             <form className="workout-form" onSubmit={handleSubmit}>
-                {/* <h3 className="subheader exercise-subheader">Choose an Exercise</h3> */}
-
                 <div className='add-search-container'>
-
                     <div className={`search-container ${isFocused ? 'focused' : ''}`}>
                         <div className="search-exercise">
                             <FaSearch className='search-icon'/>
@@ -157,7 +145,7 @@ const WorkoutForm = ({
                                 <div className='selected-group'>{searchFilter || "All" }</div>
                                 <IoIosArrowDown className='dropdown-arrow'/>
                             </div>
-                            {/* <div>{searchFilter}</div> */}
+                            
                             <select name="" id="" value={searchFilter} onChange={handleFilterUpdate}>
                                 {mapFilterOptions()}
                             </select>

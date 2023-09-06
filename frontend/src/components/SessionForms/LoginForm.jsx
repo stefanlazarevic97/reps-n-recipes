@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import './SessionForms.css';
 import { login, clearSessionErrors } from '../../store/session';
 import DemoUserLogin from './DemoUserLogin';
-import foodFriends from "../../assets/gym-fellas.gif"
+import fitVeggies from "../../assets/fit-veggies.webp"
 
 function LoginForm () {
     const [email, setEmail] = useState('');
@@ -16,51 +16,50 @@ function LoginForm () {
             dispatch(clearSessionErrors());
         };
     }, [dispatch]);
-
+    
     const update = (field) => {
         const setState = field === 'email' ? setEmail : setPassword;
         return e => setState(e.currentTarget.value);
     }
-
+    
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(login({ email, password })); 
     }
-
+    
     return (
-        <>
-        <div className="session-form-container">
-            <form className="session-form" onSubmit={handleSubmit}>
-                <h2 className="header">Log In</h2>
-                <div className="session-errors">{errors?.email}</div>
-                
-                <input 
-                    className="session-form-input" 
-                    type="text"
-                    value={email}
-                    onChange={update('email')}
-                    placeholder="Email"
-                />
+        <div className="user-auth-page">
+            <img className='food-friends' src={fitVeggies} alt="fit-veggies" />
 
-                <div className="session-errors">{errors?.password}</div>
+            <div className="session-form-container">
+                <form className="session-form" onSubmit={handleSubmit}>
+                    <h2 className="header">Log In</h2>
+                    <div className="session-errors">{errors?.email}</div>
+                    
+                    <input 
+                        className="session-form-input" 
+                        type="text"
+                        value={email}
+                        onChange={update('email')}
+                        placeholder="Email"
+                    />
 
-                <input
-                    className="session-form-input" 
-                    type="password"
-                    value={password}
-                    onChange={update('password')}
-                    placeholder="Password"
-                />
+                    <div className="session-errors">{errors?.password}</div>
 
-                <button className="button">Log In</button>
-            </form>
+                    <input
+                        className="session-form-input" 
+                        type="password"
+                        value={password}
+                        onChange={update('password')}
+                        placeholder="Password"
+                    />
 
-            <DemoUserLogin />
+                    <button className="button">Log In</button>
+                </form>
+
+                <DemoUserLogin />
+            </div>
         </div>
-
-        <img className='food-friends login' src={foodFriends} alt="fit veggies" />
-       
-        </>
     );
 }
 
