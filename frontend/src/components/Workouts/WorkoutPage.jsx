@@ -13,7 +13,7 @@ import moment from "moment"
 import './WorkoutPage.css'
 import WorkoutHistory from "./WorkoutHistory"
 import { BsThreeDots } from "react-icons/bs";
-import ViewWorkout from "../ViewWorkout/ViewWorkout"
+// import ViewWorkout from "../ViewWorkout/ViewWorkout"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
