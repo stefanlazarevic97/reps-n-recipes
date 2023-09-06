@@ -62,17 +62,9 @@ const WorkoutPage = () => {
         setWorkoutStarted(false)
     }
 
-    // setTimeTo = () => {
-
-    // }
 
     useEffect(()=>{
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-<<<<<<< HEAD
-=======
-        let started = workoutStarted;
-
->>>>>>> 3ab1d223c4532c3bc6a1885f381902ca49683faa
         if (currentWorkout){
             sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
             const workoutMeta = JSON.parse(sessionStorage.getItem("currentWorkoutMETA"));
@@ -403,6 +395,7 @@ const WorkoutPage = () => {
             "sets": [...exerciseList]
         }
         sessionStorage.setItem("currentWorkout", JSON.stringify(workout));
+        sessionStorage.setItem("currentWorkoutMETA",JSON.stringify({active: true, time: 0}))
         setWorkoutStarted(true);
         setStopWatchActive(true);
     }
@@ -489,7 +482,7 @@ const WorkoutPage = () => {
 
                                     <button 
                                         className="button green-button" 
-                                        onClick={() => setWorkoutStarted(true)}
+                                        onClick={startTemplateWorkout}
                                     >
                                         Start this Template
                                     </button> 
