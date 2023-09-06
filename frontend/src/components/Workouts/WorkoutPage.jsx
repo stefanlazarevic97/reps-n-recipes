@@ -67,9 +67,9 @@ const WorkoutPage = () => {
     }
 
     useEffect(()=>{
-        // debugger
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-        let started = workoutStarted
+        let started = workoutStarted;
+
         if (currentWorkout){
             sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
             setWorkoutStarted(started)
@@ -439,7 +439,7 @@ const WorkoutPage = () => {
                         >
                             Finish Workout
                         </button> 
-                        
+
                         <div className="create-workout-header">
                             <h1 className="create-workout-h1">
                                 {getTitle()}

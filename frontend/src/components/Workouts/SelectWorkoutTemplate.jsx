@@ -1,4 +1,3 @@
-// import { useState } from 'react'
 import { templates } from './Templates';
 import './SelectWorkoutTemplate.css'
 
@@ -72,7 +71,6 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     }
 
     return (
-        
         <div className='template-list-container'>
             <h1 className='header'>Select a template workout</h1>
             <form className="template-list">
