@@ -41,7 +41,6 @@ const WorkoutPage = () => {
             return {[name]: setArray.filter(setObj => setObj["done"])}
         })
         const datePerformed = new Date();
-        console.log(datePerformed)
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
         const updatedWorkout = {...currentWorkout, sets: updatedSets, datePerformed: datePerformed }
         dispatch(createWorkout(updatedWorkout))
@@ -70,6 +69,7 @@ const WorkoutPage = () => {
     }
 
     useEffect(()=>{
+        // debugger
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         let started = workoutStarted
         if (currentWorkout){
@@ -154,14 +154,12 @@ const WorkoutPage = () => {
     const filterData = () => {
         const cutOffDate = new Date(2023, 7, 1);
         const yesterday = new Date();
-    
         const filteredWorkouts = workouts
             .filter(workout => {
                 const parsedDate = new Date(workout.datePerformed);
                 return parsedDate >= cutOffDate && parsedDate <= yesterday;
             })
             .sort((a, b) => new Date(a.datePerformed) - new Date(b.datePerformed));
-    console.log(filteredWorkouts, 'filteredWorkouts')
         return filteredWorkouts;
     }
 
@@ -364,7 +362,7 @@ const WorkoutPage = () => {
 
 
     const startEmptyWorkout = () => {
-        sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+        sessionStorage.setItem("currentWorkout", JSON.stringify({"title": getTitle(), "sets" : []}));
         setExerciseList([]);
         setWorkoutStarted(true);
         setStopWatchActive(true);
@@ -385,12 +383,10 @@ const WorkoutPage = () => {
     const getTitle = () => {
         const rawWorkout = sessionStorage.getItem("currentWorkout");
         if (!rawWorkout) return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
-        
         const currentWorkout = JSON.parse(rawWorkout);
         if (!currentWorkout || !Object.keys(currentWorkout).length) {
             return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
         }
-
         currentWorkout.title = currentWorkout?.title || `${moment(new Date()).format('dddd, MMMM D')} Workout`;
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         return currentWorkout?.title
