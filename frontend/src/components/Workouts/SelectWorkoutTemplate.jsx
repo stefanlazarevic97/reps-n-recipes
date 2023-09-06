@@ -100,4 +100,4 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     )
 }
 
-export default SelectWorkoutTemplate
+export default SelectWorkoutTemplate;

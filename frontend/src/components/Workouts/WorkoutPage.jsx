@@ -428,38 +428,24 @@ const WorkoutPage = () => {
                         />
                     </div>
                 }
-
-            { !workoutStarted &&
-
-                <div className="select-workout-container">
-                    <SelectWorkoutTemplate
-                    selectedTemplate = {selectedTemplate}
-                    setSelectedTemplate = {setSelectedTemplate}
-                    exerciseList = {exerciseList}
-                    setExerciseList = {setExerciseList}
-                    stopWatchActive = {stopWatchActive}
-                    setStopWatchActive = {setStopWatchActive}
-                    />
-                </div>
-
-            }
           
             <div className="workout-page-inner">
                 {
                     workoutStarted ? 
                     <>
+                        <button 
+                            className="button green-button" 
+                            onClick={handleSubmit}
+                        >
+                            Finish Workout
+                        </button> 
+                        
                         <div className="create-workout-header">
                             <h1 className="create-workout-h1">
                                 {getTitle()}
                             </h1>
                     
                             <div className="workout-control">
-                                <button 
-                                    className="button green-button" 
-                                    onClick={handleSubmit}
-                                >
-                                    Finish Workout
-                                </button> 
                                 <Timer 
                                 isActive= {stopWatchActive} setIsActive= {setStopWatchActive}
                                 />  
