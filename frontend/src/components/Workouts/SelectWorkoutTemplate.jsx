@@ -2,20 +2,61 @@ import { useState } from 'react'
 import { templates } from './Templates';
 import './SelectWorkoutTemplate.css'
 
-const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActive }) => {
+const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate, setSelectedTemplate }) => {
 
-    const [selectedTemplate, setSelectedTemplate] = useState('');
+    // const [selectedTemplate, setSelectedTemplate] = useState('');
     // const [isFocused, setIsFocused] = useState(false);
 
 
-    // console.log("selected", selectedTemplate)
+    console.log("selected", selectedTemplate)
+
+    const handleSelectTemplate = async (workout) => {
+        // debugger
+        // selectedTemplate.title === workout.title ? setSelectedTemplate('') : setSelectedTemplate(workout);
+        if (selectedTemplate.title === workout.title){
+            sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+            setExerciseList([]);
+            setSelectedTemplate(null);
+        } else {
+
+            setSelectedTemplate(workout)
+            renderWorkout(workout)
+
+
+        }
+        // setStopWatchActive(true)
+    }
+
+    console.log(exerciseList)
+
+    const renderWorkout = (workout) => {
+        // debugger
+        sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+        setExerciseList([]);
+        // create a list of exercise grouped sets
+        const sets = workout.sets.map(exercise => {
+            const key = Object.keys(exercise)[0];
+            const ingredients = Object.values(exercise)[0];
+            return {[key]: buildSets(ingredients) }
+        })
+        // build the workout
+        const newWorkout = {
+            "title": selectedTemplate.title,
+            "sets": [...sets]
+        }
+        sessionStorage.setItem("currentWorkout", JSON.stringify(newWorkout));
+        setExerciseList([...sets]);
+    }
+
+
+
 
     const createTemplateList = () => {
 
         // console.log(templates())
 
-        const listEles = templates().map((exercise, i) => {
-            const name = Object.values(exercise)[0];
+        const listEles = templates().map((workout, i) => {
+            const name = Object.values(workout)[0];
             return (
                 <>
                    <div key = {i} 
@@ -27,11 +68,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
                         }`
                     }
                    value={name}
-                    onClick={() => (
-                        selectedTemplate.title === exercise.title) ? 
-                        setSelectedTemplate('') : 
-                        setSelectedTemplate(exercise)
-                    }
+                    onClick={() => handleSelectTemplate(workout)}
                     >
                     <div className="exercise-container">
                         <div className="exercise-titles">
@@ -62,31 +99,28 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
 
     }
 
-    const handleStartTemplate = (e) => {
-        e.preventDefault()
-        // empty previous running workout (n future should warn first)
-        sessionStorage.setItem("currentWorkout", JSON.stringify({}));
-        setExerciseList([]);
-
-        // debugger
-
+    // const handleStartTemplate = (e) => {
+    //     e.preventDefault()
+    //     // empty previous running workout (n future should warn first)
+    //     sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+    //     setExerciseList([]);
     
-        // create a list of exercise grouped sets
-        const sets = selectedTemplate.sets.map(exercise => {
-            const key = Object.keys(exercise)[0];
-            const ingredients = Object.values(exercise)[0];
-            return {[key]: buildSets(ingredients) }
-        })
-        // build the workout
-        const workout = {
-            "title": selectedTemplate.title,
-            "sets": [...sets]
-        }
-        sessionStorage.setItem("currentWorkout", JSON.stringify(workout));
-        setExerciseList([...sets]);
+    //     // create a list of exercise grouped sets
+    //     const sets = selectedTemplate.sets.map(exercise => {
+    //         const key = Object.keys(exercise)[0];
+    //         const ingredients = Object.values(exercise)[0];
+    //         return {[key]: buildSets(ingredients) }
+    //     })
+    //     // build the workout
+    //     const workout = {
+    //         "title": selectedTemplate.title,
+    //         "sets": [...sets]
+    //     }
+    //     sessionStorage.setItem("currentWorkout", JSON.stringify(workout));
+    //     setExerciseList([...sets]);
 
-        setStopWatchActive(true)
-    }
+    //     setStopWatchActive(true)
+    // }
 
 
     return (
@@ -96,7 +130,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
             <form className="template-list">
                 <div className='start-template'>
 
-                    { selectedTemplate && 
+                    {/* { selectedTemplate && 
                         <button 
                             onClick={handleStartTemplate}
                             className={
@@ -107,7 +141,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, setStopWatchActi
                         >
                             Start
                         </button>
-                    }
+                    } */}
                 </div>
 
                 <div className="template-list-wrapper">

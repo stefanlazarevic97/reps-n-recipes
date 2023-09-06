@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { PiPauseDuotone } from "react-icons/pi"
 import { PiPlayDuotone } from "react-icons/pi"
+import "./Timer.css"
 
 const Timer = ({isActive, setIsActive}) => {
   const [time, setTime] = useState(0);
-//   const [isActive, setIsActive] = useState(false);
 
   useEffect(() => {
     let interval;
@@ -31,15 +31,22 @@ const Timer = ({isActive, setIsActive}) => {
     const hours = Math.floor(timeInSeconds / 3600).toString().padStart(2, '0');
     const minutes = Math.floor((timeInSeconds % 3600) / 60).toString().padStart(2, '0');
     const seconds = (timeInSeconds % 60).toString().padStart(2, '0');
-    return `${hours}:${minutes}:${seconds}`;
+    
+    return hours === '00' ? `${minutes}:${seconds}` : `${hours}:${minutes}:${seconds}`;
+    // return `${hours}:${minutes}:${seconds}`;
   };
 
+  const formattedTime = formatTime(time);
+  const width = formattedTime.length > 5 ? '120px' : '80px';
+
   return (
-    <div>
-      <div onClick={toggleTimer}>
-        {isActive ? <PiPauseDuotone/> : <PiPlayDuotone/>}
+    <div className="stop-watch">
+      <div className="pause-play-container" onClick={toggleTimer}>
+        {isActive ? <PiPauseDuotone className='pause-play'/> : <PiPlayDuotone className='pause-play'/>}
       </div>
-      <p>{formatTime(time)}</p>
+      <p className='rendered-time' style={{ width: width }}>
+        {formattedTime}
+      </p>
     </div>
   );
 };

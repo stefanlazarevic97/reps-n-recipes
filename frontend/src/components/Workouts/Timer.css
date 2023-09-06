@@ -1,0 +1,29 @@
+.stop-watch {
+    display: flex;
+    align-items: center;
+    font-size: 28px;
+    border: 1px solid #cccc;
+    border-radius: 0.5rem;
+}
+
+.pause-play-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 5px;
+}
+
+.rendered-time {
+    width: 80px;
+    margin: 5px;
+}
+
+.pause-play {
+    color: var(--green);
+    font-weight: 800;
+
+}
+
+.pause-play:hover {
+    cursor: pointer;
+}
