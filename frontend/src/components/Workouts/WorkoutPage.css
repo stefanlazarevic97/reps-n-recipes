@@ -343,6 +343,9 @@
 
 /* ! cancel workout button */
 .cancel-workout{
+    position: absolute;
+    top: 10vh;
+    right: 15vw;
     width: 150px;
     background-color: rgba(255, 0, 0,0.1);
     color: var(--darkorange);

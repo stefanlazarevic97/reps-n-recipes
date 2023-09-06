@@ -3,7 +3,9 @@
     align-items: center;
     font-size: 28px;
     border: 1px solid #cccc;
-    border-radius: 0.5rem;
+    border-radius: 0.4rem;
+    background-color: white;
+    box-shadow: var(--RNRboxshadow);
 }
 
 .pause-play-container {
