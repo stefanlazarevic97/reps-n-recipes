@@ -27,14 +27,14 @@ const WorkoutPage = () => {
     const [selectedTemplate, setSelectedTemplate] = useState('');
     const [resumeTime, setResumeTime] = useState(null);
     const [congrats, setCongrats] = useState(null);
+    const [completedWorkout, setCompletedWorkout] = useState(null);
+
 
     const goToNutritionPage = () => {
         history.push("/");
     };
 
-    const handleSubmit = () => {
-
-        setCongrats(true)
+    const saveToDB = () => {
 
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         let updatedSets = currentWorkout.sets.map(exerciseObj => {
@@ -417,6 +417,22 @@ const WorkoutPage = () => {
         return currentWorkout?.title
     }
 
+    const saveAsTemplate = () => {
+        saveToDB()
+        resetWorkout()
+        setCongrats(false)
+    }
+
+    const closeCongrats = () => {
+        resetWorkout()
+        setCongrats(false)
+    }
+
+    const finishWorkout = () => {
+        setCongrats(true)
+        setStopWatchActive(false)
+    }
+
     return (
         <>
             <div className="workout-page-container">
@@ -439,7 +455,7 @@ const WorkoutPage = () => {
                     <>
                         <button 
                             className="button green-button" 
-                            onClick={handleSubmit}
+                            onClick={finishWorkout}
                         >
                             Finish Workout
                         </button> 
@@ -482,6 +498,7 @@ const WorkoutPage = () => {
 
                             {selectedTemplate &&
                                 <>
+
                                     <div className="workout-header-spacer"></div>
 
                                     <button 
@@ -514,19 +531,21 @@ const WorkoutPage = () => {
                         congrats && 
                         <div className="congrats-container">
                             <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
-                                <div className="workout-form">
-                                    <div className='add-search-container'>
-                                        <button 
-                                            onClick={handleSubmit}
-                                            className={
-                                                `${selectedExercise ?
-                                                "workout-button ready-to-press" 
-                                                : "workout-button hidden"}`
-                                            }
-                                        >
+                                <div className="congrats-modal">
+                                    {/* <div className="congrats-emoji">🎉</div> */}
+                                    <div className="cograts-header">Save as Template?</div>
+                                    <div className="save-template-description">Save this workout as a template so you can perform t again in the future</div>
+                                    <button 
+                                            onClick={saveAsTemplate}
+                                            className="save-button">
                                             Save as Template
-                                        </button>
-                                    </div>
+                                    </button>
+                                    <button 
+                                            onClick={closeCongrats}
+                                            className="dont-save-button">
+                                            No thanks!
+                                    </button>
+                         
                                  
                                 </div>  
                             </div>
