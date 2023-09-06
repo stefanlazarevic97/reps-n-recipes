@@ -4,7 +4,7 @@ import './SelectWorkoutTemplate.css'
 const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate, setSelectedTemplate }) => {
     const handleSelectTemplate = async (workout) => {
         if (selectedTemplate.title === workout.title){
-            sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+            sessionStorage.setItem("currentWorkout", JSON.stringify({title: "", sets: []}));
             setExerciseList([]);
             setSelectedTemplate(null);
         } else {

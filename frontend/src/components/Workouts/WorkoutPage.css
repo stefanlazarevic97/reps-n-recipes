@@ -334,3 +334,55 @@
 .green-button:hover {
     background-color: var(--darkgreen);
 }
+
+
+/* ! modal saying congrats */
+
+.congrats-container {
+    position: fixed;
+    top: 10vh;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.workout-form-background {
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+.workout-form {
+    background: var(--background-workout);
+    border-radius: 0.5rem;
+    position: absolute;
+    left: 50%;
+    transform: translate(-50%);
+    height: 85vh;
+    overflow: auto;
+    z-index: 40;
+    top: 1rem;
+}
+
+.add-search-container{
+    position: sticky;
+    top: 0;
+    padding: 2rem 2rem 1rem 2rem;
+    background: var(--background-workout);
+    z-index: 20;
+}
+
+.workout-button {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    background: var(--orange);
+    color: var(--background-workout);
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}

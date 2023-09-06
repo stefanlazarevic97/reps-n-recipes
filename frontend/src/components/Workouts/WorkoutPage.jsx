@@ -26,12 +26,16 @@ const WorkoutPage = () => {
     const [stopWatchActive, setStopWatchActive] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('');
     const [resumeTime, setResumeTime] = useState(null);
+    const [congrats, setCongrats] = useState(null);
 
     const goToNutritionPage = () => {
         history.push("/");
     };
 
     const handleSubmit = () => {
+
+        setCongrats(true)
+
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         let updatedSets = currentWorkout.sets.map(exerciseObj => {
             const setArray = Object.values(exerciseObj)[0]
@@ -503,7 +507,34 @@ const WorkoutPage = () => {
                             setAddExercise={setAddExercise}
                             listItems={listItems}
                         />
-                    }        
+                    } 
+
+
+                    {
+                        congrats && 
+                        <div className="congrats-container">
+                            <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
+                                <div className="workout-form">
+                                    <div className='add-search-container'>
+                                        <button 
+                                            onClick={handleSubmit}
+                                            className={
+                                                `${selectedExercise ?
+                                                "workout-button ready-to-press" 
+                                                : "workout-button hidden"}`
+                                            }
+                                        >
+                                            Save as Template
+                                        </button>
+                                    </div>
+                                 
+                                </div>  
+                            </div>
+                    }
+
+
+
+
                 </div>
 
                 {!workoutStarted &&
