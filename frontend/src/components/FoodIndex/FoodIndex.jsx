@@ -112,8 +112,6 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
             return;
         }
 
-        console.log("Effect is running", initialRender.current, offset);
-
         if (selectedOption === 'ingredients') {
             dispatch(fetchIngredients(sessionStorage.getItem("query"), offset));
         } else if (selectedOption === 'products') {

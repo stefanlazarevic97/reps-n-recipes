@@ -8,7 +8,7 @@ export const templates = () => {
                     {"Lat Pulldown": {"reps": null, "kg": null, "warm": 2, "work": 3, "rec-reps": "10-12", "RPE": "9-10"}},
                     {"Seated Dumbbell Overhead Press": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "10-12", "RPE": "9-10"}},
                     {"Cable Row": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "10-12", "RPE": "9-10"}},
-                    {"EZ Bar Tricep Extension": {"reps": null, "kg": null, "warm": 1, "work": 1, "rec-reps": "12-15", "RPE": "10"}},
+                    {"EZ Bar Tricep Extension": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "12-15", "RPE": "10"}},
                     {"EZ Bar Bicep Curl": {"reps": null, "kg": null, "warm": 1, "work": 3, "rec-reps": "12-15", "RPE": "10"}},
                 ]
             },

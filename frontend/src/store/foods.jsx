@@ -71,8 +71,6 @@ export const fetchIngredients = (ingredientSearch, offset) => async dispatch => 
         const res = await jwtFetch(`https://api.spoonacular.com/food/ingredients/search?query=${ingredientSearch}&offset=${offset}&apiKey=${apiKey}`);
         const ingredients = await res.json();
 
-        console.log("Fetching ingredients...");
-
         const data = ingredients.results.reduce((acc, ingredient) => 
             Object.assign(acc, { [ingredient.id]: ingredient }), {}
         )

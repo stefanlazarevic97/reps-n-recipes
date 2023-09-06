@@ -3,6 +3,7 @@ import { PiPauseDuotone } from "react-icons/pi"
 import { PiPlayDuotone } from "react-icons/pi"
 import "./Timer.css"
 
+
 const Timer = ({isActive, setIsActive, resumeTime, setResumeTime}) => {
   const [time, setTime] = useState(resumeTime || 0);
 
@@ -14,24 +15,25 @@ const Timer = ({isActive, setIsActive, resumeTime, setResumeTime}) => {
     }
   }, [resumeTime]);
 
+
   useEffect(() => {
-    let interval;
+      let interval;
 
-    if (isActive) {
-      interval = setInterval(() => {
-        setTime(prevTime => prevTime + 1);
-      }, 1000);
-    } else {
-      clearInterval(interval);
-    }
+      if (isActive) {
+          interval = setInterval(() => {
+              setTime(prevTime => prevTime + 1);
+          }, 1000);
+      } else {
+          clearInterval(interval);
+      }
 
-    return () => {
-      clearInterval(interval);
-    };
+      return () => {
+          clearInterval(interval);
+          };
   }, [isActive]);
 
   const toggleTimer = () => {
-    setIsActive(!isActive);
+      setIsActive(!isActive);
   };
 
 
@@ -49,18 +51,19 @@ const Timer = ({isActive, setIsActive, resumeTime, setResumeTime}) => {
     // return `${hours}:${minutes}:${seconds}`;
   };
 
+
   const formattedTime = formatTime(time);
   const width = formattedTime.length > 5 ? '120px' : '80px';
 
   return (
-    <div className="stop-watch">
-      <div className="pause-play-container" onClick={toggleTimer}>
-        {isActive ? <PiPauseDuotone className='pause-play'/> : <PiPlayDuotone className='pause-play'/>}
+      <div className="stop-watch">
+          <div className="pause-play-container" onClick={toggleTimer}>
+              {isActive ? <PiPauseDuotone className='pause-play'/> : <PiPlayDuotone className='pause-play'/>}
+          </div>
+          <p className='rendered-time' style={{ width: width }}>
+              {formattedTime}
+          </p>
       </div>
-      <p className='rendered-time' style={{ width: width }}>
-        {formattedTime}
-      </p>
-    </div>
   );
 };
 

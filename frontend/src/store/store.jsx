@@ -14,7 +14,6 @@ const rootReducer = combineReducers({
     foods,
     exercises,
     users,
-    // workouts,
     ui
 });
 

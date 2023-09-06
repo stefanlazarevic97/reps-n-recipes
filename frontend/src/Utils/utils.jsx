@@ -18,8 +18,4 @@ const getDayWithSuffix = (date) => {
     return `${day}${suffix}`;
 };
 
-// const selectedDate = "2023-09-02";
-// const formattedDate = moment(selectedDate).format("dddd, MMMM");
-// const dayWithSuffix = getDayWithSuffix(selectedDate);
-
 export default titleize;

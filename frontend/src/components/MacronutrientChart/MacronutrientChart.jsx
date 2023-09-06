@@ -97,8 +97,6 @@ const MacronutrientChart = () => {
         ]
     };
 
-    console.log("macroData", macroData);
-
     return (
         <div className="charts">
             <div className="chart-header">

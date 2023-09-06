@@ -373,7 +373,7 @@ const seedDatabase = async () => {
 
         const workoutsArray = [
             { // Week 1
-                "title": "Upper Body 1 " + new Date(datesPerformed[0]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[0]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 30, "done": true}, {"reps": 4, "kg": 30, "done": true}, {"reps": 4, "kg": 30, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}, {"reps": 10, "kg": 40, "done": true}]},
@@ -385,7 +385,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[0]
             },
             {
-                "title": "Lower Body 1 "+ new Date(datesPerformed[1]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - "+ new Date(datesPerformed[1]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 110, "done": true}, {"reps": 4, "kg": 110, "done": true}, {"reps": 4, "kg": 110, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 75, "done": true}, {"reps": 4, "kg": 75, "done": true}, {"reps": 4, "kg": 75, "done": true}]},
@@ -397,7 +397,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[1]
             },
             {
-                "title": "Upper Body 2 "+ new Date(datesPerformed[3]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - "+ new Date(datesPerformed[3]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 0, "done": true}, {"reps": 10, "kg": 0, "done": true}, {"reps": 10, "kg": 0, "done": true}]},
@@ -410,7 +410,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[3]
             },
             {
-                "title": "Lower Body 2 "+ new Date(datesPerformed[4]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - "+ new Date(datesPerformed[4]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 70, "done": true}, {"reps": 6, "kg": 70, "done": true}, {"reps": 6, "kg": 70, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}]},
@@ -423,7 +423,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[4]
             },
             { // Week 2
-                "title": "Upper Body 1 "+ new Date(datesPerformed[7]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - "+ new Date(datesPerformed[7]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}, {"reps": 6, "kg": 30, "done": true}]},
                     {"Lat Pulldown": [{"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}, {"reps": 12, "kg": 40, "done": true}]},
@@ -435,7 +435,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[7]
             },
             {
-                "title": "Lower Body 1 "+ new Date(datesPerformed[8]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - "+ new Date(datesPerformed[8]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 6, "kg": 110, "done": true}, {"reps": 6, "kg": 110, "done": true}, {"reps": 6, "kg": 110, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}]},
@@ -447,7 +447,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[8]
             },
             {
-                "title": "Upper Body 2 "+ new Date(datesPerformed[10]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - "+ new Date(datesPerformed[10]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}]},
                     {"Chin-up": [{"reps": 12, "kg": 0, "done": true}, {"reps": 12, "kg": 0, "done": true}, {"reps": 12, "kg": 0, "done": true}]},
@@ -460,7 +460,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[10]
             },
             {
-                "title": "Lower Body 2 "+ new Date(datesPerformed[11]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - "+ new Date(datesPerformed[11]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 8, "kg": 70, "done": true}, {"reps": 8, "kg": 70, "done": true}, {"reps": 8, "kg": 70, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}, {"reps": 8, "kg": 30, "done": true}]},
@@ -473,7 +473,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[11]
             },
             { // Week 3
-                "title": "Upper Body 1 "+ new Date(datesPerformed[14]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - "+ new Date(datesPerformed[14]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 32.5, "done": true}, {"reps": 4, "kg": 32.5, "done": true}, {"reps": 4, "kg": 32.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}, {"reps": 10, "kg": 42.5, "done": true}]},
@@ -485,7 +485,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[14]
             },
             {
-                "title": "Lower Body 1 "+ new Date(datesPerformed[15]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - "+ new Date(datesPerformed[15]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 112.5, "done": true}, {"reps": 4, "kg": 112.5, "done": true}, {"reps": 4, "kg": 112.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 77.5, "done": true}, {"reps": 4, "kg": 77.5, "done": true}, {"reps": 4, "kg": 77.5, "done": true}]},
@@ -497,7 +497,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[15]
             },
             {
-                "title": "Upper Body 2 "+ new Date(datesPerformed[17]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - "+ new Date(datesPerformed[17]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 2.5, "done": true}, {"reps": 10, "kg": 2.5, "done": true}, {"reps": 10, "kg": 2.5, "done": true}]},
@@ -510,7 +510,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[17]
             },
             {
-                "title": "Lower Body 2 "+ new Date(datesPerformed[18]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - "+ new Date(datesPerformed[18]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 72.5, "done": true}, {"reps": 6, "kg": 72.5, "done": true}, {"reps": 6, "kg": 72.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}]},
@@ -523,7 +523,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[18]
             },
             { // Week 4
-                "title": "Upper Body 1 "+ new Date(datesPerformed[21]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - "+ new Date(datesPerformed[21]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}, {"reps": 6, "kg": 32.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}, {"reps": 12, "kg": 42.5, "done": true}]},
@@ -535,7 +535,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[21]
             },
             {
-                "title": "Lower Body 1 "+ new Date(datesPerformed[23]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - "+ new Date(datesPerformed[23]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 6, "kg": 112.5, "done": true}, {"reps": 6, "kg": 112.5, "done": true}, {"reps": 6, "kg": 112.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}]},
@@ -547,7 +547,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[23]
             },
             {
-                "title": "Upper Body 2 "+ new Date(datesPerformed[24]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - "+ new Date(datesPerformed[24]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
                     {"Chin-up": [{"reps": 12, "kg": 2.5, "done": true}, {"reps": 12, "kg": 2.5, "done": true}, {"reps": 12, "kg": 2.5, "done": true}]},
@@ -560,7 +560,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[24]
             },
             {
-                "title": "Lower Body 2 "+ new Date(datesPerformed[26]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - "+ new Date(datesPerformed[26]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 8, "kg": 72.5, "done": true}, {"reps": 8, "kg": 72.5, "done": true}, {"reps": 8, "kg": 72.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}, {"reps": 8, "kg": 32.5, "done": true}]},
@@ -573,7 +573,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[26]
             },
             { // Week 5
-                "title": "Upper Body 1 "+ new Date(datesPerformed[28]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - "+ new Date(datesPerformed[28]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
@@ -585,7 +585,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[28]
             },
             {
-                "title": "Lower Body 1 "+ new Date(datesPerformed[29]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - "+ new Date(datesPerformed[29]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}]},
@@ -597,7 +597,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[29]
             },
             {
-                "title": "Upper Body 2 "+ new Date(datesPerformed[31]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - "+ new Date(datesPerformed[31]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}]},
@@ -610,7 +610,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[31]
             },
             {
-                "title": "Lower Body 2 "+ new Date(datesPerformed[32]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - "+ new Date(datesPerformed[32]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}]},
@@ -623,7 +623,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[32]
             },
             { // Week 6
-                "title": "Upper Body 1 " + new Date(datesPerformed[35]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[35]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}, {"reps": 4, "kg": 35, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}, {"reps": 10, "kg": 45, "done": true}]},
@@ -635,7 +635,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[35]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[36]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[36]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}, {"reps": 4, "kg": 115, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}, {"reps": 4, "kg": 80, "done": true}]},
@@ -647,7 +647,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[36]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[38]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[38]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}, {"reps": 10, "kg": 5, "done": true}]},
@@ -660,7 +660,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[38]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[39]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[39]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}, {"reps": 6, "kg": 75, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}, {"reps": 6, "kg": 35, "done": true}]},
@@ -673,7 +673,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[39]
             },
             { // Week 7
-                "title": "Upper Body 1 " + new Date(datesPerformed[42]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[42]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
@@ -685,7 +685,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[42]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[43]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[43]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}]},
@@ -697,7 +697,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[43]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[45]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[45]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}]},
@@ -710,7 +710,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[45]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[47]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[47]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}]},
@@ -723,7 +723,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[47]
             },
             { // Week 8
-                "title": "Upper Body 1 " + new Date(datesPerformed[49]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[49]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}, {"reps": 4, "kg": 37.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}, {"reps": 10, "kg": 47.5, "done": true}]},
@@ -735,7 +735,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[49]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[50]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[50]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}, {"reps": 4, "kg": 117.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}, {"reps": 4, "kg": 82.5, "done": true}]},
@@ -747,7 +747,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[50]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[52]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[52]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}, {"reps": 10, "kg": 7.5, "done": true}]},
@@ -760,7 +760,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[52]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[54]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[54]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}, {"reps": 6, "kg": 77.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}, {"reps": 6, "kg": 37.5, "done": true}]},
@@ -773,7 +773,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[54]
             },
             { // Week 9
-                "title": "Upper Body 1 " + new Date(datesPerformed[56]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[56]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
@@ -785,7 +785,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[56]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[57]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[57]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
@@ -797,20 +797,20 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[57]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[59]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-            "sets": [
-                {"Barbell Bench Press": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
-                {"Chin-up": [{"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}]},
-                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
-                {"T-Bar Row": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
-                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
-                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
-                {"Preacher Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]}
-            ],
-            datePerformed: datesPerformed[59]
+                "title": "Upper Body 2 - " + new Date(datesPerformed[59]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]}
+                ],
+                datePerformed: datesPerformed[59]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[61]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[61]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}]},
@@ -823,7 +823,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[61]
             },
             { // Week 10
-                "title": "Upper Body 1 " + new Date(datesPerformed[63]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[63]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}, {"reps": 4, "kg": 40, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
@@ -835,7 +835,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[63]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[64]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[64]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}, {"reps": 4, "kg": 120, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}, {"reps": 4, "kg": 85, "done": true}]},
@@ -847,20 +847,20 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[64]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[67]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-            "sets": [
-                {"Barbell Bench Press": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
-                {"Chin-up": [{"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}]},
-                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
-                {"T-Bar Row": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
-                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
-                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
-                {"Preacher Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]}
-            ],
-            datePerformed: datesPerformed[67]
+                "title": "Upper Body 2 - " + new Date(datesPerformed[67]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}, {"reps": 10, "kg": 10, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}, {"reps": 10, "kg": 50, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}, {"reps": 12, "kg": 20, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}, {"reps": 10, "kg": 35, "done": true}]}
+                ],
+                datePerformed: datesPerformed[67]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[69]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[69]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}, {"reps": 6, "kg": 80, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}, {"reps": 6, "kg": 40, "done": true}]},
@@ -873,7 +873,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[69]
             },
             { // Week 11
-                "title": "Upper Body 1 " + new Date(datesPerformed[70]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[70]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
@@ -885,7 +885,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[70]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[71]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[71]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
@@ -897,20 +897,20 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[71]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[73]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-            "sets": [
-                {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
-                {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
-                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
-                {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
-                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
-                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
-                {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 37.5, "kg": 35, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
-            ],
-            datePerformed: datesPerformed[73]
+                "title": "Upper Body 2 - " + new Date(datesPerformed[73]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 37.5, "kg": 35, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[73]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[74]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[74]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}]},
@@ -923,7 +923,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[74]
             },
             { // Week 12
-                "title": "Upper Body 1 " + new Date(datesPerformed[77]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[77]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
@@ -935,7 +935,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[77]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[78]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[78]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
@@ -947,20 +947,20 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[78]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[80]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-            "sets": [
-                {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
-                {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
-                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
-                {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
-                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
-                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
-                {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
-            ],
-            datePerformed: datesPerformed[80]
+                "title": "Upper Body 2 - " + new Date(datesPerformed[80]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[80]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[81]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[81]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}]},
@@ -973,7 +973,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[81]
             },
             { // Week 13
-                "title": "Upper Body 1 " + new Date(datesPerformed[84]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[84]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}, {"reps": 4, "kg": 42.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
@@ -985,7 +985,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[84]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[85]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[85]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}, {"reps": 4, "kg": 122.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}, {"reps": 4, "kg": 87.5, "done": true}]},
@@ -997,20 +997,20 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[85]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[87]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
-            "sets": [
-                {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
-                {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
-                {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
-                {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
-                {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
-                {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
-                {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
-            ],
-            datePerformed: datesPerformed[87]
+                "title": "Upper Body 2 - " + new Date(datesPerformed[87]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "sets": [
+                    {"Barbell Bench Press": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
+                    {"Chin-up": [{"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}, {"reps": 10, "kg": 12.5, "done": true}]},
+                    {"Standing Barbell Overhead Press": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"T-Bar Row": [{"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}, {"reps": 10, "kg": 52.5, "done": true}]},
+                    {"Dumbbell Lateral Raise": [{"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}, {"reps": 12, "kg": 22.5, "done": true}]},
+                    {"Straight Bar Tricep Pushdown": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]},
+                    {"Preacher Curl": [{"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}, {"reps": 10, "kg": 37.5, "done": true}]}
+                ],
+                datePerformed: datesPerformed[87]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[88]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[88]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}, {"reps": 6, "kg": 82.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}, {"reps": 6, "kg": 42.5, "done": true}]},
@@ -1023,7 +1023,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[88]
             },
             { // Week 14
-                "title": "Upper Body 1 " + new Date(datesPerformed[91]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[91]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
@@ -1035,7 +1035,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[91]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[92]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[92]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
@@ -1047,7 +1047,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[92]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[93]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[93]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}]},
@@ -1060,7 +1060,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[93]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[97]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[97]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}]},
@@ -1073,7 +1073,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[97]
             },
             { // Week 15
-                "title": "Upper Body 1 " + new Date(datesPerformed[99]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[99]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}, {"reps": 4, "kg": 45, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}, {"reps": 10, "kg": 55, "done": true}]},
@@ -1085,7 +1085,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[99]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[100]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[100]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}, {"reps": 4, "kg": 125, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}, {"reps": 4, "kg": 90, "done": true}]},
@@ -1097,7 +1097,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[100]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[102]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[102]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}, {"reps": 10, "kg": 15, "done": true}]},
@@ -1110,7 +1110,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[102]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[104]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2- " + new Date(datesPerformed[104]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}, {"reps": 6, "kg": 85, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}, {"reps": 6, "kg": 45, "done": true}]},
@@ -1123,7 +1123,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[104]
             },
             { // Week 16
-                "title": "Upper Body 1 " + new Date(datesPerformed[105]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[105]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
@@ -1135,7 +1135,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[105]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[106]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[106]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
@@ -1147,7 +1147,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[106]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[108]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[108]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}]},
@@ -1160,7 +1160,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[108]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[109]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[109]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}]},
@@ -1173,7 +1173,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[109]
             },
             { // Week 17
-                "title": "Upper Body 1 " + new Date(datesPerformed[112]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[112]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}, {"reps": 4, "kg": 47.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}, {"reps": 10, "kg": 57.5, "done": true}]},
@@ -1185,7 +1185,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[112]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[113]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[113]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}, {"reps": 4, "kg": 127.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}, {"reps": 4, "kg": 92.5, "done": true}]},
@@ -1197,7 +1197,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[113]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[115]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[115]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}, {"reps": 10, "kg": 17.5, "done": true}]},
@@ -1210,7 +1210,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[115]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[116]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[116]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}, {"reps": 6, "kg": 87.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}, {"reps": 6, "kg": 47.5, "done": true}]},
@@ -1223,7 +1223,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[116]
             },
             { // Week 18
-                "title": "Upper Body 1 " + new Date(datesPerformed[119]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[119]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
@@ -1235,7 +1235,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[119]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[120]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[120]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
@@ -1247,7 +1247,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[120]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[122]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[122]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}]},
@@ -1260,7 +1260,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[122]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[124]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[124]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}]},
@@ -1273,7 +1273,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[124]
             },
             { // Week 19
-                "title": "Upper Body 1 " + new Date(datesPerformed[126]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[126]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}, {"reps": 4, "kg": 50, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}, {"reps": 10, "kg": 60, "done": true}]},
@@ -1285,7 +1285,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[126]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[128]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[128]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}, {"reps": 4, "kg": 130, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}, {"reps": 4, "kg": 95, "done": true}]},
@@ -1297,7 +1297,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[128]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[129]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[129]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}, {"reps": 10, "kg": 20, "done": true}]},
@@ -1310,7 +1310,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[129]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[132]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[132]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}, {"reps": 6, "kg": 90, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}, {"reps": 6, "kg": 50, "done": true}]},
@@ -1323,7 +1323,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[132]
             },
             { // Week 20
-                "title": "Upper Body 1 " + new Date(datesPerformed[134]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[134]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 52.5, "done": true}, {"reps": 4, "kg": 52.5, "done": true}, {"reps": 4, "kg": 52.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}, {"reps": 10, "kg": 62.5, "done": true}]},
@@ -1335,7 +1335,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[134]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[136]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[136]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
@@ -1347,7 +1347,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[136]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[137]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[137]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]},
@@ -1360,7 +1360,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[137]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[139]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[139]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}]},
@@ -1385,7 +1385,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[142]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[143]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[143]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}, {"reps": 4, "kg": 132.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}, {"reps": 4, "kg": 97.5, "done": true}]},
@@ -1397,7 +1397,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[143]
             },
             {
-            "title": "Upper Body 2 " + new Date(datesPerformed[145]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+            "title": "Upper Body 2 - " + new Date(datesPerformed[145]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
             "sets": [
                 {"Barbell Bench Press": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
                 {"Chin-up": [{"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}, {"reps": 10, "kg": 22.5, "done": true}]},
@@ -1410,7 +1410,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[145]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[147]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[147]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}, {"reps": 6, "kg": 92.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}, {"reps": 6, "kg": 52.5, "done": true}]},
@@ -1423,7 +1423,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[147]
             },
             { // Week 22
-                "title": "Upper Body 1 " + new Date(datesPerformed[149]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[149]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
@@ -1435,7 +1435,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[149]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[151]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[151]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
@@ -1447,7 +1447,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[151]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[151]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[151]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
@@ -1460,7 +1460,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[151]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[154]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[154]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}]},
@@ -1473,7 +1473,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[154]
             },
             { // Week 23
-                "title": "Upper Body 1 " + new Date(datesPerformed[156]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[156]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}, {"reps": 4, "kg": 55, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}, {"reps": 10, "kg": 65, "done": true}]},
@@ -1485,7 +1485,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[156]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[158]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[158]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}, {"reps": 4, "kg": 135, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}, {"reps": 4, "kg": 100, "done": true}]},
@@ -1497,7 +1497,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[158]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[160]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[160]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}, {"reps": 10, "kg": 25, "done": true}]},
@@ -1510,7 +1510,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[160]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[162]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[162]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}, {"reps": 6, "kg": 95, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}, {"reps": 6, "kg": 55, "done": true}]},
@@ -1523,7 +1523,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[162]
             },
             { // Week 24
-                "title": "Upper Body 1 " + new Date(datesPerformed[165]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[165]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
@@ -1535,7 +1535,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[165]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[167]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[167]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
@@ -1547,7 +1547,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[167]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[168]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[168]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
@@ -1560,7 +1560,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[168]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[170]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[170]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}]},
@@ -1573,7 +1573,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[170]
             },
             { // Week 25
-                "title": "Upper Body 1 " + new Date(datesPerformed[172]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[172]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}, {"reps": 4, "kg": 57.5, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}, {"reps": 10, "kg": 67.5, "done": true}]},
@@ -1585,7 +1585,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[172]
             },
             {
-                "title": "Lower Body 1 " + new Date(datesPerformed[174]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 1 - " + new Date(datesPerformed[174]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Back Squat": [{"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}, {"reps": 4, "kg": 137.5, "done": true}]},
                     {"Barbell Romanian Deadlift": [{"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}, {"reps": 4, "kg": 102.5, "done": true}]},
@@ -1597,7 +1597,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[174]
             },
             {
-                "title": "Upper Body 2 " + new Date(datesPerformed[175]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 2 - " + new Date(datesPerformed[175]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Bench Press": [{"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 107.5, "done": true}, {"reps": 4, "kg": 105, "done": true}]},
                     {"Chin-up": [{"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}, {"reps": 10, "kg": 27.5, "done": true}]},
@@ -1610,7 +1610,7 @@ const seedDatabase = async () => {
             datePerformed: datesPerformed[175]
             },
             {
-                "title": "Lower Body 2 " + new Date(datesPerformed[176]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Lower Body 2 - " + new Date(datesPerformed[176]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Barbell Front Squat": [{"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}, {"reps": 6, "kg": 97.5, "done": true}]},
                     {"Dumbbell Romanian Deadlift": [{"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}, {"reps": 6, "kg": 57.5, "done": true}]},
@@ -1623,7 +1623,7 @@ const seedDatabase = async () => {
                 datePerformed: datesPerformed[176]
             },
             { // Week 26
-                "title": "Upper Body 1 " + new Date(datesPerformed[179]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
+                "title": "Upper Body 1 - " + new Date(datesPerformed[179]).toLocaleDateString("en-US", { month: 'long', day: 'numeric', year: 'numeric', timeZone: 'UTC' }),
                 "sets": [
                     {"Dumbbell Bench Press": [{"reps": 4, "kg": 60, "done": true}, {"reps": 4, "kg": 60, "done": true}, {"reps": 4, "kg": 60, "done": true}]},
                     {"Lat Pulldown": [{"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}, {"reps": 10, "kg": 70, "done": true}]},

@@ -48,8 +48,6 @@ const CalorieChart = () => {
             }
         ]
     };
-
-    console.log("calorieData", calorieData);
     
     return (
         <div className="charts">

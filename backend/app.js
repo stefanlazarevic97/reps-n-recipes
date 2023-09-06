@@ -51,26 +51,26 @@ app.use('/api/exercises', exercisesRouter);
 app.use('/api/nutrition', nutritionRouter);
 app.use('/api/workout', workoutsRouter);
 
-// if (isProduction) {
-//     const path = require('path');
+if (isProduction) {
+    const path = require('path');
 
-//     app.get('/', (req, res) => {
-//             res.cookie('CSRF-TOKEN', req.csrfToken());
-//             res.sendFile(
-//             path.resolve(__dirname, '../frontend', 'build', 'index.html')
-//         );
-//     });
+    app.get('/', (req, res) => {
+            res.cookie('CSRF-TOKEN', req.csrfToken());
+            res.sendFile(
+            path.resolve(__dirname, '../frontend', 'build', 'index.html')
+        );
+    });
 
-//     app.use(express.static(path.resolve("../frontend/build")));
+    app.use(express.static(path.resolve("../frontend/build")));
     
-//     app.get(/^(?!\/?api).*/, (req, res) => {
-//         res.cookie('CSRF-TOKEN', req.csrfToken());
+    app.get(/^(?!\/?api).*/, (req, res) => {
+        res.cookie('CSRF-TOKEN', req.csrfToken());
         
-//         res.sendFile(
-//             path.resolve(__dirname, '../frontend', 'build', 'index.html')
-//         );
-//     });
-// }
+        res.sendFile(
+            path.resolve(__dirname, '../frontend', 'build', 'index.html')
+        );
+    });
+}
 
 app.use((req, res, next) => {
     const err = new Error('Not Found');
