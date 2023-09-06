@@ -317,6 +317,7 @@
 .remove-exercise {
     font-size: 2rem;
     color: var(--charcoal);
+    cursor: pointer;
 }
 
 .exercise-header-container {
@@ -343,7 +344,7 @@
     height: 100%;
 }
 
-.workout-form-background {
+.congrats-background {
     position: fixed;
     width: 100%;
     height: 100%;
@@ -351,27 +352,39 @@
     background: rgba(0, 0, 0, 0.5);
 }
 
-.workout-form {
+.congrats-modal {
     background: var(--background-workout);
     border-radius: 0.5rem;
     position: absolute;
+    width: 30vw;
     left: 50%;
+    padding: 1rem;
     transform: translate(-50%);
-    height: 85vh;
+    height: 25vh;
     overflow: auto;
     z-index: 40;
-    top: 1rem;
+    top: 20vh;
+    box-shadow: var(--RNRboxshadow);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.add-search-container{
-    position: sticky;
-    top: 0;
-    padding: 2rem 2rem 1rem 2rem;
-    background: var(--background-workout);
-    z-index: 20;
+.save-template-description{
+    text-align: center;
 }
 
-.workout-button {
+.congrats-emoji{
+    font-size: 32px;
+}
+
+.cograts-header{
+    font-size: 24px;
+}
+
+.save-button,
+.dont-save-button {
     display: block;
     width: 100%;
     padding: 1rem;
@@ -393,5 +406,29 @@
     display: flex; 
     flex-direction: column;
     justify-content: space-between;
+    align-items: center;
+}
+.save-button {
+    color: white;
+    font-weight: 500;
+}
+
+.dont-save-button{
+    background-color: #cccc;
+    color: black;
+    font-weight: 600;
+}
+
+/* !Completed Workout */
+
+.demonstrate-completed{
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    border-radius: 0.4rem;
+    border: #cccc;
+    background-color: white;
+    box-shadow: var(--RNRboxshadow);
+    display: flex;
     align-items: center;
 }
