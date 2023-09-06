@@ -3,7 +3,6 @@ import { templates } from './Templates';
 import './SelectWorkoutTemplate.css'
 
 const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate, setSelectedTemplate }) => {
-
     const handleSelectTemplate = async (workout) => {
         if (selectedTemplate.title === workout.title){
             sessionStorage.setItem("currentWorkout", JSON.stringify({}));
@@ -16,18 +15,15 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     }
 
     const renderWorkout = (workout) => {
-        // sessionStorage.setItem("currentWorkout", JSON.stringify({}));
+        sessionStorage.setItem("currentWorkout", JSON.stringify({}));
         setExerciseList([]);
+      
         const sets = workout.sets.map(exercise => {
             const key = Object.keys(exercise)[0];
             const ingredients = Object.values(exercise)[0];
             return {[key]: buildSets(ingredients) }
         })
-        // const newWorkout = {
-        //     "title": selectedTemplate.title,
-        //     "sets": [...sets]
-        // }
-        // sessionStorage.setItem("currentWorkout", JSON.stringify(newWorkout));
+       
         setExerciseList([...sets]);
     }
 
@@ -63,7 +59,8 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     }
 
     const buildSets = (ingredients) => {
-        const sets = []
+        const sets = [];
+        
         for (let i=0; i < ingredients["warm"]; i++){
             sets.push({"kg": null, "reps": null, "done": false, "type": "warmup"})
         }
@@ -77,8 +74,24 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     return (
         
         <div className='template-list-container'>
-            <h1 className='select-template-header'>Select a template workout</h1>
+            <h1 className='header'>Select a template workout</h1>
             <form className="template-list">
+                {/* <div className='start-template'>
+
+                    { selectedTemplate && 
+                        <button 
+                            onClick={handleStartTemplate}
+                            className={
+                                `${selectedTemplate ?
+                                "workout-button ready-to-press" 
+                                : "workout-button hidden"}`
+                            }
+                        >
+                            Start
+                        </button>
+                    }
+                </div> */}
+
                 <div className="template-list-wrapper">
                     {createTemplateList()}
                 </div>
@@ -86,6 +99,5 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
         </div>    
     )
 }
-
 
 export default SelectWorkoutTemplate

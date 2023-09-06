@@ -73,13 +73,11 @@ export const addWeightByDate = (weight, date) => async dispatch => {
             body: JSON.stringify({ weight, date })
         });
 
-        console.log("Response: ", res);
 
         if (res.ok) {
             dispatch(receiveWeightByDate(weight, date));
         } else {
             const errorData = await res.json();
-            console.log("Error Data: ", errorData);
             return dispatch(receiveErrors(errorData.errors));
         }
     } catch(err) {

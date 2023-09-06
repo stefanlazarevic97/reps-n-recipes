@@ -12,20 +12,17 @@ import Timer from "./Timer"
 import moment from "moment"
 import './WorkoutPage.css'
 import WorkoutHistory from "./WorkoutHistory"
-import { BsThreeDots } from "react-icons/bs";
-// import ViewWorkout from "../ViewWorkout/ViewWorkout"
 
 const WorkoutPage = () => {
     const dispatch = useDispatch()
-    // const [contentFilled, setContentFilled] = useState(false)
     const active = useSelector(getWorkoutFormState)
     const [selectedExercise, setSelectedExercise] = useState('')
     const [listItems, setListItems] = useState([])
     const [addExercise, setAddExercise] = useState(false)
     const workouts = useSelector(state => state.users.workouts)
-    const [workoutStarted, setWorkoutStarted] = useState(false)
+    const [workoutStarted, setWorkoutStarted] = useState(false);
     const history = useHistory();
-    const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets)    // array of exercise objects
+    const [exerciseList, setExerciseList] = useState(JSON.parse(sessionStorage.getItem("currentWorkout"))?.sets);
     const [stopWatchActive, setStopWatchActive] = useState(false);
     const [selectedTemplate, setSelectedTemplate] = useState('');
 
@@ -41,6 +38,7 @@ const WorkoutPage = () => {
             return {[name]: setArray.filter(setObj => setObj["done"])}
         })
         const datePerformed = new Date();
+
         updatedSets = updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0)
         const updatedWorkout = {...currentWorkout, sets: updatedSets, datePerformed: datePerformed }
         dispatch(createWorkout(updatedWorkout))
@@ -85,6 +83,7 @@ const WorkoutPage = () => {
             if (exercise[name]) {
                 exercise[name].push({kg: null, reps: null})
             }
+
             return exercise;
         })
         setExerciseList(updatedExerciseList)
@@ -95,33 +94,36 @@ const WorkoutPage = () => {
     }
 
     const updateInput = (name, index, type, e) => {
-        const val = Number(e.currentTarget.value) || null
+        const val = Number(e.currentTarget.value) || null;
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-        const exercise = currentWorkout.sets.find(exercise => exercise[name])
-        exercise[name][index][type] = val
+        const exercise = currentWorkout.sets.find(exercise => exercise[name]);
+        exercise[name][index][type] = val;
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
+
         const updatedExerciseList = exerciseList.map(exercise => {
             if (exercise[name]) {
-                exercise[name][index][type] = val
-                if (val === null) exercise[name][index]["done"] = false
+                exercise[name][index][type] = val;
+                if (val === null) exercise[name][index]["done"] = false;
             }
             return exercise;
         })
-        setExerciseList(updatedExerciseList)
+        setExerciseList(updatedExerciseList);
     }
 
     const setDone = (name, index, ready) => {
-        if (!ready) return null
-        let newDone = null
+        if (!ready) return null;
+        let newDone = null;
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
-        const exercise = currentWorkout.sets.find(exercise => exercise[name])
+        const exercise = currentWorkout.sets.find(exercise => exercise[name]);
+
         if (exercise[name][index]["done"]){
-            exercise[name][index]["done"] = false
-            newDone = false
+            exercise[name][index]["done"] = false;
+            newDone = false;
         } else {
-            exercise[name][index]["done"] = true
-            newDone = true
+            exercise[name][index]["done"] = true;
+            newDone = true;
         }
+
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         const updatedExerciseList = exerciseList.map(exercise => {
             if (exercise[name]) {
@@ -133,9 +135,9 @@ const WorkoutPage = () => {
     }
 
     const removeSet = (name, index, id) => {
-        // document.getElementById(`${id}`).classList.add("slide-out");
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         const exerciseObj = currentWorkout.sets.find(exercise => exercise.hasOwnProperty(name));
+
         if (exerciseObj) {
             if (exerciseObj[name].length === 1) {
               currentWorkout.sets = currentWorkout.sets.filter(exercise => !exercise.hasOwnProperty(name));
@@ -144,10 +146,10 @@ const WorkoutPage = () => {
               currentWorkout.sets[name] = updated;
             }
         }
+
         sessionStorage.setItem("currentWorkout", JSON.stringify(currentWorkout));
         setExerciseList([...currentWorkout.sets]);
     };
-
 
     let pastWorkouts;
 
@@ -168,16 +170,26 @@ const WorkoutPage = () => {
     const contentFilled = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
         if (!exerciseObj) return false;
+
         const filledSetIndex = Object.values(exerciseObj)[0].findIndex(set =>
             (set["kg"] !== null) && (set["reps"] !== null)
         )
+
         return filledSetIndex !== -1;
     }
 
+    const rpe = (name) => {
+        const exerciseObj = exerciseList.find(exercise => exercise[name])
+        if (!exerciseObj) return false;
+        const rpeIndex = Object.values(exerciseObj)[0].findIndex(set => !!set["RPE"])
+        return rpeIndex !== -1;
+    }
+    
     const prevTopSet = (name) => {
         for (let i = pastWorkouts.length - 1; i >= 0; i--) {
             const sets = pastWorkouts[i].sets;
             const exerciseSet = sets.find(set => set[name]);
+            
             if (exerciseSet) {
                 const reversedSets = [...exerciseSet[name]].reverse();
                 const maxKg = Math.max(...exerciseSet[name].map(set => set.kg));
@@ -203,10 +215,13 @@ const WorkoutPage = () => {
             const id = `${name.replace(/ /g, '-')}-row-${i}`
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
+          
             setDisplay.push(
                 <div className="remove-button-container">
-                    <div id={id} 
-                    className={`input-upper  ${done ? "done-overlay" : ""} ${warmup ? "warmup" : ""}`}>
+                    <div 
+                        id={id} 
+                        className={`input-upper ${done ? "done-overlay" : ""} ${warmup ? "warmup" : ""}`}
+                    >
                         <div className="exercise-inputs">
                             <div className="set-val">
                                 { warmup ? 
@@ -215,26 +230,34 @@ const WorkoutPage = () => {
                                     <div>{s}</div>
                                 }
                             </div>
+
                             <div className="kg-input">
                                 <input type="text" placeholder={prevKg} value={kg} onChange={(e) => updateInput(name, i,"kg", e)}/>
                             </div>
+
                             <div className="reps-input">
-                                <input type="text" 
-
-                                placeholder={recReps ? recReps : (prevReps ? prevReps : "")}
-                                value={reps} onChange={(e) => updateInput(name, i,"reps", e)}/>
+                                <input
+                                    type="text" 
+                                    placeholder={recReps ? recReps : (prevReps ? prevReps : "")}
+                                    value={reps} onChange={(e) => updateInput(name, i,"reps", e)}
+                                />
                             </div>
-                            <div className="prev-top-set-input">
 
-                            {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : "----"}
+                            <div className="prev-top-set-input">
+                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : "----"}              
                             </div>
                         </div>
+
                         <div className={`complete-set-button 
                             ${ready ? (done ? "completed" : "ready") : ""}`}>
-                            <TiTickOutline className="tick-button" onClick={() => setDone(name, i, ready)}/>
+                                
+                            <TiTickOutline 
+                                className="tick-button" 
+                                onClick={() => setDone(name, i, ready)}
+                            />
                         </div>
-                   
                     </div>
+
                     <div className="remove-button">
                         <BiMinus className="minus-button" 
                         onClick={()=>{removeSet(name, i, id)}}
@@ -259,7 +282,6 @@ const WorkoutPage = () => {
         setExerciseList([...currentWorkout.sets]);
     }
 
-
     const makeExerciseList = () => {
         const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
@@ -280,18 +302,21 @@ const WorkoutPage = () => {
                             <div className="set-header">Set</div>
                             <div className="kg-header">kg</div>
                             <div className="reps-header">reps</div>
-                            <div 
-                                className="prev-top-set"
-                            >
-                                Prev Top Set
-                            </div>
+                            <div className="prev-top-set">Prev Top Set</div>
                         </div>
+
                         { contentFilled(exercise) &&
-                        <div className="completed-header">completed</div>
+                            <div className="completed-header">completed</div>
                         }
                     </div>
+
                     {displaySets(exercise)}
-                    <button className="add-a-set" onClick={() => addSet(exercise)}>+ Add Set</button>
+                    <button 
+                        className="add-a-set" 
+                        onClick={() => addSet(exercise)}
+                    >
+                        + Add Set
+                    </button>
                 </li>
             )
         })
@@ -301,9 +326,6 @@ const WorkoutPage = () => {
             </ul>
         )
     }
-
-
-
     const displaySetsSimple = (name) => {
         const exerciseObj = exerciseList.find(exercise => exercise[name])
         const setArray = exerciseObj[name];
@@ -332,6 +354,7 @@ const WorkoutPage = () => {
             )
         })
         return setDisplay;
+
     }       
 
     const viewTemplate = () => {
@@ -347,6 +370,7 @@ const WorkoutPage = () => {
                             <div className="prev-top-set">Prev Top Set</div>
                         </div>
                     </div>
+
                     {displaySetsSimple(exercise)}
                 </li>
             )
@@ -358,8 +382,6 @@ const WorkoutPage = () => {
             </ul>
         )
     }
-
-
 
     const startEmptyWorkout = () => {
         sessionStorage.setItem("currentWorkout", JSON.stringify({"title": getTitle(), "sets" : []}));
@@ -378,12 +400,11 @@ const WorkoutPage = () => {
         setStopWatchActive(true);
     }
 
-
-
     const getTitle = () => {
         const rawWorkout = sessionStorage.getItem("currentWorkout");
         if (!rawWorkout) return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
         const currentWorkout = JSON.parse(rawWorkout);
+
         if (!currentWorkout || !Object.keys(currentWorkout).length) {
             return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
         }
@@ -392,10 +413,21 @@ const WorkoutPage = () => {
         return currentWorkout?.title
     }
 
-
     return (
         <>
             <div className="workout-page-container">
+                { !workoutStarted &&
+                    <div className="select-workout-container">
+                        <SelectWorkoutTemplate
+                            selectedTemplate = {selectedTemplate}
+                            setSelectedTemplate = {setSelectedTemplate}
+                            exerciseList = {exerciseList}
+                            setExerciseList = {setExerciseList}
+                            stopWatchActive = {stopWatchActive}
+                            setStopWatchActive = {setStopWatchActive}
+                        />
+                    </div>
+                }
 
             { !workoutStarted &&
 
@@ -411,10 +443,7 @@ const WorkoutPage = () => {
                 </div>
 
             }
-            
-
-           
-
+          
             <div className="workout-page-inner">
                 {
                     workoutStarted ? 
@@ -426,9 +455,9 @@ const WorkoutPage = () => {
                     
                             <div className="workout-control">
                                 <button 
-                                    className="complete-workout" 
+                                    className="button green-button" 
                                     onClick={handleSubmit}
-                                    >
+                                >
                                     Finish Workout
                                 </button> 
                                 <Timer 
@@ -439,93 +468,81 @@ const WorkoutPage = () => {
                         <div className="workout-header-spacer"></div>
                         {makeExerciseList()}
 
-                        <button 
-                            className="add-exercise" 
-                            onClick={()=>dispatch(activateWorkoutForm())}
-                        >
-                            Add Exercises
-                        </button>  
-
-                        <button 
-                            className="cancel-workout" 
-                            onClick={resetWorkout}
+                            <button 
+                                className="add-exercise-button button" 
+                                onClick={()=>dispatch(activateWorkoutForm())}
                             >
-                            Cancel Workout
-                        </button>  
-
-                    </>
-
-                    :
-
-                    <>
-
-
-                    <button 
-                            className="create-a-workout" 
-                            onClick={startEmptyWorkout}
-                        >
-                            Create an Empty Workout
-                    </button> 
-
-                    {
-                        selectedTemplate &&
-                        <>
-                            <div className="workout-header-spacer"></div>
+                                Add Exercises
+                            </button>  
 
                             <button 
-                                    className="start-a-template" 
-                                    onClick={startTemplateWorkout}
-                                >
-                                    Start this Template 
+                                className="workout-button" 
+                                onClick={resetWorkout}
+                            >
+                                Cancel Workout
+                            </button>  
+                        </> :
+                        <>
+                            <button 
+                                className="workout-button" 
+                                onClick={startEmptyWorkout}
+                            >
+                                Create New Workout
                             </button> 
 
-                            {viewTemplate()}
+                            {selectedTemplate &&
+                                <>
+                                    <div className="workout-header-spacer"></div>
+
+                                    <button 
+                                        className="button green-button" 
+                                        onClick={() => setWorkoutStarted(true)}
+                                    >
+                                        Start this Template
+                                    </button> 
+
+                                    {viewTemplate()}
+                                </>
+                            }
                         </>
                     }
-                    </>
-                }
 
-                {active && 
-                    <WorkoutForm 
-                        exerciseList={exerciseList} 
-                        setExerciseList={setExerciseList}
-                        selectedExercise={selectedExercise} 
-                        setSelectedExercise={setSelectedExercise}
-                        addExercise={addExercise} 
-                        setAddExercise={setAddExercise}
-                        listItems={listItems}
-                    />
-                }
-
-                
-            </div>
-
-            { !workoutStarted &&
-                <div className="select-workout-container">
-                    <WorkoutHistory
-                    exerciseList = {exerciseList}
-                    setExerciseList = {setExerciseList}
-                    stopWatchActive = {stopWatchActive}
-                    setStopWatchActive = {setStopWatchActive}
-                    />
+                    {active && 
+                        <WorkoutForm 
+                            exerciseList={exerciseList} 
+                            setExerciseList={setExerciseList}
+                            selectedExercise={selectedExercise} 
+                            setSelectedExercise={setSelectedExercise}
+                            addExercise={addExercise} 
+                            setAddExercise={setAddExercise}
+                            listItems={listItems}
+                        />
+                    }        
                 </div>
-            }
+
+                {!workoutStarted &&
+                    <div className="select-workout-container">
+                        <WorkoutHistory
+                            exerciseList = {exerciseList}
+                            setExerciseList = {setExerciseList}
+                            stopWatchActive = {stopWatchActive}
+                            setStopWatchActive = {setStopWatchActive}
+                        />
+                    </div>
+                }
+            </div>
             
-        </div>
-            
-        <div className="toggle-button-container">
-            <div 
-                id="toggle-page-type-button" 
-                className="button wprkout-button" 
-                onClick={goToNutritionPage}
-            >
-                <div>
-                    Nutrition
+            <div className="toggle-button-container">
+                <div 
+                    id="toggle-page-type-button" 
+                    className="button wprkout-button" 
+                    onClick={goToNutritionPage}
+                >
+                    <div>
+                        Nutrition
+                    </div>
                 </div>
             </div>
-        </div>
-
-
         </>
     )
 }
