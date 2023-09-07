@@ -415,13 +415,56 @@
 /* !Completed Workout */
 
 .demonstrate-completed{
-    position: fixed;
-    width: 100vw;
-    height: 100vh;
+    position: absolute;
+    top: 7.5vw;
+    left: 10vw;
+    right: 10vw;
+    width: 80vw;
+    /* height: 100vh; */
     border-radius: 0.4rem;
     border: #cccc;
     background-color: white;
     box-shadow: var(--RNRboxshadow);
     display: flex;
+    flex-direction: column;
     align-items: center;
+}
+
+.demostrate-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.congrats-emoji {
+    font-size: 5rem;
+    margin: 2.5vh 0 2.5vh 0;
+
+}
+
+.congrats-message{
+    font-size: 2rem;
+    /* margin-bottom: 40px; */
+    margin: 0 20px;
+}
+
+.congrats-submessage{
+    margin-bottom: 28px;
+    font-size: 30px;
+}
+
+.close-congrats{
+    position: absolute;
+    top: 2.5vh;
+    right: 5vh;
+    font-size: 3rem;
+    cursor: pointer;
+}
+
+.completed-workout-list li {
+    /* border: 1px solid black; */
+
+    align-items: center;
+    background-color: #cccc;
+    box-shadow: var(--RNRboxshadow);
 }

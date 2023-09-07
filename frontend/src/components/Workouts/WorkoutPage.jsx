@@ -210,7 +210,7 @@ const WorkoutPage = () => {
             const kg = set["kg"]
             const prevKg = set["prevKg"];
             const prevReps = set["prevReps"];
-            const reps = set["reps"]
+            const reps = set["reps"];
             const ready = kg && reps
             const done = set["done"]
             const recReps = set["rec-reps"]
@@ -328,13 +328,20 @@ const WorkoutPage = () => {
             </ul>
         )
     }
-    const displaySetsSimple = (name) => {
-        const exerciseObj = exerciseList.find(exercise => exercise[name])
+    const displaySetsSimple = (name, sets) => {
+        const exerciseObj = sets.find(exercise => exercise[name])
         const setArray = exerciseObj[name];
         const setDisplay = [];
+
         let s = 0;
         setArray.forEach((set, i)=>{
             const id = `${name.replace(/ /g, '-')}-row-${i}`
+            let kg = null;
+            let reps = null;
+            if (set["kg"] && set["reps"]){
+                kg = set["kg"]
+                reps = set["reps"];
+            }
             const warmup = set["type"] === "warmup"
             if (!warmup) s = s + 1;
             setDisplay.push(
@@ -348,9 +355,27 @@ const WorkoutPage = () => {
                                 <div>{s}</div>
                             }
                         </div>
-                        <div className="prev-top-set-input">
-                        {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
-                        </div>
+
+                        {   (kg && reps) ?
+
+                            <>
+                                <div className="kg-input">
+                                    {kg}
+                                </div>
+
+                                <div className="reps-input">
+                                    {reps}
+                                </div>
+                            </>
+
+                            :
+
+                            <div className="prev-top-set-input">
+                                {prevTopSet(name) && !warmup ? `${prevTopSet(name).kg} kg x ${prevTopSet(name).reps}` : null}
+                            </div>
+
+                        }
+                        
                     </div>
                 </div> 
             )
@@ -359,8 +384,9 @@ const WorkoutPage = () => {
 
     }       
 
-    const viewTemplate = () => {
-        const list = exerciseList?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
+    const viewTemplate = (sets = exerciseList) => {
+        // debugger
+        const list = sets?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
                 <li className='template-exercise-ele' key={`${exercise}-${index}`}>
                     <div className="exercise-header-container">
@@ -369,11 +395,20 @@ const WorkoutPage = () => {
                     <div className="exercise-headers">
                         <div className="workout-details">
                             <div className="set-header">Set</div>
-                            <div className="prev-top-set">Prev Top Set</div>
+                            {
+                                completedWorkout ? 
+                                <>
+                                    <div className="kg-header">kg</div>
+                                    <div className="reps-header">reps</div>
+                                </>
+                                :
+                                <div className="prev-top-set">Prev Top Set</div>
+                            }
+
                         </div>
                     </div>
 
-                    {displaySetsSimple(exercise)}
+                    {displaySetsSimple(exercise, sets)}
                 </li>
             )
         })
@@ -417,46 +452,18 @@ const WorkoutPage = () => {
         return currentWorkout?.title
     }
 
-
-    const viewCompleted = () => {
-        const list = completedWorkout?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
-            return (
-                <li className='template-exercise-ele' key={`${exercise}-${index}`}>
-                    <div className="exercise-header-container">
-                        <div className="exercise-title">{exercise}</div>
-                    </div>
-                    <div className="exercise-headers">
-                        <div className="workout-details">
-                            <div className="set-header">Set</div>
-                            <div className="prev-top-set">Prev Top Set</div>
-                        </div>
-                    </div>
-
-                    {displaySetsSimple(exercise)}
-                </li>
-            )
-        })
-
-        return (
-            <ul className="template-exercise-list">
-                {list}
-            </ul>
-        )
-    }
-
     const saveAsTemplate = () => {
-        let exercise = exerciseList
+        setCompletedWorkout(exerciseList)
         saveToDB()
         resetWorkout()
         setCongrats(false)
-        // setCompletedWorkout(exercise)
     }
+    // console.log(completedWorkout)
 
     const closeCongrats = () => {
-        let exercise = exerciseList
+        setCompletedWorkout(exerciseList)
         resetWorkout()
         setCongrats(false)
-        // setCompletedWorkout(exercise)
     }
 
     const finishWorkout = () => {
@@ -557,49 +564,6 @@ const WorkoutPage = () => {
                         />
                     } 
 
-
-                    {
-                    congrats && 
-                    <div className="congrats-container">
-                        <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
-                            <div className="congrats-modal">
-                                {/* <div className="congrats-emoji">🎉</div> */}
-                                <div className="cograts-header">Save as Template?</div>
-                                <div className="save-template-description">Save this workout as a template so you can perform t again in the future</div>
-                                <button 
-                                        onClick={saveAsTemplate}
-                                        className="save-button">
-                                        Save as Template
-                                </button>
-                                <button 
-                                        onClick={closeCongrats}
-                                        className="dont-save-button">
-                                        No thanks!
-                                </button>
-                        
-                                
-                            </div>  
-                        </div>
-                    }
-
-                    {
-                         
-                        completedWorkout && 
-                        <div className="demonstrate-completed">
-                            <div className="congrats-emoji">🎉</div>
-                            <div className="congrats-message">Congratulations on your workout today!</div>
-                            <div className="congrats-submessage">One step closer to that summer body</div>
-                            <div>Your workout:</div>
-
-                            {viewCompleted()}
-
-                        </div>
-                       
-                    }
-
-
-
-
                 </div>
 
                 {!workoutStarted &&
@@ -615,6 +579,60 @@ const WorkoutPage = () => {
                     </div>
                 }
             </div>
+
+
+        {
+            congrats && 
+            <div className="congrats-container">
+                <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
+                    <div className="congrats-modal">
+                        <div className="cograts-header">Save as Template?</div>
+                        <div className="save-template-description">Save this workout as a template so you can perform t again in the future</div>
+                        <button 
+                                onClick={saveAsTemplate}
+                                className="save-button">
+                                Save as Template
+                        </button>
+                        <button 
+                                onClick={closeCongrats}
+                                className="dont-save-button">
+                                No thanks!
+                        </button>
+                
+                        
+                    </div>  
+                </div>
+            }
+
+
+            {
+                
+                completedWorkout && 
+
+                <>
+                <div className="congrats-background" onClick={()=>setCompletedWorkout(null)}></div>
+                <div className="demonstrate-completed">
+                    <div 
+                        onClick={()=>setCompletedWorkout(null)}
+                        className="close-congrats"
+                        >&times;</div>
+                    <div className="demostrate-header">
+                        <div className="congrats-emoji">🎉</div>
+                        <div className="congrats-message">Congratulations on completing your workout today!</div>
+                        <div className="congrats-emoji">🎉</div>
+                    </div>
+                    {/* <div className="congrats-submessage">You are one step closer to that summer body</div>
+                    <div className="congrats-submessage">Your workout:</div> */}
+
+                    <ul className="completed-workout-list">
+                        {viewTemplate(completedWorkout)}
+                    </ul>
+
+                </div>
+            
+                </>
+            }
+
             
             <div className="toggle-button-container">
                 <div 
