@@ -15,7 +15,6 @@
     flex-direction: column;
     padding: 1rem;
     border-radius: 0.5rem;
-    margin: 0 20px;
     overflow-y: auto;
     background: var(--background-workout);
     box-shadow: var(--RNRboxshadow);
@@ -337,9 +336,6 @@
     background-color: var(--darkgreen);
 }
 
-
-/* ! modal saying congrats */
-
 .congrats-container {
     position: fixed;
     top: 10vh;
@@ -401,6 +397,17 @@
     transition: background 0.2s;
 }
 
+.workout-page-lower, .workout-page-upper {
+    width: 100%;
+}
+
+.workout-page-wrapper {
+    height: 100%;
+    display: flex; 
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
 .save-button {
     color: white;
     font-weight: 500;

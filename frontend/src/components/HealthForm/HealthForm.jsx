@@ -486,10 +486,8 @@ const HealthForm = () => {
 
                 }
 
-                {
-                    presentGoal &&
+                {presentGoal &&
                     <>
-
                         <div className="present-maintenance">
                             <div className="header">Your estimated daily energy expenditure is:</div>
                             <div className="header maintenance">{Math.round(tdee)} calories</div>

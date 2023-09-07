@@ -145,17 +145,6 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
         <>
             {searchResults.length > 0 && 
                 <div className="food-index">
-                    {/* <div className="date-input-container">
-                        <label className="date-label">Select Date: </label>
-                        
-                        <input 
-                            className="date-input"
-                            type="date" 
-                            value={selectedDate} 
-                            onChange={handleDateChange} 
-                        />
-                    </div> */}
-                
                     <h2 className="header">Search Results</h2>
                     
                     <ul className="food-item-container">
