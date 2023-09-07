@@ -1,6 +1,93 @@
 # Reps 'N Recipes
 
-# [LIVE](Placeholder)
+Reps 'N Recipes is a one-stop fitness app designed to help users achieve their health and wellness goals. Instead of juggling multiple apps to track workouts, nutrition, and progress, this app combines these features into a single platform.
+
+# [LIVE](https://reps-n-recipes-d98cf03910d0.herokuapp.com/)
+
+## Technologies Used
+
+- **MongoDB:** A NoSQL database that stores data in a flexible, JSON-like format. Ideal for unstructured data and easier to scale horizontally.
+
+- **Express.js:** A web application framework for Node.js that simplifies tasks like routing, API creation, and interacting with databases.
+
+- **React.js:** A JavaScript library for building dynamic user interfaces. It excels in creating reusable components and managing state.
+
+- **Node.js:** A JavaScript runtime that allows you to run JavaScript on the server. It's non-blocking and event-driven, which makes it efficient for scalable applications.
+
+- **Chart.js** A data visualization library, that can be integrated with React to create charts/graphs. Reps 'N' Recipes integrated Chart.js to visualize the user's daily nutrition, and their calories, macros, weight, and exercises over time.
+
+- **Redux** is a state management library often used with React. It provides a centralized store for state that is needed across the entire application. Redux makes it easier to manage global state, especially in larger applications.
+
+- **Spoonacular** is an API that provides a broad range of food and nutrition data. This API is the source of the nutrition information for the app's food database, as well as the meal planning and tracking component. We leveraged the API endpoints for ingredients,products, recipes, menu items, and meal plan generation.
+
+- **Amazon Web Services (AWS) S3** is a storage service that allows for scalable and secure storage of files. Reps 'N' Recipes utilizes S3 to store exercise GIFs so that users can see the exercise they are adding to their workout.
+
+## Features
+
+### User Authentication
+
+### User Profile & Customization
+
+Upon signing up, users can complete a short survey about their physical measurements and goals. This will generate estimates for their total daily energy expenditure (TDEE) and recommended daily caloric intake.
+
+![](./healthform.gif)
+
+### Workout Tracking
+
+Choose A Pre-set Workout and Go!
+
+![](workout.gif)
+
+Or, create your own workout from scratch by adding and/or removing exercises and sets. We offer a variety of exercises, complete with how-to GIFs.
+
+GIF SHOWING ADD EXERCISE MODAL
+
+Log the weight you used and the number of repetitions you completed!
+
+GIF SHOWING WORKOUT TRACKING
+
+Re-visit your previous workouts to ensure you are making progress each workout.A
+
+GIF SHOWING PAST WORKOUTS
+
+### Nutrition Tracking
+
+Search Spoonacular's database of ingredients, food products, recipes, and menu items. Select the one that matches what you ate that day, adjust the quantity, and record it.
+
+![](./nutrition.gif)
+
+Decided you want to have seconds? No problem, simply update the quantity.
+
+GIF SHOWING QUANTITY UPDATE
+
+View your macronutrient breakdown for each day by flipping through the calendar.
+
+GIF SHOWING PIE CHART CHANGING BY DAY
+
+If you aren't sure how to meet your calorie goals for a particular day, generate a meal plan suited to your goals in one click.
+
+GIF SHOWING MEAL PLAN GENERATION
+
+### User Profile
+
+Update your weight daily, changing your estimated TDEE instantly, mitigating plateaus.
+
+GIF SHOWING WEIGHT UPDATE FUNCTIONALITY
+
+View your caloric and macronutrient intake over time, your weight over time, and your estimated 1-rep max of any exercise in our database, calculated from workouts you have recorded!
+
+![](./charts.gif)
+
+## Code Snippets
+
+
+
+
+
+
+
+
+
 
 ## Background and Overview
 
