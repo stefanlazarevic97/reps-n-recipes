@@ -1,12 +1,14 @@
 import { templates } from './Templates';
 import './SelectWorkoutTemplate.css'
+import { useCallback } from 'react';
 
 const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate, setSelectedTemplate }) => {
     const handleSelectTemplate = async (workout) => {
+        // debugger
         if (selectedTemplate.title === workout.title){
             sessionStorage.setItem("currentWorkout", JSON.stringify({title: "", sets: []}));
             setExerciseList([]);
-            setSelectedTemplate(null);
+            setSelectedTemplate("");
         } else {
             setSelectedTemplate(workout)
             renderWorkout(workout)
@@ -26,15 +28,19 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
         setExerciseList([...sets]);
     }
 
-    const createTemplateList = () => {
+    
+
+    const createTemplateList = useCallback(() => {
+        // debugger
         const listEles = templates().map((workout, i) => {
             const name = Object.values(workout)[0];
+            console.log(workout)
             return (
                 <>
                    <div key = {`template-${workout.title}-${i}`} 
                      className = {
                         `template-item ${
-                            selectedTemplate["title"] === name ?
+                            selectedTemplate.title === name ?
                             "selected" :
                             ""
                         }`
@@ -52,7 +58,7 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
             )
         })
         return listEles
-    }
+    },[templates, selectedTemplate, handleSelectTemplate])
 
     const buildSets = (ingredients) => {
         const sets = [];

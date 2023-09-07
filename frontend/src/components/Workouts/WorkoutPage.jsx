@@ -493,7 +493,7 @@ const WorkoutPage = () => {
                             <div className="workout-page-upper">
                                 <button 
                                     className="button green-button" 
-                                    onClick={saveToDB}
+                                    onClick={finishWorkout}
                                 >
                                     Finish Workout
                                 </button> 

@@ -11,7 +11,7 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
         if (selectedTemplate.title === workout.title){
             sessionStorage.setItem("currentWorkout", JSON.stringify({title: "", sets: []}));
             setExerciseList([]);
-            setSelectedTemplate(null);
+            setSelectedTemplate("");
         } else {
             setSelectedTemplate(workout)
             renderWorkout(workout)
@@ -54,10 +54,10 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
             const name = Object.values(workout)[0];
             return (
                 <>
-                   <div key = {`history-${workout}-${i}`} 
+                   <div key = {`history-${workout.title}-${i}`} 
                      className = {
                         `template-item ${
-                            selectedTemplate["title"] === name ?
+                            selectedTemplate.title === name ?
                             "selected" :
                             ""
                         }`
