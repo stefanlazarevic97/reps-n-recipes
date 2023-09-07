@@ -100,7 +100,7 @@ export const getWorkoutsByExercise = exercise => state => {
 }
 ```
 
-A useEffect triggered upon refresh on the workout page. If a user refreshes the page during a workout (the true if condition), the effect will grab the currentWorkout and the current workout duration stored in the sessionStorage. Once the page has refreshed, the sessionStorage and the state variable exerciseList (which renders the workout details) are re-filled. Also the stop watch time before the refresh is reinstated using the resumeTime state variable.
+A useEffect triggered upon refresh on the workout page. If a user refreshes the page during a workout (the true if condition), the effect will grab the currentWorkout and the current workout duration stored in the sessionStorage. Once the page has refreshed, the sessionStorage and the state variable 'exerciseList' (which renders the workout details) are re-filled. Also the stop watch time before the refresh is reinstated using the resumeTime state variable.
 
 ```javascript
 useEffect(()=>{
