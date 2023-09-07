@@ -475,3 +475,17 @@
     background-color: #cccc;
     box-shadow: var(--RNRboxshadow);
 }
+
+.save-name-header{
+    font-size: 22px;
+}
+
+.template-name{
+    width: 100%;
+    margin-top: 20px;
+    font-weight: 500;
+}
+
+.completed-workout-list {
+    background-color: white;
+}

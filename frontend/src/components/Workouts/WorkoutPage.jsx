@@ -28,6 +28,7 @@ const WorkoutPage = () => {
     const [resumeTime, setResumeTime] = useState(null);
     const [congrats, setCongrats] = useState(null);
     const [completedWorkout, setCompletedWorkout] = useState(null);
+    const [templateSaving, setTemplateSaving] = useState(null);
 
 
     const goToNutritionPage = () => {
@@ -307,9 +308,9 @@ const WorkoutPage = () => {
                             <div className="prev-top-set">Prev Top Set</div>
                         </div>
 
-                        { contentFilled(exercise) &&
+                        {/* { contentFilled(exercise) &&
                             <div className="completed-header">completed</div>
-                        }
+                        } */}
                     </div>
 
                     {displaySets(exercise)}
@@ -402,7 +403,7 @@ const WorkoutPage = () => {
                                     <div className="reps-header">reps</div>
                                 </>
                                 :
-                                <div className="prev-top-set">Prev Top Set</div>
+                                <div className="prev-top-set">prev top set</div>
                             }
 
                         </div>
@@ -453,10 +454,33 @@ const WorkoutPage = () => {
     }
 
     const saveAsTemplate = () => {
-        setCompletedWorkout(exerciseList)
-        saveToDB()
-        resetWorkout()
+        
+        debugger
+
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        let updatedSets = currentWorkout.sets.map(exerciseObj => {
+            const setArray = Object.values(exerciseObj)[0]
+            const name = Object.keys(exerciseObj)[0]
+            return {[name]: setArray.filter(setObj => setObj["done"])}
+        })
+        
+        // setExerciseList(updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0))
+        // const updatedWorkout = {sets: updatedSets, datePerformed: datePerformed }
+        const datePerformed = new Date();
+        const aboutToSave = {title: "New Template", sets: updatedSets, datePerformed: datePerformed }
+        
         setCongrats(false)
+        setTemplateSaving(aboutToSave)
+
+
+    }
+
+    const submitNewName = () => {
+        // debugger
+        resetWorkout()
+        dispatch(createWorkout(templateSaving))
+        setCompletedWorkout(templateSaving)
+        setTemplateSaving(null)
     }
     // console.log(completedWorkout)
 
@@ -469,6 +493,27 @@ const WorkoutPage = () => {
     const finishWorkout = () => {
         setCongrats(true)
         setStopWatchActive(false)
+    }
+
+
+
+    const showCompleted = (workout) => {
+        return (
+            <>
+            <h1>{workout.title}</h1>
+            <ul>
+                {workout.sets?.map((exercise, index)=>{
+                    const sets = Object.values(exercise)[0]
+                    const title = Object.keys(exercise)[0]
+                    return (
+                        <li className='completed-workout-details' key={`${title}-${index}`}>
+                            {`${sets.length} x ${title}`}
+                        </li>
+                    )}
+                )}
+            </ul>
+            </>
+        ) 
     }
 
     return (
@@ -605,7 +650,38 @@ const WorkoutPage = () => {
                         
                     </div>  
                 </div>
-            }
+            }  
+            {/* promptWorkoutNaming */}
+
+            {
+            templateSaving && 
+            <div className="congrats-container">
+                <div className="congrats-background" onClick={submitNewName}></div>
+                    <div className="congrats-modal">
+                        <div className="cograts-header">
+                            <div 
+                            onClick={submitNewName}
+                            className="close-congrats"
+                            >&times;</div>
+                            <div className="save-name-header">Enter Template Details</div>
+                
+                        </div>
+
+                        <div className="template-name">Template Name</div>
+                        <input 
+                        className="session-form-input"
+                        type="text" value={templateSaving.title} 
+                        onChange={(e)=>setTemplateSaving({...templateSaving, title: e.target.value})}/>
+                        <button 
+                                onClick={submitNewName}
+                                className="save-button">
+                                Save
+                        </button>
+                
+                        
+                    </div>  
+                </div>
+            }  
 
 
             {
@@ -620,15 +696,15 @@ const WorkoutPage = () => {
                         className="close-congrats"
                         >&times;</div>
                     <div className="demostrate-header">
-                        <div className="congrats-emoji">🎉</div>
+                        {/* <div className="congrats-emoji">🎉</div> */}
                         <div className="congrats-message">Congratulations on completing your workout today!</div>
-                        <div className="congrats-emoji">🎉</div>
+                        {/* <div className="congrats-emoji">🎉</div> */}
                     </div>
                     {/* <div className="congrats-submessage">You are one step closer to that summer body</div>
                     <div className="congrats-submessage">Your workout:</div> */}
 
                     <ul className="completed-workout-list">
-                        {viewTemplate(completedWorkout)}
+                        {showCompleted(completedWorkout)}
                     </ul>
 
                 </div>
