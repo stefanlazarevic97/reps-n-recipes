@@ -1,4 +1,4 @@
-function getCookie(cookieName) {
+const getCookie = (cookieName) => {
     const cookies = document.cookie.split(';');
     for (let cookie of cookies) {
         const [name, value] = cookie.split('=');
@@ -7,7 +7,7 @@ function getCookie(cookieName) {
     return null;
 }
   
-async function jwtFetch(url, options = {}) {
+const jwtFetch = async (url, options = {}) => {
     options.method = options.method || "GET";
     options.headers = options.headers || {};
     const jwtToken = localStorage.getItem("jwtToken");

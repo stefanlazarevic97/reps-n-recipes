@@ -116,60 +116,65 @@ const MacronutrientChart = () => {
                 <h2 className="profile-header">Macronutrients</h2>
             </div>
             
-            <Scatter
-                data={macroData} 
-                options={{
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'bottom',
-                            labels: {
-                                font: { size: 14 },
-                                color: '#33302E'
-                            }
+            {(Object.keys(carbsByDate).length !== 0 ||
+                Object.keys(fatByDate).length !== 0 || 
+                Object.keys(proteinByDate).length !== 0) ?
+                <Scatter
+                    data={macroData} 
+                    options={{
+                        plugins: {
+                            legend: {
+                                display: true,
+                                position: 'bottom',
+                                labels: {
+                                    font: { size: 14 },
+                                    color: '#33302E'
+                                }
+                            },
+                            tooltip: {
+                                enabled: true,
+                                callbacks: {
+                                    title: (tooltipItems) => {
+                                        const date = tooltipItems[0].raw.x;
+                                        return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+                                    },
+                                    label: (tooltipItem) => {
+                                        return `${tooltipItem.dataset.label}: ${Math.round(tooltipItem.raw.y)}g`;
+                                    }
+                                }
+                            },
                         },
-                        tooltip: {
-                            enabled: true,
-                            callbacks: {
-                                title: (tooltipItems) => {
-                                    const date = tooltipItems[0].raw.x;
-                                    return date.toLocaleDateString('en-US', { month: 'short', day: '2-digit' });
+                        scales: {
+                            x: {
+                                type: 'time',
+                                min: filteredCarbs.length > 0 ? new Date(filteredCarbs[0][0]).toISOString() : undefined,
+                                max: filteredCarbs.length > 0 ? new Date(filteredCarbs[filteredCarbs.length - 1][0]).toISOString() : undefined,
+                                title: { 
+                                    display: true, 
+                                    font: { size: 18, weight: 'bold' },
+                                    text: 'Date',
+                                    color: '#33302E'
                                 },
-                                label: (tooltipItem) => {
-                                    return `${tooltipItem.dataset.label}: ${Math.round(tooltipItem.raw.y)}g`;
+                                ticks: { font: { size: 14 }, color: '#33302E' },
+                                time: { unit: 'day', displayFormats: { day: 'MMM d' } }
+                            },
+                            y: { 
+                                title: { 
+                                    display: true, 
+                                    text: 'Grams',
+                                    font: { size: 18, weight: 'bold', },
+                                    color: '#33302E'
+                                },
+                                ticks: {
+                                    font: { size: 14 },
+                                    color: '#33302E'
                                 }
                             }
-                        },
-                    },
-                    scales: {
-                        x: {
-                            type: 'time',
-                            min: filteredCarbs.length > 0 ? new Date(filteredCarbs[0][0]).toISOString() : undefined,
-                            max: filteredCarbs.length > 0 ? new Date(filteredCarbs[filteredCarbs.length - 1][0]).toISOString() : undefined,
-                            title: { 
-                                display: true, 
-                                font: { size: 18, weight: 'bold' },
-                                text: 'Date',
-                                color: '#33302E'
-                            },
-                            ticks: { font: { size: 14 }, color: '#33302E' },
-                            time: { unit: 'day', displayFormats: { day: 'MMM d' } }
-                        },
-                        y: { 
-                            title: { 
-                                display: true, 
-                                text: 'Grams',
-                                font: { size: 18, weight: 'bold', },
-                                color: '#33302E'
-                            },
-                            ticks: {
-                                font: { size: 14 },
-                                color: '#33302E'
-                            }
                         }
-                    }
-                }}
-            />
+                    }}
+                /> :
+                <div className="no-data-available">No Data Available</div>
+            }
         </div>
     );
 }

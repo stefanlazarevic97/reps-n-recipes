@@ -42,6 +42,7 @@ function NavBar () {
             return (
                 <div className="links-auth-container">
                     <div className="links-auth">
+                        <Link to={'/'}>Instructions</Link>
                         <Link to={'/signup'}>Signup</Link>
                         <Link to={'/login'}>Login</Link>
                     </div>
@@ -53,12 +54,12 @@ function NavBar () {
     return (
         <div className='navBar'>
             <div className="logo-container">
-                <Link className="logo-link" to='/'>
+                <Link className="logo-link" to='/nutrition'>
                     <img className="logo" src="../../assets/logo.png" alt="logo"/>
                 </Link>
             </div>
 
-            <NavLink to='/' className ='nav-link'>Reps 'N' Recipes</NavLink>
+            <NavLink to='/nutrition' className ='nav-link'>Reps 'N' Recipes</NavLink>
             { getLinks() }
         </div>
     );

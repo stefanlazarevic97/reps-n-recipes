@@ -32,7 +32,7 @@ const WorkoutPage = () => {
 
 
     const goToNutritionPage = () => {
-        history.push("/");
+        history.push("/nutrition");
     };
 
     const saveToDB = () => {

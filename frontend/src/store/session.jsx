@@ -30,7 +30,6 @@ export const clearSessionErrors = () => ({
 export const signup = user => startSession(user, 'api/users/register');
 export const login = user => startSession(user, 'api/users/login');
 
-
 // THUNK ACTION CREATORS
 
 const startSession = (userInfo, route) => async dispatch => {
@@ -47,7 +46,7 @@ const startSession = (userInfo, route) => async dispatch => {
         const res = await err.json();
 
         if (res.statusCode === 400) {
-            return dispatch(receiveErrors(res.errors));
+            dispatch(receiveErrors(res.errors));
         }
     }
 };

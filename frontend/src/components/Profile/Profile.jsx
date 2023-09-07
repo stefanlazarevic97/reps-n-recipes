@@ -12,9 +12,9 @@ import WeightChart from '../WeightChart/WeightChart';
 const Profile = () => {
     const currentUser = useSelector(state => state.session.user);    
     const healthData = useSelector(state => state.users.healthData);
-    const weightGoal = useSelector(state => state.users.healthData.weightGoal);
+    const weightGoal = useSelector(state => state.users.healthData?.weightGoal);
     const maintain = weightGoal ? null : 'Maintain Weight';
-    const [weight, setWeight] = useState(parseFloat((healthData.mass * 2.204623).toFixed(1)));
+    const [weight, setWeight] = useState(parseFloat((healthData?.mass * 2.204623).toFixed(1)));
     const [massUnit, setMassUnit] = useState('pounds'); 
     const [chart, setChart] = useState('weight');
     const [showDropdown, setShowDropdown] = useState(false);
@@ -78,16 +78,16 @@ const Profile = () => {
                             
                             <div className="stats">
                                 <div className="stat-label">Weight</div>
-                                <div className="stat-value">{healthData.mass.toFixed(1)} kg</div>
+                                <div className="stat-value">{healthData.mass ? healthData.mass.toFixed(1) : "--" } kg</div>
 
                                 <div className="stat-label">Height</div>
-                                <div className="stat-value">{Math.round(healthData.height)} cm</div>
+                                <div className="stat-value">{healthData.height ? Math.round(healthData.height) : '--' } cm</div>
 
                                 <div className="stat-label">Age</div>
-                                <div className="stat-value">{Math.round(healthData.age)}</div>
+                                <div className="stat-value">{healthData.age ? Math.round(healthData.age) : '--'}</div>
 
                                 <div className="stat-label">Total Daily Energy Expenditure</div>
-                                <div className="stat-value">{Math.round(healthData.TDEE)} calories</div>
+                                <div className="stat-value">{healthData.TDEE ? Math.round(healthData.TDEE) : '--'} calories</div>
 
                                 <div className="stat-label">Goal</div>
 
@@ -104,7 +104,7 @@ const Profile = () => {
                                 }
 
                                 <div className="stat-label">Recommended Daily Intake</div>
-                                <div className="stat-value">{Math.round(healthData.TDEE + weightGoal * 500)} calories</div>
+                                <div className="stat-value">{healthData.TDEE ? Math.round(healthData.TDEE + weightGoal * 500) : '--'} calories</div>
                             </div>
 
                             <form 

@@ -68,56 +68,59 @@ const CalorieChart = () => {
                 <h2 className="profile-header">Calories</h2>
             </div>
 
-            <Scatter 
-                data={calorieData} 
-                options={{
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            enabled: true,
-                            callbacks: {                                
-                                title: (tooltipItems) => {
-                                    const date = tooltipItems[0].raw.x;
-                                    return date.toLocaleDateString('en-US', { 
-                                        month: 'short', day: '2-digit' 
-                                    });
-                                },
-                                label: (tooltipItem) => {
-                                    return `${Math.round(tooltipItem.raw.y)} calories`;
+            {Object.keys(caloriesByDate).length !== 0 ?
+                <Scatter 
+                    data={calorieData} 
+                    options={{
+                        plugins: {
+                            legend: { display: false },
+                            tooltip: {
+                                enabled: true,
+                                callbacks: {                                
+                                    title: (tooltipItems) => {
+                                        const date = tooltipItems[0].raw.x;
+                                        return date.toLocaleDateString('en-US', { 
+                                            month: 'short', day: '2-digit' 
+                                        });
+                                    },
+                                    label: (tooltipItem) => {
+                                        return `${Math.round(tooltipItem.raw.y)} calories`;
+                                    }
                                 }
                             }
-                        }
-                    },
-                    scales: {
-                        x: {
-                            type: 'time',
-                            min: filteredData.length > 0 ?
-                                new Date(filteredData[0][0]).toISOString() :
-                                undefined,
-                            max: filteredData.length > 0 ?
-                                new Date(filteredData[filteredData.length - 1][0]).toISOString() :
-                                undefined,
-                            title: { 
-                                display: true, 
-                                font: { size: 18, weight: 'bold' }, 
-                                text: 'Date', 
-                                color: '#33302E' 
-                            },
-                            ticks: { font: { size: 14 }, color: '#33302E' },
-                            time: { unit: 'day', displayFormats: { day: 'MMM d' } }
                         },
-                        y: { 
-                            title: { 
-                                display: true, 
-                                font: { size: 18, weight: 'bold' }, 
-                                text: 'Calories', 
-                                color: '#33302E' 
+                        scales: {
+                            x: {
+                                type: 'time',
+                                min: filteredData.length > 0 ?
+                                    new Date(filteredData[0][0]).toISOString() :
+                                    undefined,
+                                max: filteredData.length > 0 ?
+                                    new Date(filteredData[filteredData.length - 1][0]).toISOString() :
+                                    undefined,
+                                title: { 
+                                    display: true, 
+                                    font: { size: 18, weight: 'bold' }, 
+                                    text: 'Date', 
+                                    color: '#33302E' 
+                                },
+                                ticks: { font: { size: 14 }, color: '#33302E' },
+                                time: { unit: 'day', displayFormats: { day: 'MMM d' } }
                             },
-                            ticks: { font: { size: 14 }, color: '#33302E' }
+                            y: { 
+                                title: { 
+                                    display: true, 
+                                    font: { size: 18, weight: 'bold' }, 
+                                    text: 'Calories', 
+                                    color: '#33302E' 
+                                },
+                                ticks: { font: { size: 14 }, color: '#33302E' }
+                            }
                         }
-                    }
-                }}
-            />
+                    }}
+                /> :
+                <div className="no-data-available">No Data Available</div>
+            }
         </div>
     );
 }
