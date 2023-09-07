@@ -83,64 +83,66 @@ const WeightChart = ({ healthData }) => {
                 <div className="placeholder"></div>
             </div>
 
-            <Scatter
-                data={weightData}
-                options={{
-                    plugins: {
-                        legend: {
-                            display: false,
-                        },
-                        tooltip: {
-                            enabled: true,
-                            callbacks: {
-                                title: (tooltipItems) => {
-                                    const date = tooltipItems[0].raw.x;
-                                    return date.toLocaleDateString('en-US', {
-                                        month: 'short',
-                                        day: '2-digit',
-                                    });
+            {Object.keys(weightsByDate).length !== 0 ?
+                <Scatter
+                    data={weightData}
+                    options={{
+                        plugins: {
+                            legend: {
+                                display: false,
+                            },
+                            tooltip: {
+                                enabled: true,
+                                callbacks: {
+                                    title: (tooltipItems) => {
+                                        const date = tooltipItems[0].raw.x;
+                                        return date.toLocaleDateString('en-US', {
+                                            month: 'short',
+                                            day: '2-digit',
+                                        });
+                                    },
+                                    
+                                    label: (tooltipItem) => {
+                                        return `${tooltipItem.raw.y.toFixed(1)} ${unit}`;
+                                    },
                                 },
-
-                                label: (tooltipItem) => {
-                                    return `${tooltipItem.raw.y.toFixed(1)} ${unit}`;
+                            },
+                        },
+                        
+                        scales: {
+                            x: {
+                                type: 'time',
+                                min: filteredData.length > 0 ? new Date(filteredData[0][0]).toISOString() : undefined,
+                                max: filteredData.length > 0 ? new Date(filteredData[filteredData.length - 1][0]).toISOString() : undefined,
+                                title: {
+                                    display: true,
+                                    text: 'Date',
+                                    font: { size: 18, weight: 'bold' },
+                                    color: '#33302E',
+                                },
+                                ticks: { font: { size: 14 }, color: '#33302E' },
+                                time: {
+                                    unit: 'day',
+                                    displayFormats: { day: 'MMM d' },
                                 },
                             },
-                        },
-                    },
-
-                    scales: {
-                        x: {
-                            type: 'time',
-                            min: filteredData.length > 0 ? new Date(filteredData[0][0]).toISOString() : undefined,
-                            max: filteredData.length > 0 ? new Date(filteredData[filteredData.length - 1][0]).toISOString() : undefined,
-                            title: {
-                                display: true,
-                                text: 'Date',
-                                font: { size: 18, weight: 'bold' },
-                                color: '#33302E',
-                            },
-                            ticks: { font: { size: 14 }, color: '#33302E' },
-                            time: {
-                                unit: 'day',
-                                displayFormats: { day: 'MMM d' },
+                            y: {
+                                min: Math.floor(convertWeight(minWeight)),
+                                max: Math.ceil(convertWeight(maxWeight)),
+                                title: {
+                                    display: true,
+                                    text: `Weight (${unit})`,
+                                    font: { size: 18, weight: 'bold' },
+                                    color: '#33302E',
+                                },
+                                ticks: { font: { size: 14 }, color: '#33302E' },
                             },
                         },
-                        y: {
-                            min: Math.floor(convertWeight(minWeight)),
-                            max: Math.ceil(convertWeight(maxWeight)),
-                            title: {
-                                display: true,
-                                text: `Weight (${unit})`,
-                                font: { size: 18, weight: 'bold' },
-                                color: '#33302E',
-                            },
-                            ticks: { font: { size: 14 }, color: '#33302E' },
-                        },
-                    },
-                }}
-            />
+                    }}
+                /> :
+                <div className="no-data-available">No Data Available</div>
+            }
         </div>
     );
 };
-
 export default WeightChart;

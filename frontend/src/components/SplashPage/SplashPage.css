@@ -1,0 +1,97 @@
+.splash-container {
+    background-color: var(--background);
+}
+
+.team-members-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 80%;
+    margin: 2rem 0 2rem 10%;
+}
+
+.team-member-image {
+    width: 100%;
+    height: 500px;
+    padding: 1rem;
+    box-sizing: border-box;
+    border-radius: 2rem;
+    object-fit: cover;
+}
+
+.social-media-container {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+}
+
+.social-media-icons {
+    color: var(--blue);
+    width: 100px;
+    height: 100px;
+}
+
+.instructions-container {
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.track-reps-headers {
+    width: 100%;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.instructions-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 2rem;
+    padding: 1rem 2rem;
+}
+
+.instructions-list-item {
+    list-style: none;
+    line-height: 1.5rem;
+}
+
+.instructions-subheader {
+    font-size: 1rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: var(--charcoal);
+    text-align: center;
+}
+
+.instructions-pro-tips{
+    margin-left: 40px;
+}
+
+.splash-button-container {
+    display: flex;
+    justify-content: center;
+    margin: 2rem 0;
+}
+
+.splash-button {
+    display: flex;
+    align-items: center;
+    background: var(--orange);
+    color: var(--background-workout);
+    margin: 0 2rem;
+    width: 30%;
+    align-self: center;
+    display: block;
+    padding: 1rem;
+    border: none;
+    border-radius: 0.25rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    transition: background 0.2s;
+}
+
+.parallax-image {
+    width: 100%;
+    object-fit: cover;
+}

@@ -5,12 +5,14 @@ import { signup, clearSessionErrors } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import DemoUserLogin from './DemoUserLogin';
 import fitVeggies from "../../assets/fit-veggies.webp"
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function SignupForm () {
     const [email, setEmail] = useState('');
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [password2, setPassword2] = useState('');
+    const history = useHistory();
     const errors = useSelector(state => state.errors.session);
     const dispatch = useDispatch();
 
@@ -46,8 +48,11 @@ function SignupForm () {
     const handleSubmit = async e => {
         e.preventDefault();
         const user = {email,username,password};
-        await dispatch(signup(user));  
-        dispatch(activateHealthForm());
+        const res = await dispatch(signup(user));  
+        if (res) {
+            history.push('/nutrition');
+        }
+        await dispatch(activateHealthForm());
     }
 
     return (

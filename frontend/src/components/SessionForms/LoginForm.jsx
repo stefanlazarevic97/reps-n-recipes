@@ -4,10 +4,12 @@ import './SessionForms.css';
 import { login, clearSessionErrors } from '../../store/session';
 import DemoUserLogin from './DemoUserLogin';
 import fitVeggies from "../../assets/fit-veggies.webp"
+import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 function LoginForm () {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const history = useHistory();
     const errors = useSelector(state => state.errors.session);
     const dispatch = useDispatch();
 
@@ -22,9 +24,12 @@ function LoginForm () {
         return e => setState(e.currentTarget.value);
     }
     
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
-        dispatch(login({ email, password })); 
+        const res = await dispatch(login({ email, password }));
+        if (res) {
+            history.push('/nutrition');
+        }
     }
     
     return (
