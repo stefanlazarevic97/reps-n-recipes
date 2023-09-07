@@ -24,8 +24,6 @@ Reps 'N Recipes is a one-stop fitness app designed to help users achieve their h
 
 ## Features
 
-### User Authentication
-
 ### User Profile & Customization
 
 Upon signing up, users can complete a short survey about their physical measurements and goals. This will generate estimates for their total daily energy expenditure (TDEE) and recommended daily caloric intake.
@@ -34,45 +32,32 @@ Upon signing up, users can complete a short survey about their physical measurem
 
 ### Workout Tracking
 
-Choose A Pre-set Workout and Go!
+Choose A Pre-set Workout and Go! Or, create your own workout from scratch by adding and/or removing exercises and sets. We offer a variety of exercises, complete with how-to GIFs.
 
-![](workout.gif)
+![](./workout.gif)
 
-Or, create your own workout from scratch by adding and/or removing exercises and sets. We offer a variety of exercises, complete with how-to GIFs.
+Log the weight you used and the number of repetitions you completed! Then, re-visit your previous workouts to ensure you are making progress each workout.
 
-GIF SHOWING ADD EXERCISE MODAL
-
-Log the weight you used and the number of repetitions you completed!
-
-GIF SHOWING WORKOUT TRACKING
-
-Re-visit your previous workouts to ensure you are making progress each workout.A
-
-GIF SHOWING PAST WORKOUTS
-
+![](./workoutlog.gif)
 ### Nutrition Tracking
 
 Search Spoonacular's database of ingredients, food products, recipes, and menu items. Select the one that matches what you ate that day, adjust the quantity, and record it.
 
 ![](./nutrition.gif)
 
-Decided you want to have seconds? No problem, simply update the quantity.
+Decided you want to have seconds? No problem, simply update the quantity. View your macronutrient breakdown for each day by flipping through the calendar.
 
-GIF SHOWING QUANTITY UPDATE
-
-View your macronutrient breakdown for each day by flipping through the calendar.
-
-GIF SHOWING PIE CHART CHANGING BY DAY
+![](./changedate.gif)
 
 If you aren't sure how to meet your calorie goals for a particular day, generate a meal plan suited to your goals in one click.
 
-GIF SHOWING MEAL PLAN GENERATION
+![](./mealplan.gif)
 
 ### User Profile
 
 Update your weight daily, changing your estimated TDEE instantly, mitigating plateaus.
 
-GIF SHOWING WEIGHT UPDATE FUNCTIONALITY
+![](./weightchart.gif)
 
 View your caloric and macronutrient intake over time, your weight over time, and your estimated 1-rep max of any exercise in our database, calculated from workouts you have recorded!
 
