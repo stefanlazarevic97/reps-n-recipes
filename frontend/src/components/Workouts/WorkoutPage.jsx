@@ -36,7 +36,6 @@ const WorkoutPage = () => {
     };
 
     const saveToDB = () => {
-
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         let updatedSets = currentWorkout.sets.map(exerciseObj => {
             const setArray = Object.values(exerciseObj)[0]
@@ -307,10 +306,6 @@ const WorkoutPage = () => {
                             <div className="reps-header">reps</div>
                             <div className="prev-top-set">Prev Top Set</div>
                         </div>
-
-                        {/* { contentFilled(exercise) &&
-                            <div className="completed-header">completed</div>
-                        } */}
                     </div>
 
                     {displaySets(exercise)}
@@ -386,7 +381,6 @@ const WorkoutPage = () => {
     }       
 
     const viewTemplate = (sets = exerciseList) => {
-        // debugger
         const list = sets?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
                 <li className='template-exercise-ele' key={`${exercise}-${index}`}>
@@ -444,7 +438,6 @@ const WorkoutPage = () => {
         const rawWorkout = sessionStorage.getItem("currentWorkout");
         if (!rawWorkout) return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
         const currentWorkout = JSON.parse(rawWorkout);
-
         if (!currentWorkout || !Object.keys(currentWorkout).length) {
             return `${moment(new Date()).format('dddd, MMMM D')} Workout`;
         }
@@ -454,35 +447,24 @@ const WorkoutPage = () => {
     }
 
     const saveAsTemplate = () => {
-        
-        debugger
-
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
         let updatedSets = currentWorkout.sets.map(exerciseObj => {
             const setArray = Object.values(exerciseObj)[0]
             const name = Object.keys(exerciseObj)[0]
             return {[name]: setArray.filter(setObj => setObj["done"])}
         })
-        
-        // setExerciseList(updatedSets.filter(exercise => Object.values(exercise)[0].length !== 0))
-        // const updatedWorkout = {sets: updatedSets, datePerformed: datePerformed }
         const datePerformed = new Date();
         const aboutToSave = {title: "New Template", sets: updatedSets, datePerformed: datePerformed }
-        
         setCongrats(false)
         setTemplateSaving(aboutToSave)
-
-
     }
 
     const submitNewName = () => {
-        // debugger
         resetWorkout()
         dispatch(createWorkout(templateSaving))
         setCompletedWorkout(templateSaving)
         setTemplateSaving(null)
     }
-    // console.log(completedWorkout)
 
     const closeCongrats = () => {
         setCompletedWorkout(exerciseList)
@@ -651,7 +633,6 @@ const WorkoutPage = () => {
                     </div>  
                 </div>
             }  
-            {/* promptWorkoutNaming */}
 
             {
             templateSaving && 
@@ -685,9 +666,7 @@ const WorkoutPage = () => {
 
 
             {
-                
                 completedWorkout && 
-
                 <>
                 <div className="congrats-background" onClick={()=>setCompletedWorkout(null)}></div>
                 <div className="demonstrate-completed">
@@ -696,19 +675,12 @@ const WorkoutPage = () => {
                         className="close-congrats"
                         >&times;</div>
                     <div className="demostrate-header">
-                        {/* <div className="congrats-emoji">🎉</div> */}
                         <div className="congrats-message">Congratulations on completing your workout today!</div>
-                        {/* <div className="congrats-emoji">🎉</div> */}
                     </div>
-                    {/* <div className="congrats-submessage">You are one step closer to that summer body</div>
-                    <div className="congrats-submessage">Your workout:</div> */}
-
                     <ul className="completed-workout-list">
                         {showCompleted(completedWorkout)}
                     </ul>
-
                 </div>
-            
                 </>
             }
 
