@@ -34,13 +34,13 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
     const filterData = () => {
         const cutOffDate = new Date();
         cutOffDate.setDate(cutOffDate.getDate() - 16); //last 2 weeks
-        const yesterday = new Date();
-        yesterday.setDate(yesterday.getDate())
+        const today = new Date();
+        today.setDate(today.getDate())
     
         const filteredWorkouts = workouts
             .filter(workout => {
                 const parsedDate = new Date(workout.datePerformed);
-                return parsedDate >= cutOffDate && parsedDate <= yesterday;
+                return parsedDate >= cutOffDate && parsedDate <= today;
             })
             .sort((a, b) => new Date(b.datePerformed) - new Date(a.datePerformed));
     
