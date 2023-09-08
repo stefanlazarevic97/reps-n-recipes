@@ -469,8 +469,6 @@
 }
 
 .completed-workout-list li {
-    /* border: 1px solid black; */
-
     align-items: center;
     background-color: #cccc;
     box-shadow: var(--RNRboxshadow);
