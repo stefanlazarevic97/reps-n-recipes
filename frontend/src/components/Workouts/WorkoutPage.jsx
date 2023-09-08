@@ -488,20 +488,20 @@ const WorkoutPage = () => {
 
     const showCompleted = (workout) => {
         return (
-            <>
-            <h1>{workout.title}</h1>
-            <ul>
-                {workout.sets?.map((exercise, index)=>{
-                    const sets = Object.values(exercise)[0]
-                    const title = Object.keys(exercise)[0]
-                    return (
-                        <li className='completed-workout-details' key={`${title}-${index}`}>
-                            {`${sets.length} x ${title}`}
-                        </li>
+            <div className="workout-summary-container">
+                <h1 className="workout-summary-header">{workout.title}</h1>
+                <ul>
+                    {workout.sets?.map((exercise, index)=>{
+                        const sets = Object.values(exercise)[0]
+                        const title = Object.keys(exercise)[0]
+                        return (
+                            <li className='completed-workout-details' key={`${title}-${index}`}>
+                                {`${sets.length}x ${title}`}
+                            </li>
+                        )}
                     )}
-                )}
-            </ul>
-            </>
+                </ul>
+            </div>
         ) 
     }
 
@@ -671,13 +671,16 @@ const WorkoutPage = () => {
                 <>
                     <div className="congrats-background" onClick={()=>setCompletedWorkout(null)}></div>
                     <div className="demonstrate-completed">
-                        <div 
-                            onClick={()=>setCompletedWorkout(null)}
-                            className="close-congrats"
-                            >&times;</div>
-                        <div className="demostrate-header">
-                            <div className="congrats-message">Congratulations on completing your workout today!</div>
+                        <div className="close-congrats-container">
+                            <div 
+                                onClick={()=>setCompletedWorkout(null)}
+                                className="close-congrats"
+                            >
+                                &times;
+                            </div>
                         </div>
+                        <div className="congrats-message">Congratulations on completing your workout today!</div>
+                        
                         <ul className="completed-workout-list">
                             {showCompleted(completedWorkout)}
                         </ul>

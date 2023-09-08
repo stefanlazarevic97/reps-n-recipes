@@ -435,9 +435,9 @@
 .demonstrate-completed{
     position: absolute;
     top: 7.5vw;
-    left: 10vw;
-    right: 10vw;
-    width: 80vw;
+    left: 50%;
+    transform: translate(-50%);
+    width: 30vw;
     border-radius: 0.4rem;
     border: #cccc;
     background-color: white;
@@ -453,38 +453,42 @@
     justify-content: space-between;
 }
 
-.congrats-emoji {
-    font-size: 5rem;
-    margin: 2.5vh 0 2.5vh 0;
-
-}
-
 .congrats-message{
-    font-size: 2rem;
-    margin: 0 20px;
-}
-
-.congrats-submessage{
-    margin-bottom: 28px;
-    font-size: 30px;
+    font-size: 1.5rem;
+    margin: 1rem;
+    text-align: center;
 }
 
 .close-congrats{
-    position: absolute;
-    top: -0.5rem;
-    right: 1rem;
     font-size: 3rem;
+    padding: 0 1rem;
     cursor: pointer;
 }
 
-.completed-workout-list li {
-    align-items: center;
-    background-color: #cccc;
-    box-shadow: var(--RNRboxshadow);
+.close-congrats-container {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
 }
 
 .save-name-header{
     font-size: 1.5rem;
+}
+
+.workout-summary-container {
+    width: 100%;
+    margin: 2rem 0;
+}
+
+.workout-summary-header {
+    font-size: 1.25rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.completed-workout-details {
+    font-size: 1.25rem;
+    margin-left: 3rem;
 }
 
 .template-name{
