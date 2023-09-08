@@ -4,8 +4,8 @@ import stefan from '../../assets/stefan.jpg';
 import nico from '../../assets/nico.png';
 import elliot from '../../assets/elliot.jpg';
 import analytics from '../../assets/analytics.png'
-import food from '../../assets/food.png'
-import lifting from '../../assets/lifting.png'
+import food from '../../assets/food.jpg'
+import lifting from '../../assets/lifting.jpeg'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
 const SplashPage = () => {
@@ -18,16 +18,16 @@ const SplashPage = () => {
     return (
         <div className="splash-container">
 
-            <img
+            <div
                 className="parallax-image"
-                src={lifting}
-                alt='lifting'>
-            </img>
+                style={{ backgroundImage: `url(${lifting})` }}
+                alt='lifting'
+            ></div>
             <div className='instructions-container'>
-                <h1 className='header'>Record Your Reps</h1>
+                <h1 className='splash-header'>Record Your Reps</h1>
                 <ul className='instructions-list'>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Complete a template workout</div>
+                        <div className="instructions-subheader">Complete a Template Workout</div>
                         <ol>
                             <li>Select from Reps-N-Recipe templates (left panel) or your personal workout templates (right panel).</li>
                             <li>Click "Start Template."</li>
@@ -37,9 +37,9 @@ const SplashPage = () => {
                         </ol>
                     </li>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Build an empty workout</div>
+                        <div className="instructions-subheader">Build a Workout From Scratch</div>
                         <ol>
-                            <li>Hit "Create New Workout."</li>
+                            <li>Click "Create New Workout."</li>
                             <li>Add new exercises as you work out:
                                 <ul className='instructions-pro-tips'>
                                     <li>You can search for exercises by name.</li>
@@ -47,28 +47,37 @@ const SplashPage = () => {
                                     <li>View how to perform a rep with the gifs.</li>
                                 </ul>
                             </li>
-                            <li>Remove and add sets as you go.</li>
                         </ol>
                     </li>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Save your workout as a template</div>
+                        <div className="instructions-subheader">Save Your Workout as a Template</div>
                         <ol>
-                            <li>Click "Finish Workout."</li>
-                            <li>If you wish to save the workout for later click "Save as Template."</li>
-                            <li>Give your workout a title so you can find it later.</li>
-                            <li>See the new workout appear in "Your Previous Workouts!"</li>
-                            <li>Select it later to re-perform the workout.</li>
+                            <li>
+                                Click "Finish Workout."
+                            </li>
+                            <li>
+                                If you wish to save the workout for later click "Save as Template."
+                            </li>
+                            <li>
+                                Give your workout a title so you can find it later.
+                            </li>
+                            <li>
+                                See the new workout appear in "Your Previous Workouts!"
+                            </li>
+                            <li>
+                                Select it later to re-perform the workout.
+                            </li>
                         </ol>
                     </li>
                 </ul>
             </div>
-            <img
+            <div
                 className="parallax-image"
-                src={food}
-                alt='food'>
-            </img>
+                style={{ backgroundImage: `url(${food})` }}
+                alt='food'
+            ></div>
             <div className='instructions-container'>
-                <h1 className='header'>Navigate Your Nutrition</h1>
+                <h1 className='splash-header'>Navigate Your Nutrition</h1>
                 <ul className='instructions-list'>
                     <li className="instructions-list-item">
                         <div className="instructions-subheader">Look Up Your Meal</div>
@@ -78,6 +87,9 @@ const SplashPage = () => {
                             </li>
                             <li>
                                 Select the item you're looking for, and input the number of servings.
+                            </li>
+                            <li>
+                                After submitting the new food item, your daily pie chart updates with the new daily nutrition information!
                             </li>
                         </ol>
                     </li>
@@ -114,36 +126,41 @@ const SplashPage = () => {
                     </li>
                 </ul>
             </div>
-            <img
+            <div
                 className="parallax-image"
-                src={analytics}
-                alt='analytics'>
-            </img>
+                style={{ backgroundImage: `url(${analytics})` }}
+                alt='analytics'
+            ></div>
             <div className='instructions-container'>
-                <h1 className='header'>Graph Your Growth</h1>
+                <h1 className='splash-header'>Graph Your Growth</h1>
                 <ul className='instructions-list'>
                 <li className="instructions-list-item">
-                        <div className="instructions-subheader">View Your Profile</div>
-                        <ol>
-                            <li>
-                                Your profile is a quick an easy way to view your stats and goals.
-                            </li>
-                            <li>
-                                Getting closer to hitting your weight goal? Update your weight, which automatically updates the graph!
-                            </li>
-                        </ol>
+                    <div className="instructions-subheader">View Your Profile</div>
+
+                    <ol>
+                        <li>
+                            Your profile is a quick an easy way to view your stats and goals.
+                        </li>
+                        <li>
+                            Click the health form in the top right and fill it out to create or update your health data and set your goals. Update them anytime.
+                        </li>
+                        <li>
+                            Getting closer to hitting your weight goal? Update your weight, which automatically updates the graph!
+                        </li>
+                    </ol>
+                    
                     </li>
                     <li className="instructions-list-item">
                         <div className="instructions-subheader">Chart Your Progress</div>
                         <ol>
                             <li>
-                                Click on the top right graph button to bring up a dropdown. Select what progress chart you want to see ranging from weight, calories, macros, and exercise history.
+                                Click on the top right graph button to bring up a dropdown menu. Select what progress chart you want to see: weight, calories, macronutrients, or an <a href="https://www.nfpt.com/blog/calculating-a-clients-1rm#:~:text=This%20formula%20states%20that%20an,performed%20for%20the%20given%20exercise.">estimated 1-rep-max</a> of each exercise you've ever completed.
                             </li>
                             <li>
-                                Used our app for a while? use the dropdown selection on the left to change the time period you're looking at!
+                                Used our app for a while? Use the dropdown selection on the left to change the time period you're looking at!
                             </li>
                             <li>
-                                With a simple switch, view your weight progress in kilograms and pounds.
+                                With a simple switch, view your weight progress in kilograms or pounds.
                             </li>
                         </ol>
                     </li>

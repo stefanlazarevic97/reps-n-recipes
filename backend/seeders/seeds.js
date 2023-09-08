@@ -1688,7 +1688,7 @@ const seedDatabase = async () => {
                 const weightByDate = new Map();
 
                 for (let date of datesConsumed) {
-                    let change = Math.random() * (0.1 + 0.25) - 0.25;
+                    let change = Math.random() * (0.35) - 0.25;
                     initialWeight += change;
                     let formattedDate = new Date(date).toISOString().split('T')[0];
                     weightByDate.set(formattedDate, initialWeight);

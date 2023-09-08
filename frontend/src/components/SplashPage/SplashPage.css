@@ -47,17 +47,18 @@
 .instructions-list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-gap: 2rem;
-    padding: 1rem 2rem;
+    grid-gap: 3rem;
+    padding: 2rem;
 }
 
 .instructions-list-item {
+    font-size: 1.25rem;
     list-style: none;
-    line-height: 1.5rem;
+    line-height: 2rem;
 }
 
 .instructions-subheader {
-    font-size: 1rem;
+    font-size: 1.25rem;
     font-weight: bold;
     margin: 1rem 0;
     color: var(--charcoal);
@@ -92,6 +93,18 @@
 }
 
 .parallax-image {
-    width: 100%;
+    width: 100vw;
+    height: 80vh;
     object-fit: cover;
+    background-attachment: fixed;
+    background-position: center top;
+    background-repeat: no-repeat;
+}
+
+.splash-header {
+    font-size: 3rem;
+    font-weight: bold;
+    margin: 1rem 0;
+    color: var(--charcoal);
+    text-align: center;
 }

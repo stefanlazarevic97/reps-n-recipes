@@ -384,7 +384,7 @@ const WorkoutPage = () => {
         const list = sets?.map(ele => Object.keys(ele)[0]).map((exercise, index)=>{
             return (
                 <li className='template-exercise-ele' key={`${exercise}-${index}`}>
-                    <div className="exercise-header-container">
+                    <div className="exercise-header">
                         <div className="exercise-title">{exercise}</div>
                     </div>
                     <div className="exercise-headers">
@@ -609,15 +609,12 @@ const WorkoutPage = () => {
                     </div>
                 }
             </div>
-
-
-        {
-            congrats && 
+            
+        {congrats && 
             <div className="congrats-container">
                 <div className="congrats-background" onClick={()=>setCongrats(false)}></div>
                     <div className="congrats-modal">
-                        <div className="cograts-header">Save as Template?</div>
-                        <div className="save-template-description">Save this workout as a template so you can perform t again in the future</div>
+                        <div className="save-template-description">Do you want to save this workout as a template?</div>
                         <button 
                                 onClick={saveAsTemplate}
                                 className="save-button">
@@ -628,8 +625,6 @@ const WorkoutPage = () => {
                                 className="dont-save-button">
                                 No thanks!
                         </button>
-                
-                        
                     </div>  
                 </div>
             }  
@@ -639,52 +634,50 @@ const WorkoutPage = () => {
             <div className="congrats-container">
                 <div className="congrats-background" onClick={submitNewName}></div>
                     <div className="congrats-modal">
-                        <div className="cograts-header">
+                        <div className="congrats-header">
+                            <div className="save-name-header">Enter Template Name</div>
                             <div 
-                            onClick={submitNewName}
-                            className="close-congrats"
-                            >&times;</div>
-                            <div className="save-name-header">Enter Template Details</div>
-                
+                                onClick={submitNewName}
+                                className="close-template-save"
+                            >
+                                &times;
+                            </div>
                         </div>
 
-                        <div className="template-name">Template Name</div>
                         <input 
-                        className="session-form-input"
-                        type="text" value={templateSaving.title} 
-                        onChange={(e)=>setTemplateSaving({...templateSaving, title: e.target.value})}/>
+                            className="session-form-input template-save-input"
+                            type="text" 
+                            value={templateSaving.title} 
+                            onChange={(e)=>setTemplateSaving({...templateSaving, title: e.target.value})}
+                        />
                         <button 
-                                onClick={submitNewName}
-                                className="save-button">
-                                Save
-                        </button>
-                
-                        
+                            onClick={submitNewName}
+                            className="save-button"
+                        >
+                            Save
+                        </button> 
                     </div>  
                 </div>
-            }  
+            }
 
-
-            {
-                completedWorkout && 
+            {completedWorkout && 
                 <>
-                <div className="congrats-background" onClick={()=>setCompletedWorkout(null)}></div>
-                <div className="demonstrate-completed">
-                    <div 
-                        onClick={()=>setCompletedWorkout(null)}
-                        className="close-congrats"
-                        >&times;</div>
-                    <div className="demostrate-header">
-                        <div className="congrats-message">Congratulations on completing your workout today!</div>
+                    <div className="congrats-background" onClick={()=>setCompletedWorkout(null)}></div>
+                    <div className="demonstrate-completed">
+                        <div 
+                            onClick={()=>setCompletedWorkout(null)}
+                            className="close-congrats"
+                            >&times;</div>
+                        <div className="demostrate-header">
+                            <div className="congrats-message">Congratulations on completing your workout today!</div>
+                        </div>
+                        <ul className="completed-workout-list">
+                            {showCompleted(completedWorkout)}
+                        </ul>
                     </div>
-                    <ul className="completed-workout-list">
-                        {showCompleted(completedWorkout)}
-                    </ul>
-                </div>
                 </>
             }
 
-            
             <div className="toggle-button-container">
                 <div 
                     id="toggle-page-type-button" 
