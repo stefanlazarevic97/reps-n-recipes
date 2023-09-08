@@ -54,16 +54,16 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
             const name = Object.values(workout)[0];
             return (
                 <>
-                   <div key = {`history-${workout.title}-${i}`} 
-                     className = {
+                    <div key = {`history-${workout.title}-${i}`} 
+                    className = {
                         `template-item ${
                             selectedTemplate.title === name ?
                             "selected" :
                             ""
                         }`
                     }
-                   value={name}
-                   onClick={() => handleSelectTemplate(workout)}
+                    value={name}
+                    onClick={() => handleSelectTemplate(workout)}
                     >
                     <div className="exercise-container">
                         <div className="exercise-titles">
