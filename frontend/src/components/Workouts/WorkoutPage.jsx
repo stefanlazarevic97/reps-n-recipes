@@ -467,9 +467,16 @@ const WorkoutPage = () => {
     }
 
     const closeCongrats = () => {
-        setCompletedWorkout(exerciseList)
-        resetWorkout()
+        const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
+        let updatedSets = currentWorkout.sets.map(exerciseObj => {
+            const setArray = Object.values(exerciseObj)[0]
+            const name = Object.keys(exerciseObj)[0]
+            return {[name]: setArray.filter(setObj => setObj["done"])}
+        })
+        const present = {title: currentWorkout.title, sets: updatedSets}
         setCongrats(false)
+        setCompletedWorkout(present)
+        resetWorkout()
     }
 
     const finishWorkout = () => {
