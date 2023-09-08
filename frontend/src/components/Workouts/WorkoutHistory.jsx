@@ -110,7 +110,7 @@ const WorkoutHistory = ({ selectedTemplate, setSelectedTemplate, exerciseList, s
 
     return ( 
         <div className='template-list-container'>
-            <h1 className='header'>Your Previous Workouts</h1>
+            <h1 className='header'>Your Saved Workouts</h1>
             <form className="template-list">
                 <div className="template-list-wrapper">
                     {createTemplateList()}
