@@ -43,6 +43,6 @@
     color: var(--background);
     text-decoration: none;
     margin-right: 1rem;
-    font-size: 1.25rem;
+    font-size: 1rem;
     transition: color 0.2s;
 }
