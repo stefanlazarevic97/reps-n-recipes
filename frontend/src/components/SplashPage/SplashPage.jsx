@@ -27,46 +27,27 @@ const SplashPage = () => {
                 <h1 className='splash-header'>Record Your Reps</h1>
                 <ul className='instructions-list'>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Complete a Template Workout</div>
+                    <div className="instructions-subheader">Using a Template Workout</div>
                         <ol>
-                            <li>Select from Reps-N-Recipe templates (left panel) or your personal workout templates (right panel).</li>
-                            <li>Click "Start Template."</li>
-                            <li>Enter repetitions and weights as you complete sets.</li>
-                            <li>Add or remove sets to make it your own!</li>
-                            <li>Add or remove entire exercises.</li>
+                            <li>Choose a Reps-N-Recipe or personal template.</li>
+                            <li>Click "Start", adjust reps, weights, and sets as needed.</li>
+                            <li>Modify exercises if desired.</li>
                         </ol>
                     </li>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Build a Workout From Scratch</div>
+                    <div className="instructions-subheader">Building a New Workout</div>
                         <ol>
-                            <li>Click "Create New Workout."</li>
-                            <li>Add new exercises as you work out:
-                                <ul className='instructions-pro-tips'>
-                                    <li>You can search for exercises by name.</li>
-                                    <li>You can filter exercises by muscle group.</li>
-                                    <li>View how to perform a rep with the gifs.</li>
-                                </ul>
-                            </li>
+                            <li>Click "Create New Workout".</li>
+                            <li>Add exercises, searching by name or filtering by muscle group.</li>
+                            <li>Use gifs for rep guidance.</li>
                         </ol>
                     </li>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Save Your Workout as a Template</div>
+                    <div className="instructions-subheader">Saving a Workout Template</div>
                         <ol>
-                            <li>
-                                Click "Finish Workout."
-                            </li>
-                            <li>
-                                If you wish to save the workout for later click "Save as Template."
-                            </li>
-                            <li>
-                                Give your workout a title so you can find it later.
-                            </li>
-                            <li>
-                                See the new workout appear in "Your Previous Workouts!"
-                            </li>
-                            <li>
-                                Select it later to re-perform the workout.
-                            </li>
+                            <li>Finish your workout and click "Finish Workout".</li>
+                            <li>To save for later, click "Save as Template" and title it.</li>
+                            <li>Find it later in "Your Previous Workouts" for reuse.</li>
                         </ol>
                     </li>
                 </ul>
@@ -80,48 +61,27 @@ const SplashPage = () => {
                 <h1 className='splash-header'>Navigate Your Nutrition</h1>
                 <ul className='instructions-list'>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Look Up Your Meal</div>
+                    <div className="instructions-subheader">Look Up Your Meal</div>
                         <ol>
-                            <li>
-                                Using the Spoonacular API, search your meal by ingredient, product, menu item, or recipe.
-                            </li>
-                            <li>
-                                Select the item you're looking for, and input the number of servings.
-                            </li>
-                            <li>
-                                After submitting the new food item, your daily pie chart updates with the new daily nutrition information!
-                            </li>
+                            <li>Search meals with Spoonacular: ingredient, product, menu item, or recipe.</li>
+                            <li>Choose the item and input servings.</li>
+                            <li>Instantly see your updated daily nutrition pie chart.</li>
                         </ol>
                     </li>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Visualize Your Daily Nutrition</div>
+                    <div className="instructions-subheader">Track Your Daily Nutrition</div>
                         <ol>
-                            <li>
-                                After inputting your meal, see the calorie total and macro breakdown.
-                            </li>
-                            <li>
-                                Change calendar dates to view your daily nutritional history.
-                            </li>
-                            <li>
-                                Decided to have seconds? Update your servings with a click of a button.
-                            </li>
-                            <li>
-                                Changed your mind? Delete the food from your inputed nutrition.
-                            </li>
+                            <li>After adding a meal, view calorie and macro breakdown.</li>
+                            <li>Toggle calendar dates to see past nutrition data.</li>
+                            <li>Easily adjust servings or delete items as needed.</li>
                         </ol>
                     </li>
                     <li className="instructions-list-item">
-                        <div className="instructions-subheader">Generate a Random Meal Plan for the Day!</div>
+                    <div className="instructions-subheader">Get a Random Daily Meal Plan</div>
                         <ol>
-                            <li>
-                                Filled out our health form? We prefill this generator with by adjusting your total daily energy expenditure, calculated using the <a href="https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation">Mifflin-St Jeor</a> equation, based on your goals.
-                            </li>
-                            <li>
-                                Dietary restrictions? Select one of the diets from the dropdown, or exclude them with the dietary exclusions form.
-                            </li>
-                            <li>
-                                Not a fan? Generate a new meal plan by pressing the button again. Click on the meal to be taken to the recipe page!
-                            </li>
+                            <li>Our suggestions are based on the <a href="https://reference.medscape.com/calculator/846/mifflin-st-jeor-equation">Mifflin-St Jeor</a> equation.</li>
+                            <li>Specify your dietary preferences or exclusions.</li>
+                            <li>Click to regenerate plans and access linked recipes.</li>
                         </ol>
                     </li>
                 </ul>
@@ -135,49 +95,29 @@ const SplashPage = () => {
                 <h1 className='splash-header'>Graph Your Growth</h1>
                 <ul className='instructions-list'>
                 <li className="instructions-list-item">
-                    <div className="instructions-subheader">View Your Profile</div>
-
+                <div className="instructions-subheader">View Your Profile</div>
                     <ol>
-                        <li>
-                            Your profile is a quick an easy way to view your stats and goals.
-                        </li>
-                        <li>
-                            Click the health form in the top right and fill it out to create or update your health data and set your goals. Update them anytime.
-                        </li>
-                        <li>
-                            Getting closer to hitting your weight goal? Update your weight, which automatically updates the graph!
-                        </li>
+                        <li>Quickly glance at your stats and goals on your profile.</li>
+                        <li>Update health data and set goals via the top-right health form.</li>
+                        <li>Modify your weight and auto-refresh the progress graph.</li>
                     </ol>
-                    
-                    </li>
-                    <li className="instructions-list-item">
-                        <div className="instructions-subheader">Chart Your Progress</div>
-                        <ol>
-                            <li>
-                                Click on the top right graph button to bring up a dropdown menu. Select what progress chart you want to see: weight, calories, macronutrients, or an <a href="https://www.nfpt.com/blog/calculating-a-clients-1rm#:~:text=This%20formula%20states%20that%20an,performed%20for%20the%20given%20exercise.">estimated 1-rep-max</a> of each exercise you've ever completed.
-                            </li>
-                            <li>
-                                Used our app for a while? Use the dropdown selection on the left to change the time period you're looking at!
-                            </li>
-                            <li>
-                                With a simple switch, view your weight progress in kilograms or pounds.
-                            </li>
-                        </ol>
-                    </li>
-                    <li className="instructions-list-item">
-                        <div className="instructions-subheader">View Your Exercise Progress</div>
-                        <ol>
-                            <li>
-                                Exercises are a bit more nuanced, so we tailored the chart for you to really see how much you've grown.
-                            </li>
-                            <li>
-                                After selecting the chart, use the dropdown to select the exercise you wish to view. Use our filter to narrow down the exercise!
-                            </li>
-                            <li>
-                                Easily switch between pounds and kilograms as well as the last 30 days or last 3 months of progress.
-                            </li>
-                        </ol>
-                    </li>
+                </li>
+                <li className="instructions-list-item">
+                    <div className="instructions-subheader">Chart Your Progress</div>
+                    <ol>
+                        <li>Use the top-right button for various progress charts: weight, calories, macronutrients, or <a href="https://www.nfpt.com/blog/calculating-a-clients-1rm#:~:text=This%20formula%20states%20that%20an,performed%20for%20the%20given%20exercise.">estimated 1-rep-max</a>.</li>
+                        <li>Adjust the time period of data with the left dropdown menu.</li>
+                        <li>Toggle between kilograms and pounds for weight data.</li>
+                    </ol>
+                </li>
+                <li className="instructions-list-item">
+                    <div className="instructions-subheader">Track Exercise Growth</div>
+                    <ol>
+                        <li>Custom charts showcase your detailed exercise progression.</li>
+                        <li>Select a specific exercise from the dropdown; use filters to refine.</li>
+                        <li>Switch between pounds/kilograms and view up to 3 months of progress.</li>
+                    </ol>
+                </li>
                 </ul>
             </div>
             <div className="team-members-container">
