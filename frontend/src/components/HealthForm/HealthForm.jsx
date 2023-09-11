@@ -186,6 +186,7 @@ const HealthForm = () => {
                             <input 
                                 className="health-form-input"
                                 type="number"
+                                min='0.1'
                                 step="0.1"
                                 onChange={update('weight')}
                                 value={weight}
@@ -209,13 +210,16 @@ const HealthForm = () => {
                                 <>
                                     <input 
                                         className="health-form-input"
-                                        type="text"
+                                        type="number"
+                                        min='0'
                                         onChange={update('foot')}
                                         value={foot}
                                     />
                                     <input 
                                         className="health-form-input"
-                                        type="text"
+                                        type="number"
+                                        min='0'
+                                        max='11'
                                         onChange={update('inch')}
                                         value={inch}
                                     />
@@ -224,7 +228,8 @@ const HealthForm = () => {
                                 <>
                                     <input 
                                         className="health-form-input"
-                                        type="text"
+                                        type="number"
+                                        min='0'
                                         onChange={update('cm')}
                                         value={cm}
                                     />
@@ -244,7 +249,8 @@ const HealthForm = () => {
                             <div className="subheader">Age</div>
                             <input 
                                 className="health-form-input"
-                                type="text"
+                                type="number"
+                                min='0'
                                 onChange={update('age')}
                                 value={age}
                             />

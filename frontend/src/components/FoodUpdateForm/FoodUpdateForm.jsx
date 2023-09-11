@@ -36,7 +36,7 @@ const FoodUpdateForm = ({ food, onCancel }) => {
                     <input 
                         className="food-index-input"
                         type='number'
-                        min='0'
+                        min='0.1'
                         value={foodQuantity}
                         onChange={e => setFoodQuantity(e.target.value)}
                     />
