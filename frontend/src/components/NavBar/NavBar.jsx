@@ -54,7 +54,7 @@ function NavBar () {
             return (
                 <div className="links-auth-container">
                     <div className="links-auth">
-                        <Link to={'/'}>Instructions</Link>
+                        {/* <Link to={'/'}>Instructions</Link> */}
                         <Link to={'/signup'}>Signup</Link>
                         <Link to={'/login'}>Login</Link>
                     </div>
