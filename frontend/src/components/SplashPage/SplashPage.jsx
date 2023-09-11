@@ -7,12 +7,15 @@ import analytics from '../../assets/analytics.png'
 import food from '../../assets/food.jpg'
 import lifting from '../../assets/lifting.jpeg'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
+import { useSelector } from 'react-redux';
 
 const SplashPage = () => {
     const history = useHistory();
-    
+    const loggedIn = useSelector(state => !!state.session.user);
     const handleClick = () => {
-        history.push('/signup');
+        if (loggedIn) history.push('/nutrition');
+        else history.push('/signup');
+        window.scrollTo(0, 0);
     }
 
     return (
