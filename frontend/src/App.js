@@ -10,6 +10,7 @@ import HomePage from './components/HomePage/HomePage'
 import SplashPage from './components/SplashPage/SplashPage';
 import { getCurrentUser } from './store/session';
 import WorkoutPage from './components/Workouts/WorkoutPage';
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -24,7 +25,7 @@ function App() {
             <NavBar />
             
             <Switch>
-                <AuthRoute exact path="/" component={SplashPage} />
+                <Route exact path="/" component={SplashPage} />
                 <AuthRoute exact path="/login" component={LoginForm} />
                 <AuthRoute exact path="/signup" component={SignUpForm} />
                 <ProtectedRoute exact path="/nutrition" component={HomePage} />

@@ -4,14 +4,26 @@ import './NavBar.css';
 import { logout } from '../../store/session';
 import { activateHealthForm } from '../../store/ui';
 import HealthForm from '../HealthForm/HealthForm';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom';
 
 function NavBar () {
     const loggedIn = useSelector(state => !!state.session.user);
     const dispatch = useDispatch();
-    
+    const location = useLocation();
+
     const logoutUser = e => {
         e.preventDefault();
         dispatch(logout());
+    }
+
+    const handleLogoClick = (e) => {
+        e.preventDefault();
+        if (location.pathname === '/') {
+            window.location.href = '/nutrition';
+            window.scrollTo(0, 0);
+        } else {
+            window.location.href = '/';
+        }
     }
 
     const getLinks = () => {
@@ -54,7 +66,7 @@ function NavBar () {
     return (
         <div className='navBar'>
             <div className="logo-container">
-                <Link className="logo-link" to='/nutrition'>
+                <Link className="logo-link" onClick={handleLogoClick}>
                     <img className="logo" src="../../assets/logo.png" alt="logo"/>
                 </Link>
             </div>
