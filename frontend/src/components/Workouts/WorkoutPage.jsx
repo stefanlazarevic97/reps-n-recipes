@@ -460,10 +460,15 @@ const WorkoutPage = () => {
     }
 
     const submitNewName = () => {
-        resetWorkout()
-        dispatch(createWorkout(templateSaving))
-        setCompletedWorkout(templateSaving)
-        setTemplateSaving(null)
+        const titles = workouts.map(workout => workout.title)
+        if (titles.includes(templateSaving.title)){
+            alert("You already have a template with this name!")
+        } else {
+            resetWorkout()
+            dispatch(createWorkout(templateSaving))
+            setCompletedWorkout(templateSaving)
+            setTemplateSaving(null)
+        }
     }
 
     const closeCongrats = () => {
