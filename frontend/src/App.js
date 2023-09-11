@@ -10,7 +10,8 @@ import HomePage from './components/HomePage/HomePage'
 import SplashPage from './components/SplashPage/SplashPage';
 import { getCurrentUser } from './store/session';
 import WorkoutPage from './components/Workouts/WorkoutPage';
-import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+import Team from './components/Team/Team';
+import { Link, Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 function App() {
     const [loaded, setLoaded] = useState(false);
@@ -31,10 +32,14 @@ function App() {
                 <ProtectedRoute exact path="/nutrition" component={HomePage} />
                 <ProtectedRoute exact path="/workout" component={WorkoutPage} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
+                <Route exact path="/team" component={Team} />
             </Switch>
 
             <footer className="footer">
-                Copyright &copy; 2023 Reps 'N' Recipes
+                <p className='copyright'>
+                    Copyright &copy; 2023 Reps 'N' Recipes
+                </p>
+                <Link className='team'to="/team" onClick={() => window.scrollTo(0, 0)} >Meet the Team</Link>
             </footer>
         </div>
     );

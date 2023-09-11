@@ -66,9 +66,9 @@ function NavBar () {
     return (
         <div className='navBar'>
             <div className="logo-container">
-                <Link className="logo-link" onClick={handleLogoClick}>
+                <div className="logo-link" onClick={handleLogoClick}>
                     <img className="logo" src="../../assets/logo.png" alt="logo"/>
-                </Link>
+                </div>
             </div>
 
             <NavLink to='/nutrition' className ='nav-link'>Reps 'N' Recipes</NavLink>
