@@ -32,40 +32,40 @@ Additionally, Reps 'N Recipes features Spoonacular API for easy meal tracking by
 
 Upon signing up, users can complete a short survey about their physical measurements and goals. This will generate estimates for their total daily energy expenditure (TDEE) and recommended daily caloric intake.
 
-![](./healthform.gif)
+![](./gifs/healthform.gif)
 
 ### Workout Tracking
 
 Choose A Pre-set Workout and Go! Or, create your own workout from scratch by adding and/or removing exercises and sets. We offer a variety of exercises, complete with how-to GIFs.
 
-![](./workout.gif)
+![](./gifs/workout.gif)
 
 Log the weight you used and the number of repetitions you completed! Then, re-visit your previous workouts to ensure you are making progress each workout.
 
-![](./workoutlog.gif)
+![](./gifs/workoutlog.gif)
 ### Nutrition Tracking
 
 Search Spoonacular's database of ingredients, food products, recipes, and menu items. Select the one that matches what you ate that day, adjust the quantity, and record it.
 
-![](./nutrition.gif)
+![](./gifs/nutrition.gif)
 
 Decided you want to have seconds? No problem, simply update the quantity. View your macronutrient breakdown for each day by flipping through the calendar.
 
-![](./changedate.gif)
+![](./gifs/changedate.gif)
 
 If you aren't sure how to meet your calorie goals for a particular day, generate a meal plan suited to your goals in one click.
 
-![](./mealplan.gif)
+![](./gifs/mealplan.gif)
 
 ### User Profile
 
 Update your weight daily, changing your estimated TDEE instantly, mitigating plateaus.
 
-![](./weightchart.gif)
+![](./gifs/weightchart.gif)
 
 View your caloric and macronutrient intake over time, your weight over time, and your estimated 1-rep max of any exercise in our database, calculated from workouts you have recorded!
 
-![](./charts.gif)
+![](./gifs/charts.gif)
 
 ## Code Snippets
 
