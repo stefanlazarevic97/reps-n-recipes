@@ -56,3 +56,9 @@
         margin-top: 0.5rem; 
     }
 }
+
+.errors {
+    color: red;
+    text-align: center;
+    padding-bottom: 0.5rem;
+}

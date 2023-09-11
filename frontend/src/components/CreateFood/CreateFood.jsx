@@ -13,11 +13,19 @@ const CreateFood = ({ selectedDate }) => {
     const [fat, setFat] = useState(0);
     const [protein, setProtein] = useState(0);
     const [servings, setServings] = useState(1);
+    const [errors, setErrors] = useState(null);
 
     const units = ['g', 'oz', 'lb', 'cup', 'tbsp', 'tsp'];
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        if (quantity <= 0 || calories <= 0 || carbs < 0 || fat < 0 || protein < 0 || servings <= 0) {
+            setErrors('Please enter valid values');
+            return;
+        } else if (name === '') {
+            setErrors('Please enter a name');
+            return;
+        }
 
         const foodItem = {
             foodName: name,
@@ -30,8 +38,9 @@ const CreateFood = ({ selectedDate }) => {
             dateConsumed: selectedDate,
             servings: servings
         };
-        
+
         dispatch(addUserNutrition(foodItem));
+        setErrors(null);
     }
 
     return (
@@ -43,6 +52,7 @@ const CreateFood = ({ selectedDate }) => {
                 <h2 className="header">Create Food</h2>
             </div>
 
+            {errors && <p className="errors">{errors}</p>}
             <div className="create-food-grid">
 
                 <label className="create-food-label">Name: </label>
