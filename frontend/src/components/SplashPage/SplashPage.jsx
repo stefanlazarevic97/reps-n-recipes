@@ -134,12 +134,14 @@ const SplashPage = () => {
                     <div className="social-media-container">
                         <a
                             className="social-media-icons"
+                            target="_blank"
                             href="https://github.com/stefanlazarevic97"
                         >
                             <AiFillGithub className="social-media-icons" />
                         </a>
                         <a 
                             className="social-media-icons"
+                            target="_blank"
                             href="https://www.linkedin.com/in/stefan-lazarevic-a5b60413a/"
                         >
                             <AiFillLinkedin className="social-media-icons" />
@@ -156,12 +158,14 @@ const SplashPage = () => {
                     <div className="social-media-container">    
                         <a
                             className="social-media-icons"
+                            target="_blank"
                             href="https://github.com/ncar285"
                         >
                             <AiFillGithub className="social-media-icons" />
                         </a>
                         <a
                             className="social-media-icons"
+                            target="_blank"
                             href="https://www.linkedin.com/in/nicholas-carlier-ba8473193/"
                         >
                             <AiFillLinkedin className="social-media-icons" />
@@ -178,12 +182,14 @@ const SplashPage = () => {
                     <div className="social-media-container">    
                         <a
                             className="social-media-icons"
+                            target="_blank"
                             href="https://github.com/elliotchang126"
                         >
                             <AiFillGithub className="social-media-icons" />
                         </a>
                         <a
                             className="social-media-icons"
+                            target="_blank"
                             href="https://www.linkedin.com/in/elliotchang126/"
                         >
                             <AiFillLinkedin className="social-media-icons" />
