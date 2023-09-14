@@ -324,6 +324,7 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value="F"
+                                                name='sex'
                                                 checked={sex === "F"}
                                                 onChange={e => setSex(e.target.value)}
                                                 required
@@ -341,7 +342,7 @@ const HealthForm = () => {
                                                 <input 
                                                     type="radio" 
                                                     value="S"
-                                                    name='sex'
+                                                    name='activity-level'
                                                     checked={activity === "S"}
                                                     onChange={e => setActivity(e.target.value)}
                                                     required
