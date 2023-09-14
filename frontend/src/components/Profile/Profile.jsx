@@ -65,6 +65,7 @@ const Profile = () => {
         await dispatch(addWeightByDate(Number(weightInKg), date));
         await dispatch(updateUser(updatedUser));
         await dispatch(receiveUserHealth(updatedHealthData));
+        alert('Weight updated successfully!')
     };
 
     return (
