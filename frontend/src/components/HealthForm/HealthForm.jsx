@@ -148,8 +148,7 @@ const HealthForm = () => {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        if (!weight || !(foot || cm) || 
-        !age || !sex || !activity) {
+        if (!weight || !(foot || cm) || !age || !sex || !activity || !weightGoal) {
             alert("Please fill in all fields!")
             return
         }
@@ -227,7 +226,7 @@ const HealthForm = () => {
                 {!presentGoal && 
                     <>
                         <h1 className="header">Tell us about yourself</h1>
-                        {formErrors && <div className="health-form-errors">{formErrors?.weight}</div>}
+                        {/* {formErrors && <div className="health-form-errors">{formErrors?.weight}</div>} */}
 
                         <div className='weight-input-container'>
                             <div className='subheader'>Weight</div>
@@ -252,7 +251,7 @@ const HealthForm = () => {
                             </select>
                         </div>
 
-                        {(formErrors?.cm || formErrors?.foot) && <div className="health-form-errors">{formErrors?.cm || formErrors?.foot}</div>}
+                        {/* {(formErrors?.cm || formErrors?.foot) && <div className="health-form-errors">{formErrors?.cm || formErrors?.foot}</div>} */}
 
                         <div className="height-input-container">
                             <div className='subheader'>Height</div>
@@ -294,7 +293,7 @@ const HealthForm = () => {
                                 <option value="cm">CM</option>
                             </select>
                         </div> 
-                        {formErrors?.age && <div className="health-form-errors">{formErrors?.age}</div>}
+                        {/* <div className="health-form-errors">{formErrors?.age}</div> */}
                         <div className="age-input-container">
                             <div className="subheader">Age</div>
                             <input 
