@@ -5,9 +5,11 @@ import './MealPlanShow.css'
 const MealPlanShow = () => {
     const mealPlan = useSelector(state => state.users.mealPlan);
     const [meals, setMeals] = useState(mealPlan.meals);
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         if (mealPlan.meals) {
+            setLoading(true);
             const fetchImages = async () => {
                 const mealsWithImages = await Promise.all(
                     mealPlan.meals.map(async meal => {
@@ -24,6 +26,7 @@ const MealPlanShow = () => {
                 );
                     
                 setMeals(mealsWithImages);
+                setLoading(false);
             }
             
             fetchImages();
@@ -38,7 +41,8 @@ const MealPlanShow = () => {
 
     return (
         <>
-            {meals && <div className='meal-plan-container'>
+            {loading ? <div className='meal-plan-container' >Generating meal plan...</div> : (
+            meals && <div className='meal-plan-container'>
                 <h1 className="header">Daily Meal Plan</h1>
                 
                 <div className="daily-nutrition-facts">
@@ -73,7 +77,7 @@ const MealPlanShow = () => {
                         </div>
                     </div>
                 ))}
-            </div>}
+            </div>)}
         </>
     );
 }
