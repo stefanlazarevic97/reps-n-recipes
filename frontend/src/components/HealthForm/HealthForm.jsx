@@ -147,6 +147,13 @@ const HealthForm = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+
+        if (!weight || !(foot || cm) || 
+        !age || !sex || !activity) {
+            alert("Please fill in all fields!")
+            return
+        }
+
         const mass = (massUnit === "kilos") ? weight : lbToKg(weight);
         const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch);
         const coeff = activityCoefficient();
@@ -557,8 +564,8 @@ const HealthForm = () => {
 
                         <button 
                             className="button"
-                            disabled={!weight || !(foot || cm) || 
-                                    !age || !sex || !activity}
+                            // disabled={!weight || !(foot || cm) || 
+                            //         !age || !sex || !activity}
                         >
                             Submit
                         </button>
