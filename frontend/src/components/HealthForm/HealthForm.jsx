@@ -26,6 +26,12 @@ const HealthForm = () => {
     const [tdee, setTdee] = useState(null)
     const errors = useSelector(state => state.errors.session);
     const [isHovered, setIsHovered] = useState({ S: false, LA: false, MA: false, VA: false, EA: false });
+    const [formErrors, setFormErrors] = useState({
+        weight: null,
+        cm: null,
+        foot: null,
+        buttons: null
+    });
     
     const revertActivityLevelMap = {
         1: "S",
@@ -147,6 +153,30 @@ const HealthForm = () => {
         const tdee = TDEE(mass, height, coeff);
         const activityMap = {"S": 1, "LA": 2, "MA": 3,"VA": 4, "EA": 5};
 
+        if (mass < 0.1 || mass > 1000) {
+            setFormErrors({ ...formErrors, weight: "Please enter a valid weight" });
+            // return
+        }
+        if (distanceUnit === "feet-inches" && (foot < 0 || foot > 10 || inch < 0 || inch > 11)) {
+            setFormErrors({ ...formErrors, foot: "Please enter a valid height" });
+            // return
+        }
+        if (distanceUnit === "cm" && (cm < 0 || cm > 300)) {
+            setFormErrors({ ...formErrors, cm: "Please enter a valid height" });
+            // return
+        }
+        if (age < 0 || age > 120) {
+            setFormErrors({ ...formErrors, age: "Please enter a valid age" });
+            // return
+        }
+        if (sex === null || activity === null || weightGoal === null) {
+            setFormErrors({ ...formErrors, buttons: 'Please fill in all fields' });
+            // return
+        }
+        if (Object.values(formErrors).some(err => err !== null)) {
+            return;
+        }
+
         const healthData = {
             mass, 
             height, 
@@ -162,11 +192,24 @@ const HealthForm = () => {
             await dispatch(updateUser(updatedUser));
             dispatch(receiveUserHealth(healthData));
             setPresentGoal(true)
-            setTargetCalories(tdee + weightGoal * 500)  
+            setTargetCalories(tdee + weightGoal * 500)
+            setFormErrors({
+                weight: null,
+                cm: null,
+                foot: null,
+                inch: null,
+                buttons: null
+            })
         } else {
             console.error("No user available to update");
+            setFormErrors({
+                weight: null,
+                cm: null,
+                foot: null,
+                inch: null,
+                buttons: null
+            })
         }
-
     }
 
     return (
@@ -177,7 +220,7 @@ const HealthForm = () => {
                 {!presentGoal && 
                     <>
                         <h1 className="header">Tell us about yourself</h1>
-                        <div className="health-form-errors">{errors?.weight}</div>
+                        {formErrors && <div className="health-form-errors">{formErrors?.weight}</div>}
 
                         <div className='weight-input-container'>
                             <div className='subheader'>Weight</div>
@@ -202,7 +245,7 @@ const HealthForm = () => {
                             </select>
                         </div>
 
-                        <div className="health-form-errors">{errors?.cm || errors?.foot}</div>
+                        {(formErrors?.cm || formErrors?.foot) && <div className="health-form-errors">{formErrors?.cm || formErrors?.foot}</div>}
 
                         <div className="height-input-container">
                             <div className='subheader'>Height</div>
@@ -244,7 +287,7 @@ const HealthForm = () => {
                                 <option value="cm">CM</option>
                             </select>
                         </div> 
-
+                        {formErrors?.age && <div className="health-form-errors">{formErrors?.age}</div>}
                         <div className="age-input-container">
                             <div className="subheader">Age</div>
                             <input 
@@ -265,8 +308,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value="M"
+                                                name='sex'
                                                 checked={sex === "M"}
                                                 onChange={e => setSex(e.target.value)}
+                                                required
                                             /> Male
                                         </label>
                                         <label>
@@ -275,6 +320,7 @@ const HealthForm = () => {
                                                 value="F"
                                                 checked={sex === "F"}
                                                 onChange={e => setSex(e.target.value)}
+                                                required
                                             /> Female
                                         </label>
                                     </div>
@@ -289,8 +335,10 @@ const HealthForm = () => {
                                                 <input 
                                                     type="radio" 
                                                     value="S"
+                                                    name='sex'
                                                     checked={activity === "S"}
                                                     onChange={e => setActivity(e.target.value)}
+                                                    required
                                                 /> Sedentary
                                             </div>
 
@@ -310,8 +358,10 @@ const HealthForm = () => {
                                                 <input 
                                                     type="radio" 
                                                     value="LA"
+                                                    name='activity-level'
                                                     checked={activity === "LA"}
                                                     onChange={e => setActivity(e.target.value)}
+                                                    required
                                                 /> Lightly Active
                                             </div>
 
@@ -331,8 +381,10 @@ const HealthForm = () => {
                                                 <input 
                                                     type="radio" 
                                                     value="MA"
+                                                    name='activity-level'
                                                     checked={activity === "MA"}
                                                     onChange={e => setActivity(e.target.value)}
+                                                    required
                                                 /> Moderately Active
                                             </div>
 
@@ -352,8 +404,10 @@ const HealthForm = () => {
                                                 <input 
                                                     type="radio" 
                                                     value="VA"
+                                                    name='activity-level'
                                                     checked={activity === "VA"}
                                                     onChange={e => setActivity(e.target.value)}
+                                                    required
                                                 /> Very Active
                                             </div>
 
@@ -373,8 +427,10 @@ const HealthForm = () => {
                                                 <input 
                                                     type="radio" 
                                                     value="EA"
+                                                    name='activity-level'
                                                     checked={activity === "EA"}
                                                     onChange={e => setActivity(e.target.value)}
+                                                    required
                                                 /> Extremely Active
                                             </div>
 
@@ -400,8 +456,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={-2.0}
+                                                name='weight-goal'
                                                 checked={weightGoal === -2.0}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Lose 2lb / 900g
                                         </label>
 
@@ -409,8 +467,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={-1.5}
+                                                name='weight-goal'
                                                 checked={weightGoal === -1.5}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Lose 1.5lb / 700g
                                         </label>
 
@@ -418,8 +478,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={-1.0}
+                                                name='weight-goal'
                                                 checked={(weightGoal === -1.0)}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Lose 1lb / 450g
                                         </label>
 
@@ -427,8 +489,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={-0.5}
+                                                name='weight-goal'
                                                 checked={weightGoal === -0.5}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Lose 0.5lb / 230g
                                         </label>
 
@@ -436,8 +500,10 @@ const HealthForm = () => {
                                             <input
                                                 type="radio"
                                                 value={0}
+                                                name='weight-goal'
                                                 checked={weightGoal === 0}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                             /> Maintain Weight
                                         </label>
 
@@ -445,8 +511,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={0.5}
+                                                name='weight-goal'
                                                 checked={weightGoal === 0.5}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Gain 0.5lb / 230g
                                         </label>
 
@@ -454,8 +522,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={1.0}
+                                                name='weight-goal'
                                                 checked={weightGoal === 1.0}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Gain 1lb / 450g
                                         </label>
 
@@ -463,8 +533,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={1.5}
+                                                name='weight-goal'
                                                 checked={weightGoal === 1.5}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Gain 1.5lb / 700g
                                         </label>
 
@@ -472,8 +544,10 @@ const HealthForm = () => {
                                             <input 
                                                 type="radio" 
                                                 value={2.0}
+                                                name='weight-goal'
                                                 checked={weightGoal === 2.0}
                                                 onChange={e => setWeightGoal(Number(e.target.value))}
+                                                required
                                                 /> Gain 2lb / 900g
                                         </label>
                                     </div>
@@ -484,7 +558,7 @@ const HealthForm = () => {
                         <button 
                             className="button"
                             disabled={!weight || !(foot || cm) || 
-                        !age || !sex || !activity}
+                                    !age || !sex || !activity}
                         >
                             Submit
                         </button>
