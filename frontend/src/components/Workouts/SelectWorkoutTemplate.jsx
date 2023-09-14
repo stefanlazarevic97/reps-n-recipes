@@ -4,7 +4,6 @@ import { useCallback } from 'react';
 
 const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate, setSelectedTemplate }) => {
     const handleSelectTemplate = async (workout) => {
-        // debugger
         if (selectedTemplate.title === workout.title){
             sessionStorage.setItem("currentWorkout", JSON.stringify({title: "", sets: []}));
             setExerciseList([]);
@@ -31,7 +30,6 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
     
 
     const createTemplateList = useCallback(() => {
-        // debugger
         const listEles = templates().map((workout, i) => {
             const name = Object.values(workout)[0];
             return (
