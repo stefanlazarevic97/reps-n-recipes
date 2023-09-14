@@ -31,7 +31,11 @@ function NavBar () {
             return (
                 <div className="links-nav-container">
                     <div className="links-nav">
+                    {location.pathname === '/profile' ? (
+                        <Link to={'/nutrition'}>Nutrition</Link>
+                    ) : (
                         <Link to={'/profile'}>Profile</Link>
+                    )}
 
                         <button 
                             className="links-nav-button"

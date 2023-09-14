@@ -34,7 +34,6 @@ const SelectWorkoutTemplate = ({ exerciseList, setExerciseList, selectedTemplate
         // debugger
         const listEles = templates().map((workout, i) => {
             const name = Object.values(workout)[0];
-            console.log(workout)
             return (
                 <>
                    <div key = {`template-${workout.title}-${i}`} 
