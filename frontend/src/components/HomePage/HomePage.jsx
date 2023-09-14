@@ -19,6 +19,7 @@ const HomePage = () => {
     const [selectedDate, setSelectedDate] = useState(new moment().format('YYYY-MM-DD'));
     const [showCreateFood, setShowCreateFood] = useState(false);
     const history = useHistory();
+    const [hasSubmitted, setHasSubmitted] = useState(false);
 
     useEffect(() => {
         if (currentUser) {
@@ -71,8 +72,11 @@ const HomePage = () => {
                     </div>
                 )}
 
-                <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} />
-                <FoodIndex selectedOption={selectedOption} selectedDate={selectedDate} setSelectedDate={setSelectedDate}/>
+                <FoodInput selectedOption={selectedOption} setSelectedOption={setSelectedOption} setHasSubmitted={setHasSubmitted}/>
+                
+                {hasSubmitted && (
+                    <FoodIndex selectedOption={selectedOption} selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
+                )}
             </section>
 
             <section className="nutrition-section">

@@ -143,7 +143,7 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
         
     return (
         <>
-            {searchResults.length > 0 && 
+            {foods.length !== 0 ? 
                 <div className="food-index">
                     <h2 className="header">Search Results</h2>
                     
@@ -215,7 +215,8 @@ const FoodIndex = ({selectedDate, setSelectedDate}) => {
                             </div>
                         )}
                     </div>
-                </div>
+                </div> :
+                <div className="food-index">No results found.</div>
             }
         </>
     )

@@ -4,7 +4,7 @@ import { fetchIngredients, fetchProducts, fetchMenuItems, fetchRecipes } from ".
 import './FoodInput.css';
 import { changeSelectedOption } from "../../store/ui";
 
-const FoodInput = () => {
+const FoodInput = ({ setHasSubmitted }) => {
     const dispatch = useDispatch();
     const [searchQuery, setSearchQuery] = useState("");
     const selectedOption = useSelector(state => state.ui.selectedOption);
@@ -18,19 +18,19 @@ const FoodInput = () => {
         setSearchQuery(e.target.value);
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         
         if (selectedOption === 'ingredients') {
-            dispatch(fetchIngredients(searchQuery, 0));
+            await dispatch(fetchIngredients(searchQuery, 0));
         } else if (selectedOption === 'products') {
-            dispatch(fetchProducts(searchQuery, 0));
+            await dispatch(fetchProducts(searchQuery, 0));
         } else if (selectedOption === 'menuItems') {
-            dispatch(fetchMenuItems(searchQuery, 0));
+            await dispatch(fetchMenuItems(searchQuery, 0));
         } else {
-            dispatch(fetchRecipes(searchQuery, 0))
+            await dispatch(fetchRecipes(searchQuery, 0))
         }
-
+        setHasSubmitted(true);
         sessionStorage.setItem("query", searchQuery)
         setSearchQuery('')
     } 
