@@ -31,6 +31,9 @@ function NavBar () {
             return (
                 <div className="links-nav-container">
                     <div className="links-nav">
+
+                    <Link to={'/information'}>Learn</Link>
+
                     {location.pathname === '/profile' ? (
                         <Link to={'/nutrition'}>Nutrition</Link>
                     ) : (
@@ -59,6 +62,7 @@ function NavBar () {
                 <div className="links-auth-container">
                     <div className="links-auth">
                         {/* <Link to={'/'}>Instructions</Link> */}
+                        <Link to={'/information'}>Learn</Link>
                         <Link to={'/signup'}>Signup</Link>
                         <Link to={'/login'}>Login</Link>
                     </div>
