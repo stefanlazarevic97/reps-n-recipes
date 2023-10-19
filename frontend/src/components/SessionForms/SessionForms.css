@@ -76,6 +76,7 @@
 
 .tb-rhs-container {
     position: relative;
+    display: flex;
 }
 
 #toggle-page-type-button {
@@ -92,6 +93,10 @@
     transition: all 0.3s ease;
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
     z-index: 200;
+}
+
+#toggle-page-type-button.special-toggle {
+    left: calc(100vw - 20rem);
 }
 
 

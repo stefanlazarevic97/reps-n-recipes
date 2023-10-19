@@ -8,6 +8,7 @@ import { addWeightByDate, receiveUserHealth, updateUser } from '../../store/user
 import CalorieChart from '../CalorieChart/CalorieChart';
 import MacronutrientChart from '../MacronutrientChart/MacronutrientChart';
 import WeightChart from '../WeightChart/WeightChart';
+import { useHistory } from "react-router-dom";
 
 const Profile = () => {
     const currentUser = useSelector(state => state.session.user);    
@@ -19,6 +20,7 @@ const Profile = () => {
     const [chart, setChart] = useState('weight');
     const [showDropdown, setShowDropdown] = useState(false);
     const dispatch = useDispatch();
+    const history = useHistory();
     const chartDropdown = ['weight', 'calories', 'macronutrients', 'exercises']
 
     const handleChartChange = (chart) => {
@@ -178,6 +180,28 @@ const Profile = () => {
                     </div>
                 </section>
             </div>
+
+
+            <div className="toggle-button-container">
+                <div className="tb-rhs-container">
+
+                    <div 
+                        id="toggle-page-type-button" 
+                        className="button special-toggle" 
+                        onClick={()=>history.push("/nutrition")}>
+                        <div>Nutrition</div>
+                    </div>
+
+
+                    <div 
+                        id="toggle-page-type-button" 
+                        className="button workout-button" 
+                        onClick={()=>history.push("/workout")}>
+                        <div>Workouts</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     );
 }
