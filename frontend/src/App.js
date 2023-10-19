@@ -26,12 +26,13 @@ function App() {
             <NavBar />
             
             <Switch>
-                <Route exact path="/" component={SplashPage} />
+                <Route exact path="/" component={LoginForm} />
                 <AuthRoute exact path="/login" component={LoginForm} />
                 <AuthRoute exact path="/signup" component={SignUpForm} />
                 <ProtectedRoute exact path="/nutrition" component={HomePage} />
                 <ProtectedRoute exact path="/workout" component={WorkoutPage} />
                 <ProtectedRoute exact path="/profile" component={Profile} />
+                <Route exact path="/information" component={SplashPage} />
                 <Route exact path="/team" component={Team} />
             </Switch>
 
