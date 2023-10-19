@@ -57,8 +57,20 @@
     justify-content: space-between;
 }
 
-#hf-reset:hover {
+#hf-reset:hover, #hf-exit:hover {
     cursor: pointer;
+}
+
+#hf-exit {
+    all: unset;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    height: 100%;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
 }
 
 .health-form-input {

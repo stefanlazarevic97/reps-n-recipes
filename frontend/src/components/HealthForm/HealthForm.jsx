@@ -5,6 +5,7 @@ import { getHealthFormState } from '../../store/ui';
 import { receiveUserHealth, updateUser } from '../../store/users'
 import { RiInformationFill } from 'react-icons/ri'
 import { RxReset } from 'react-icons/rx'
+import { RxCross1 } from 'react-icons/rx'
 import './HealthForm.css';
 
 const HealthForm = () => {
@@ -238,6 +239,7 @@ const HealthForm = () => {
                 {!presentGoal && 
                     <>
                         <div className='hf-header-container'>
+                            <button id="hf-exit" onClick={handleExit}><RxCross1/></button>
                             <h1 className="header">Tell us about yourself</h1>
                             <button id="hf-reset" onClick={resetForm}>reset <RxReset/></button>
                         </div>
