@@ -40,6 +40,39 @@
     text-align: center;
 }
 
+.hf-header-container {
+    position: relative;
+}
+
+#hf-reset {
+    width: 4rem;
+    border: 1px solid black;
+    border-radius: 0.4em;
+    position: absolute;
+    right: 1rem;
+    height: 100%;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#hf-reset:hover, #hf-exit:hover {
+    cursor: pointer;
+}
+
+#hf-exit {
+    all: unset;
+    position: absolute;
+    left: 1rem;
+    top: 0;
+    height: 100%;
+    color: black;
+    font-size: 1.5rem;
+    display: flex;
+    align-items: center;
+}
+
 .health-form-input {
     width: 100%;
     padding: 0.75rem;

@@ -4,6 +4,8 @@ import { deactivateHealthForm } from '../../store/ui';
 import { getHealthFormState } from '../../store/ui';
 import { receiveUserHealth, updateUser } from '../../store/users'
 import { RiInformationFill } from 'react-icons/ri'
+import { RxReset } from 'react-icons/rx'
+import { RxCross1 } from 'react-icons/rx'
 import './HealthForm.css';
 
 const HealthForm = () => {
@@ -218,6 +220,17 @@ const HealthForm = () => {
         }
     }
 
+    const resetForm = () => {
+        setWeight('')
+        setFoot('');
+        setInch('');
+        setCm('');
+        setAge('');
+        setSex(null);
+        setActivity(null);
+        setWeightGoal(null);
+    }
+
     return (
         <div className="health-form-container">
             <div className="health-form-background" onClick={handleExit}></div>
@@ -225,7 +238,11 @@ const HealthForm = () => {
             <form className="health-form" onSubmit={handleSubmit}>
                 {!presentGoal && 
                     <>
-                        <h1 className="header">Tell us about yourself</h1>
+                        <div className='hf-header-container'>
+                            <button id="hf-exit" onClick={handleExit}><RxCross1/></button>
+                            <h1 className="header">Tell us about yourself</h1>
+                            <button id="hf-reset" onClick={resetForm}>reset <RxReset/></button>
+                        </div>
                         {/* {formErrors && <div className="health-form-errors">{formErrors?.weight}</div>} */}
 
                         <div className='weight-input-container'>

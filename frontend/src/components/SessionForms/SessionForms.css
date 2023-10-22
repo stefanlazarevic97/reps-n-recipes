@@ -71,11 +71,18 @@
     z-index: 100;
     margin: 0 1rem;
     bottom: 1rem;
+    right: 1rem;
+}
+
+.tb-rhs-container {
+    position: relative;
+    display: flex;
 }
 
 #toggle-page-type-button {
+    width: 6rem;
     position: sticky;
-    width: 100px;
+    left: 100vw;
     height: 32px;
     border-radius: 32px;
     font-size: 20px;
@@ -87,6 +94,12 @@
     box-shadow: 0 0.1rem 0.5rem rgba(0, 0, 0, 0.2);
     z-index: 200;
 }
+
+#toggle-page-type-button.special-toggle {
+    left: calc(100vw - 20rem);
+}
+
+
 
 #toggle-page-type-button:hover {
     transform: scale(1.05);

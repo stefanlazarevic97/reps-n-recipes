@@ -31,9 +31,9 @@ const WorkoutPage = () => {
     const [templateSaving, setTemplateSaving] = useState(null);
 
 
-    const goToNutritionPage = () => {
-        history.push("/nutrition");
-    };
+    // const goToNutritionPage = () => {
+    //     history.push("/nutrition");
+    // };
 
     const saveToDB = () => {
         const currentWorkout = JSON.parse(sessionStorage.getItem("currentWorkout"));
@@ -693,17 +693,18 @@ const WorkoutPage = () => {
                 </>
             }
 
+
             <div className="toggle-button-container">
-                <div 
-                    id="toggle-page-type-button" 
-                    className="button wprkout-button" 
-                    onClick={goToNutritionPage}
-                >
-                    <div>
-                        Nutrition
+                <div className="tb-rhs-container">
+                    <div 
+                        id="toggle-page-type-button" 
+                        className="button" 
+                        onClick={()=>history.push("/nutrition")}>
+                        <div>Nutrition</div>
                     </div>
                 </div>
             </div>
+
         </>
     )
 }

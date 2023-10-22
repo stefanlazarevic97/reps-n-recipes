@@ -27,9 +27,9 @@ const HomePage = () => {
         }
     }, [dispatch])
 
-    const goToWorkoutPage = () => {
-        history.push("/workout");
-    };
+    // const goToWorkoutPage = () => {
+    //     history.push("/workout");
+    // };
 
     const handleDateChange = (e) => {
         setSelectedDate(e.target.value);
@@ -37,6 +37,9 @@ const HomePage = () => {
     }
 
     return (
+
+        <>
+       
         <div className="nutrition-page">
             <section className="nutrition-section">
                 <div className="date-input-container">
@@ -88,18 +91,33 @@ const HomePage = () => {
                 <MealPlanShow />
             </section>
 
-            <div className="toggle-button-container">
+
+            {/* <div className="toggle-button-container">
                 <div 
                     id="toggle-page-type-button" 
                     className="button workout-button" 
-                    onClick={goToWorkoutPage}
-                >
-                    <div>
-                        Workouts
-                    </div>
+                    onClick={()=>history.push("/workout")}>
+                    <div>Workouts</div>
+                </div>
+            </div> */}
+            
+
+        </div>
+
+        <div className="toggle-button-container">
+            <div className="tb-rhs-container">
+                <div 
+                    id="toggle-page-type-button" 
+                    className="button workout-button" 
+                    onClick={()=>history.push("/workout")}>
+                    <div>Workouts</div>
                 </div>
             </div>
         </div>
+
+        </>
+
+        
     );
 }
 
