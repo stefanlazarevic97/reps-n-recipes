@@ -18,7 +18,7 @@ function NavBar () {
 
     const handleLogoClick = (e) => {
         e.preventDefault();
-        if (location.pathname === '/') {
+        if (loggedIn) {
             window.location.href = '/nutrition';
             window.scrollTo(0, 0);
         } else {
