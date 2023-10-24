@@ -150,10 +150,13 @@ const HealthForm = () => {
     const handleSubmit = async e => {
         e.preventDefault();
 
-        if (!weight || !(foot || cm) || !age || !sex || !activity || !weightGoal) {
-            alert("Please fill in all fields!")
-            return
+        if (!weight || !(foot || cm) || !age || sex === null || activity === null || weightGoal === null) {
+            if (weightGoal !== 0) {
+                alert("Please fill in all fields!")
+                return
+            }
         }
+        
 
         const mass = (massUnit === "kilos") ? weight : lbToKg(weight);
         const height = (distanceUnit === "cm") ? cm : ftInToCm(foot, inch);
